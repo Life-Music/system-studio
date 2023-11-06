@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.anticon svg {
+  vertical-align: unset;
+}
+
+.ant-picker-ok .ant-btn {
+  background-color: #0958d9;
+}
+
+.ant-btn-primary {
+  background-color: #1677ff;
+}
