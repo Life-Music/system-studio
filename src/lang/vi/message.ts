@@ -5,4 +5,6 @@ export const messages = {
   token_wrong: "Mã xác thực không hợp lệ, hoặc đã hết hạn, vui lòng thử lại!",
   verification_success: "Xác thực thành công",
   please_wait: "Vui lòng đợi giây lát",
+  dashboard: "Trang tổng quan",
+  all_content: "Nội dung",
 }

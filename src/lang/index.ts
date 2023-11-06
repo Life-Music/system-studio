@@ -6,6 +6,7 @@ type MessageSchema = typeof messageVi
 const i18n = createI18n<[MessageSchema], 'vi'>({
   locale: "vi",
   fallbackLocale: "en",
+  legacy: false,
   messages: {
     vi: messageVi,
   }

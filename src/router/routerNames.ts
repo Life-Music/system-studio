@@ -1,4 +1,5 @@
 export default {
   AUTH: "AUTH.SSO",
-  HOME: "DASHBOARD"
+  HOME: "DASHBOARD",
+  CONTENT: "MANAGEMENT.CONTENT"
 }
