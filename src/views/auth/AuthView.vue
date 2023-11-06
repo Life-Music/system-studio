@@ -79,12 +79,13 @@ const indicator = h(LoadingOutlined, {
   },
   spin: true
 })
+const userInfo = ref<User | null | false>(null)
+
 if (token.value) {
   const userStore = useUserInfoStore()
   userStore.init({
     access_token: token.value
   })
-  const userInfo = ref<User | null | false>(null)
   userStore.userInfo?.then((res) => {
     userInfo.value = res
     if (res) {
