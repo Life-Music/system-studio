@@ -126,6 +126,14 @@ export const StatusResource: {
 
 export type StatusResource = (typeof StatusResource)[keyof typeof StatusResource]
 
+
+export const Status: {
+  PUBLIC: 'PUBLIC',
+  PRIVATE: 'PRIVATE'
+};
+
+export type Status = (typeof Status)[keyof typeof Status]
+
 }
 
 export type PaymentMethod = $Enums.PaymentMethod
@@ -135,6 +143,10 @@ export const PaymentMethod: typeof $Enums.PaymentMethod
 export type StatusResource = $Enums.StatusResource
 
 export const StatusResource: typeof $Enums.StatusResource
+
+export type Status = $Enums.Status
+
+export const Status: typeof $Enums.Status
 
 /**
  * ##  Prisma Client ʲˢ
@@ -6691,6 +6703,7 @@ export namespace Prisma {
     views: number | null
     duration: number | null
     status: $Enums.StatusResource | null
+    view_mode: $Enums.Status | null
     createdAt: Date | null
     updatedAt: Date | null
     lockedAt: Date | null
@@ -6703,6 +6716,7 @@ export namespace Prisma {
     views: number | null
     duration: number | null
     status: $Enums.StatusResource | null
+    view_mode: $Enums.Status | null
     createdAt: Date | null
     updatedAt: Date | null
     lockedAt: Date | null
@@ -6715,6 +6729,7 @@ export namespace Prisma {
     views: number
     duration: number
     status: number
+    view_mode: number
     createdAt: number
     updatedAt: number
     lockedAt: number
@@ -6741,6 +6756,7 @@ export namespace Prisma {
     views?: true
     duration?: true
     status?: true
+    view_mode?: true
     createdAt?: true
     updatedAt?: true
     lockedAt?: true
@@ -6753,6 +6769,7 @@ export namespace Prisma {
     views?: true
     duration?: true
     status?: true
+    view_mode?: true
     createdAt?: true
     updatedAt?: true
     lockedAt?: true
@@ -6765,6 +6782,7 @@ export namespace Prisma {
     views?: true
     duration?: true
     status?: true
+    view_mode?: true
     createdAt?: true
     updatedAt?: true
     lockedAt?: true
@@ -6864,6 +6882,7 @@ export namespace Prisma {
     views: number
     duration: number
     status: $Enums.StatusResource | null
+    view_mode: $Enums.Status | null
     createdAt: Date
     updatedAt: Date
     lockedAt: Date | null
@@ -6895,6 +6914,7 @@ export namespace Prisma {
     views?: boolean
     duration?: boolean
     status?: boolean
+    view_mode?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     lockedAt?: boolean
@@ -6918,6 +6938,7 @@ export namespace Prisma {
     views?: boolean
     duration?: boolean
     status?: boolean
+    view_mode?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     lockedAt?: boolean
@@ -6959,6 +6980,7 @@ export namespace Prisma {
       views: number
       duration: number
       status: $Enums.StatusResource | null
+      view_mode: $Enums.Status | null
       createdAt: Date
       updatedAt: Date
       lockedAt: Date | null
@@ -7381,6 +7403,7 @@ export namespace Prisma {
     readonly views: FieldRef<"Media", 'Int'>
     readonly duration: FieldRef<"Media", 'Float'>
     readonly status: FieldRef<"Media", 'StatusResource'>
+    readonly view_mode: FieldRef<"Media", 'Status'>
     readonly createdAt: FieldRef<"Media", 'DateTime'>
     readonly updatedAt: FieldRef<"Media", 'DateTime'>
     readonly lockedAt: FieldRef<"Media", 'DateTime'>
@@ -20385,6 +20408,7 @@ export namespace Prisma {
     views: 'views',
     duration: 'duration',
     status: 'status',
+    view_mode: 'view_mode',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     lockedAt: 'lockedAt'
@@ -20597,6 +20621,13 @@ export namespace Prisma {
    * Reference to a field of type 'StatusResource'
    */
   export type EnumStatusResourceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'StatusResource'>
+    
+
+
+  /**
+   * Reference to a field of type 'Status'
+   */
+  export type EnumStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Status'>
     
 
 
@@ -20884,6 +20915,7 @@ export namespace Prisma {
     views?: IntFilter<"Media"> | number
     duration?: FloatFilter<"Media"> | number
     status?: EnumStatusResourceNullableFilter<"Media"> | $Enums.StatusResource | null
+    view_mode?: EnumStatusNullableFilter<"Media"> | $Enums.Status | null
     createdAt?: DateTimeFilter<"Media"> | Date | string
     updatedAt?: DateTimeFilter<"Media"> | Date | string
     lockedAt?: DateTimeNullableFilter<"Media"> | Date | string | null
@@ -20906,6 +20938,7 @@ export namespace Prisma {
     views?: SortOrder
     duration?: SortOrder
     status?: SortOrderInput | SortOrder
+    view_mode?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     lockedAt?: SortOrderInput | SortOrder
@@ -20931,6 +20964,7 @@ export namespace Prisma {
     views?: IntFilter<"Media"> | number
     duration?: FloatFilter<"Media"> | number
     status?: EnumStatusResourceNullableFilter<"Media"> | $Enums.StatusResource | null
+    view_mode?: EnumStatusNullableFilter<"Media"> | $Enums.Status | null
     createdAt?: DateTimeFilter<"Media"> | Date | string
     updatedAt?: DateTimeFilter<"Media"> | Date | string
     lockedAt?: DateTimeNullableFilter<"Media"> | Date | string | null
@@ -20953,6 +20987,7 @@ export namespace Prisma {
     views?: SortOrder
     duration?: SortOrder
     status?: SortOrderInput | SortOrder
+    view_mode?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     lockedAt?: SortOrderInput | SortOrder
@@ -20973,6 +21008,7 @@ export namespace Prisma {
     views?: IntWithAggregatesFilter<"Media"> | number
     duration?: FloatWithAggregatesFilter<"Media"> | number
     status?: EnumStatusResourceNullableWithAggregatesFilter<"Media"> | $Enums.StatusResource | null
+    view_mode?: EnumStatusNullableWithAggregatesFilter<"Media"> | $Enums.Status | null
     createdAt?: DateTimeWithAggregatesFilter<"Media"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Media"> | Date | string
     lockedAt?: DateTimeNullableWithAggregatesFilter<"Media"> | Date | string | null
@@ -22014,6 +22050,7 @@ export namespace Prisma {
     views: number
     duration: number
     status?: $Enums.StatusResource | null
+    view_mode?: $Enums.Status | null
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
@@ -22036,6 +22073,7 @@ export namespace Prisma {
     views: number
     duration: number
     status?: $Enums.StatusResource | null
+    view_mode?: $Enums.Status | null
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
@@ -22056,6 +22094,7 @@ export namespace Prisma {
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
     status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
+    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -22078,6 +22117,7 @@ export namespace Prisma {
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
     status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
+    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -22099,6 +22139,7 @@ export namespace Prisma {
     views: number
     duration: number
     status?: $Enums.StatusResource | null
+    view_mode?: $Enums.Status | null
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
@@ -22110,6 +22151,7 @@ export namespace Prisma {
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
     status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
+    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -22122,6 +22164,7 @@ export namespace Prisma {
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
     status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
+    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -23243,6 +23286,13 @@ export namespace Prisma {
     not?: NestedEnumStatusResourceNullableFilter<$PrismaModel> | $Enums.StatusResource | null
   }
 
+  export type EnumStatusNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel> | null
+    in?: $Enums.Status[] | null
+    notIn?: $Enums.Status[] | null
+    not?: NestedEnumStatusNullableFilter<$PrismaModel> | $Enums.Status | null
+  }
+
   export type ThumbnailListRelationFilter = {
     every?: ThumbnailWhereInput
     some?: ThumbnailWhereInput
@@ -23295,6 +23345,7 @@ export namespace Prisma {
     views?: SortOrder
     duration?: SortOrder
     status?: SortOrder
+    view_mode?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     lockedAt?: SortOrder
@@ -23313,6 +23364,7 @@ export namespace Prisma {
     views?: SortOrder
     duration?: SortOrder
     status?: SortOrder
+    view_mode?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     lockedAt?: SortOrder
@@ -23325,6 +23377,7 @@ export namespace Prisma {
     views?: SortOrder
     duration?: SortOrder
     status?: SortOrder
+    view_mode?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     lockedAt?: SortOrder
@@ -23360,6 +23413,16 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedEnumStatusResourceNullableFilter<$PrismaModel>
     _max?: NestedEnumStatusResourceNullableFilter<$PrismaModel>
+  }
+
+  export type EnumStatusNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel> | null
+    in?: $Enums.Status[] | null
+    notIn?: $Enums.Status[] | null
+    not?: NestedEnumStatusNullableWithAggregatesFilter<$PrismaModel> | $Enums.Status | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumStatusNullableFilter<$PrismaModel>
+    _max?: NestedEnumStatusNullableFilter<$PrismaModel>
   }
 
   export type BoolFilter<$PrismaModel = never> = {
@@ -24459,6 +24522,10 @@ export namespace Prisma {
     set?: $Enums.StatusResource | null
   }
 
+  export type NullableEnumStatusFieldUpdateOperationsInput = {
+    set?: $Enums.Status | null
+  }
+
   export type UserUpdateOneRequiredWithoutMediaNestedInput = {
     create?: XOR<UserCreateWithoutMediaInput, UserUncheckedCreateWithoutMediaInput>
     connectOrCreate?: UserCreateOrConnectWithoutMediaInput
@@ -25222,6 +25289,13 @@ export namespace Prisma {
     not?: NestedEnumStatusResourceNullableFilter<$PrismaModel> | $Enums.StatusResource | null
   }
 
+  export type NestedEnumStatusNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel> | null
+    in?: $Enums.Status[] | null
+    notIn?: $Enums.Status[] | null
+    not?: NestedEnumStatusNullableFilter<$PrismaModel> | $Enums.Status | null
+  }
+
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[]
@@ -25248,6 +25322,16 @@ export namespace Prisma {
     _max?: NestedEnumStatusResourceNullableFilter<$PrismaModel>
   }
 
+  export type NestedEnumStatusNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel> | null
+    in?: $Enums.Status[] | null
+    notIn?: $Enums.Status[] | null
+    not?: NestedEnumStatusNullableWithAggregatesFilter<$PrismaModel> | $Enums.Status | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumStatusNullableFilter<$PrismaModel>
+    _max?: NestedEnumStatusNullableFilter<$PrismaModel>
+  }
+
   export type NestedBoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
@@ -25267,6 +25351,7 @@ export namespace Prisma {
     views: number
     duration: number
     status?: $Enums.StatusResource | null
+    view_mode?: $Enums.Status | null
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
@@ -25287,6 +25372,7 @@ export namespace Prisma {
     views: number
     duration: number
     status?: $Enums.StatusResource | null
+    view_mode?: $Enums.Status | null
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
@@ -25528,6 +25614,7 @@ export namespace Prisma {
     views?: IntFilter<"Media"> | number
     duration?: FloatFilter<"Media"> | number
     status?: EnumStatusResourceNullableFilter<"Media"> | $Enums.StatusResource | null
+    view_mode?: EnumStatusNullableFilter<"Media"> | $Enums.Status | null
     createdAt?: DateTimeFilter<"Media"> | Date | string
     updatedAt?: DateTimeFilter<"Media"> | Date | string
     lockedAt?: DateTimeNullableFilter<"Media"> | Date | string | null
@@ -25907,6 +25994,7 @@ export namespace Prisma {
     views: number
     duration: number
     status?: $Enums.StatusResource | null
+    view_mode?: $Enums.Status | null
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
@@ -25928,6 +26016,7 @@ export namespace Prisma {
     views: number
     duration: number
     status?: $Enums.StatusResource | null
+    view_mode?: $Enums.Status | null
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
@@ -25988,6 +26077,7 @@ export namespace Prisma {
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
     status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
+    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -26009,6 +26099,7 @@ export namespace Prisma {
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
     status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
+    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -26575,6 +26666,7 @@ export namespace Prisma {
     views: number
     duration: number
     status?: $Enums.StatusResource | null
+    view_mode?: $Enums.Status | null
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
@@ -26596,6 +26688,7 @@ export namespace Prisma {
     views: number
     duration: number
     status?: $Enums.StatusResource | null
+    view_mode?: $Enums.Status | null
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
@@ -26683,6 +26776,7 @@ export namespace Prisma {
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
     status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
+    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -26704,6 +26798,7 @@ export namespace Prisma {
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
     status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
+    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -26769,6 +26864,7 @@ export namespace Prisma {
     views: number
     duration: number
     status?: $Enums.StatusResource | null
+    view_mode?: $Enums.Status | null
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
@@ -26790,6 +26886,7 @@ export namespace Prisma {
     views: number
     duration: number
     status?: $Enums.StatusResource | null
+    view_mode?: $Enums.Status | null
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
@@ -26877,6 +26974,7 @@ export namespace Prisma {
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
     status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
+    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -26898,6 +26996,7 @@ export namespace Prisma {
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
     status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
+    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -27075,6 +27174,7 @@ export namespace Prisma {
     views: number
     duration: number
     status?: $Enums.StatusResource | null
+    view_mode?: $Enums.Status | null
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
@@ -27096,6 +27196,7 @@ export namespace Prisma {
     views: number
     duration: number
     status?: $Enums.StatusResource | null
+    view_mode?: $Enums.Status | null
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
@@ -27158,6 +27259,7 @@ export namespace Prisma {
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
     status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
+    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -27179,6 +27281,7 @@ export namespace Prisma {
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
     status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
+    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -27244,6 +27347,7 @@ export namespace Prisma {
     views: number
     duration: number
     status?: $Enums.StatusResource | null
+    view_mode?: $Enums.Status | null
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
@@ -27265,6 +27369,7 @@ export namespace Prisma {
     views: number
     duration: number
     status?: $Enums.StatusResource | null
+    view_mode?: $Enums.Status | null
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
@@ -27352,6 +27457,7 @@ export namespace Prisma {
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
     status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
+    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -27373,6 +27479,7 @@ export namespace Prisma {
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
     status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
+    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -27686,6 +27793,7 @@ export namespace Prisma {
     views: number
     duration: number
     status?: $Enums.StatusResource | null
+    view_mode?: $Enums.Status | null
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
@@ -27707,6 +27815,7 @@ export namespace Prisma {
     views: number
     duration: number
     status?: $Enums.StatusResource | null
+    view_mode?: $Enums.Status | null
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
@@ -27742,6 +27851,7 @@ export namespace Prisma {
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
     status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
+    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -27763,6 +27873,7 @@ export namespace Prisma {
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
     status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
+    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -27782,6 +27893,7 @@ export namespace Prisma {
     views: number
     duration: number
     status?: $Enums.StatusResource | null
+    view_mode?: $Enums.Status | null
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
@@ -27803,6 +27915,7 @@ export namespace Prisma {
     views: number
     duration: number
     status?: $Enums.StatusResource | null
+    view_mode?: $Enums.Status | null
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
@@ -27838,6 +27951,7 @@ export namespace Prisma {
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
     status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
+    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -27859,6 +27973,7 @@ export namespace Prisma {
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
     status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
+    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -27878,6 +27993,7 @@ export namespace Prisma {
     views: number
     duration: number
     status?: $Enums.StatusResource | null
+    view_mode?: $Enums.Status | null
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
@@ -27899,6 +28015,7 @@ export namespace Prisma {
     views: number
     duration: number
     status?: $Enums.StatusResource | null
+    view_mode?: $Enums.Status | null
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
@@ -27934,6 +28051,7 @@ export namespace Prisma {
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
     status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
+    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -27955,6 +28073,7 @@ export namespace Prisma {
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
     status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
+    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -27974,6 +28093,7 @@ export namespace Prisma {
     views: number
     duration: number
     status?: $Enums.StatusResource | null
+    view_mode?: $Enums.Status | null
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
@@ -27995,6 +28115,7 @@ export namespace Prisma {
     views: number
     duration: number
     status?: $Enums.StatusResource | null
+    view_mode?: $Enums.Status | null
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
@@ -28030,6 +28151,7 @@ export namespace Prisma {
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
     status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
+    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -28051,6 +28173,7 @@ export namespace Prisma {
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
     status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
+    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -28159,6 +28282,7 @@ export namespace Prisma {
     views: number
     duration: number
     status?: $Enums.StatusResource | null
+    view_mode?: $Enums.Status | null
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
@@ -28228,6 +28352,7 @@ export namespace Prisma {
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
     status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
+    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -28248,6 +28373,7 @@ export namespace Prisma {
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
     status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
+    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -28268,6 +28394,7 @@ export namespace Prisma {
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
     status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
+    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null

@@ -1,5 +1,5 @@
 <template>
-  <LayoutSider class="overflow-auto h-screen fixed left-0 top-0 bottom-0 py-4" theme="light">
+  <LayoutSider class="overflow-auto h-screen !fixed left-0 top-0 bottom-0 py-4" theme="light">
     <div class="flex items-center gap-x-2 justify-center mb-4">
       <div class="logo h-8 w-9 bg-contain bg-center bg-no-repeat" />
       <div class="text-xl">Lifemusic</div>

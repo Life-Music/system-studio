@@ -2,7 +2,7 @@
   <Layout has-sider>
     <Sidebar />
     <Layout class="ml-[200px]">
-      <LayoutContent>
+      <LayoutContent class="p-6 !min-h-screen">
         <slot />
       </LayoutContent>
     </Layout>
