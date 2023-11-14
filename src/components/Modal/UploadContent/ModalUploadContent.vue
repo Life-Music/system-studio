@@ -15,11 +15,13 @@
           </KeepAlive>
         </div>
       </template>
-      <template v-else>
+      <Spin size="large" :spinning="isUploading" v-show="!mediaInfo">
         <UploadDragger
           name="file"
-          @change="handleChangeFile"
+          :custom-request="handleChangeFile"
           class="min-h-[300px] flex items-center"
+          accept="video/*,audio/*"
+          :show-upload-list="false"
         >
           <p class="ant-upload-drag-icon">
             <CloudUploadOutlined />
@@ -29,37 +31,52 @@
             {{ $t('support_file_des') }}
           </p>
         </UploadDragger>
-      </template>
+      </Spin>
     </div>
   </Modal>
 </template>
 <script setup lang="ts">
-import { Modal, Steps, Button, UploadDragger } from 'ant-design-vue'
+import { Modal, Steps, Button, UploadDragger, Spin } from 'ant-design-vue'
 import { ref, defineModel } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { CloudUploadOutlined } from '@ant-design/icons-vue'
 import Basic from './_Basic.vue'
 import Advanced from './_Advanced.vue'
 import ViewMode from './_ViewMode.vue'
-import type { Media } from '~/prisma/generated/mysql'
+import type { Media, Prisma, SessionUpload } from '~/prisma/generated/mysql'
 import { computed } from 'vue'
+import requestInstance from '@/utils/axios'
+import { readByChunk, sha256 } from '@/utils/common'
+import { watch } from 'vue'
 
 const open = defineModel<boolean>('open')
 
+const props = defineProps<{
+  pMediaInfo?: Prisma.MediaGetPayload<{
+    include: {
+      detail: true
+      audioResources: true
+      videoResources: true
+      thumbnails: true
+    }
+  }>
+}>()
+
 const { t } = useI18n()
 const currentStep = ref(0)
-const mediaInfo = ref<Media | null>({
-  id: '1',
-  createdAt: new Date(),
-  duration: 170,
-  lockedAt: null,
-  status: 'UPLOADING',
-  title: 'Video 2023 06 17 214436',
-  updatedAt: new Date(),
-  userId: 1,
-  views: 1,
-  view_mode: 'PRIVATE'
-})
+const mediaInfo = ref<
+  | Prisma.MediaGetPayload<{
+      include: {
+        detail: true
+        audioResources: true
+        videoResources: true
+        thumbnails: true
+      }
+    }>
+  | undefined
+>(props.pMediaInfo)
+const sessionUploadUrl = ref<string | null>(null)
+const isUploading = ref<boolean>(false)
 const componentSteps = [Basic, Advanced, ViewMode]
 const items = computed(() => [
   {
@@ -98,9 +115,50 @@ const handleSubmit = () => {
   }
 }
 
-const handleChangeFile = (e: any) => {
-  const file = e.fileList[0]
-  const fileSrc: File = file.originFileObj
-  // mediaInfo.value = {}
+watch(
+  () => props.pMediaInfo,
+  () => {
+    mediaInfo.value = props.pMediaInfo
+  }
+)
+
+const handleChangeFile = async (e: any) => {
+  const fileSrc: File = e.file
+  const hashFile = await sha256(`${fileSrc.name}_${fileSrc.size}`)
+
+  isUploading.value = true
+
+  const media = await requestInstance.post<
+    ResponseSuccess<
+      Prisma.MediaGetPayload<{
+        include: {
+          detail: true
+          audioResources: true
+          videoResources: true
+          thumbnails: true
+        }
+      }>
+    >
+  >('/studio/media', {
+    title: fileSrc.name
+  })
+
+  const sessionUpload = await requestInstance.post<ResponseSuccess<SessionUpload>>(
+    '/studio/media/create-resumable-upload',
+    {
+      mediaId: media.data.data.id,
+      id: hashFile
+    }
+  )
+
+  mediaInfo.value = media.data.data
+
+  sessionUploadUrl.value = sessionUpload.data.data.sessionUploadUrl
+
+  await readByChunk(fileSrc, {
+    onRead(data, totalByte, byteStart) {
+      console.log(data, totalByte, byteStart)
+    }
+  })
 }
 </script>

@@ -49,33 +49,20 @@
 import { Divider, Form, FormItem, Input, Textarea, Upload, Select } from 'ant-design-vue'
 import { ref } from 'vue'
 import { defineModel } from 'vue'
-import type { Media } from '~/prisma/generated/mysql'
+import type { Media, Prisma } from '~/prisma/generated/mysql'
 import type { UploadProps } from 'ant-design-vue'
 import { PlusOutlined } from '@ant-design/icons-vue'
 
-const mediaInfo = defineModel<Media>('mediaInfo', {
+const mediaInfo = defineModel<
+  Prisma.MediaGetPayload<{
+    include: {
+      detail: true
+    }
+  }>
+>('mediaInfo', {
   required: true
 })
 const formState = ref<Record<string, any>>({})
 
-const fileList = ref<UploadProps['fileList']>([
-  {
-    uid: '-1',
-    name: 'image.png',
-    status: 'done',
-    url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'
-  },
-  {
-    uid: '-2',
-    name: 'image.png',
-    status: 'done',
-    url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'
-  },
-  {
-    uid: '-3',
-    name: 'image.png',
-    status: 'done',
-    url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'
-  }
-])
+const fileList = ref<UploadProps['fileList']>([])
 </script>
