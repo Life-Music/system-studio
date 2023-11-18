@@ -5,7 +5,7 @@
       <div class="text-xl">Lifemusic</div>
     </div>
     <Menu mode="inline" v-model:selected-keys="currentRoute">
-      <MenuItem v-for="(menuItem, i) in menu" :key="menuItem.key" @click="menuItem.onClick">
+      <MenuItem v-for="menuItem in menu" :key="menuItem.key" @click="menuItem.onClick">
         <component :is="menuItem.icon" />
         <span class="nav-text">{{ menuItem.text }}</span>
       </MenuItem>

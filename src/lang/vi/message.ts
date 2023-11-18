@@ -24,6 +24,7 @@ export const messages = {
   advance_information: "Thông tin nâng cao",
   mode_view: "Chế độ hiển thị",
   new_publish: "Tải lên xuất bản mới",
+  edit_publish: "Chỉnh sửa xuất bản",
   click_or_drag_come_here: "Click hoặc kéo thả file vào đây",
   support_file_des: "Hỗ trợ các loại file video và âm thanh.",
   basic_information_form: {
@@ -41,4 +42,10 @@ export const messages = {
   continue: "Tiếp tục",
   done: "Hoàn tất",
   return: "Trở về",
+  save_successful: "Lưu thành công",
+  delete: "Xóa",
+  confirm_delete_content: "Bạn có chắc chắn muốn xóa nội dung này không?",
+  confirm: "Xác nhận",
+  delete_successful: "Xóa thành công",
+  preview: "Xem trước",
 }

@@ -4,7 +4,7 @@
       <Divider orientation="left" style="border-color: #bdbdbd; font-size: inherit">{{
         $t('advance_information')
       }}</Divider>
-      <Form :model="mediaInfo" layout="vertical">
+      <Form :model="mediaInfo" layout="vertical" ref="formRef">
         <FormItem :label="$t('basic_information_form.lyrics')" name="lyrics">
           <Upload list-type="picture-card">
             <plus-outlined />
@@ -40,4 +40,14 @@ const mediaInfo = defineModel<Media>('mediaInfo', {
   required: true
 })
 const formState = ref<Record<string, any>>({})
+
+const formRef = ref()
+
+const validate = () => {
+  return formRef.value.validate()
+}
+
+defineExpose({
+  validate
+})
 </script>

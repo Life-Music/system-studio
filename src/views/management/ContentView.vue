@@ -5,7 +5,7 @@
         {{ $t('content_full') }}
       </div>
       <div>
-        <Button type="primary" @click="isOpenModalUploadContent = true">
+        <Button type="primary" @click="newUpload">
           <template #icon>
             <CloudUploadOutlined />
           </template>
@@ -13,8 +13,12 @@
         </Button>
       </div>
     </div>
-    <Table :columns="columns" :data-source="dataSource"></Table>
-    <ModalUploadContent v-model:open="isOpenModalUploadContent" :p-media-info="currentMedia" />
+    <Table :columns="columns" :data-source="dataSource" :loading="isLoading"></Table>
+    <ModalUploadContent
+      v-model:open="isOpenModalUploadContent"
+      :p-media-info="currentMedia"
+      :on-save="loadResource"
+    />
   </div>
 </template>
 <script setup lang="ts">
@@ -25,7 +29,7 @@ import { useI18n } from 'vue-i18n'
 import { CloudUploadOutlined } from '@ant-design/icons-vue'
 import ModalUploadContent from '@/components/Modal/UploadContent/ModalUploadContent.vue'
 import requestInstance from '@/utils/axios'
-import type { Media, Prisma } from '~/prisma/generated/mysql'
+import type { Prisma } from '~/prisma/generated/mysql'
 import { formatDate, formatNumber } from '@/utils/common'
 import { h } from 'vue'
 
@@ -43,6 +47,12 @@ const currentMedia = ref<
   | undefined
 >()
 const isLoading = ref<boolean>(true)
+
+const newUpload = () => {
+  isOpenModalUploadContent.value = true
+  currentMedia.value = undefined
+}
+
 const columns = ref<ColumnType[]>([
   {
     title: t('song'),
@@ -52,7 +62,7 @@ const columns = ref<ColumnType[]>([
       return h(
         'div',
         {
-          class: 'text-blue-500 cursor-pointer',
+          class: 'text-blue-500 cursor-pointer font-semibold',
           onClick() {
             isOpenModalUploadContent.value = true
             currentMedia.value = record
@@ -76,8 +86,8 @@ const columns = ref<ColumnType[]>([
     title: t('date_publish'),
     dataIndex: 'created_at',
     key: 'created_at',
-    customRender({ text }) {
-      return formatDate(text)
+    customRender({ text, record }) {
+      return formatDate(record.publishedAt ?? text)
     }
   },
   {
@@ -118,12 +128,23 @@ const dataSource = ref<
 
 const loadResource = async () => {
   isLoading.value = true
-  try {
-    const res = await requestInstance.get<ResponseSuccessPagination<Media[]>>('/studio/media')
-    dataSource.value = res.data.data
-  } catch (e) {
-    isLoading.value = false
-  }
+  const res = await requestInstance
+    .get<
+      ResponseSuccessPagination<
+        Prisma.MediaGetPayload<{
+          include: {
+            detail: true
+            audioResources: true
+            videoResources: true
+            thumbnails: true
+          }
+        }>[]
+      >
+    >('/studio/media')
+    .finally(() => {
+      isLoading.value = false
+    })
+  dataSource.value = res.data.data
 }
 
 loadResource()

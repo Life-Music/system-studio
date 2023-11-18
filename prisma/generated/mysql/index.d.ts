@@ -34,6 +34,11 @@ export type Category = $Result.DefaultSelection<Prisma.$CategoryPayload>
  */
 export type CategoryOnMedia = $Result.DefaultSelection<Prisma.$CategoryOnMediaPayload>
 /**
+ * Model SessionUpload
+ * 
+ */
+export type SessionUpload = $Result.DefaultSelection<Prisma.$SessionUploadPayload>
+/**
  * Model Media
  * 
  */
@@ -134,6 +139,15 @@ export const Status: {
 
 export type Status = (typeof Status)[keyof typeof Status]
 
+
+export const AudioQuality: {
+  NORMAL: 'NORMAL',
+  HIGH: 'HIGH',
+  LOSSLESS: 'LOSSLESS'
+};
+
+export type AudioQuality = (typeof AudioQuality)[keyof typeof AudioQuality]
+
 }
 
 export type PaymentMethod = $Enums.PaymentMethod
@@ -147,6 +161,10 @@ export const StatusResource: typeof $Enums.StatusResource
 export type Status = $Enums.Status
 
 export const Status: typeof $Enums.Status
+
+export type AudioQuality = $Enums.AudioQuality
+
+export const AudioQuality: typeof $Enums.AudioQuality
 
 /**
  * ##  Prisma Client ʲˢ
@@ -309,6 +327,16 @@ export class PrismaClient<
     * ```
     */
   get categoryOnMedia(): Prisma.CategoryOnMediaDelegate<ExtArgs>;
+
+  /**
+   * `prisma.sessionUpload`: Exposes CRUD operations for the **SessionUpload** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more SessionUploads
+    * const sessionUploads = await prisma.sessionUpload.findMany()
+    * ```
+    */
+  get sessionUpload(): Prisma.SessionUploadDelegate<ExtArgs>;
 
   /**
    * `prisma.media`: Exposes CRUD operations for the **Media** model.
@@ -923,6 +951,7 @@ export namespace Prisma {
     UserPaymentMethod: 'UserPaymentMethod',
     Category: 'Category',
     CategoryOnMedia: 'CategoryOnMedia',
+    SessionUpload: 'SessionUpload',
     Media: 'Media',
     MediaReaction: 'MediaReaction',
     Comment: 'Comment',
@@ -953,7 +982,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'user' | 'userPaymentMethod' | 'category' | 'categoryOnMedia' | 'media' | 'mediaReaction' | 'comment' | 'playlist' | 'mediaOnPlaylist' | 'history' | 'subscriber' | 'notificationSubscriptions' | 'videoResource' | 'audioResource' | 'mediaDetail' | 'thumbnail' | 'paymentTransaction' | 'paymentTransactionDetail'
+      modelProps: 'user' | 'userPaymentMethod' | 'category' | 'categoryOnMedia' | 'sessionUpload' | 'media' | 'mediaReaction' | 'comment' | 'playlist' | 'mediaOnPlaylist' | 'history' | 'subscriber' | 'notificationSubscriptions' | 'videoResource' | 'audioResource' | 'mediaDetail' | 'thumbnail' | 'paymentTransaction' | 'paymentTransactionDetail'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
@@ -1218,6 +1247,72 @@ export namespace Prisma {
           count: {
             args: Prisma.CategoryOnMediaCountArgs<ExtArgs>,
             result: $Utils.Optional<CategoryOnMediaCountAggregateOutputType> | number
+          }
+        }
+      }
+      SessionUpload: {
+        payload: Prisma.$SessionUploadPayload<ExtArgs>
+        fields: Prisma.SessionUploadFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SessionUploadFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$SessionUploadPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SessionUploadFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$SessionUploadPayload>
+          }
+          findFirst: {
+            args: Prisma.SessionUploadFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$SessionUploadPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SessionUploadFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$SessionUploadPayload>
+          }
+          findMany: {
+            args: Prisma.SessionUploadFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$SessionUploadPayload>[]
+          }
+          create: {
+            args: Prisma.SessionUploadCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$SessionUploadPayload>
+          }
+          createMany: {
+            args: Prisma.SessionUploadCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.SessionUploadDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$SessionUploadPayload>
+          }
+          update: {
+            args: Prisma.SessionUploadUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$SessionUploadPayload>
+          }
+          deleteMany: {
+            args: Prisma.SessionUploadDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SessionUploadUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.SessionUploadUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$SessionUploadPayload>
+          }
+          aggregate: {
+            args: Prisma.SessionUploadAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateSessionUpload>
+          }
+          groupBy: {
+            args: Prisma.SessionUploadGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<SessionUploadGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SessionUploadCountArgs<ExtArgs>,
+            result: $Utils.Optional<SessionUploadCountAggregateOutputType> | number
           }
         }
       }
@@ -2450,6 +2545,7 @@ export namespace Prisma {
     CategoryOnVideo: number
     Comment: number
     MediaOnPlaylist: number
+    SessionUpload: number
   }
 
   export type MediaCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2461,6 +2557,7 @@ export namespace Prisma {
     CategoryOnVideo?: boolean | MediaCountOutputTypeCountCategoryOnVideoArgs
     Comment?: boolean | MediaCountOutputTypeCountCommentArgs
     MediaOnPlaylist?: boolean | MediaCountOutputTypeCountMediaOnPlaylistArgs
+    SessionUpload?: boolean | MediaCountOutputTypeCountSessionUploadArgs
   }
 
   // Custom InputTypes
@@ -2537,6 +2634,14 @@ export namespace Prisma {
    */
   export type MediaCountOutputTypeCountMediaOnPlaylistArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: MediaOnPlaylistWhereInput
+  }
+
+
+  /**
+   * MediaCountOutputType without action
+   */
+  export type MediaCountOutputTypeCountSessionUploadArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SessionUploadWhereInput
   }
 
 
@@ -6673,6 +6778,935 @@ export namespace Prisma {
 
 
   /**
+   * Model SessionUpload
+   */
+
+  export type AggregateSessionUpload = {
+    _count: SessionUploadCountAggregateOutputType | null
+    _min: SessionUploadMinAggregateOutputType | null
+    _max: SessionUploadMaxAggregateOutputType | null
+  }
+
+  export type SessionUploadMinAggregateOutputType = {
+    id: string | null
+    sessionUploadUrl: string | null
+    mediaId: string | null
+    created_at: Date | null
+    updated_at: Date | null
+    expired_at: Date | null
+  }
+
+  export type SessionUploadMaxAggregateOutputType = {
+    id: string | null
+    sessionUploadUrl: string | null
+    mediaId: string | null
+    created_at: Date | null
+    updated_at: Date | null
+    expired_at: Date | null
+  }
+
+  export type SessionUploadCountAggregateOutputType = {
+    id: number
+    sessionUploadUrl: number
+    mediaId: number
+    created_at: number
+    updated_at: number
+    expired_at: number
+    _all: number
+  }
+
+
+  export type SessionUploadMinAggregateInputType = {
+    id?: true
+    sessionUploadUrl?: true
+    mediaId?: true
+    created_at?: true
+    updated_at?: true
+    expired_at?: true
+  }
+
+  export type SessionUploadMaxAggregateInputType = {
+    id?: true
+    sessionUploadUrl?: true
+    mediaId?: true
+    created_at?: true
+    updated_at?: true
+    expired_at?: true
+  }
+
+  export type SessionUploadCountAggregateInputType = {
+    id?: true
+    sessionUploadUrl?: true
+    mediaId?: true
+    created_at?: true
+    updated_at?: true
+    expired_at?: true
+    _all?: true
+  }
+
+  export type SessionUploadAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SessionUpload to aggregate.
+     */
+    where?: SessionUploadWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SessionUploads to fetch.
+     */
+    orderBy?: SessionUploadOrderByWithRelationInput | SessionUploadOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SessionUploadWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SessionUploads from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SessionUploads.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned SessionUploads
+    **/
+    _count?: true | SessionUploadCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SessionUploadMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SessionUploadMaxAggregateInputType
+  }
+
+  export type GetSessionUploadAggregateType<T extends SessionUploadAggregateArgs> = {
+        [P in keyof T & keyof AggregateSessionUpload]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSessionUpload[P]>
+      : GetScalarType<T[P], AggregateSessionUpload[P]>
+  }
+
+
+
+
+  export type SessionUploadGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SessionUploadWhereInput
+    orderBy?: SessionUploadOrderByWithAggregationInput | SessionUploadOrderByWithAggregationInput[]
+    by: SessionUploadScalarFieldEnum[] | SessionUploadScalarFieldEnum
+    having?: SessionUploadScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SessionUploadCountAggregateInputType | true
+    _min?: SessionUploadMinAggregateInputType
+    _max?: SessionUploadMaxAggregateInputType
+  }
+
+  export type SessionUploadGroupByOutputType = {
+    id: string
+    sessionUploadUrl: string
+    mediaId: string
+    created_at: Date
+    updated_at: Date
+    expired_at: Date | null
+    _count: SessionUploadCountAggregateOutputType | null
+    _min: SessionUploadMinAggregateOutputType | null
+    _max: SessionUploadMaxAggregateOutputType | null
+  }
+
+  type GetSessionUploadGroupByPayload<T extends SessionUploadGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SessionUploadGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SessionUploadGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SessionUploadGroupByOutputType[P]>
+            : GetScalarType<T[P], SessionUploadGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SessionUploadSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    sessionUploadUrl?: boolean
+    mediaId?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    expired_at?: boolean
+    Media?: boolean | MediaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["sessionUpload"]>
+
+  export type SessionUploadSelectScalar = {
+    id?: boolean
+    sessionUploadUrl?: boolean
+    mediaId?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    expired_at?: boolean
+  }
+
+  export type SessionUploadInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Media?: boolean | MediaDefaultArgs<ExtArgs>
+  }
+
+
+  export type $SessionUploadPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "SessionUpload"
+    objects: {
+      Media: Prisma.$MediaPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      sessionUploadUrl: string
+      mediaId: string
+      created_at: Date
+      updated_at: Date
+      expired_at: Date | null
+    }, ExtArgs["result"]["sessionUpload"]>
+    composites: {}
+  }
+
+
+  type SessionUploadGetPayload<S extends boolean | null | undefined | SessionUploadDefaultArgs> = $Result.GetResult<Prisma.$SessionUploadPayload, S>
+
+  type SessionUploadCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<SessionUploadFindManyArgs, 'select' | 'include'> & {
+      select?: SessionUploadCountAggregateInputType | true
+    }
+
+  export interface SessionUploadDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['SessionUpload'], meta: { name: 'SessionUpload' } }
+    /**
+     * Find zero or one SessionUpload that matches the filter.
+     * @param {SessionUploadFindUniqueArgs} args - Arguments to find a SessionUpload
+     * @example
+     * // Get one SessionUpload
+     * const sessionUpload = await prisma.sessionUpload.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends SessionUploadFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, SessionUploadFindUniqueArgs<ExtArgs>>
+    ): Prisma__SessionUploadClient<$Result.GetResult<Prisma.$SessionUploadPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one SessionUpload that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {SessionUploadFindUniqueOrThrowArgs} args - Arguments to find a SessionUpload
+     * @example
+     * // Get one SessionUpload
+     * const sessionUpload = await prisma.sessionUpload.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends SessionUploadFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, SessionUploadFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__SessionUploadClient<$Result.GetResult<Prisma.$SessionUploadPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first SessionUpload that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SessionUploadFindFirstArgs} args - Arguments to find a SessionUpload
+     * @example
+     * // Get one SessionUpload
+     * const sessionUpload = await prisma.sessionUpload.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends SessionUploadFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, SessionUploadFindFirstArgs<ExtArgs>>
+    ): Prisma__SessionUploadClient<$Result.GetResult<Prisma.$SessionUploadPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first SessionUpload that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SessionUploadFindFirstOrThrowArgs} args - Arguments to find a SessionUpload
+     * @example
+     * // Get one SessionUpload
+     * const sessionUpload = await prisma.sessionUpload.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends SessionUploadFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, SessionUploadFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__SessionUploadClient<$Result.GetResult<Prisma.$SessionUploadPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more SessionUploads that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SessionUploadFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all SessionUploads
+     * const sessionUploads = await prisma.sessionUpload.findMany()
+     * 
+     * // Get first 10 SessionUploads
+     * const sessionUploads = await prisma.sessionUpload.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const sessionUploadWithIdOnly = await prisma.sessionUpload.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends SessionUploadFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, SessionUploadFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionUploadPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a SessionUpload.
+     * @param {SessionUploadCreateArgs} args - Arguments to create a SessionUpload.
+     * @example
+     * // Create one SessionUpload
+     * const SessionUpload = await prisma.sessionUpload.create({
+     *   data: {
+     *     // ... data to create a SessionUpload
+     *   }
+     * })
+     * 
+    **/
+    create<T extends SessionUploadCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, SessionUploadCreateArgs<ExtArgs>>
+    ): Prisma__SessionUploadClient<$Result.GetResult<Prisma.$SessionUploadPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many SessionUploads.
+     *     @param {SessionUploadCreateManyArgs} args - Arguments to create many SessionUploads.
+     *     @example
+     *     // Create many SessionUploads
+     *     const sessionUpload = await prisma.sessionUpload.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends SessionUploadCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, SessionUploadCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a SessionUpload.
+     * @param {SessionUploadDeleteArgs} args - Arguments to delete one SessionUpload.
+     * @example
+     * // Delete one SessionUpload
+     * const SessionUpload = await prisma.sessionUpload.delete({
+     *   where: {
+     *     // ... filter to delete one SessionUpload
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends SessionUploadDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, SessionUploadDeleteArgs<ExtArgs>>
+    ): Prisma__SessionUploadClient<$Result.GetResult<Prisma.$SessionUploadPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one SessionUpload.
+     * @param {SessionUploadUpdateArgs} args - Arguments to update one SessionUpload.
+     * @example
+     * // Update one SessionUpload
+     * const sessionUpload = await prisma.sessionUpload.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends SessionUploadUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, SessionUploadUpdateArgs<ExtArgs>>
+    ): Prisma__SessionUploadClient<$Result.GetResult<Prisma.$SessionUploadPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more SessionUploads.
+     * @param {SessionUploadDeleteManyArgs} args - Arguments to filter SessionUploads to delete.
+     * @example
+     * // Delete a few SessionUploads
+     * const { count } = await prisma.sessionUpload.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends SessionUploadDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, SessionUploadDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SessionUploads.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SessionUploadUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many SessionUploads
+     * const sessionUpload = await prisma.sessionUpload.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends SessionUploadUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, SessionUploadUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one SessionUpload.
+     * @param {SessionUploadUpsertArgs} args - Arguments to update or create a SessionUpload.
+     * @example
+     * // Update or create a SessionUpload
+     * const sessionUpload = await prisma.sessionUpload.upsert({
+     *   create: {
+     *     // ... data to create a SessionUpload
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the SessionUpload we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends SessionUploadUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, SessionUploadUpsertArgs<ExtArgs>>
+    ): Prisma__SessionUploadClient<$Result.GetResult<Prisma.$SessionUploadPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of SessionUploads.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SessionUploadCountArgs} args - Arguments to filter SessionUploads to count.
+     * @example
+     * // Count the number of SessionUploads
+     * const count = await prisma.sessionUpload.count({
+     *   where: {
+     *     // ... the filter for the SessionUploads we want to count
+     *   }
+     * })
+    **/
+    count<T extends SessionUploadCountArgs>(
+      args?: Subset<T, SessionUploadCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SessionUploadCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a SessionUpload.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SessionUploadAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SessionUploadAggregateArgs>(args: Subset<T, SessionUploadAggregateArgs>): Prisma.PrismaPromise<GetSessionUploadAggregateType<T>>
+
+    /**
+     * Group by SessionUpload.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SessionUploadGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SessionUploadGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SessionUploadGroupByArgs['orderBy'] }
+        : { orderBy?: SessionUploadGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SessionUploadGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSessionUploadGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the SessionUpload model
+   */
+  readonly fields: SessionUploadFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for SessionUpload.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SessionUploadClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    Media<T extends MediaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MediaDefaultArgs<ExtArgs>>): Prisma__MediaClient<$Result.GetResult<Prisma.$MediaPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the SessionUpload model
+   */ 
+  interface SessionUploadFieldRefs {
+    readonly id: FieldRef<"SessionUpload", 'String'>
+    readonly sessionUploadUrl: FieldRef<"SessionUpload", 'String'>
+    readonly mediaId: FieldRef<"SessionUpload", 'String'>
+    readonly created_at: FieldRef<"SessionUpload", 'DateTime'>
+    readonly updated_at: FieldRef<"SessionUpload", 'DateTime'>
+    readonly expired_at: FieldRef<"SessionUpload", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * SessionUpload findUnique
+   */
+  export type SessionUploadFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SessionUpload
+     */
+    select?: SessionUploadSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SessionUploadInclude<ExtArgs> | null
+    /**
+     * Filter, which SessionUpload to fetch.
+     */
+    where: SessionUploadWhereUniqueInput
+  }
+
+
+  /**
+   * SessionUpload findUniqueOrThrow
+   */
+  export type SessionUploadFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SessionUpload
+     */
+    select?: SessionUploadSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SessionUploadInclude<ExtArgs> | null
+    /**
+     * Filter, which SessionUpload to fetch.
+     */
+    where: SessionUploadWhereUniqueInput
+  }
+
+
+  /**
+   * SessionUpload findFirst
+   */
+  export type SessionUploadFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SessionUpload
+     */
+    select?: SessionUploadSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SessionUploadInclude<ExtArgs> | null
+    /**
+     * Filter, which SessionUpload to fetch.
+     */
+    where?: SessionUploadWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SessionUploads to fetch.
+     */
+    orderBy?: SessionUploadOrderByWithRelationInput | SessionUploadOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SessionUploads.
+     */
+    cursor?: SessionUploadWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SessionUploads from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SessionUploads.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SessionUploads.
+     */
+    distinct?: SessionUploadScalarFieldEnum | SessionUploadScalarFieldEnum[]
+  }
+
+
+  /**
+   * SessionUpload findFirstOrThrow
+   */
+  export type SessionUploadFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SessionUpload
+     */
+    select?: SessionUploadSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SessionUploadInclude<ExtArgs> | null
+    /**
+     * Filter, which SessionUpload to fetch.
+     */
+    where?: SessionUploadWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SessionUploads to fetch.
+     */
+    orderBy?: SessionUploadOrderByWithRelationInput | SessionUploadOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SessionUploads.
+     */
+    cursor?: SessionUploadWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SessionUploads from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SessionUploads.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SessionUploads.
+     */
+    distinct?: SessionUploadScalarFieldEnum | SessionUploadScalarFieldEnum[]
+  }
+
+
+  /**
+   * SessionUpload findMany
+   */
+  export type SessionUploadFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SessionUpload
+     */
+    select?: SessionUploadSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SessionUploadInclude<ExtArgs> | null
+    /**
+     * Filter, which SessionUploads to fetch.
+     */
+    where?: SessionUploadWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SessionUploads to fetch.
+     */
+    orderBy?: SessionUploadOrderByWithRelationInput | SessionUploadOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing SessionUploads.
+     */
+    cursor?: SessionUploadWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SessionUploads from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SessionUploads.
+     */
+    skip?: number
+    distinct?: SessionUploadScalarFieldEnum | SessionUploadScalarFieldEnum[]
+  }
+
+
+  /**
+   * SessionUpload create
+   */
+  export type SessionUploadCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SessionUpload
+     */
+    select?: SessionUploadSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SessionUploadInclude<ExtArgs> | null
+    /**
+     * The data needed to create a SessionUpload.
+     */
+    data: XOR<SessionUploadCreateInput, SessionUploadUncheckedCreateInput>
+  }
+
+
+  /**
+   * SessionUpload createMany
+   */
+  export type SessionUploadCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many SessionUploads.
+     */
+    data: SessionUploadCreateManyInput | SessionUploadCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * SessionUpload update
+   */
+  export type SessionUploadUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SessionUpload
+     */
+    select?: SessionUploadSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SessionUploadInclude<ExtArgs> | null
+    /**
+     * The data needed to update a SessionUpload.
+     */
+    data: XOR<SessionUploadUpdateInput, SessionUploadUncheckedUpdateInput>
+    /**
+     * Choose, which SessionUpload to update.
+     */
+    where: SessionUploadWhereUniqueInput
+  }
+
+
+  /**
+   * SessionUpload updateMany
+   */
+  export type SessionUploadUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update SessionUploads.
+     */
+    data: XOR<SessionUploadUpdateManyMutationInput, SessionUploadUncheckedUpdateManyInput>
+    /**
+     * Filter which SessionUploads to update
+     */
+    where?: SessionUploadWhereInput
+  }
+
+
+  /**
+   * SessionUpload upsert
+   */
+  export type SessionUploadUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SessionUpload
+     */
+    select?: SessionUploadSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SessionUploadInclude<ExtArgs> | null
+    /**
+     * The filter to search for the SessionUpload to update in case it exists.
+     */
+    where: SessionUploadWhereUniqueInput
+    /**
+     * In case the SessionUpload found by the `where` argument doesn't exist, create a new SessionUpload with this data.
+     */
+    create: XOR<SessionUploadCreateInput, SessionUploadUncheckedCreateInput>
+    /**
+     * In case the SessionUpload was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SessionUploadUpdateInput, SessionUploadUncheckedUpdateInput>
+  }
+
+
+  /**
+   * SessionUpload delete
+   */
+  export type SessionUploadDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SessionUpload
+     */
+    select?: SessionUploadSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SessionUploadInclude<ExtArgs> | null
+    /**
+     * Filter which SessionUpload to delete.
+     */
+    where: SessionUploadWhereUniqueInput
+  }
+
+
+  /**
+   * SessionUpload deleteMany
+   */
+  export type SessionUploadDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SessionUploads to delete
+     */
+    where?: SessionUploadWhereInput
+  }
+
+
+  /**
+   * SessionUpload without action
+   */
+  export type SessionUploadDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SessionUpload
+     */
+    select?: SessionUploadSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SessionUploadInclude<ExtArgs> | null
+  }
+
+
+
+  /**
    * Model Media
    */
 
@@ -6703,10 +7737,11 @@ export namespace Prisma {
     views: number | null
     duration: number | null
     status: $Enums.StatusResource | null
-    view_mode: $Enums.Status | null
+    viewMode: $Enums.Status | null
     createdAt: Date | null
     updatedAt: Date | null
     lockedAt: Date | null
+    publishedAt: Date | null
   }
 
   export type MediaMaxAggregateOutputType = {
@@ -6716,10 +7751,11 @@ export namespace Prisma {
     views: number | null
     duration: number | null
     status: $Enums.StatusResource | null
-    view_mode: $Enums.Status | null
+    viewMode: $Enums.Status | null
     createdAt: Date | null
     updatedAt: Date | null
     lockedAt: Date | null
+    publishedAt: Date | null
   }
 
   export type MediaCountAggregateOutputType = {
@@ -6729,10 +7765,11 @@ export namespace Prisma {
     views: number
     duration: number
     status: number
-    view_mode: number
+    viewMode: number
     createdAt: number
     updatedAt: number
     lockedAt: number
+    publishedAt: number
     _all: number
   }
 
@@ -6756,10 +7793,11 @@ export namespace Prisma {
     views?: true
     duration?: true
     status?: true
-    view_mode?: true
+    viewMode?: true
     createdAt?: true
     updatedAt?: true
     lockedAt?: true
+    publishedAt?: true
   }
 
   export type MediaMaxAggregateInputType = {
@@ -6769,10 +7807,11 @@ export namespace Prisma {
     views?: true
     duration?: true
     status?: true
-    view_mode?: true
+    viewMode?: true
     createdAt?: true
     updatedAt?: true
     lockedAt?: true
+    publishedAt?: true
   }
 
   export type MediaCountAggregateInputType = {
@@ -6782,10 +7821,11 @@ export namespace Prisma {
     views?: true
     duration?: true
     status?: true
-    view_mode?: true
+    viewMode?: true
     createdAt?: true
     updatedAt?: true
     lockedAt?: true
+    publishedAt?: true
     _all?: true
   }
 
@@ -6881,11 +7921,12 @@ export namespace Prisma {
     title: string
     views: number
     duration: number
-    status: $Enums.StatusResource | null
-    view_mode: $Enums.Status | null
+    status: $Enums.StatusResource
+    viewMode: $Enums.Status
     createdAt: Date
     updatedAt: Date
     lockedAt: Date | null
+    publishedAt: Date | null
     _count: MediaCountAggregateOutputType | null
     _avg: MediaAvgAggregateOutputType | null
     _sum: MediaSumAggregateOutputType | null
@@ -6914,10 +7955,11 @@ export namespace Prisma {
     views?: boolean
     duration?: boolean
     status?: boolean
-    view_mode?: boolean
+    viewMode?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     lockedAt?: boolean
+    publishedAt?: boolean
     owner?: boolean | UserDefaultArgs<ExtArgs>
     thumbnails?: boolean | Media$thumbnailsArgs<ExtArgs>
     detail?: boolean | Media$detailArgs<ExtArgs>
@@ -6928,6 +7970,7 @@ export namespace Prisma {
     CategoryOnVideo?: boolean | Media$CategoryOnVideoArgs<ExtArgs>
     Comment?: boolean | Media$CommentArgs<ExtArgs>
     MediaOnPlaylist?: boolean | Media$MediaOnPlaylistArgs<ExtArgs>
+    SessionUpload?: boolean | Media$SessionUploadArgs<ExtArgs>
     _count?: boolean | MediaCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["media"]>
 
@@ -6938,10 +7981,11 @@ export namespace Prisma {
     views?: boolean
     duration?: boolean
     status?: boolean
-    view_mode?: boolean
+    viewMode?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     lockedAt?: boolean
+    publishedAt?: boolean
   }
 
   export type MediaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6955,6 +7999,7 @@ export namespace Prisma {
     CategoryOnVideo?: boolean | Media$CategoryOnVideoArgs<ExtArgs>
     Comment?: boolean | Media$CommentArgs<ExtArgs>
     MediaOnPlaylist?: boolean | Media$MediaOnPlaylistArgs<ExtArgs>
+    SessionUpload?: boolean | Media$SessionUploadArgs<ExtArgs>
     _count?: boolean | MediaCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -6972,6 +8017,7 @@ export namespace Prisma {
       CategoryOnVideo: Prisma.$CategoryOnMediaPayload<ExtArgs>[]
       Comment: Prisma.$CommentPayload<ExtArgs>[]
       MediaOnPlaylist: Prisma.$MediaOnPlaylistPayload<ExtArgs>[]
+      SessionUpload: Prisma.$SessionUploadPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -6979,11 +8025,12 @@ export namespace Prisma {
       title: string
       views: number
       duration: number
-      status: $Enums.StatusResource | null
-      view_mode: $Enums.Status | null
+      status: $Enums.StatusResource
+      viewMode: $Enums.Status
       createdAt: Date
       updatedAt: Date
       lockedAt: Date | null
+      publishedAt: Date | null
     }, ExtArgs["result"]["media"]>
     composites: {}
   }
@@ -7369,6 +8416,8 @@ export namespace Prisma {
 
     MediaOnPlaylist<T extends Media$MediaOnPlaylistArgs<ExtArgs> = {}>(args?: Subset<T, Media$MediaOnPlaylistArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MediaOnPlaylistPayload<ExtArgs>, T, 'findMany'> | Null>;
 
+    SessionUpload<T extends Media$SessionUploadArgs<ExtArgs> = {}>(args?: Subset<T, Media$SessionUploadArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionUploadPayload<ExtArgs>, T, 'findMany'> | Null>;
+
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7403,10 +8452,11 @@ export namespace Prisma {
     readonly views: FieldRef<"Media", 'Int'>
     readonly duration: FieldRef<"Media", 'Float'>
     readonly status: FieldRef<"Media", 'StatusResource'>
-    readonly view_mode: FieldRef<"Media", 'Status'>
+    readonly viewMode: FieldRef<"Media", 'Status'>
     readonly createdAt: FieldRef<"Media", 'DateTime'>
     readonly updatedAt: FieldRef<"Media", 'DateTime'>
     readonly lockedAt: FieldRef<"Media", 'DateTime'>
+    readonly publishedAt: FieldRef<"Media", 'DateTime'>
   }
     
 
@@ -7899,6 +8949,27 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: MediaOnPlaylistScalarFieldEnum | MediaOnPlaylistScalarFieldEnum[]
+  }
+
+
+  /**
+   * Media.SessionUpload
+   */
+  export type Media$SessionUploadArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SessionUpload
+     */
+    select?: SessionUploadSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SessionUploadInclude<ExtArgs> | null
+    where?: SessionUploadWhereInput
+    orderBy?: SessionUploadOrderByWithRelationInput | SessionUploadOrderByWithRelationInput[]
+    cursor?: SessionUploadWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SessionUploadScalarFieldEnum | SessionUploadScalarFieldEnum[]
   }
 
 
@@ -14687,22 +15758,12 @@ export namespace Prisma {
 
   export type AggregateVideoResource = {
     _count: VideoResourceCountAggregateOutputType | null
-    _avg: VideoResourceAvgAggregateOutputType | null
-    _sum: VideoResourceSumAggregateOutputType | null
     _min: VideoResourceMinAggregateOutputType | null
     _max: VideoResourceMaxAggregateOutputType | null
   }
 
-  export type VideoResourceAvgAggregateOutputType = {
-    id: number | null
-  }
-
-  export type VideoResourceSumAggregateOutputType = {
-    id: number | null
-  }
-
   export type VideoResourceMinAggregateOutputType = {
-    id: number | null
+    id: string | null
     mediaId: string | null
     label: string | null
     url: string | null
@@ -14711,7 +15772,7 @@ export namespace Prisma {
   }
 
   export type VideoResourceMaxAggregateOutputType = {
-    id: number | null
+    id: string | null
     mediaId: string | null
     label: string | null
     url: string | null
@@ -14729,14 +15790,6 @@ export namespace Prisma {
     _all: number
   }
 
-
-  export type VideoResourceAvgAggregateInputType = {
-    id?: true
-  }
-
-  export type VideoResourceSumAggregateInputType = {
-    id?: true
-  }
 
   export type VideoResourceMinAggregateInputType = {
     id?: true
@@ -14804,18 +15857,6 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Select which fields to average
-    **/
-    _avg?: VideoResourceAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: VideoResourceSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
      * Select which fields to find the minimum value
     **/
     _min?: VideoResourceMinAggregateInputType
@@ -14846,22 +15887,18 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: VideoResourceCountAggregateInputType | true
-    _avg?: VideoResourceAvgAggregateInputType
-    _sum?: VideoResourceSumAggregateInputType
     _min?: VideoResourceMinAggregateInputType
     _max?: VideoResourceMaxAggregateInputType
   }
 
   export type VideoResourceGroupByOutputType = {
-    id: number
+    id: string
     mediaId: string
     label: string
     url: string
     createdAt: Date
     updatedAt: Date
     _count: VideoResourceCountAggregateOutputType | null
-    _avg: VideoResourceAvgAggregateOutputType | null
-    _sum: VideoResourceSumAggregateOutputType | null
     _min: VideoResourceMinAggregateOutputType | null
     _max: VideoResourceMaxAggregateOutputType | null
   }
@@ -14910,7 +15947,7 @@ export namespace Prisma {
       media: Prisma.$MediaPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
-      id: number
+      id: string
       mediaId: string
       label: string
       url: string
@@ -15311,7 +16348,7 @@ export namespace Prisma {
    * Fields of the VideoResource model
    */ 
   interface VideoResourceFieldRefs {
-    readonly id: FieldRef<"VideoResource", 'Int'>
+    readonly id: FieldRef<"VideoResource", 'String'>
     readonly mediaId: FieldRef<"VideoResource", 'String'>
     readonly label: FieldRef<"VideoResource", 'String'>
     readonly url: FieldRef<"VideoResource", 'String'>
@@ -15650,34 +16687,24 @@ export namespace Prisma {
 
   export type AggregateAudioResource = {
     _count: AudioResourceCountAggregateOutputType | null
-    _avg: AudioResourceAvgAggregateOutputType | null
-    _sum: AudioResourceSumAggregateOutputType | null
     _min: AudioResourceMinAggregateOutputType | null
     _max: AudioResourceMaxAggregateOutputType | null
   }
 
-  export type AudioResourceAvgAggregateOutputType = {
-    id: number | null
-  }
-
-  export type AudioResourceSumAggregateOutputType = {
-    id: number | null
-  }
-
   export type AudioResourceMinAggregateOutputType = {
-    id: number | null
+    id: string | null
     mediaId: string | null
-    label: string | null
-    url: string | null
+    label: $Enums.AudioQuality | null
+    fileId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
 
   export type AudioResourceMaxAggregateOutputType = {
-    id: number | null
+    id: string | null
     mediaId: string | null
-    label: string | null
-    url: string | null
+    label: $Enums.AudioQuality | null
+    fileId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -15686,26 +16713,18 @@ export namespace Prisma {
     id: number
     mediaId: number
     label: number
-    url: number
+    fileId: number
     createdAt: number
     updatedAt: number
     _all: number
   }
 
 
-  export type AudioResourceAvgAggregateInputType = {
-    id?: true
-  }
-
-  export type AudioResourceSumAggregateInputType = {
-    id?: true
-  }
-
   export type AudioResourceMinAggregateInputType = {
     id?: true
     mediaId?: true
     label?: true
-    url?: true
+    fileId?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -15714,7 +16733,7 @@ export namespace Prisma {
     id?: true
     mediaId?: true
     label?: true
-    url?: true
+    fileId?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -15723,7 +16742,7 @@ export namespace Prisma {
     id?: true
     mediaId?: true
     label?: true
-    url?: true
+    fileId?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -15767,18 +16786,6 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Select which fields to average
-    **/
-    _avg?: AudioResourceAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: AudioResourceSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
      * Select which fields to find the minimum value
     **/
     _min?: AudioResourceMinAggregateInputType
@@ -15809,22 +16816,18 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: AudioResourceCountAggregateInputType | true
-    _avg?: AudioResourceAvgAggregateInputType
-    _sum?: AudioResourceSumAggregateInputType
     _min?: AudioResourceMinAggregateInputType
     _max?: AudioResourceMaxAggregateInputType
   }
 
   export type AudioResourceGroupByOutputType = {
-    id: number
+    id: string
     mediaId: string
-    label: string
-    url: string
+    label: $Enums.AudioQuality
+    fileId: string
     createdAt: Date
     updatedAt: Date
     _count: AudioResourceCountAggregateOutputType | null
-    _avg: AudioResourceAvgAggregateOutputType | null
-    _sum: AudioResourceSumAggregateOutputType | null
     _min: AudioResourceMinAggregateOutputType | null
     _max: AudioResourceMaxAggregateOutputType | null
   }
@@ -15847,7 +16850,7 @@ export namespace Prisma {
     id?: boolean
     mediaId?: boolean
     label?: boolean
-    url?: boolean
+    fileId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     media?: boolean | MediaDefaultArgs<ExtArgs>
@@ -15857,7 +16860,7 @@ export namespace Prisma {
     id?: boolean
     mediaId?: boolean
     label?: boolean
-    url?: boolean
+    fileId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
@@ -15873,10 +16876,10 @@ export namespace Prisma {
       media: Prisma.$MediaPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
-      id: number
+      id: string
       mediaId: string
-      label: string
-      url: string
+      label: $Enums.AudioQuality
+      fileId: string
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["audioResource"]>
@@ -16274,10 +17277,10 @@ export namespace Prisma {
    * Fields of the AudioResource model
    */ 
   interface AudioResourceFieldRefs {
-    readonly id: FieldRef<"AudioResource", 'Int'>
+    readonly id: FieldRef<"AudioResource", 'String'>
     readonly mediaId: FieldRef<"AudioResource", 'String'>
-    readonly label: FieldRef<"AudioResource", 'String'>
-    readonly url: FieldRef<"AudioResource", 'String'>
+    readonly label: FieldRef<"AudioResource", 'AudioQuality'>
+    readonly fileId: FieldRef<"AudioResource", 'String'>
     readonly createdAt: FieldRef<"AudioResource", 'DateTime'>
     readonly updatedAt: FieldRef<"AudioResource", 'DateTime'>
   }
@@ -17527,6 +18530,7 @@ export namespace Prisma {
   export type ThumbnailMinAggregateOutputType = {
     id: string | null
     url: string | null
+    isPrimary: boolean | null
     mediaId: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -17535,6 +18539,7 @@ export namespace Prisma {
   export type ThumbnailMaxAggregateOutputType = {
     id: string | null
     url: string | null
+    isPrimary: boolean | null
     mediaId: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -17543,6 +18548,7 @@ export namespace Prisma {
   export type ThumbnailCountAggregateOutputType = {
     id: number
     url: number
+    isPrimary: number
     mediaId: number
     createdAt: number
     updatedAt: number
@@ -17553,6 +18559,7 @@ export namespace Prisma {
   export type ThumbnailMinAggregateInputType = {
     id?: true
     url?: true
+    isPrimary?: true
     mediaId?: true
     createdAt?: true
     updatedAt?: true
@@ -17561,6 +18568,7 @@ export namespace Prisma {
   export type ThumbnailMaxAggregateInputType = {
     id?: true
     url?: true
+    isPrimary?: true
     mediaId?: true
     createdAt?: true
     updatedAt?: true
@@ -17569,6 +18577,7 @@ export namespace Prisma {
   export type ThumbnailCountAggregateInputType = {
     id?: true
     url?: true
+    isPrimary?: true
     mediaId?: true
     createdAt?: true
     updatedAt?: true
@@ -17650,6 +18659,7 @@ export namespace Prisma {
   export type ThumbnailGroupByOutputType = {
     id: string
     url: string
+    isPrimary: boolean
     mediaId: string
     createdAt: Date
     updatedAt: Date
@@ -17675,6 +18685,7 @@ export namespace Prisma {
   export type ThumbnailSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     url?: boolean
+    isPrimary?: boolean
     mediaId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -17684,6 +18695,7 @@ export namespace Prisma {
   export type ThumbnailSelectScalar = {
     id?: boolean
     url?: boolean
+    isPrimary?: boolean
     mediaId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -17702,6 +18714,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       url: string
+      isPrimary: boolean
       mediaId: string
       createdAt: Date
       updatedAt: Date
@@ -18102,6 +19115,7 @@ export namespace Prisma {
   interface ThumbnailFieldRefs {
     readonly id: FieldRef<"Thumbnail", 'String'>
     readonly url: FieldRef<"Thumbnail", 'String'>
+    readonly isPrimary: FieldRef<"Thumbnail", 'Boolean'>
     readonly mediaId: FieldRef<"Thumbnail", 'String'>
     readonly createdAt: FieldRef<"Thumbnail", 'DateTime'>
     readonly updatedAt: FieldRef<"Thumbnail", 'DateTime'>
@@ -20401,6 +21415,18 @@ export namespace Prisma {
   export type CategoryOnMediaScalarFieldEnum = (typeof CategoryOnMediaScalarFieldEnum)[keyof typeof CategoryOnMediaScalarFieldEnum]
 
 
+  export const SessionUploadScalarFieldEnum: {
+    id: 'id',
+    sessionUploadUrl: 'sessionUploadUrl',
+    mediaId: 'mediaId',
+    created_at: 'created_at',
+    updated_at: 'updated_at',
+    expired_at: 'expired_at'
+  };
+
+  export type SessionUploadScalarFieldEnum = (typeof SessionUploadScalarFieldEnum)[keyof typeof SessionUploadScalarFieldEnum]
+
+
   export const MediaScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
@@ -20408,10 +21434,11 @@ export namespace Prisma {
     views: 'views',
     duration: 'duration',
     status: 'status',
-    view_mode: 'view_mode',
+    viewMode: 'viewMode',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
-    lockedAt: 'lockedAt'
+    lockedAt: 'lockedAt',
+    publishedAt: 'publishedAt'
   };
 
   export type MediaScalarFieldEnum = (typeof MediaScalarFieldEnum)[keyof typeof MediaScalarFieldEnum]
@@ -20512,7 +21539,7 @@ export namespace Prisma {
     id: 'id',
     mediaId: 'mediaId',
     label: 'label',
-    url: 'url',
+    fileId: 'fileId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -20533,6 +21560,7 @@ export namespace Prisma {
   export const ThumbnailScalarFieldEnum: {
     id: 'id',
     url: 'url',
+    isPrimary: 'isPrimary',
     mediaId: 'mediaId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -20635,6 +21663,13 @@ export namespace Prisma {
    * Reference to a field of type 'Boolean'
    */
   export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
+   * Reference to a field of type 'AudioQuality'
+   */
+  export type EnumAudioQualityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AudioQuality'>
     
   /**
    * Deep Input Types
@@ -20905,6 +21940,66 @@ export namespace Prisma {
     mediaId?: StringWithAggregatesFilter<"CategoryOnMedia"> | string
   }
 
+  export type SessionUploadWhereInput = {
+    AND?: SessionUploadWhereInput | SessionUploadWhereInput[]
+    OR?: SessionUploadWhereInput[]
+    NOT?: SessionUploadWhereInput | SessionUploadWhereInput[]
+    id?: StringFilter<"SessionUpload"> | string
+    sessionUploadUrl?: StringFilter<"SessionUpload"> | string
+    mediaId?: StringFilter<"SessionUpload"> | string
+    created_at?: DateTimeFilter<"SessionUpload"> | Date | string
+    updated_at?: DateTimeFilter<"SessionUpload"> | Date | string
+    expired_at?: DateTimeNullableFilter<"SessionUpload"> | Date | string | null
+    Media?: XOR<MediaRelationFilter, MediaWhereInput>
+  }
+
+  export type SessionUploadOrderByWithRelationInput = {
+    id?: SortOrder
+    sessionUploadUrl?: SortOrder
+    mediaId?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    expired_at?: SortOrderInput | SortOrder
+    Media?: MediaOrderByWithRelationInput
+  }
+
+  export type SessionUploadWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: SessionUploadWhereInput | SessionUploadWhereInput[]
+    OR?: SessionUploadWhereInput[]
+    NOT?: SessionUploadWhereInput | SessionUploadWhereInput[]
+    sessionUploadUrl?: StringFilter<"SessionUpload"> | string
+    mediaId?: StringFilter<"SessionUpload"> | string
+    created_at?: DateTimeFilter<"SessionUpload"> | Date | string
+    updated_at?: DateTimeFilter<"SessionUpload"> | Date | string
+    expired_at?: DateTimeNullableFilter<"SessionUpload"> | Date | string | null
+    Media?: XOR<MediaRelationFilter, MediaWhereInput>
+  }, "id">
+
+  export type SessionUploadOrderByWithAggregationInput = {
+    id?: SortOrder
+    sessionUploadUrl?: SortOrder
+    mediaId?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    expired_at?: SortOrderInput | SortOrder
+    _count?: SessionUploadCountOrderByAggregateInput
+    _max?: SessionUploadMaxOrderByAggregateInput
+    _min?: SessionUploadMinOrderByAggregateInput
+  }
+
+  export type SessionUploadScalarWhereWithAggregatesInput = {
+    AND?: SessionUploadScalarWhereWithAggregatesInput | SessionUploadScalarWhereWithAggregatesInput[]
+    OR?: SessionUploadScalarWhereWithAggregatesInput[]
+    NOT?: SessionUploadScalarWhereWithAggregatesInput | SessionUploadScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"SessionUpload"> | string
+    sessionUploadUrl?: StringWithAggregatesFilter<"SessionUpload"> | string
+    mediaId?: StringWithAggregatesFilter<"SessionUpload"> | string
+    created_at?: DateTimeWithAggregatesFilter<"SessionUpload"> | Date | string
+    updated_at?: DateTimeWithAggregatesFilter<"SessionUpload"> | Date | string
+    expired_at?: DateTimeNullableWithAggregatesFilter<"SessionUpload"> | Date | string | null
+  }
+
   export type MediaWhereInput = {
     AND?: MediaWhereInput | MediaWhereInput[]
     OR?: MediaWhereInput[]
@@ -20914,11 +22009,12 @@ export namespace Prisma {
     title?: StringFilter<"Media"> | string
     views?: IntFilter<"Media"> | number
     duration?: FloatFilter<"Media"> | number
-    status?: EnumStatusResourceNullableFilter<"Media"> | $Enums.StatusResource | null
-    view_mode?: EnumStatusNullableFilter<"Media"> | $Enums.Status | null
+    status?: EnumStatusResourceFilter<"Media"> | $Enums.StatusResource
+    viewMode?: EnumStatusFilter<"Media"> | $Enums.Status
     createdAt?: DateTimeFilter<"Media"> | Date | string
     updatedAt?: DateTimeFilter<"Media"> | Date | string
     lockedAt?: DateTimeNullableFilter<"Media"> | Date | string | null
+    publishedAt?: DateTimeNullableFilter<"Media"> | Date | string | null
     owner?: XOR<UserRelationFilter, UserWhereInput>
     thumbnails?: ThumbnailListRelationFilter
     detail?: XOR<MediaDetailNullableRelationFilter, MediaDetailWhereInput> | null
@@ -20929,6 +22025,7 @@ export namespace Prisma {
     CategoryOnVideo?: CategoryOnMediaListRelationFilter
     Comment?: CommentListRelationFilter
     MediaOnPlaylist?: MediaOnPlaylistListRelationFilter
+    SessionUpload?: SessionUploadListRelationFilter
   }
 
   export type MediaOrderByWithRelationInput = {
@@ -20937,11 +22034,12 @@ export namespace Prisma {
     title?: SortOrder
     views?: SortOrder
     duration?: SortOrder
-    status?: SortOrderInput | SortOrder
-    view_mode?: SortOrderInput | SortOrder
+    status?: SortOrder
+    viewMode?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     lockedAt?: SortOrderInput | SortOrder
+    publishedAt?: SortOrderInput | SortOrder
     owner?: UserOrderByWithRelationInput
     thumbnails?: ThumbnailOrderByRelationAggregateInput
     detail?: MediaDetailOrderByWithRelationInput
@@ -20952,6 +22050,7 @@ export namespace Prisma {
     CategoryOnVideo?: CategoryOnMediaOrderByRelationAggregateInput
     Comment?: CommentOrderByRelationAggregateInput
     MediaOnPlaylist?: MediaOnPlaylistOrderByRelationAggregateInput
+    SessionUpload?: SessionUploadOrderByRelationAggregateInput
   }
 
   export type MediaWhereUniqueInput = Prisma.AtLeast<{
@@ -20963,11 +22062,12 @@ export namespace Prisma {
     title?: StringFilter<"Media"> | string
     views?: IntFilter<"Media"> | number
     duration?: FloatFilter<"Media"> | number
-    status?: EnumStatusResourceNullableFilter<"Media"> | $Enums.StatusResource | null
-    view_mode?: EnumStatusNullableFilter<"Media"> | $Enums.Status | null
+    status?: EnumStatusResourceFilter<"Media"> | $Enums.StatusResource
+    viewMode?: EnumStatusFilter<"Media"> | $Enums.Status
     createdAt?: DateTimeFilter<"Media"> | Date | string
     updatedAt?: DateTimeFilter<"Media"> | Date | string
     lockedAt?: DateTimeNullableFilter<"Media"> | Date | string | null
+    publishedAt?: DateTimeNullableFilter<"Media"> | Date | string | null
     owner?: XOR<UserRelationFilter, UserWhereInput>
     thumbnails?: ThumbnailListRelationFilter
     detail?: XOR<MediaDetailNullableRelationFilter, MediaDetailWhereInput> | null
@@ -20978,6 +22078,7 @@ export namespace Prisma {
     CategoryOnVideo?: CategoryOnMediaListRelationFilter
     Comment?: CommentListRelationFilter
     MediaOnPlaylist?: MediaOnPlaylistListRelationFilter
+    SessionUpload?: SessionUploadListRelationFilter
   }, "id">
 
   export type MediaOrderByWithAggregationInput = {
@@ -20986,11 +22087,12 @@ export namespace Prisma {
     title?: SortOrder
     views?: SortOrder
     duration?: SortOrder
-    status?: SortOrderInput | SortOrder
-    view_mode?: SortOrderInput | SortOrder
+    status?: SortOrder
+    viewMode?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     lockedAt?: SortOrderInput | SortOrder
+    publishedAt?: SortOrderInput | SortOrder
     _count?: MediaCountOrderByAggregateInput
     _avg?: MediaAvgOrderByAggregateInput
     _max?: MediaMaxOrderByAggregateInput
@@ -21007,11 +22109,12 @@ export namespace Prisma {
     title?: StringWithAggregatesFilter<"Media"> | string
     views?: IntWithAggregatesFilter<"Media"> | number
     duration?: FloatWithAggregatesFilter<"Media"> | number
-    status?: EnumStatusResourceNullableWithAggregatesFilter<"Media"> | $Enums.StatusResource | null
-    view_mode?: EnumStatusNullableWithAggregatesFilter<"Media"> | $Enums.Status | null
+    status?: EnumStatusResourceWithAggregatesFilter<"Media"> | $Enums.StatusResource
+    viewMode?: EnumStatusWithAggregatesFilter<"Media"> | $Enums.Status
     createdAt?: DateTimeWithAggregatesFilter<"Media"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Media"> | Date | string
     lockedAt?: DateTimeNullableWithAggregatesFilter<"Media"> | Date | string | null
+    publishedAt?: DateTimeNullableWithAggregatesFilter<"Media"> | Date | string | null
   }
 
   export type MediaReactionWhereInput = {
@@ -21448,7 +22551,7 @@ export namespace Prisma {
     AND?: VideoResourceWhereInput | VideoResourceWhereInput[]
     OR?: VideoResourceWhereInput[]
     NOT?: VideoResourceWhereInput | VideoResourceWhereInput[]
-    id?: IntFilter<"VideoResource"> | number
+    id?: StringFilter<"VideoResource"> | string
     mediaId?: StringFilter<"VideoResource"> | string
     label?: StringFilter<"VideoResource"> | string
     url?: StringFilter<"VideoResource"> | string
@@ -21468,7 +22571,7 @@ export namespace Prisma {
   }
 
   export type VideoResourceWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
+    id?: string
     AND?: VideoResourceWhereInput | VideoResourceWhereInput[]
     OR?: VideoResourceWhereInput[]
     NOT?: VideoResourceWhereInput | VideoResourceWhereInput[]
@@ -21488,17 +22591,15 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: VideoResourceCountOrderByAggregateInput
-    _avg?: VideoResourceAvgOrderByAggregateInput
     _max?: VideoResourceMaxOrderByAggregateInput
     _min?: VideoResourceMinOrderByAggregateInput
-    _sum?: VideoResourceSumOrderByAggregateInput
   }
 
   export type VideoResourceScalarWhereWithAggregatesInput = {
     AND?: VideoResourceScalarWhereWithAggregatesInput | VideoResourceScalarWhereWithAggregatesInput[]
     OR?: VideoResourceScalarWhereWithAggregatesInput[]
     NOT?: VideoResourceScalarWhereWithAggregatesInput | VideoResourceScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"VideoResource"> | number
+    id?: StringWithAggregatesFilter<"VideoResource"> | string
     mediaId?: StringWithAggregatesFilter<"VideoResource"> | string
     label?: StringWithAggregatesFilter<"VideoResource"> | string
     url?: StringWithAggregatesFilter<"VideoResource"> | string
@@ -21510,10 +22611,10 @@ export namespace Prisma {
     AND?: AudioResourceWhereInput | AudioResourceWhereInput[]
     OR?: AudioResourceWhereInput[]
     NOT?: AudioResourceWhereInput | AudioResourceWhereInput[]
-    id?: IntFilter<"AudioResource"> | number
+    id?: StringFilter<"AudioResource"> | string
     mediaId?: StringFilter<"AudioResource"> | string
-    label?: StringFilter<"AudioResource"> | string
-    url?: StringFilter<"AudioResource"> | string
+    label?: EnumAudioQualityFilter<"AudioResource"> | $Enums.AudioQuality
+    fileId?: StringFilter<"AudioResource"> | string
     createdAt?: DateTimeFilter<"AudioResource"> | Date | string
     updatedAt?: DateTimeFilter<"AudioResource"> | Date | string
     media?: XOR<MediaRelationFilter, MediaWhereInput>
@@ -21523,47 +22624,46 @@ export namespace Prisma {
     id?: SortOrder
     mediaId?: SortOrder
     label?: SortOrder
-    url?: SortOrder
+    fileId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     media?: MediaOrderByWithRelationInput
   }
 
   export type AudioResourceWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
+    id?: string
+    fileId_label?: AudioResourceFileIdLabelCompoundUniqueInput
     AND?: AudioResourceWhereInput | AudioResourceWhereInput[]
     OR?: AudioResourceWhereInput[]
     NOT?: AudioResourceWhereInput | AudioResourceWhereInput[]
     mediaId?: StringFilter<"AudioResource"> | string
-    label?: StringFilter<"AudioResource"> | string
-    url?: StringFilter<"AudioResource"> | string
+    label?: EnumAudioQualityFilter<"AudioResource"> | $Enums.AudioQuality
+    fileId?: StringFilter<"AudioResource"> | string
     createdAt?: DateTimeFilter<"AudioResource"> | Date | string
     updatedAt?: DateTimeFilter<"AudioResource"> | Date | string
     media?: XOR<MediaRelationFilter, MediaWhereInput>
-  }, "id">
+  }, "id" | "fileId_label">
 
   export type AudioResourceOrderByWithAggregationInput = {
     id?: SortOrder
     mediaId?: SortOrder
     label?: SortOrder
-    url?: SortOrder
+    fileId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: AudioResourceCountOrderByAggregateInput
-    _avg?: AudioResourceAvgOrderByAggregateInput
     _max?: AudioResourceMaxOrderByAggregateInput
     _min?: AudioResourceMinOrderByAggregateInput
-    _sum?: AudioResourceSumOrderByAggregateInput
   }
 
   export type AudioResourceScalarWhereWithAggregatesInput = {
     AND?: AudioResourceScalarWhereWithAggregatesInput | AudioResourceScalarWhereWithAggregatesInput[]
     OR?: AudioResourceScalarWhereWithAggregatesInput[]
     NOT?: AudioResourceScalarWhereWithAggregatesInput | AudioResourceScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"AudioResource"> | number
+    id?: StringWithAggregatesFilter<"AudioResource"> | string
     mediaId?: StringWithAggregatesFilter<"AudioResource"> | string
-    label?: StringWithAggregatesFilter<"AudioResource"> | string
-    url?: StringWithAggregatesFilter<"AudioResource"> | string
+    label?: EnumAudioQualityWithAggregatesFilter<"AudioResource"> | $Enums.AudioQuality
+    fileId?: StringWithAggregatesFilter<"AudioResource"> | string
     createdAt?: DateTimeWithAggregatesFilter<"AudioResource"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"AudioResource"> | Date | string
   }
@@ -21624,6 +22724,7 @@ export namespace Prisma {
     NOT?: ThumbnailWhereInput | ThumbnailWhereInput[]
     id?: StringFilter<"Thumbnail"> | string
     url?: StringFilter<"Thumbnail"> | string
+    isPrimary?: BoolFilter<"Thumbnail"> | boolean
     mediaId?: StringFilter<"Thumbnail"> | string
     createdAt?: DateTimeFilter<"Thumbnail"> | Date | string
     updatedAt?: DateTimeFilter<"Thumbnail"> | Date | string
@@ -21633,6 +22734,7 @@ export namespace Prisma {
   export type ThumbnailOrderByWithRelationInput = {
     id?: SortOrder
     url?: SortOrder
+    isPrimary?: SortOrder
     mediaId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -21645,6 +22747,7 @@ export namespace Prisma {
     OR?: ThumbnailWhereInput[]
     NOT?: ThumbnailWhereInput | ThumbnailWhereInput[]
     url?: StringFilter<"Thumbnail"> | string
+    isPrimary?: BoolFilter<"Thumbnail"> | boolean
     mediaId?: StringFilter<"Thumbnail"> | string
     createdAt?: DateTimeFilter<"Thumbnail"> | Date | string
     updatedAt?: DateTimeFilter<"Thumbnail"> | Date | string
@@ -21654,6 +22757,7 @@ export namespace Prisma {
   export type ThumbnailOrderByWithAggregationInput = {
     id?: SortOrder
     url?: SortOrder
+    isPrimary?: SortOrder
     mediaId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -21668,6 +22772,7 @@ export namespace Prisma {
     NOT?: ThumbnailScalarWhereWithAggregatesInput | ThumbnailScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Thumbnail"> | string
     url?: StringWithAggregatesFilter<"Thumbnail"> | string
+    isPrimary?: BoolWithAggregatesFilter<"Thumbnail"> | boolean
     mediaId?: StringWithAggregatesFilter<"Thumbnail"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Thumbnail"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Thumbnail"> | Date | string
@@ -22044,16 +23149,79 @@ export namespace Prisma {
     mediaId?: StringFieldUpdateOperationsInput | string
   }
 
+  export type SessionUploadCreateInput = {
+    id?: string
+    sessionUploadUrl: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    expired_at?: Date | string | null
+    Media: MediaCreateNestedOneWithoutSessionUploadInput
+  }
+
+  export type SessionUploadUncheckedCreateInput = {
+    id?: string
+    sessionUploadUrl: string
+    mediaId: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    expired_at?: Date | string | null
+  }
+
+  export type SessionUploadUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionUploadUrl?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    expired_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Media?: MediaUpdateOneRequiredWithoutSessionUploadNestedInput
+  }
+
+  export type SessionUploadUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionUploadUrl?: StringFieldUpdateOperationsInput | string
+    mediaId?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    expired_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type SessionUploadCreateManyInput = {
+    id?: string
+    sessionUploadUrl: string
+    mediaId: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    expired_at?: Date | string | null
+  }
+
+  export type SessionUploadUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionUploadUrl?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    expired_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type SessionUploadUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionUploadUrl?: StringFieldUpdateOperationsInput | string
+    mediaId?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    expired_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
   export type MediaCreateInput = {
     id?: string
     title: string
-    views: number
-    duration: number
-    status?: $Enums.StatusResource | null
-    view_mode?: $Enums.Status | null
+    views?: number
+    duration?: number
+    status?: $Enums.StatusResource
+    viewMode?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
+    publishedAt?: Date | string | null
     owner: UserCreateNestedOneWithoutMediaInput
     thumbnails?: ThumbnailCreateNestedManyWithoutMediaInput
     detail?: MediaDetailCreateNestedOneWithoutMediaInput
@@ -22064,19 +23232,21 @@ export namespace Prisma {
     CategoryOnVideo?: CategoryOnMediaCreateNestedManyWithoutMediaInput
     Comment?: CommentCreateNestedManyWithoutMediaInput
     MediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
+    SessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
   }
 
   export type MediaUncheckedCreateInput = {
     id?: string
     userId: number
     title: string
-    views: number
-    duration: number
-    status?: $Enums.StatusResource | null
-    view_mode?: $Enums.Status | null
+    views?: number
+    duration?: number
+    status?: $Enums.StatusResource
+    viewMode?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
+    publishedAt?: Date | string | null
     thumbnails?: ThumbnailUncheckedCreateNestedManyWithoutMediaInput
     detail?: MediaDetailUncheckedCreateNestedOneWithoutMediaInput
     videoResources?: VideoResourceUncheckedCreateNestedManyWithoutMediaInput
@@ -22086,6 +23256,7 @@ export namespace Prisma {
     CategoryOnVideo?: CategoryOnMediaUncheckedCreateNestedManyWithoutMediaInput
     Comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
     MediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
+    SessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
   }
 
   export type MediaUpdateInput = {
@@ -22093,11 +23264,12 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
-    status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
-    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
+    status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
+    viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     owner?: UserUpdateOneRequiredWithoutMediaNestedInput
     thumbnails?: ThumbnailUpdateManyWithoutMediaNestedInput
     detail?: MediaDetailUpdateOneWithoutMediaNestedInput
@@ -22108,6 +23280,7 @@ export namespace Prisma {
     CategoryOnVideo?: CategoryOnMediaUpdateManyWithoutMediaNestedInput
     Comment?: CommentUpdateManyWithoutMediaNestedInput
     MediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
+    SessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaUncheckedUpdateInput = {
@@ -22116,11 +23289,12 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
-    status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
-    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
+    status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
+    viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     thumbnails?: ThumbnailUncheckedUpdateManyWithoutMediaNestedInput
     detail?: MediaDetailUncheckedUpdateOneWithoutMediaNestedInput
     videoResources?: VideoResourceUncheckedUpdateManyWithoutMediaNestedInput
@@ -22130,19 +23304,21 @@ export namespace Prisma {
     CategoryOnVideo?: CategoryOnMediaUncheckedUpdateManyWithoutMediaNestedInput
     Comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
     MediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
+    SessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaCreateManyInput = {
     id?: string
     userId: number
     title: string
-    views: number
-    duration: number
-    status?: $Enums.StatusResource | null
-    view_mode?: $Enums.Status | null
+    views?: number
+    duration?: number
+    status?: $Enums.StatusResource
+    viewMode?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
+    publishedAt?: Date | string | null
   }
 
   export type MediaUpdateManyMutationInput = {
@@ -22150,11 +23326,12 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
-    status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
-    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
+    status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
+    viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type MediaUncheckedUpdateManyInput = {
@@ -22163,11 +23340,12 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
-    status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
-    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
+    status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
+    viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type MediaReactionCreateInput = {
@@ -22551,6 +23729,7 @@ export namespace Prisma {
   }
 
   export type VideoResourceCreateInput = {
+    id?: string
     label: string
     url: string
     createdAt?: Date | string
@@ -22559,7 +23738,7 @@ export namespace Prisma {
   }
 
   export type VideoResourceUncheckedCreateInput = {
-    id?: number
+    id?: string
     mediaId: string
     label: string
     url: string
@@ -22568,6 +23747,7 @@ export namespace Prisma {
   }
 
   export type VideoResourceUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
     label?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -22576,7 +23756,7 @@ export namespace Prisma {
   }
 
   export type VideoResourceUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     mediaId?: StringFieldUpdateOperationsInput | string
     label?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
@@ -22585,7 +23765,7 @@ export namespace Prisma {
   }
 
   export type VideoResourceCreateManyInput = {
-    id?: number
+    id?: string
     mediaId: string
     label: string
     url: string
@@ -22594,6 +23774,7 @@ export namespace Prisma {
   }
 
   export type VideoResourceUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
     label?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -22601,7 +23782,7 @@ export namespace Prisma {
   }
 
   export type VideoResourceUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     mediaId?: StringFieldUpdateOperationsInput | string
     label?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
@@ -22610,66 +23791,69 @@ export namespace Prisma {
   }
 
   export type AudioResourceCreateInput = {
-    label: string
-    url: string
+    id?: string
+    label: $Enums.AudioQuality
+    fileId: string
     createdAt?: Date | string
     updatedAt?: Date | string
     media: MediaCreateNestedOneWithoutAudioResourcesInput
   }
 
   export type AudioResourceUncheckedCreateInput = {
-    id?: number
+    id?: string
     mediaId: string
-    label: string
-    url: string
+    label: $Enums.AudioQuality
+    fileId: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type AudioResourceUpdateInput = {
-    label?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
+    label?: EnumAudioQualityFieldUpdateOperationsInput | $Enums.AudioQuality
+    fileId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     media?: MediaUpdateOneRequiredWithoutAudioResourcesNestedInput
   }
 
   export type AudioResourceUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     mediaId?: StringFieldUpdateOperationsInput | string
-    label?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
+    label?: EnumAudioQualityFieldUpdateOperationsInput | $Enums.AudioQuality
+    fileId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AudioResourceCreateManyInput = {
-    id?: number
+    id?: string
     mediaId: string
-    label: string
-    url: string
+    label: $Enums.AudioQuality
+    fileId: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type AudioResourceUpdateManyMutationInput = {
-    label?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
+    label?: EnumAudioQualityFieldUpdateOperationsInput | $Enums.AudioQuality
+    fileId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AudioResourceUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     mediaId?: StringFieldUpdateOperationsInput | string
-    label?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
+    label?: EnumAudioQualityFieldUpdateOperationsInput | $Enums.AudioQuality
+    fileId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type MediaDetailCreateInput = {
-    description: string
+    description?: string
     createdAt?: Date | string
     updatedAt?: Date | string
     media: MediaCreateNestedOneWithoutDetailInput
@@ -22677,7 +23861,7 @@ export namespace Prisma {
 
   export type MediaDetailUncheckedCreateInput = {
     id: string
-    description: string
+    description?: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -22698,7 +23882,7 @@ export namespace Prisma {
 
   export type MediaDetailCreateManyInput = {
     id: string
-    description: string
+    description?: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -22719,6 +23903,7 @@ export namespace Prisma {
   export type ThumbnailCreateInput = {
     id?: string
     url: string
+    isPrimary?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     media: MediaCreateNestedOneWithoutThumbnailsInput
@@ -22727,6 +23912,7 @@ export namespace Prisma {
   export type ThumbnailUncheckedCreateInput = {
     id?: string
     url: string
+    isPrimary?: boolean
     mediaId: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -22735,6 +23921,7 @@ export namespace Prisma {
   export type ThumbnailUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
+    isPrimary?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     media?: MediaUpdateOneRequiredWithoutThumbnailsNestedInput
@@ -22743,6 +23930,7 @@ export namespace Prisma {
   export type ThumbnailUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
+    isPrimary?: BoolFieldUpdateOperationsInput | boolean
     mediaId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -22751,6 +23939,7 @@ export namespace Prisma {
   export type ThumbnailCreateManyInput = {
     id?: string
     url: string
+    isPrimary?: boolean
     mediaId: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -22759,6 +23948,7 @@ export namespace Prisma {
   export type ThumbnailUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
+    isPrimary?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -22766,6 +23956,7 @@ export namespace Prisma {
   export type ThumbnailUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
+    isPrimary?: BoolFieldUpdateOperationsInput | boolean
     mediaId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -23268,6 +24459,33 @@ export namespace Prisma {
     id?: SortOrder
   }
 
+  export type SessionUploadCountOrderByAggregateInput = {
+    id?: SortOrder
+    sessionUploadUrl?: SortOrder
+    mediaId?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    expired_at?: SortOrder
+  }
+
+  export type SessionUploadMaxOrderByAggregateInput = {
+    id?: SortOrder
+    sessionUploadUrl?: SortOrder
+    mediaId?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    expired_at?: SortOrder
+  }
+
+  export type SessionUploadMinOrderByAggregateInput = {
+    id?: SortOrder
+    sessionUploadUrl?: SortOrder
+    mediaId?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    expired_at?: SortOrder
+  }
+
   export type FloatFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[]
@@ -23279,18 +24497,18 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
-  export type EnumStatusResourceNullableFilter<$PrismaModel = never> = {
-    equals?: $Enums.StatusResource | EnumStatusResourceFieldRefInput<$PrismaModel> | null
-    in?: $Enums.StatusResource[] | null
-    notIn?: $Enums.StatusResource[] | null
-    not?: NestedEnumStatusResourceNullableFilter<$PrismaModel> | $Enums.StatusResource | null
+  export type EnumStatusResourceFilter<$PrismaModel = never> = {
+    equals?: $Enums.StatusResource | EnumStatusResourceFieldRefInput<$PrismaModel>
+    in?: $Enums.StatusResource[]
+    notIn?: $Enums.StatusResource[]
+    not?: NestedEnumStatusResourceFilter<$PrismaModel> | $Enums.StatusResource
   }
 
-  export type EnumStatusNullableFilter<$PrismaModel = never> = {
-    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel> | null
-    in?: $Enums.Status[] | null
-    notIn?: $Enums.Status[] | null
-    not?: NestedEnumStatusNullableFilter<$PrismaModel> | $Enums.Status | null
+  export type EnumStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Status[]
+    notIn?: $Enums.Status[]
+    not?: NestedEnumStatusFilter<$PrismaModel> | $Enums.Status
   }
 
   export type ThumbnailListRelationFilter = {
@@ -23322,6 +24540,12 @@ export namespace Prisma {
     none?: MediaOnPlaylistWhereInput
   }
 
+  export type SessionUploadListRelationFilter = {
+    every?: SessionUploadWhereInput
+    some?: SessionUploadWhereInput
+    none?: SessionUploadWhereInput
+  }
+
   export type ThumbnailOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -23338,6 +24562,10 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
+  export type SessionUploadOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type MediaCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
@@ -23345,10 +24573,11 @@ export namespace Prisma {
     views?: SortOrder
     duration?: SortOrder
     status?: SortOrder
-    view_mode?: SortOrder
+    viewMode?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     lockedAt?: SortOrder
+    publishedAt?: SortOrder
   }
 
   export type MediaAvgOrderByAggregateInput = {
@@ -23364,10 +24593,11 @@ export namespace Prisma {
     views?: SortOrder
     duration?: SortOrder
     status?: SortOrder
-    view_mode?: SortOrder
+    viewMode?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     lockedAt?: SortOrder
+    publishedAt?: SortOrder
   }
 
   export type MediaMinOrderByAggregateInput = {
@@ -23377,10 +24607,11 @@ export namespace Prisma {
     views?: SortOrder
     duration?: SortOrder
     status?: SortOrder
-    view_mode?: SortOrder
+    viewMode?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     lockedAt?: SortOrder
+    publishedAt?: SortOrder
   }
 
   export type MediaSumOrderByAggregateInput = {
@@ -23405,24 +24636,24 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
-  export type EnumStatusResourceNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.StatusResource | EnumStatusResourceFieldRefInput<$PrismaModel> | null
-    in?: $Enums.StatusResource[] | null
-    notIn?: $Enums.StatusResource[] | null
-    not?: NestedEnumStatusResourceNullableWithAggregatesFilter<$PrismaModel> | $Enums.StatusResource | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedEnumStatusResourceNullableFilter<$PrismaModel>
-    _max?: NestedEnumStatusResourceNullableFilter<$PrismaModel>
+  export type EnumStatusResourceWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.StatusResource | EnumStatusResourceFieldRefInput<$PrismaModel>
+    in?: $Enums.StatusResource[]
+    notIn?: $Enums.StatusResource[]
+    not?: NestedEnumStatusResourceWithAggregatesFilter<$PrismaModel> | $Enums.StatusResource
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumStatusResourceFilter<$PrismaModel>
+    _max?: NestedEnumStatusResourceFilter<$PrismaModel>
   }
 
-  export type EnumStatusNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel> | null
-    in?: $Enums.Status[] | null
-    notIn?: $Enums.Status[] | null
-    not?: NestedEnumStatusNullableWithAggregatesFilter<$PrismaModel> | $Enums.Status | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedEnumStatusNullableFilter<$PrismaModel>
-    _max?: NestedEnumStatusNullableFilter<$PrismaModel>
+  export type EnumStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Status[]
+    notIn?: $Enums.Status[]
+    not?: NestedEnumStatusWithAggregatesFilter<$PrismaModel> | $Enums.Status
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumStatusFilter<$PrismaModel>
+    _max?: NestedEnumStatusFilter<$PrismaModel>
   }
 
   export type BoolFilter<$PrismaModel = never> = {
@@ -23709,10 +24940,6 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type VideoResourceAvgOrderByAggregateInput = {
-    id?: SortOrder
-  }
-
   export type VideoResourceMaxOrderByAggregateInput = {
     id?: SortOrder
     mediaId?: SortOrder
@@ -23731,28 +24958,32 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type VideoResourceSumOrderByAggregateInput = {
-    id?: SortOrder
+  export type EnumAudioQualityFilter<$PrismaModel = never> = {
+    equals?: $Enums.AudioQuality | EnumAudioQualityFieldRefInput<$PrismaModel>
+    in?: $Enums.AudioQuality[]
+    notIn?: $Enums.AudioQuality[]
+    not?: NestedEnumAudioQualityFilter<$PrismaModel> | $Enums.AudioQuality
+  }
+
+  export type AudioResourceFileIdLabelCompoundUniqueInput = {
+    fileId: string
+    label: $Enums.AudioQuality
   }
 
   export type AudioResourceCountOrderByAggregateInput = {
     id?: SortOrder
     mediaId?: SortOrder
     label?: SortOrder
-    url?: SortOrder
+    fileId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-  }
-
-  export type AudioResourceAvgOrderByAggregateInput = {
-    id?: SortOrder
   }
 
   export type AudioResourceMaxOrderByAggregateInput = {
     id?: SortOrder
     mediaId?: SortOrder
     label?: SortOrder
-    url?: SortOrder
+    fileId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -23761,13 +24992,19 @@ export namespace Prisma {
     id?: SortOrder
     mediaId?: SortOrder
     label?: SortOrder
-    url?: SortOrder
+    fileId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
-  export type AudioResourceSumOrderByAggregateInput = {
-    id?: SortOrder
+  export type EnumAudioQualityWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AudioQuality | EnumAudioQualityFieldRefInput<$PrismaModel>
+    in?: $Enums.AudioQuality[]
+    notIn?: $Enums.AudioQuality[]
+    not?: NestedEnumAudioQualityWithAggregatesFilter<$PrismaModel> | $Enums.AudioQuality
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumAudioQualityFilter<$PrismaModel>
+    _max?: NestedEnumAudioQualityFilter<$PrismaModel>
   }
 
   export type MediaDetailCountOrderByAggregateInput = {
@@ -23794,6 +25031,7 @@ export namespace Prisma {
   export type ThumbnailCountOrderByAggregateInput = {
     id?: SortOrder
     url?: SortOrder
+    isPrimary?: SortOrder
     mediaId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -23802,6 +25040,7 @@ export namespace Prisma {
   export type ThumbnailMaxOrderByAggregateInput = {
     id?: SortOrder
     url?: SortOrder
+    isPrimary?: SortOrder
     mediaId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -23810,6 +25049,7 @@ export namespace Prisma {
   export type ThumbnailMinOrderByAggregateInput = {
     id?: SortOrder
     url?: SortOrder
+    isPrimary?: SortOrder
     mediaId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -24380,6 +25620,20 @@ export namespace Prisma {
     update?: XOR<XOR<MediaUpdateToOneWithWhereWithoutCategoryOnVideoInput, MediaUpdateWithoutCategoryOnVideoInput>, MediaUncheckedUpdateWithoutCategoryOnVideoInput>
   }
 
+  export type MediaCreateNestedOneWithoutSessionUploadInput = {
+    create?: XOR<MediaCreateWithoutSessionUploadInput, MediaUncheckedCreateWithoutSessionUploadInput>
+    connectOrCreate?: MediaCreateOrConnectWithoutSessionUploadInput
+    connect?: MediaWhereUniqueInput
+  }
+
+  export type MediaUpdateOneRequiredWithoutSessionUploadNestedInput = {
+    create?: XOR<MediaCreateWithoutSessionUploadInput, MediaUncheckedCreateWithoutSessionUploadInput>
+    connectOrCreate?: MediaCreateOrConnectWithoutSessionUploadInput
+    upsert?: MediaUpsertWithoutSessionUploadInput
+    connect?: MediaWhereUniqueInput
+    update?: XOR<XOR<MediaUpdateToOneWithWhereWithoutSessionUploadInput, MediaUpdateWithoutSessionUploadInput>, MediaUncheckedUpdateWithoutSessionUploadInput>
+  }
+
   export type UserCreateNestedOneWithoutMediaInput = {
     create?: XOR<UserCreateWithoutMediaInput, UserUncheckedCreateWithoutMediaInput>
     connectOrCreate?: UserCreateOrConnectWithoutMediaInput
@@ -24448,6 +25702,13 @@ export namespace Prisma {
     connect?: MediaOnPlaylistWhereUniqueInput | MediaOnPlaylistWhereUniqueInput[]
   }
 
+  export type SessionUploadCreateNestedManyWithoutMediaInput = {
+    create?: XOR<SessionUploadCreateWithoutMediaInput, SessionUploadUncheckedCreateWithoutMediaInput> | SessionUploadCreateWithoutMediaInput[] | SessionUploadUncheckedCreateWithoutMediaInput[]
+    connectOrCreate?: SessionUploadCreateOrConnectWithoutMediaInput | SessionUploadCreateOrConnectWithoutMediaInput[]
+    createMany?: SessionUploadCreateManyMediaInputEnvelope
+    connect?: SessionUploadWhereUniqueInput | SessionUploadWhereUniqueInput[]
+  }
+
   export type ThumbnailUncheckedCreateNestedManyWithoutMediaInput = {
     create?: XOR<ThumbnailCreateWithoutMediaInput, ThumbnailUncheckedCreateWithoutMediaInput> | ThumbnailCreateWithoutMediaInput[] | ThumbnailUncheckedCreateWithoutMediaInput[]
     connectOrCreate?: ThumbnailCreateOrConnectWithoutMediaInput | ThumbnailCreateOrConnectWithoutMediaInput[]
@@ -24510,6 +25771,13 @@ export namespace Prisma {
     connect?: MediaOnPlaylistWhereUniqueInput | MediaOnPlaylistWhereUniqueInput[]
   }
 
+  export type SessionUploadUncheckedCreateNestedManyWithoutMediaInput = {
+    create?: XOR<SessionUploadCreateWithoutMediaInput, SessionUploadUncheckedCreateWithoutMediaInput> | SessionUploadCreateWithoutMediaInput[] | SessionUploadUncheckedCreateWithoutMediaInput[]
+    connectOrCreate?: SessionUploadCreateOrConnectWithoutMediaInput | SessionUploadCreateOrConnectWithoutMediaInput[]
+    createMany?: SessionUploadCreateManyMediaInputEnvelope
+    connect?: SessionUploadWhereUniqueInput | SessionUploadWhereUniqueInput[]
+  }
+
   export type FloatFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -24518,12 +25786,12 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type NullableEnumStatusResourceFieldUpdateOperationsInput = {
-    set?: $Enums.StatusResource | null
+  export type EnumStatusResourceFieldUpdateOperationsInput = {
+    set?: $Enums.StatusResource
   }
 
-  export type NullableEnumStatusFieldUpdateOperationsInput = {
-    set?: $Enums.Status | null
+  export type EnumStatusFieldUpdateOperationsInput = {
+    set?: $Enums.Status
   }
 
   export type UserUpdateOneRequiredWithoutMediaNestedInput = {
@@ -24656,6 +25924,20 @@ export namespace Prisma {
     deleteMany?: MediaOnPlaylistScalarWhereInput | MediaOnPlaylistScalarWhereInput[]
   }
 
+  export type SessionUploadUpdateManyWithoutMediaNestedInput = {
+    create?: XOR<SessionUploadCreateWithoutMediaInput, SessionUploadUncheckedCreateWithoutMediaInput> | SessionUploadCreateWithoutMediaInput[] | SessionUploadUncheckedCreateWithoutMediaInput[]
+    connectOrCreate?: SessionUploadCreateOrConnectWithoutMediaInput | SessionUploadCreateOrConnectWithoutMediaInput[]
+    upsert?: SessionUploadUpsertWithWhereUniqueWithoutMediaInput | SessionUploadUpsertWithWhereUniqueWithoutMediaInput[]
+    createMany?: SessionUploadCreateManyMediaInputEnvelope
+    set?: SessionUploadWhereUniqueInput | SessionUploadWhereUniqueInput[]
+    disconnect?: SessionUploadWhereUniqueInput | SessionUploadWhereUniqueInput[]
+    delete?: SessionUploadWhereUniqueInput | SessionUploadWhereUniqueInput[]
+    connect?: SessionUploadWhereUniqueInput | SessionUploadWhereUniqueInput[]
+    update?: SessionUploadUpdateWithWhereUniqueWithoutMediaInput | SessionUploadUpdateWithWhereUniqueWithoutMediaInput[]
+    updateMany?: SessionUploadUpdateManyWithWhereWithoutMediaInput | SessionUploadUpdateManyWithWhereWithoutMediaInput[]
+    deleteMany?: SessionUploadScalarWhereInput | SessionUploadScalarWhereInput[]
+  }
+
   export type ThumbnailUncheckedUpdateManyWithoutMediaNestedInput = {
     create?: XOR<ThumbnailCreateWithoutMediaInput, ThumbnailUncheckedCreateWithoutMediaInput> | ThumbnailCreateWithoutMediaInput[] | ThumbnailUncheckedCreateWithoutMediaInput[]
     connectOrCreate?: ThumbnailCreateOrConnectWithoutMediaInput | ThumbnailCreateOrConnectWithoutMediaInput[]
@@ -24776,6 +26058,20 @@ export namespace Prisma {
     update?: MediaOnPlaylistUpdateWithWhereUniqueWithoutMediaInput | MediaOnPlaylistUpdateWithWhereUniqueWithoutMediaInput[]
     updateMany?: MediaOnPlaylistUpdateManyWithWhereWithoutMediaInput | MediaOnPlaylistUpdateManyWithWhereWithoutMediaInput[]
     deleteMany?: MediaOnPlaylistScalarWhereInput | MediaOnPlaylistScalarWhereInput[]
+  }
+
+  export type SessionUploadUncheckedUpdateManyWithoutMediaNestedInput = {
+    create?: XOR<SessionUploadCreateWithoutMediaInput, SessionUploadUncheckedCreateWithoutMediaInput> | SessionUploadCreateWithoutMediaInput[] | SessionUploadUncheckedCreateWithoutMediaInput[]
+    connectOrCreate?: SessionUploadCreateOrConnectWithoutMediaInput | SessionUploadCreateOrConnectWithoutMediaInput[]
+    upsert?: SessionUploadUpsertWithWhereUniqueWithoutMediaInput | SessionUploadUpsertWithWhereUniqueWithoutMediaInput[]
+    createMany?: SessionUploadCreateManyMediaInputEnvelope
+    set?: SessionUploadWhereUniqueInput | SessionUploadWhereUniqueInput[]
+    disconnect?: SessionUploadWhereUniqueInput | SessionUploadWhereUniqueInput[]
+    delete?: SessionUploadWhereUniqueInput | SessionUploadWhereUniqueInput[]
+    connect?: SessionUploadWhereUniqueInput | SessionUploadWhereUniqueInput[]
+    update?: SessionUploadUpdateWithWhereUniqueWithoutMediaInput | SessionUploadUpdateWithWhereUniqueWithoutMediaInput[]
+    updateMany?: SessionUploadUpdateManyWithWhereWithoutMediaInput | SessionUploadUpdateManyWithWhereWithoutMediaInput[]
+    deleteMany?: SessionUploadScalarWhereInput | SessionUploadScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutMediaReactionsInput = {
@@ -25010,6 +26306,10 @@ export namespace Prisma {
     create?: XOR<MediaCreateWithoutAudioResourcesInput, MediaUncheckedCreateWithoutAudioResourcesInput>
     connectOrCreate?: MediaCreateOrConnectWithoutAudioResourcesInput
     connect?: MediaWhereUniqueInput
+  }
+
+  export type EnumAudioQualityFieldUpdateOperationsInput = {
+    set?: $Enums.AudioQuality
   }
 
   export type MediaUpdateOneRequiredWithoutAudioResourcesNestedInput = {
@@ -25282,18 +26582,18 @@ export namespace Prisma {
     _max?: NestedEnumPaymentMethodFilter<$PrismaModel>
   }
 
-  export type NestedEnumStatusResourceNullableFilter<$PrismaModel = never> = {
-    equals?: $Enums.StatusResource | EnumStatusResourceFieldRefInput<$PrismaModel> | null
-    in?: $Enums.StatusResource[] | null
-    notIn?: $Enums.StatusResource[] | null
-    not?: NestedEnumStatusResourceNullableFilter<$PrismaModel> | $Enums.StatusResource | null
+  export type NestedEnumStatusResourceFilter<$PrismaModel = never> = {
+    equals?: $Enums.StatusResource | EnumStatusResourceFieldRefInput<$PrismaModel>
+    in?: $Enums.StatusResource[]
+    notIn?: $Enums.StatusResource[]
+    not?: NestedEnumStatusResourceFilter<$PrismaModel> | $Enums.StatusResource
   }
 
-  export type NestedEnumStatusNullableFilter<$PrismaModel = never> = {
-    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel> | null
-    in?: $Enums.Status[] | null
-    notIn?: $Enums.Status[] | null
-    not?: NestedEnumStatusNullableFilter<$PrismaModel> | $Enums.Status | null
+  export type NestedEnumStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Status[]
+    notIn?: $Enums.Status[]
+    not?: NestedEnumStatusFilter<$PrismaModel> | $Enums.Status
   }
 
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
@@ -25312,24 +26612,24 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
-  export type NestedEnumStatusResourceNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.StatusResource | EnumStatusResourceFieldRefInput<$PrismaModel> | null
-    in?: $Enums.StatusResource[] | null
-    notIn?: $Enums.StatusResource[] | null
-    not?: NestedEnumStatusResourceNullableWithAggregatesFilter<$PrismaModel> | $Enums.StatusResource | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedEnumStatusResourceNullableFilter<$PrismaModel>
-    _max?: NestedEnumStatusResourceNullableFilter<$PrismaModel>
+  export type NestedEnumStatusResourceWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.StatusResource | EnumStatusResourceFieldRefInput<$PrismaModel>
+    in?: $Enums.StatusResource[]
+    notIn?: $Enums.StatusResource[]
+    not?: NestedEnumStatusResourceWithAggregatesFilter<$PrismaModel> | $Enums.StatusResource
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumStatusResourceFilter<$PrismaModel>
+    _max?: NestedEnumStatusResourceFilter<$PrismaModel>
   }
 
-  export type NestedEnumStatusNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel> | null
-    in?: $Enums.Status[] | null
-    notIn?: $Enums.Status[] | null
-    not?: NestedEnumStatusNullableWithAggregatesFilter<$PrismaModel> | $Enums.Status | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedEnumStatusNullableFilter<$PrismaModel>
-    _max?: NestedEnumStatusNullableFilter<$PrismaModel>
+  export type NestedEnumStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Status[]
+    notIn?: $Enums.Status[]
+    not?: NestedEnumStatusWithAggregatesFilter<$PrismaModel> | $Enums.Status
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumStatusFilter<$PrismaModel>
+    _max?: NestedEnumStatusFilter<$PrismaModel>
   }
 
   export type NestedBoolFilter<$PrismaModel = never> = {
@@ -25345,16 +26645,34 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
+  export type NestedEnumAudioQualityFilter<$PrismaModel = never> = {
+    equals?: $Enums.AudioQuality | EnumAudioQualityFieldRefInput<$PrismaModel>
+    in?: $Enums.AudioQuality[]
+    notIn?: $Enums.AudioQuality[]
+    not?: NestedEnumAudioQualityFilter<$PrismaModel> | $Enums.AudioQuality
+  }
+
+  export type NestedEnumAudioQualityWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AudioQuality | EnumAudioQualityFieldRefInput<$PrismaModel>
+    in?: $Enums.AudioQuality[]
+    notIn?: $Enums.AudioQuality[]
+    not?: NestedEnumAudioQualityWithAggregatesFilter<$PrismaModel> | $Enums.AudioQuality
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumAudioQualityFilter<$PrismaModel>
+    _max?: NestedEnumAudioQualityFilter<$PrismaModel>
+  }
+
   export type MediaCreateWithoutOwnerInput = {
     id?: string
     title: string
-    views: number
-    duration: number
-    status?: $Enums.StatusResource | null
-    view_mode?: $Enums.Status | null
+    views?: number
+    duration?: number
+    status?: $Enums.StatusResource
+    viewMode?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
+    publishedAt?: Date | string | null
     thumbnails?: ThumbnailCreateNestedManyWithoutMediaInput
     detail?: MediaDetailCreateNestedOneWithoutMediaInput
     videoResources?: VideoResourceCreateNestedManyWithoutMediaInput
@@ -25364,18 +26682,20 @@ export namespace Prisma {
     CategoryOnVideo?: CategoryOnMediaCreateNestedManyWithoutMediaInput
     Comment?: CommentCreateNestedManyWithoutMediaInput
     MediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
+    SessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
   }
 
   export type MediaUncheckedCreateWithoutOwnerInput = {
     id?: string
     title: string
-    views: number
-    duration: number
-    status?: $Enums.StatusResource | null
-    view_mode?: $Enums.Status | null
+    views?: number
+    duration?: number
+    status?: $Enums.StatusResource
+    viewMode?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
+    publishedAt?: Date | string | null
     thumbnails?: ThumbnailUncheckedCreateNestedManyWithoutMediaInput
     detail?: MediaDetailUncheckedCreateNestedOneWithoutMediaInput
     videoResources?: VideoResourceUncheckedCreateNestedManyWithoutMediaInput
@@ -25385,6 +26705,7 @@ export namespace Prisma {
     CategoryOnVideo?: CategoryOnMediaUncheckedCreateNestedManyWithoutMediaInput
     Comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
     MediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
+    SessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
   }
 
   export type MediaCreateOrConnectWithoutOwnerInput = {
@@ -25613,11 +26934,12 @@ export namespace Prisma {
     title?: StringFilter<"Media"> | string
     views?: IntFilter<"Media"> | number
     duration?: FloatFilter<"Media"> | number
-    status?: EnumStatusResourceNullableFilter<"Media"> | $Enums.StatusResource | null
-    view_mode?: EnumStatusNullableFilter<"Media"> | $Enums.Status | null
+    status?: EnumStatusResourceFilter<"Media"> | $Enums.StatusResource
+    viewMode?: EnumStatusFilter<"Media"> | $Enums.Status
     createdAt?: DateTimeFilter<"Media"> | Date | string
     updatedAt?: DateTimeFilter<"Media"> | Date | string
     lockedAt?: DateTimeNullableFilter<"Media"> | Date | string | null
+    publishedAt?: DateTimeNullableFilter<"Media"> | Date | string | null
   }
 
   export type MediaReactionUpsertWithWhereUniqueWithoutUserInput = {
@@ -25991,13 +27313,14 @@ export namespace Prisma {
   export type MediaCreateWithoutCategoryOnVideoInput = {
     id?: string
     title: string
-    views: number
-    duration: number
-    status?: $Enums.StatusResource | null
-    view_mode?: $Enums.Status | null
+    views?: number
+    duration?: number
+    status?: $Enums.StatusResource
+    viewMode?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
+    publishedAt?: Date | string | null
     owner: UserCreateNestedOneWithoutMediaInput
     thumbnails?: ThumbnailCreateNestedManyWithoutMediaInput
     detail?: MediaDetailCreateNestedOneWithoutMediaInput
@@ -26007,19 +27330,21 @@ export namespace Prisma {
     History?: HistoryCreateNestedManyWithoutMeidaInput
     Comment?: CommentCreateNestedManyWithoutMediaInput
     MediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
+    SessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
   }
 
   export type MediaUncheckedCreateWithoutCategoryOnVideoInput = {
     id?: string
     userId: number
     title: string
-    views: number
-    duration: number
-    status?: $Enums.StatusResource | null
-    view_mode?: $Enums.Status | null
+    views?: number
+    duration?: number
+    status?: $Enums.StatusResource
+    viewMode?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
+    publishedAt?: Date | string | null
     thumbnails?: ThumbnailUncheckedCreateNestedManyWithoutMediaInput
     detail?: MediaDetailUncheckedCreateNestedOneWithoutMediaInput
     videoResources?: VideoResourceUncheckedCreateNestedManyWithoutMediaInput
@@ -26028,6 +27353,7 @@ export namespace Prisma {
     History?: HistoryUncheckedCreateNestedManyWithoutMeidaInput
     Comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
     MediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
+    SessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
   }
 
   export type MediaCreateOrConnectWithoutCategoryOnVideoInput = {
@@ -26076,11 +27402,12 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
-    status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
-    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
+    status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
+    viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     owner?: UserUpdateOneRequiredWithoutMediaNestedInput
     thumbnails?: ThumbnailUpdateManyWithoutMediaNestedInput
     detail?: MediaDetailUpdateOneWithoutMediaNestedInput
@@ -26090,6 +27417,7 @@ export namespace Prisma {
     History?: HistoryUpdateManyWithoutMeidaNestedInput
     Comment?: CommentUpdateManyWithoutMediaNestedInput
     MediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
+    SessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaUncheckedUpdateWithoutCategoryOnVideoInput = {
@@ -26098,17 +27426,127 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
-    status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
-    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
+    status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
+    viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     thumbnails?: ThumbnailUncheckedUpdateManyWithoutMediaNestedInput
     detail?: MediaDetailUncheckedUpdateOneWithoutMediaNestedInput
     videoResources?: VideoResourceUncheckedUpdateManyWithoutMediaNestedInput
     audioResources?: AudioResourceUncheckedUpdateManyWithoutMediaNestedInput
     MediaReaction?: MediaReactionUncheckedUpdateManyWithoutMediaNestedInput
     History?: HistoryUncheckedUpdateManyWithoutMeidaNestedInput
+    Comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
+    MediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
+    SessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
+  }
+
+  export type MediaCreateWithoutSessionUploadInput = {
+    id?: string
+    title: string
+    views?: number
+    duration?: number
+    status?: $Enums.StatusResource
+    viewMode?: $Enums.Status
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    lockedAt?: Date | string | null
+    publishedAt?: Date | string | null
+    owner: UserCreateNestedOneWithoutMediaInput
+    thumbnails?: ThumbnailCreateNestedManyWithoutMediaInput
+    detail?: MediaDetailCreateNestedOneWithoutMediaInput
+    videoResources?: VideoResourceCreateNestedManyWithoutMediaInput
+    audioResources?: AudioResourceCreateNestedManyWithoutMediaInput
+    MediaReaction?: MediaReactionCreateNestedManyWithoutMediaInput
+    History?: HistoryCreateNestedManyWithoutMeidaInput
+    CategoryOnVideo?: CategoryOnMediaCreateNestedManyWithoutMediaInput
+    Comment?: CommentCreateNestedManyWithoutMediaInput
+    MediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
+  }
+
+  export type MediaUncheckedCreateWithoutSessionUploadInput = {
+    id?: string
+    userId: number
+    title: string
+    views?: number
+    duration?: number
+    status?: $Enums.StatusResource
+    viewMode?: $Enums.Status
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    lockedAt?: Date | string | null
+    publishedAt?: Date | string | null
+    thumbnails?: ThumbnailUncheckedCreateNestedManyWithoutMediaInput
+    detail?: MediaDetailUncheckedCreateNestedOneWithoutMediaInput
+    videoResources?: VideoResourceUncheckedCreateNestedManyWithoutMediaInput
+    audioResources?: AudioResourceUncheckedCreateNestedManyWithoutMediaInput
+    MediaReaction?: MediaReactionUncheckedCreateNestedManyWithoutMediaInput
+    History?: HistoryUncheckedCreateNestedManyWithoutMeidaInput
+    CategoryOnVideo?: CategoryOnMediaUncheckedCreateNestedManyWithoutMediaInput
+    Comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
+    MediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
+  }
+
+  export type MediaCreateOrConnectWithoutSessionUploadInput = {
+    where: MediaWhereUniqueInput
+    create: XOR<MediaCreateWithoutSessionUploadInput, MediaUncheckedCreateWithoutSessionUploadInput>
+  }
+
+  export type MediaUpsertWithoutSessionUploadInput = {
+    update: XOR<MediaUpdateWithoutSessionUploadInput, MediaUncheckedUpdateWithoutSessionUploadInput>
+    create: XOR<MediaCreateWithoutSessionUploadInput, MediaUncheckedCreateWithoutSessionUploadInput>
+    where?: MediaWhereInput
+  }
+
+  export type MediaUpdateToOneWithWhereWithoutSessionUploadInput = {
+    where?: MediaWhereInput
+    data: XOR<MediaUpdateWithoutSessionUploadInput, MediaUncheckedUpdateWithoutSessionUploadInput>
+  }
+
+  export type MediaUpdateWithoutSessionUploadInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    views?: IntFieldUpdateOperationsInput | number
+    duration?: FloatFieldUpdateOperationsInput | number
+    status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
+    viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    owner?: UserUpdateOneRequiredWithoutMediaNestedInput
+    thumbnails?: ThumbnailUpdateManyWithoutMediaNestedInput
+    detail?: MediaDetailUpdateOneWithoutMediaNestedInput
+    videoResources?: VideoResourceUpdateManyWithoutMediaNestedInput
+    audioResources?: AudioResourceUpdateManyWithoutMediaNestedInput
+    MediaReaction?: MediaReactionUpdateManyWithoutMediaNestedInput
+    History?: HistoryUpdateManyWithoutMeidaNestedInput
+    CategoryOnVideo?: CategoryOnMediaUpdateManyWithoutMediaNestedInput
+    Comment?: CommentUpdateManyWithoutMediaNestedInput
+    MediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
+  }
+
+  export type MediaUncheckedUpdateWithoutSessionUploadInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    views?: IntFieldUpdateOperationsInput | number
+    duration?: FloatFieldUpdateOperationsInput | number
+    status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
+    viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    thumbnails?: ThumbnailUncheckedUpdateManyWithoutMediaNestedInput
+    detail?: MediaDetailUncheckedUpdateOneWithoutMediaNestedInput
+    videoResources?: VideoResourceUncheckedUpdateManyWithoutMediaNestedInput
+    audioResources?: AudioResourceUncheckedUpdateManyWithoutMediaNestedInput
+    MediaReaction?: MediaReactionUncheckedUpdateManyWithoutMediaNestedInput
+    History?: HistoryUncheckedUpdateManyWithoutMeidaNestedInput
+    CategoryOnVideo?: CategoryOnMediaUncheckedUpdateManyWithoutMediaNestedInput
     Comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
     MediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
   }
@@ -26162,6 +27600,7 @@ export namespace Prisma {
   export type ThumbnailCreateWithoutMediaInput = {
     id?: string
     url: string
+    isPrimary?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -26169,6 +27608,7 @@ export namespace Prisma {
   export type ThumbnailUncheckedCreateWithoutMediaInput = {
     id?: string
     url: string
+    isPrimary?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -26184,13 +27624,13 @@ export namespace Prisma {
   }
 
   export type MediaDetailCreateWithoutMediaInput = {
-    description: string
+    description?: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type MediaDetailUncheckedCreateWithoutMediaInput = {
-    description: string
+    description?: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -26201,6 +27641,7 @@ export namespace Prisma {
   }
 
   export type VideoResourceCreateWithoutMediaInput = {
+    id?: string
     label: string
     url: string
     createdAt?: Date | string
@@ -26208,7 +27649,7 @@ export namespace Prisma {
   }
 
   export type VideoResourceUncheckedCreateWithoutMediaInput = {
-    id?: number
+    id?: string
     label: string
     url: string
     createdAt?: Date | string
@@ -26226,16 +27667,17 @@ export namespace Prisma {
   }
 
   export type AudioResourceCreateWithoutMediaInput = {
-    label: string
-    url: string
+    id?: string
+    label: $Enums.AudioQuality
+    fileId: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type AudioResourceUncheckedCreateWithoutMediaInput = {
-    id?: number
-    label: string
-    url: string
+    id?: string
+    label: $Enums.AudioQuality
+    fileId: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -26365,6 +27807,32 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type SessionUploadCreateWithoutMediaInput = {
+    id?: string
+    sessionUploadUrl: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    expired_at?: Date | string | null
+  }
+
+  export type SessionUploadUncheckedCreateWithoutMediaInput = {
+    id?: string
+    sessionUploadUrl: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    expired_at?: Date | string | null
+  }
+
+  export type SessionUploadCreateOrConnectWithoutMediaInput = {
+    where: SessionUploadWhereUniqueInput
+    create: XOR<SessionUploadCreateWithoutMediaInput, SessionUploadUncheckedCreateWithoutMediaInput>
+  }
+
+  export type SessionUploadCreateManyMediaInputEnvelope = {
+    data: SessionUploadCreateManyMediaInput | SessionUploadCreateManyMediaInput[]
+    skipDuplicates?: boolean
+  }
+
   export type UserUpsertWithoutMediaInput = {
     update: XOR<UserUpdateWithoutMediaInput, UserUncheckedUpdateWithoutMediaInput>
     create: XOR<UserCreateWithoutMediaInput, UserUncheckedCreateWithoutMediaInput>
@@ -26439,6 +27907,7 @@ export namespace Prisma {
     NOT?: ThumbnailScalarWhereInput | ThumbnailScalarWhereInput[]
     id?: StringFilter<"Thumbnail"> | string
     url?: StringFilter<"Thumbnail"> | string
+    isPrimary?: BoolFilter<"Thumbnail"> | boolean
     mediaId?: StringFilter<"Thumbnail"> | string
     createdAt?: DateTimeFilter<"Thumbnail"> | Date | string
     updatedAt?: DateTimeFilter<"Thumbnail"> | Date | string
@@ -26487,7 +27956,7 @@ export namespace Prisma {
     AND?: VideoResourceScalarWhereInput | VideoResourceScalarWhereInput[]
     OR?: VideoResourceScalarWhereInput[]
     NOT?: VideoResourceScalarWhereInput | VideoResourceScalarWhereInput[]
-    id?: IntFilter<"VideoResource"> | number
+    id?: StringFilter<"VideoResource"> | string
     mediaId?: StringFilter<"VideoResource"> | string
     label?: StringFilter<"VideoResource"> | string
     url?: StringFilter<"VideoResource"> | string
@@ -26515,10 +27984,10 @@ export namespace Prisma {
     AND?: AudioResourceScalarWhereInput | AudioResourceScalarWhereInput[]
     OR?: AudioResourceScalarWhereInput[]
     NOT?: AudioResourceScalarWhereInput | AudioResourceScalarWhereInput[]
-    id?: IntFilter<"AudioResource"> | number
+    id?: StringFilter<"AudioResource"> | string
     mediaId?: StringFilter<"AudioResource"> | string
-    label?: StringFilter<"AudioResource"> | string
-    url?: StringFilter<"AudioResource"> | string
+    label?: EnumAudioQualityFilter<"AudioResource"> | $Enums.AudioQuality
+    fileId?: StringFilter<"AudioResource"> | string
     createdAt?: DateTimeFilter<"AudioResource"> | Date | string
     updatedAt?: DateTimeFilter<"AudioResource"> | Date | string
   }
@@ -26614,6 +28083,34 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"MediaOnPlaylist"> | Date | string
   }
 
+  export type SessionUploadUpsertWithWhereUniqueWithoutMediaInput = {
+    where: SessionUploadWhereUniqueInput
+    update: XOR<SessionUploadUpdateWithoutMediaInput, SessionUploadUncheckedUpdateWithoutMediaInput>
+    create: XOR<SessionUploadCreateWithoutMediaInput, SessionUploadUncheckedCreateWithoutMediaInput>
+  }
+
+  export type SessionUploadUpdateWithWhereUniqueWithoutMediaInput = {
+    where: SessionUploadWhereUniqueInput
+    data: XOR<SessionUploadUpdateWithoutMediaInput, SessionUploadUncheckedUpdateWithoutMediaInput>
+  }
+
+  export type SessionUploadUpdateManyWithWhereWithoutMediaInput = {
+    where: SessionUploadScalarWhereInput
+    data: XOR<SessionUploadUpdateManyMutationInput, SessionUploadUncheckedUpdateManyWithoutMediaInput>
+  }
+
+  export type SessionUploadScalarWhereInput = {
+    AND?: SessionUploadScalarWhereInput | SessionUploadScalarWhereInput[]
+    OR?: SessionUploadScalarWhereInput[]
+    NOT?: SessionUploadScalarWhereInput | SessionUploadScalarWhereInput[]
+    id?: StringFilter<"SessionUpload"> | string
+    sessionUploadUrl?: StringFilter<"SessionUpload"> | string
+    mediaId?: StringFilter<"SessionUpload"> | string
+    created_at?: DateTimeFilter<"SessionUpload"> | Date | string
+    updated_at?: DateTimeFilter<"SessionUpload"> | Date | string
+    expired_at?: DateTimeNullableFilter<"SessionUpload"> | Date | string | null
+  }
+
   export type UserCreateWithoutMediaReactionsInput = {
     firstName: string
     lastName: string
@@ -26663,13 +28160,14 @@ export namespace Prisma {
   export type MediaCreateWithoutMediaReactionInput = {
     id?: string
     title: string
-    views: number
-    duration: number
-    status?: $Enums.StatusResource | null
-    view_mode?: $Enums.Status | null
+    views?: number
+    duration?: number
+    status?: $Enums.StatusResource
+    viewMode?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
+    publishedAt?: Date | string | null
     owner: UserCreateNestedOneWithoutMediaInput
     thumbnails?: ThumbnailCreateNestedManyWithoutMediaInput
     detail?: MediaDetailCreateNestedOneWithoutMediaInput
@@ -26679,19 +28177,21 @@ export namespace Prisma {
     CategoryOnVideo?: CategoryOnMediaCreateNestedManyWithoutMediaInput
     Comment?: CommentCreateNestedManyWithoutMediaInput
     MediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
+    SessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
   }
 
   export type MediaUncheckedCreateWithoutMediaReactionInput = {
     id?: string
     userId: number
     title: string
-    views: number
-    duration: number
-    status?: $Enums.StatusResource | null
-    view_mode?: $Enums.Status | null
+    views?: number
+    duration?: number
+    status?: $Enums.StatusResource
+    viewMode?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
+    publishedAt?: Date | string | null
     thumbnails?: ThumbnailUncheckedCreateNestedManyWithoutMediaInput
     detail?: MediaDetailUncheckedCreateNestedOneWithoutMediaInput
     videoResources?: VideoResourceUncheckedCreateNestedManyWithoutMediaInput
@@ -26700,6 +28200,7 @@ export namespace Prisma {
     CategoryOnVideo?: CategoryOnMediaUncheckedCreateNestedManyWithoutMediaInput
     Comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
     MediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
+    SessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
   }
 
   export type MediaCreateOrConnectWithoutMediaReactionInput = {
@@ -26775,11 +28276,12 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
-    status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
-    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
+    status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
+    viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     owner?: UserUpdateOneRequiredWithoutMediaNestedInput
     thumbnails?: ThumbnailUpdateManyWithoutMediaNestedInput
     detail?: MediaDetailUpdateOneWithoutMediaNestedInput
@@ -26789,6 +28291,7 @@ export namespace Prisma {
     CategoryOnVideo?: CategoryOnMediaUpdateManyWithoutMediaNestedInput
     Comment?: CommentUpdateManyWithoutMediaNestedInput
     MediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
+    SessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaUncheckedUpdateWithoutMediaReactionInput = {
@@ -26797,11 +28300,12 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
-    status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
-    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
+    status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
+    viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     thumbnails?: ThumbnailUncheckedUpdateManyWithoutMediaNestedInput
     detail?: MediaDetailUncheckedUpdateOneWithoutMediaNestedInput
     videoResources?: VideoResourceUncheckedUpdateManyWithoutMediaNestedInput
@@ -26810,6 +28314,7 @@ export namespace Prisma {
     CategoryOnVideo?: CategoryOnMediaUncheckedUpdateManyWithoutMediaNestedInput
     Comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
     MediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
+    SessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
   }
 
   export type UserCreateWithoutCommentInput = {
@@ -26861,13 +28366,14 @@ export namespace Prisma {
   export type MediaCreateWithoutCommentInput = {
     id?: string
     title: string
-    views: number
-    duration: number
-    status?: $Enums.StatusResource | null
-    view_mode?: $Enums.Status | null
+    views?: number
+    duration?: number
+    status?: $Enums.StatusResource
+    viewMode?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
+    publishedAt?: Date | string | null
     owner: UserCreateNestedOneWithoutMediaInput
     thumbnails?: ThumbnailCreateNestedManyWithoutMediaInput
     detail?: MediaDetailCreateNestedOneWithoutMediaInput
@@ -26877,19 +28383,21 @@ export namespace Prisma {
     History?: HistoryCreateNestedManyWithoutMeidaInput
     CategoryOnVideo?: CategoryOnMediaCreateNestedManyWithoutMediaInput
     MediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
+    SessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
   }
 
   export type MediaUncheckedCreateWithoutCommentInput = {
     id?: string
     userId: number
     title: string
-    views: number
-    duration: number
-    status?: $Enums.StatusResource | null
-    view_mode?: $Enums.Status | null
+    views?: number
+    duration?: number
+    status?: $Enums.StatusResource
+    viewMode?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
+    publishedAt?: Date | string | null
     thumbnails?: ThumbnailUncheckedCreateNestedManyWithoutMediaInput
     detail?: MediaDetailUncheckedCreateNestedOneWithoutMediaInput
     videoResources?: VideoResourceUncheckedCreateNestedManyWithoutMediaInput
@@ -26898,6 +28406,7 @@ export namespace Prisma {
     History?: HistoryUncheckedCreateNestedManyWithoutMeidaInput
     CategoryOnVideo?: CategoryOnMediaUncheckedCreateNestedManyWithoutMediaInput
     MediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
+    SessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
   }
 
   export type MediaCreateOrConnectWithoutCommentInput = {
@@ -26973,11 +28482,12 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
-    status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
-    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
+    status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
+    viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     owner?: UserUpdateOneRequiredWithoutMediaNestedInput
     thumbnails?: ThumbnailUpdateManyWithoutMediaNestedInput
     detail?: MediaDetailUpdateOneWithoutMediaNestedInput
@@ -26987,6 +28497,7 @@ export namespace Prisma {
     History?: HistoryUpdateManyWithoutMeidaNestedInput
     CategoryOnVideo?: CategoryOnMediaUpdateManyWithoutMediaNestedInput
     MediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
+    SessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaUncheckedUpdateWithoutCommentInput = {
@@ -26995,11 +28506,12 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
-    status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
-    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
+    status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
+    viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     thumbnails?: ThumbnailUncheckedUpdateManyWithoutMediaNestedInput
     detail?: MediaDetailUncheckedUpdateOneWithoutMediaNestedInput
     videoResources?: VideoResourceUncheckedUpdateManyWithoutMediaNestedInput
@@ -27008,6 +28520,7 @@ export namespace Prisma {
     History?: HistoryUncheckedUpdateManyWithoutMeidaNestedInput
     CategoryOnVideo?: CategoryOnMediaUncheckedUpdateManyWithoutMediaNestedInput
     MediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
+    SessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
   }
 
   export type UserCreateWithoutPlaylistInput = {
@@ -27171,13 +28684,14 @@ export namespace Prisma {
   export type MediaCreateWithoutMediaOnPlaylistInput = {
     id?: string
     title: string
-    views: number
-    duration: number
-    status?: $Enums.StatusResource | null
-    view_mode?: $Enums.Status | null
+    views?: number
+    duration?: number
+    status?: $Enums.StatusResource
+    viewMode?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
+    publishedAt?: Date | string | null
     owner: UserCreateNestedOneWithoutMediaInput
     thumbnails?: ThumbnailCreateNestedManyWithoutMediaInput
     detail?: MediaDetailCreateNestedOneWithoutMediaInput
@@ -27187,19 +28701,21 @@ export namespace Prisma {
     History?: HistoryCreateNestedManyWithoutMeidaInput
     CategoryOnVideo?: CategoryOnMediaCreateNestedManyWithoutMediaInput
     Comment?: CommentCreateNestedManyWithoutMediaInput
+    SessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
   }
 
   export type MediaUncheckedCreateWithoutMediaOnPlaylistInput = {
     id?: string
     userId: number
     title: string
-    views: number
-    duration: number
-    status?: $Enums.StatusResource | null
-    view_mode?: $Enums.Status | null
+    views?: number
+    duration?: number
+    status?: $Enums.StatusResource
+    viewMode?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
+    publishedAt?: Date | string | null
     thumbnails?: ThumbnailUncheckedCreateNestedManyWithoutMediaInput
     detail?: MediaDetailUncheckedCreateNestedOneWithoutMediaInput
     videoResources?: VideoResourceUncheckedCreateNestedManyWithoutMediaInput
@@ -27208,6 +28724,7 @@ export namespace Prisma {
     History?: HistoryUncheckedCreateNestedManyWithoutMeidaInput
     CategoryOnVideo?: CategoryOnMediaUncheckedCreateNestedManyWithoutMediaInput
     Comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
+    SessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
   }
 
   export type MediaCreateOrConnectWithoutMediaOnPlaylistInput = {
@@ -27258,11 +28775,12 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
-    status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
-    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
+    status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
+    viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     owner?: UserUpdateOneRequiredWithoutMediaNestedInput
     thumbnails?: ThumbnailUpdateManyWithoutMediaNestedInput
     detail?: MediaDetailUpdateOneWithoutMediaNestedInput
@@ -27272,6 +28790,7 @@ export namespace Prisma {
     History?: HistoryUpdateManyWithoutMeidaNestedInput
     CategoryOnVideo?: CategoryOnMediaUpdateManyWithoutMediaNestedInput
     Comment?: CommentUpdateManyWithoutMediaNestedInput
+    SessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaUncheckedUpdateWithoutMediaOnPlaylistInput = {
@@ -27280,11 +28799,12 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
-    status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
-    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
+    status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
+    viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     thumbnails?: ThumbnailUncheckedUpdateManyWithoutMediaNestedInput
     detail?: MediaDetailUncheckedUpdateOneWithoutMediaNestedInput
     videoResources?: VideoResourceUncheckedUpdateManyWithoutMediaNestedInput
@@ -27293,6 +28813,7 @@ export namespace Prisma {
     History?: HistoryUncheckedUpdateManyWithoutMeidaNestedInput
     CategoryOnVideo?: CategoryOnMediaUncheckedUpdateManyWithoutMediaNestedInput
     Comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
+    SessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
   }
 
   export type UserCreateWithoutHistoriesInput = {
@@ -27344,13 +28865,14 @@ export namespace Prisma {
   export type MediaCreateWithoutHistoryInput = {
     id?: string
     title: string
-    views: number
-    duration: number
-    status?: $Enums.StatusResource | null
-    view_mode?: $Enums.Status | null
+    views?: number
+    duration?: number
+    status?: $Enums.StatusResource
+    viewMode?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
+    publishedAt?: Date | string | null
     owner: UserCreateNestedOneWithoutMediaInput
     thumbnails?: ThumbnailCreateNestedManyWithoutMediaInput
     detail?: MediaDetailCreateNestedOneWithoutMediaInput
@@ -27360,19 +28882,21 @@ export namespace Prisma {
     CategoryOnVideo?: CategoryOnMediaCreateNestedManyWithoutMediaInput
     Comment?: CommentCreateNestedManyWithoutMediaInput
     MediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
+    SessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
   }
 
   export type MediaUncheckedCreateWithoutHistoryInput = {
     id?: string
     userId: number
     title: string
-    views: number
-    duration: number
-    status?: $Enums.StatusResource | null
-    view_mode?: $Enums.Status | null
+    views?: number
+    duration?: number
+    status?: $Enums.StatusResource
+    viewMode?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
+    publishedAt?: Date | string | null
     thumbnails?: ThumbnailUncheckedCreateNestedManyWithoutMediaInput
     detail?: MediaDetailUncheckedCreateNestedOneWithoutMediaInput
     videoResources?: VideoResourceUncheckedCreateNestedManyWithoutMediaInput
@@ -27381,6 +28905,7 @@ export namespace Prisma {
     CategoryOnVideo?: CategoryOnMediaUncheckedCreateNestedManyWithoutMediaInput
     Comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
     MediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
+    SessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
   }
 
   export type MediaCreateOrConnectWithoutHistoryInput = {
@@ -27456,11 +28981,12 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
-    status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
-    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
+    status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
+    viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     owner?: UserUpdateOneRequiredWithoutMediaNestedInput
     thumbnails?: ThumbnailUpdateManyWithoutMediaNestedInput
     detail?: MediaDetailUpdateOneWithoutMediaNestedInput
@@ -27470,6 +28996,7 @@ export namespace Prisma {
     CategoryOnVideo?: CategoryOnMediaUpdateManyWithoutMediaNestedInput
     Comment?: CommentUpdateManyWithoutMediaNestedInput
     MediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
+    SessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaUncheckedUpdateWithoutHistoryInput = {
@@ -27478,11 +29005,12 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
-    status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
-    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
+    status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
+    viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     thumbnails?: ThumbnailUncheckedUpdateManyWithoutMediaNestedInput
     detail?: MediaDetailUncheckedUpdateOneWithoutMediaNestedInput
     videoResources?: VideoResourceUncheckedUpdateManyWithoutMediaNestedInput
@@ -27491,6 +29019,7 @@ export namespace Prisma {
     CategoryOnVideo?: CategoryOnMediaUncheckedUpdateManyWithoutMediaNestedInput
     Comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
     MediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
+    SessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
   }
 
   export type UserCreateWithoutSubscribersInput = {
@@ -27790,13 +29319,14 @@ export namespace Prisma {
   export type MediaCreateWithoutVideoResourcesInput = {
     id?: string
     title: string
-    views: number
-    duration: number
-    status?: $Enums.StatusResource | null
-    view_mode?: $Enums.Status | null
+    views?: number
+    duration?: number
+    status?: $Enums.StatusResource
+    viewMode?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
+    publishedAt?: Date | string | null
     owner: UserCreateNestedOneWithoutMediaInput
     thumbnails?: ThumbnailCreateNestedManyWithoutMediaInput
     detail?: MediaDetailCreateNestedOneWithoutMediaInput
@@ -27806,19 +29336,21 @@ export namespace Prisma {
     CategoryOnVideo?: CategoryOnMediaCreateNestedManyWithoutMediaInput
     Comment?: CommentCreateNestedManyWithoutMediaInput
     MediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
+    SessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
   }
 
   export type MediaUncheckedCreateWithoutVideoResourcesInput = {
     id?: string
     userId: number
     title: string
-    views: number
-    duration: number
-    status?: $Enums.StatusResource | null
-    view_mode?: $Enums.Status | null
+    views?: number
+    duration?: number
+    status?: $Enums.StatusResource
+    viewMode?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
+    publishedAt?: Date | string | null
     thumbnails?: ThumbnailUncheckedCreateNestedManyWithoutMediaInput
     detail?: MediaDetailUncheckedCreateNestedOneWithoutMediaInput
     audioResources?: AudioResourceUncheckedCreateNestedManyWithoutMediaInput
@@ -27827,6 +29359,7 @@ export namespace Prisma {
     CategoryOnVideo?: CategoryOnMediaUncheckedCreateNestedManyWithoutMediaInput
     Comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
     MediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
+    SessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
   }
 
   export type MediaCreateOrConnectWithoutVideoResourcesInput = {
@@ -27850,11 +29383,12 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
-    status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
-    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
+    status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
+    viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     owner?: UserUpdateOneRequiredWithoutMediaNestedInput
     thumbnails?: ThumbnailUpdateManyWithoutMediaNestedInput
     detail?: MediaDetailUpdateOneWithoutMediaNestedInput
@@ -27864,6 +29398,7 @@ export namespace Prisma {
     CategoryOnVideo?: CategoryOnMediaUpdateManyWithoutMediaNestedInput
     Comment?: CommentUpdateManyWithoutMediaNestedInput
     MediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
+    SessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaUncheckedUpdateWithoutVideoResourcesInput = {
@@ -27872,11 +29407,12 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
-    status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
-    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
+    status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
+    viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     thumbnails?: ThumbnailUncheckedUpdateManyWithoutMediaNestedInput
     detail?: MediaDetailUncheckedUpdateOneWithoutMediaNestedInput
     audioResources?: AudioResourceUncheckedUpdateManyWithoutMediaNestedInput
@@ -27885,18 +29421,20 @@ export namespace Prisma {
     CategoryOnVideo?: CategoryOnMediaUncheckedUpdateManyWithoutMediaNestedInput
     Comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
     MediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
+    SessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaCreateWithoutAudioResourcesInput = {
     id?: string
     title: string
-    views: number
-    duration: number
-    status?: $Enums.StatusResource | null
-    view_mode?: $Enums.Status | null
+    views?: number
+    duration?: number
+    status?: $Enums.StatusResource
+    viewMode?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
+    publishedAt?: Date | string | null
     owner: UserCreateNestedOneWithoutMediaInput
     thumbnails?: ThumbnailCreateNestedManyWithoutMediaInput
     detail?: MediaDetailCreateNestedOneWithoutMediaInput
@@ -27906,19 +29444,21 @@ export namespace Prisma {
     CategoryOnVideo?: CategoryOnMediaCreateNestedManyWithoutMediaInput
     Comment?: CommentCreateNestedManyWithoutMediaInput
     MediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
+    SessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
   }
 
   export type MediaUncheckedCreateWithoutAudioResourcesInput = {
     id?: string
     userId: number
     title: string
-    views: number
-    duration: number
-    status?: $Enums.StatusResource | null
-    view_mode?: $Enums.Status | null
+    views?: number
+    duration?: number
+    status?: $Enums.StatusResource
+    viewMode?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
+    publishedAt?: Date | string | null
     thumbnails?: ThumbnailUncheckedCreateNestedManyWithoutMediaInput
     detail?: MediaDetailUncheckedCreateNestedOneWithoutMediaInput
     videoResources?: VideoResourceUncheckedCreateNestedManyWithoutMediaInput
@@ -27927,6 +29467,7 @@ export namespace Prisma {
     CategoryOnVideo?: CategoryOnMediaUncheckedCreateNestedManyWithoutMediaInput
     Comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
     MediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
+    SessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
   }
 
   export type MediaCreateOrConnectWithoutAudioResourcesInput = {
@@ -27950,11 +29491,12 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
-    status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
-    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
+    status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
+    viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     owner?: UserUpdateOneRequiredWithoutMediaNestedInput
     thumbnails?: ThumbnailUpdateManyWithoutMediaNestedInput
     detail?: MediaDetailUpdateOneWithoutMediaNestedInput
@@ -27964,6 +29506,7 @@ export namespace Prisma {
     CategoryOnVideo?: CategoryOnMediaUpdateManyWithoutMediaNestedInput
     Comment?: CommentUpdateManyWithoutMediaNestedInput
     MediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
+    SessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaUncheckedUpdateWithoutAudioResourcesInput = {
@@ -27972,11 +29515,12 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
-    status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
-    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
+    status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
+    viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     thumbnails?: ThumbnailUncheckedUpdateManyWithoutMediaNestedInput
     detail?: MediaDetailUncheckedUpdateOneWithoutMediaNestedInput
     videoResources?: VideoResourceUncheckedUpdateManyWithoutMediaNestedInput
@@ -27985,18 +29529,20 @@ export namespace Prisma {
     CategoryOnVideo?: CategoryOnMediaUncheckedUpdateManyWithoutMediaNestedInput
     Comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
     MediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
+    SessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaCreateWithoutDetailInput = {
     id?: string
     title: string
-    views: number
-    duration: number
-    status?: $Enums.StatusResource | null
-    view_mode?: $Enums.Status | null
+    views?: number
+    duration?: number
+    status?: $Enums.StatusResource
+    viewMode?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
+    publishedAt?: Date | string | null
     owner: UserCreateNestedOneWithoutMediaInput
     thumbnails?: ThumbnailCreateNestedManyWithoutMediaInput
     videoResources?: VideoResourceCreateNestedManyWithoutMediaInput
@@ -28006,19 +29552,21 @@ export namespace Prisma {
     CategoryOnVideo?: CategoryOnMediaCreateNestedManyWithoutMediaInput
     Comment?: CommentCreateNestedManyWithoutMediaInput
     MediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
+    SessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
   }
 
   export type MediaUncheckedCreateWithoutDetailInput = {
     id?: string
     userId: number
     title: string
-    views: number
-    duration: number
-    status?: $Enums.StatusResource | null
-    view_mode?: $Enums.Status | null
+    views?: number
+    duration?: number
+    status?: $Enums.StatusResource
+    viewMode?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
+    publishedAt?: Date | string | null
     thumbnails?: ThumbnailUncheckedCreateNestedManyWithoutMediaInput
     videoResources?: VideoResourceUncheckedCreateNestedManyWithoutMediaInput
     audioResources?: AudioResourceUncheckedCreateNestedManyWithoutMediaInput
@@ -28027,6 +29575,7 @@ export namespace Prisma {
     CategoryOnVideo?: CategoryOnMediaUncheckedCreateNestedManyWithoutMediaInput
     Comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
     MediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
+    SessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
   }
 
   export type MediaCreateOrConnectWithoutDetailInput = {
@@ -28050,11 +29599,12 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
-    status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
-    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
+    status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
+    viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     owner?: UserUpdateOneRequiredWithoutMediaNestedInput
     thumbnails?: ThumbnailUpdateManyWithoutMediaNestedInput
     videoResources?: VideoResourceUpdateManyWithoutMediaNestedInput
@@ -28064,6 +29614,7 @@ export namespace Prisma {
     CategoryOnVideo?: CategoryOnMediaUpdateManyWithoutMediaNestedInput
     Comment?: CommentUpdateManyWithoutMediaNestedInput
     MediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
+    SessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaUncheckedUpdateWithoutDetailInput = {
@@ -28072,11 +29623,12 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
-    status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
-    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
+    status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
+    viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     thumbnails?: ThumbnailUncheckedUpdateManyWithoutMediaNestedInput
     videoResources?: VideoResourceUncheckedUpdateManyWithoutMediaNestedInput
     audioResources?: AudioResourceUncheckedUpdateManyWithoutMediaNestedInput
@@ -28085,18 +29637,20 @@ export namespace Prisma {
     CategoryOnVideo?: CategoryOnMediaUncheckedUpdateManyWithoutMediaNestedInput
     Comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
     MediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
+    SessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaCreateWithoutThumbnailsInput = {
     id?: string
     title: string
-    views: number
-    duration: number
-    status?: $Enums.StatusResource | null
-    view_mode?: $Enums.Status | null
+    views?: number
+    duration?: number
+    status?: $Enums.StatusResource
+    viewMode?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
+    publishedAt?: Date | string | null
     owner: UserCreateNestedOneWithoutMediaInput
     detail?: MediaDetailCreateNestedOneWithoutMediaInput
     videoResources?: VideoResourceCreateNestedManyWithoutMediaInput
@@ -28106,19 +29660,21 @@ export namespace Prisma {
     CategoryOnVideo?: CategoryOnMediaCreateNestedManyWithoutMediaInput
     Comment?: CommentCreateNestedManyWithoutMediaInput
     MediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
+    SessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
   }
 
   export type MediaUncheckedCreateWithoutThumbnailsInput = {
     id?: string
     userId: number
     title: string
-    views: number
-    duration: number
-    status?: $Enums.StatusResource | null
-    view_mode?: $Enums.Status | null
+    views?: number
+    duration?: number
+    status?: $Enums.StatusResource
+    viewMode?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
+    publishedAt?: Date | string | null
     detail?: MediaDetailUncheckedCreateNestedOneWithoutMediaInput
     videoResources?: VideoResourceUncheckedCreateNestedManyWithoutMediaInput
     audioResources?: AudioResourceUncheckedCreateNestedManyWithoutMediaInput
@@ -28127,6 +29683,7 @@ export namespace Prisma {
     CategoryOnVideo?: CategoryOnMediaUncheckedCreateNestedManyWithoutMediaInput
     Comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
     MediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
+    SessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
   }
 
   export type MediaCreateOrConnectWithoutThumbnailsInput = {
@@ -28150,11 +29707,12 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
-    status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
-    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
+    status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
+    viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     owner?: UserUpdateOneRequiredWithoutMediaNestedInput
     detail?: MediaDetailUpdateOneWithoutMediaNestedInput
     videoResources?: VideoResourceUpdateManyWithoutMediaNestedInput
@@ -28164,6 +29722,7 @@ export namespace Prisma {
     CategoryOnVideo?: CategoryOnMediaUpdateManyWithoutMediaNestedInput
     Comment?: CommentUpdateManyWithoutMediaNestedInput
     MediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
+    SessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaUncheckedUpdateWithoutThumbnailsInput = {
@@ -28172,11 +29731,12 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
-    status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
-    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
+    status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
+    viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     detail?: MediaDetailUncheckedUpdateOneWithoutMediaNestedInput
     videoResources?: VideoResourceUncheckedUpdateManyWithoutMediaNestedInput
     audioResources?: AudioResourceUncheckedUpdateManyWithoutMediaNestedInput
@@ -28185,6 +29745,7 @@ export namespace Prisma {
     CategoryOnVideo?: CategoryOnMediaUncheckedUpdateManyWithoutMediaNestedInput
     Comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
     MediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
+    SessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
   }
 
   export type PaymentTransactionDetailCreateWithoutPaymentTransactionInput = {
@@ -28279,13 +29840,14 @@ export namespace Prisma {
   export type MediaCreateManyOwnerInput = {
     id?: string
     title: string
-    views: number
-    duration: number
-    status?: $Enums.StatusResource | null
-    view_mode?: $Enums.Status | null
+    views?: number
+    duration?: number
+    status?: $Enums.StatusResource
+    viewMode?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
     lockedAt?: Date | string | null
+    publishedAt?: Date | string | null
   }
 
   export type MediaReactionCreateManyUserInput = {
@@ -28351,11 +29913,12 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
-    status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
-    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
+    status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
+    viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     thumbnails?: ThumbnailUpdateManyWithoutMediaNestedInput
     detail?: MediaDetailUpdateOneWithoutMediaNestedInput
     videoResources?: VideoResourceUpdateManyWithoutMediaNestedInput
@@ -28365,6 +29928,7 @@ export namespace Prisma {
     CategoryOnVideo?: CategoryOnMediaUpdateManyWithoutMediaNestedInput
     Comment?: CommentUpdateManyWithoutMediaNestedInput
     MediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
+    SessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaUncheckedUpdateWithoutOwnerInput = {
@@ -28372,11 +29936,12 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
-    status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
-    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
+    status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
+    viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     thumbnails?: ThumbnailUncheckedUpdateManyWithoutMediaNestedInput
     detail?: MediaDetailUncheckedUpdateOneWithoutMediaNestedInput
     videoResources?: VideoResourceUncheckedUpdateManyWithoutMediaNestedInput
@@ -28386,6 +29951,7 @@ export namespace Prisma {
     CategoryOnVideo?: CategoryOnMediaUncheckedUpdateManyWithoutMediaNestedInput
     Comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
     MediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
+    SessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaUncheckedUpdateManyWithoutOwnerInput = {
@@ -28393,11 +29959,12 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
-    status?: NullableEnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource | null
-    view_mode?: NullableEnumStatusFieldUpdateOperationsInput | $Enums.Status | null
+    status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
+    viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type MediaReactionUpdateWithoutUserInput = {
@@ -28591,12 +30158,13 @@ export namespace Prisma {
   export type ThumbnailCreateManyMediaInput = {
     id?: string
     url: string
+    isPrimary?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type VideoResourceCreateManyMediaInput = {
-    id?: number
+    id?: string
     label: string
     url: string
     createdAt?: Date | string
@@ -28604,9 +30172,9 @@ export namespace Prisma {
   }
 
   export type AudioResourceCreateManyMediaInput = {
-    id?: number
-    label: string
-    url: string
+    id?: string
+    label: $Enums.AudioQuality
+    fileId: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -28646,9 +30214,18 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
+  export type SessionUploadCreateManyMediaInput = {
+    id?: string
+    sessionUploadUrl: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    expired_at?: Date | string | null
+  }
+
   export type ThumbnailUpdateWithoutMediaInput = {
     id?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
+    isPrimary?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -28656,6 +30233,7 @@ export namespace Prisma {
   export type ThumbnailUncheckedUpdateWithoutMediaInput = {
     id?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
+    isPrimary?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -28663,11 +30241,13 @@ export namespace Prisma {
   export type ThumbnailUncheckedUpdateManyWithoutMediaInput = {
     id?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
+    isPrimary?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type VideoResourceUpdateWithoutMediaInput = {
+    id?: StringFieldUpdateOperationsInput | string
     label?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -28675,7 +30255,7 @@ export namespace Prisma {
   }
 
   export type VideoResourceUncheckedUpdateWithoutMediaInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     label?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -28683,7 +30263,7 @@ export namespace Prisma {
   }
 
   export type VideoResourceUncheckedUpdateManyWithoutMediaInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     label?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -28691,24 +30271,25 @@ export namespace Prisma {
   }
 
   export type AudioResourceUpdateWithoutMediaInput = {
-    label?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
+    label?: EnumAudioQualityFieldUpdateOperationsInput | $Enums.AudioQuality
+    fileId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AudioResourceUncheckedUpdateWithoutMediaInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    label?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
+    label?: EnumAudioQualityFieldUpdateOperationsInput | $Enums.AudioQuality
+    fileId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AudioResourceUncheckedUpdateManyWithoutMediaInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    label?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string
+    label?: EnumAudioQualityFieldUpdateOperationsInput | $Enums.AudioQuality
+    fileId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -28813,6 +30394,30 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type SessionUploadUpdateWithoutMediaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionUploadUrl?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    expired_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type SessionUploadUncheckedUpdateWithoutMediaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionUploadUrl?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    expired_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type SessionUploadUncheckedUpdateManyWithoutMediaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionUploadUrl?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    expired_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
   export type MediaOnPlaylistCreateManyPlaylistInput = {
     id?: number
     mediaId: string
@@ -28909,6 +30514,10 @@ export namespace Prisma {
      * @deprecated Use CategoryOnMediaDefaultArgs instead
      */
     export type CategoryOnMediaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = CategoryOnMediaDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use SessionUploadDefaultArgs instead
+     */
+    export type SessionUploadArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = SessionUploadDefaultArgs<ExtArgs>
     /**
      * @deprecated Use MediaDefaultArgs instead
      */
