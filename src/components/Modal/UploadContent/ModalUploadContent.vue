@@ -190,20 +190,24 @@ const handleChangeFile = async (e: any) => {
   isUploading.value = true
 
   if (!mediaInfo.value) {
-    const media = await requestInstance.post<
-      ResponseSuccess<
-        Prisma.MediaGetPayload<{
-          include: {
-            detail: true
-            audioResources: true
-            videoResources: true
-            thumbnails: true
-          }
-        }>
-      >
-    >('/studio/media', {
-      title: fileSrc.name
-    })
+    const media = await requestInstance
+      .post<
+        ResponseSuccess<
+          Prisma.MediaGetPayload<{
+            include: {
+              detail: true
+              audioResources: true
+              videoResources: true
+              thumbnails: true
+            }
+          }>
+        >
+      >('/studio/media', {
+        title: fileSrc.name
+      })
+      .finally(() => {
+        isUploading.value = false
+      })
 
     mediaInfo.value = media.data.data
   }
