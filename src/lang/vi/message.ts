@@ -1,3 +1,4 @@
+import table from "./table";
 
 export const messages = {
   on_login: "Đang đăng nhập, xin vui lòng đợi",
@@ -44,8 +45,20 @@ export const messages = {
   return: "Trở về",
   save_successful: "Lưu thành công",
   delete: "Xóa",
+  edit: "Sửa",
   confirm_delete_content: "Bạn có chắc chắn muốn xóa nội dung này không?",
   confirm: "Xác nhận",
   delete_successful: "Xóa thành công",
   preview: "Xem trước",
+  album: "Album trên kênh của bạn",
+  new_upload: "Tải lên mới",
+  new_album: "Tạo album mới",
+  edit_album: "Chỉnh sửa album",
+  album_form: {
+    name: "Tên album",
+    description: "Miêu tả",
+  },
+  delete_from_arg: "Xóa khỏi {arg}",
+  set_thumbnail_primary: "Đặt làm hình thu nhỏ",
+  table,
 }

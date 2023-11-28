@@ -9,11 +9,36 @@
           <template #icon>
             <CloudUploadOutlined />
           </template>
-          Tải lên mới
+          {{ $t('new_upload') }}
         </Button>
       </div>
     </div>
-    <Table :columns="columns" :data-source="dataSource" :loading="isLoading"></Table>
+    <Table :columns="columns" :data-source="dataSource" :loading="isLoading">
+      <template #bodyCell="{ column, record, text }">
+        <template v-if="column.dataIndex === 'title'">
+          <div class="text-blue-500 cursor-pointer font-semibold" @click="openModalEdit(record)">
+            <div class="flex gap-x-5 items-center">
+              <div class="flex-shrink-0">
+                <img
+                  class="w-10 aspect-square rounded-lg"
+                  :src="getThumbnailUrlPrimary(record.thumbnails)"
+                />
+              </div>
+              <div>{{ text }}</div>
+            </div>
+          </div>
+        </template>
+        <template v-if="column.dataIndex === 'created_at'">
+          {{ formatDate(record.publishedAt ?? text) }}
+        </template>
+        <template v-if="column.dataIndex === 'number_view'">
+          {{ formatNumber(text) }}
+        </template>
+        <template v-if="column.dataIndex === 'number_comment'">
+          {{ formatNumber(record._count.comment) }}
+        </template>
+      </template>
+    </Table>
     <ModalUploadContent
       v-model:open="isOpenModalUploadContent"
       :p-media-info="currentMedia"
@@ -22,7 +47,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { Table, Button } from 'ant-design-vue'
+import { Table, Button, Image, Avatar } from 'ant-design-vue'
 import type { ColumnType } from 'ant-design-vue/es/table'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -30,14 +55,23 @@ import { CloudUploadOutlined } from '@ant-design/icons-vue'
 import ModalUploadContent from '@/components/Modal/UploadContent/ModalUploadContent.vue'
 import requestInstance from '@/utils/axios'
 import type { Prisma } from '~/prisma/generated/mysql'
-import { formatDate, formatNumber } from '@/utils/common'
-import { h } from 'vue'
+import { formatDate, formatNumber, getThumbnailUrlPrimary } from '@/utils/common'
 
 const { t } = useI18n()
 const isOpenModalUploadContent = ref(false)
 const currentMedia = ref<
   | Prisma.MediaGetPayload<{
       include: {
+        mediaOnAlbum: {
+          select: {
+            album: true
+          }
+        }
+        mediaOnCategory: {
+          select: {
+            category: true
+          }
+        }
         detail: true
         audioResources: true
         videoResources: true
@@ -53,24 +87,17 @@ const newUpload = () => {
   currentMedia.value = undefined
 }
 
+const openModalEdit = (record: any) => {
+  isOpenModalUploadContent.value = true
+  currentMedia.value = record
+}
+
 const columns = ref<ColumnType[]>([
   {
     title: t('song'),
     dataIndex: 'title',
     key: 'title',
-    customRender({ text, record }) {
-      return h(
-        'div',
-        {
-          class: 'text-blue-500 cursor-pointer font-semibold',
-          onClick() {
-            isOpenModalUploadContent.value = true
-            currentMedia.value = record
-          }
-        },
-        text
-      )
-    }
+    width: 400
   },
   {
     title: t('view_mode'),
@@ -85,33 +112,24 @@ const columns = ref<ColumnType[]>([
   {
     title: t('date_publish'),
     dataIndex: 'created_at',
-    key: 'created_at',
-    customRender({ text, record }) {
-      return formatDate(record.publishedAt ?? text)
-    }
+    key: 'created_at'
   },
   {
     title: t('number_view'),
     dataIndex: 'views',
-    key: 'views',
-    customRender({ text }) {
-      return formatNumber(text)
-    }
+    key: 'views'
   },
   {
     title: t('number_comment'),
     dataIndex: 'number_comment',
-    key: 'number_comment',
-    customRender({ record }) {
-      return formatNumber(record._count.Comment)
-    }
+    key: 'number_comment'
   },
   {
     title: t('like', { unit: '%' }),
     dataIndex: 'like',
     key: 'like',
     customRender({ record }) {
-      return formatNumber(record._count.MediaReaction)
+      return formatNumber(record._count.mediaReaction)
     }
   }
 ])

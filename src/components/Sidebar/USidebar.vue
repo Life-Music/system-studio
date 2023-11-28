@@ -15,7 +15,7 @@
 <script setup lang="ts">
 import { LayoutSider, Menu, MenuItem } from 'ant-design-vue'
 import Logo from '@/assets/logo.png'
-import { FundOutlined, BulbOutlined } from '@ant-design/icons-vue'
+import { FundOutlined, BulbOutlined, FolderOutlined } from '@ant-design/icons-vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import routerNames from '@/router/routerNames'
@@ -46,6 +46,16 @@ const menu = [
     onClick: () => {
       router.push({
         name: routerNames.CONTENT
+      })
+    }
+  },
+  {
+    icon: FolderOutlined,
+    text: t('Album'),
+    key: routerNames.ALBUM,
+    onClick: () => {
+      router.push({
+        name: routerNames.ALBUM
       })
     }
   }

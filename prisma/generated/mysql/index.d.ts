@@ -29,10 +29,10 @@ export type UserPaymentMethod = $Result.DefaultSelection<Prisma.$UserPaymentMeth
  */
 export type Category = $Result.DefaultSelection<Prisma.$CategoryPayload>
 /**
- * Model CategoryOnMedia
+ * Model MediaOnCategory
  * 
  */
-export type CategoryOnMedia = $Result.DefaultSelection<Prisma.$CategoryOnMediaPayload>
+export type MediaOnCategory = $Result.DefaultSelection<Prisma.$MediaOnCategoryPayload>
 /**
  * Model SessionUpload
  * 
@@ -108,6 +108,16 @@ export type PaymentTransaction = $Result.DefaultSelection<Prisma.$PaymentTransac
  * 
  */
 export type PaymentTransactionDetail = $Result.DefaultSelection<Prisma.$PaymentTransactionDetailPayload>
+/**
+ * Model MediaOnAlbum
+ * 
+ */
+export type MediaOnAlbum = $Result.DefaultSelection<Prisma.$MediaOnAlbumPayload>
+/**
+ * Model Album
+ * 
+ */
+export type Album = $Result.DefaultSelection<Prisma.$AlbumPayload>
 
 /**
  * Enums
@@ -319,14 +329,14 @@ export class PrismaClient<
   get category(): Prisma.CategoryDelegate<ExtArgs>;
 
   /**
-   * `prisma.categoryOnMedia`: Exposes CRUD operations for the **CategoryOnMedia** model.
+   * `prisma.mediaOnCategory`: Exposes CRUD operations for the **MediaOnCategory** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more CategoryOnMedias
-    * const categoryOnMedias = await prisma.categoryOnMedia.findMany()
+    * // Fetch zero or more MediaOnCategories
+    * const mediaOnCategories = await prisma.mediaOnCategory.findMany()
     * ```
     */
-  get categoryOnMedia(): Prisma.CategoryOnMediaDelegate<ExtArgs>;
+  get mediaOnCategory(): Prisma.MediaOnCategoryDelegate<ExtArgs>;
 
   /**
    * `prisma.sessionUpload`: Exposes CRUD operations for the **SessionUpload** model.
@@ -477,6 +487,26 @@ export class PrismaClient<
     * ```
     */
   get paymentTransactionDetail(): Prisma.PaymentTransactionDetailDelegate<ExtArgs>;
+
+  /**
+   * `prisma.mediaOnAlbum`: Exposes CRUD operations for the **MediaOnAlbum** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more MediaOnAlbums
+    * const mediaOnAlbums = await prisma.mediaOnAlbum.findMany()
+    * ```
+    */
+  get mediaOnAlbum(): Prisma.MediaOnAlbumDelegate<ExtArgs>;
+
+  /**
+   * `prisma.album`: Exposes CRUD operations for the **Album** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Albums
+    * const albums = await prisma.album.findMany()
+    * ```
+    */
+  get album(): Prisma.AlbumDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -950,7 +980,7 @@ export namespace Prisma {
     User: 'User',
     UserPaymentMethod: 'UserPaymentMethod',
     Category: 'Category',
-    CategoryOnMedia: 'CategoryOnMedia',
+    MediaOnCategory: 'MediaOnCategory',
     SessionUpload: 'SessionUpload',
     Media: 'Media',
     MediaReaction: 'MediaReaction',
@@ -965,7 +995,9 @@ export namespace Prisma {
     MediaDetail: 'MediaDetail',
     Thumbnail: 'Thumbnail',
     PaymentTransaction: 'PaymentTransaction',
-    PaymentTransactionDetail: 'PaymentTransactionDetail'
+    PaymentTransactionDetail: 'PaymentTransactionDetail',
+    MediaOnAlbum: 'MediaOnAlbum',
+    Album: 'Album'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -982,7 +1014,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'user' | 'userPaymentMethod' | 'category' | 'categoryOnMedia' | 'sessionUpload' | 'media' | 'mediaReaction' | 'comment' | 'playlist' | 'mediaOnPlaylist' | 'history' | 'subscriber' | 'notificationSubscriptions' | 'videoResource' | 'audioResource' | 'mediaDetail' | 'thumbnail' | 'paymentTransaction' | 'paymentTransactionDetail'
+      modelProps: 'user' | 'userPaymentMethod' | 'category' | 'mediaOnCategory' | 'sessionUpload' | 'media' | 'mediaReaction' | 'comment' | 'playlist' | 'mediaOnPlaylist' | 'history' | 'subscriber' | 'notificationSubscriptions' | 'videoResource' | 'audioResource' | 'mediaDetail' | 'thumbnail' | 'paymentTransaction' | 'paymentTransactionDetail' | 'mediaOnAlbum' | 'album'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
@@ -1184,69 +1216,69 @@ export namespace Prisma {
           }
         }
       }
-      CategoryOnMedia: {
-        payload: Prisma.$CategoryOnMediaPayload<ExtArgs>
-        fields: Prisma.CategoryOnMediaFieldRefs
+      MediaOnCategory: {
+        payload: Prisma.$MediaOnCategoryPayload<ExtArgs>
+        fields: Prisma.MediaOnCategoryFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.CategoryOnMediaFindUniqueArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$CategoryOnMediaPayload> | null
+            args: Prisma.MediaOnCategoryFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$MediaOnCategoryPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.CategoryOnMediaFindUniqueOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$CategoryOnMediaPayload>
+            args: Prisma.MediaOnCategoryFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$MediaOnCategoryPayload>
           }
           findFirst: {
-            args: Prisma.CategoryOnMediaFindFirstArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$CategoryOnMediaPayload> | null
+            args: Prisma.MediaOnCategoryFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$MediaOnCategoryPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.CategoryOnMediaFindFirstOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$CategoryOnMediaPayload>
+            args: Prisma.MediaOnCategoryFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$MediaOnCategoryPayload>
           }
           findMany: {
-            args: Prisma.CategoryOnMediaFindManyArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$CategoryOnMediaPayload>[]
+            args: Prisma.MediaOnCategoryFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$MediaOnCategoryPayload>[]
           }
           create: {
-            args: Prisma.CategoryOnMediaCreateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$CategoryOnMediaPayload>
+            args: Prisma.MediaOnCategoryCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$MediaOnCategoryPayload>
           }
           createMany: {
-            args: Prisma.CategoryOnMediaCreateManyArgs<ExtArgs>,
+            args: Prisma.MediaOnCategoryCreateManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           delete: {
-            args: Prisma.CategoryOnMediaDeleteArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$CategoryOnMediaPayload>
+            args: Prisma.MediaOnCategoryDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$MediaOnCategoryPayload>
           }
           update: {
-            args: Prisma.CategoryOnMediaUpdateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$CategoryOnMediaPayload>
+            args: Prisma.MediaOnCategoryUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$MediaOnCategoryPayload>
           }
           deleteMany: {
-            args: Prisma.CategoryOnMediaDeleteManyArgs<ExtArgs>,
+            args: Prisma.MediaOnCategoryDeleteManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           updateMany: {
-            args: Prisma.CategoryOnMediaUpdateManyArgs<ExtArgs>,
+            args: Prisma.MediaOnCategoryUpdateManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           upsert: {
-            args: Prisma.CategoryOnMediaUpsertArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$CategoryOnMediaPayload>
+            args: Prisma.MediaOnCategoryUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$MediaOnCategoryPayload>
           }
           aggregate: {
-            args: Prisma.CategoryOnMediaAggregateArgs<ExtArgs>,
-            result: $Utils.Optional<AggregateCategoryOnMedia>
+            args: Prisma.MediaOnCategoryAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateMediaOnCategory>
           }
           groupBy: {
-            args: Prisma.CategoryOnMediaGroupByArgs<ExtArgs>,
-            result: $Utils.Optional<CategoryOnMediaGroupByOutputType>[]
+            args: Prisma.MediaOnCategoryGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<MediaOnCategoryGroupByOutputType>[]
           }
           count: {
-            args: Prisma.CategoryOnMediaCountArgs<ExtArgs>,
-            result: $Utils.Optional<CategoryOnMediaCountAggregateOutputType> | number
+            args: Prisma.MediaOnCategoryCountArgs<ExtArgs>,
+            result: $Utils.Optional<MediaOnCategoryCountAggregateOutputType> | number
           }
         }
       }
@@ -2240,6 +2272,138 @@ export namespace Prisma {
           }
         }
       }
+      MediaOnAlbum: {
+        payload: Prisma.$MediaOnAlbumPayload<ExtArgs>
+        fields: Prisma.MediaOnAlbumFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MediaOnAlbumFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$MediaOnAlbumPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MediaOnAlbumFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$MediaOnAlbumPayload>
+          }
+          findFirst: {
+            args: Prisma.MediaOnAlbumFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$MediaOnAlbumPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MediaOnAlbumFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$MediaOnAlbumPayload>
+          }
+          findMany: {
+            args: Prisma.MediaOnAlbumFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$MediaOnAlbumPayload>[]
+          }
+          create: {
+            args: Prisma.MediaOnAlbumCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$MediaOnAlbumPayload>
+          }
+          createMany: {
+            args: Prisma.MediaOnAlbumCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.MediaOnAlbumDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$MediaOnAlbumPayload>
+          }
+          update: {
+            args: Prisma.MediaOnAlbumUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$MediaOnAlbumPayload>
+          }
+          deleteMany: {
+            args: Prisma.MediaOnAlbumDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MediaOnAlbumUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.MediaOnAlbumUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$MediaOnAlbumPayload>
+          }
+          aggregate: {
+            args: Prisma.MediaOnAlbumAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateMediaOnAlbum>
+          }
+          groupBy: {
+            args: Prisma.MediaOnAlbumGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<MediaOnAlbumGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MediaOnAlbumCountArgs<ExtArgs>,
+            result: $Utils.Optional<MediaOnAlbumCountAggregateOutputType> | number
+          }
+        }
+      }
+      Album: {
+        payload: Prisma.$AlbumPayload<ExtArgs>
+        fields: Prisma.AlbumFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AlbumFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AlbumPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AlbumFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AlbumPayload>
+          }
+          findFirst: {
+            args: Prisma.AlbumFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AlbumPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AlbumFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AlbumPayload>
+          }
+          findMany: {
+            args: Prisma.AlbumFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AlbumPayload>[]
+          }
+          create: {
+            args: Prisma.AlbumCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AlbumPayload>
+          }
+          createMany: {
+            args: Prisma.AlbumCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.AlbumDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AlbumPayload>
+          }
+          update: {
+            args: Prisma.AlbumUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AlbumPayload>
+          }
+          deleteMany: {
+            args: Prisma.AlbumDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AlbumUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.AlbumUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AlbumPayload>
+          }
+          aggregate: {
+            args: Prisma.AlbumAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateAlbum>
+          }
+          groupBy: {
+            args: Prisma.AlbumGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<AlbumGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AlbumCountArgs<ExtArgs>,
+            result: $Utils.Optional<AlbumCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2398,6 +2562,7 @@ export namespace Prisma {
     Comment: number
     Playlist: number
     UserPaymentMethod: number
+    Album: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2410,6 +2575,7 @@ export namespace Prisma {
     Comment?: boolean | UserCountOutputTypeCountCommentArgs
     Playlist?: boolean | UserCountOutputTypeCountPlaylistArgs
     UserPaymentMethod?: boolean | UserCountOutputTypeCountUserPaymentMethodArgs
+    Album?: boolean | UserCountOutputTypeCountAlbumArgs
   }
 
   // Custom InputTypes
@@ -2497,17 +2663,25 @@ export namespace Prisma {
   }
 
 
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountAlbumArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AlbumWhereInput
+  }
+
+
 
   /**
    * Count Type CategoryCountOutputType
    */
 
   export type CategoryCountOutputType = {
-    CategoryOnMedia: number
+    categoryOnMedia: number
   }
 
   export type CategoryCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    CategoryOnMedia?: boolean | CategoryCountOutputTypeCountCategoryOnMediaArgs
+    categoryOnMedia?: boolean | CategoryCountOutputTypeCountCategoryOnMediaArgs
   }
 
   // Custom InputTypes
@@ -2527,7 +2701,7 @@ export namespace Prisma {
    * CategoryCountOutputType without action
    */
   export type CategoryCountOutputTypeCountCategoryOnMediaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: CategoryOnMediaWhereInput
+    where?: MediaOnCategoryWhereInput
   }
 
 
@@ -2540,24 +2714,26 @@ export namespace Prisma {
     thumbnails: number
     videoResources: number
     audioResources: number
-    MediaReaction: number
-    History: number
-    CategoryOnVideo: number
-    Comment: number
-    MediaOnPlaylist: number
-    SessionUpload: number
+    mediaReaction: number
+    history: number
+    mediaOnCategory: number
+    comment: number
+    mediaOnPlaylist: number
+    sessionUpload: number
+    mediaOnAlbum: number
   }
 
   export type MediaCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     thumbnails?: boolean | MediaCountOutputTypeCountThumbnailsArgs
     videoResources?: boolean | MediaCountOutputTypeCountVideoResourcesArgs
     audioResources?: boolean | MediaCountOutputTypeCountAudioResourcesArgs
-    MediaReaction?: boolean | MediaCountOutputTypeCountMediaReactionArgs
-    History?: boolean | MediaCountOutputTypeCountHistoryArgs
-    CategoryOnVideo?: boolean | MediaCountOutputTypeCountCategoryOnVideoArgs
-    Comment?: boolean | MediaCountOutputTypeCountCommentArgs
-    MediaOnPlaylist?: boolean | MediaCountOutputTypeCountMediaOnPlaylistArgs
-    SessionUpload?: boolean | MediaCountOutputTypeCountSessionUploadArgs
+    mediaReaction?: boolean | MediaCountOutputTypeCountMediaReactionArgs
+    history?: boolean | MediaCountOutputTypeCountHistoryArgs
+    mediaOnCategory?: boolean | MediaCountOutputTypeCountMediaOnCategoryArgs
+    comment?: boolean | MediaCountOutputTypeCountCommentArgs
+    mediaOnPlaylist?: boolean | MediaCountOutputTypeCountMediaOnPlaylistArgs
+    sessionUpload?: boolean | MediaCountOutputTypeCountSessionUploadArgs
+    mediaOnAlbum?: boolean | MediaCountOutputTypeCountMediaOnAlbumArgs
   }
 
   // Custom InputTypes
@@ -2616,8 +2792,8 @@ export namespace Prisma {
   /**
    * MediaCountOutputType without action
    */
-  export type MediaCountOutputTypeCountCategoryOnVideoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: CategoryOnMediaWhereInput
+  export type MediaCountOutputTypeCountMediaOnCategoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MediaOnCategoryWhereInput
   }
 
 
@@ -2642,6 +2818,14 @@ export namespace Prisma {
    */
   export type MediaCountOutputTypeCountSessionUploadArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: SessionUploadWhereInput
+  }
+
+
+  /**
+   * MediaCountOutputType without action
+   */
+  export type MediaCountOutputTypeCountMediaOnAlbumArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MediaOnAlbumWhereInput
   }
 
 
@@ -2710,6 +2894,40 @@ export namespace Prisma {
    */
   export type PaymentTransactionCountOutputTypeCountPaymentTransactionDetailArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: PaymentTransactionDetailWhereInput
+  }
+
+
+
+  /**
+   * Count Type AlbumCountOutputType
+   */
+
+  export type AlbumCountOutputType = {
+    mediaOnAlbum: number
+  }
+
+  export type AlbumCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    mediaOnAlbum?: boolean | AlbumCountOutputTypeCountMediaOnAlbumArgs
+  }
+
+  // Custom InputTypes
+
+  /**
+   * AlbumCountOutputType without action
+   */
+  export type AlbumCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AlbumCountOutputType
+     */
+    select?: AlbumCountOutputTypeSelect<ExtArgs> | null
+  }
+
+
+  /**
+   * AlbumCountOutputType without action
+   */
+  export type AlbumCountOutputTypeCountMediaOnAlbumArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MediaOnAlbumWhereInput
   }
 
 
@@ -2965,6 +3183,7 @@ export namespace Prisma {
     Comment?: boolean | User$CommentArgs<ExtArgs>
     Playlist?: boolean | User$PlaylistArgs<ExtArgs>
     UserPaymentMethod?: boolean | User$UserPaymentMethodArgs<ExtArgs>
+    Album?: boolean | User$AlbumArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2991,6 +3210,7 @@ export namespace Prisma {
     Comment?: boolean | User$CommentArgs<ExtArgs>
     Playlist?: boolean | User$PlaylistArgs<ExtArgs>
     UserPaymentMethod?: boolean | User$UserPaymentMethodArgs<ExtArgs>
+    Album?: boolean | User$AlbumArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -3007,6 +3227,7 @@ export namespace Prisma {
       Comment: Prisma.$CommentPayload<ExtArgs>[]
       Playlist: Prisma.$PlaylistPayload<ExtArgs>[]
       UserPaymentMethod: Prisma.$UserPaymentMethodPayload<ExtArgs>[]
+      Album: Prisma.$AlbumPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -3401,6 +3622,8 @@ export namespace Prisma {
     Playlist<T extends User$PlaylistArgs<ExtArgs> = {}>(args?: Subset<T, User$PlaylistArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlaylistPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     UserPaymentMethod<T extends User$UserPaymentMethodArgs<ExtArgs> = {}>(args?: Subset<T, User$UserPaymentMethodArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPaymentMethodPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    Album<T extends User$AlbumArgs<ExtArgs> = {}>(args?: Subset<T, User$AlbumArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AlbumPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -3937,6 +4160,27 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: UserPaymentMethodScalarFieldEnum | UserPaymentMethodScalarFieldEnum[]
+  }
+
+
+  /**
+   * User.Album
+   */
+  export type User$AlbumArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Album
+     */
+    select?: AlbumSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AlbumInclude<ExtArgs> | null
+    where?: AlbumWhereInput
+    orderBy?: AlbumOrderByWithRelationInput | AlbumOrderByWithRelationInput[]
+    cursor?: AlbumWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AlbumScalarFieldEnum | AlbumScalarFieldEnum[]
   }
 
 
@@ -5068,7 +5312,7 @@ export namespace Prisma {
     name?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    CategoryOnMedia?: boolean | Category$CategoryOnMediaArgs<ExtArgs>
+    categoryOnMedia?: boolean | Category$categoryOnMediaArgs<ExtArgs>
     _count?: boolean | CategoryCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["category"]>
 
@@ -5080,7 +5324,7 @@ export namespace Prisma {
   }
 
   export type CategoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    CategoryOnMedia?: boolean | Category$CategoryOnMediaArgs<ExtArgs>
+    categoryOnMedia?: boolean | Category$categoryOnMediaArgs<ExtArgs>
     _count?: boolean | CategoryCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -5088,7 +5332,7 @@ export namespace Prisma {
   export type $CategoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Category"
     objects: {
-      CategoryOnMedia: Prisma.$CategoryOnMediaPayload<ExtArgs>[]
+      categoryOnMedia: Prisma.$MediaOnCategoryPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -5460,7 +5704,7 @@ export namespace Prisma {
   export interface Prisma__CategoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    CategoryOnMedia<T extends Category$CategoryOnMediaArgs<ExtArgs> = {}>(args?: Subset<T, Category$CategoryOnMediaArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CategoryOnMediaPayload<ExtArgs>, T, 'findMany'> | Null>;
+    categoryOnMedia<T extends Category$categoryOnMediaArgs<ExtArgs> = {}>(args?: Subset<T, Category$categoryOnMediaArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MediaOnCategoryPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -5806,23 +6050,23 @@ export namespace Prisma {
 
 
   /**
-   * Category.CategoryOnMedia
+   * Category.categoryOnMedia
    */
-  export type Category$CategoryOnMediaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Category$categoryOnMediaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the CategoryOnMedia
+     * Select specific fields to fetch from the MediaOnCategory
      */
-    select?: CategoryOnMediaSelect<ExtArgs> | null
+    select?: MediaOnCategorySelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: CategoryOnMediaInclude<ExtArgs> | null
-    where?: CategoryOnMediaWhereInput
-    orderBy?: CategoryOnMediaOrderByWithRelationInput | CategoryOnMediaOrderByWithRelationInput[]
-    cursor?: CategoryOnMediaWhereUniqueInput
+    include?: MediaOnCategoryInclude<ExtArgs> | null
+    where?: MediaOnCategoryWhereInput
+    orderBy?: MediaOnCategoryOrderByWithRelationInput | MediaOnCategoryOrderByWithRelationInput[]
+    cursor?: MediaOnCategoryWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: CategoryOnMediaScalarFieldEnum | CategoryOnMediaScalarFieldEnum[]
+    distinct?: MediaOnCategoryScalarFieldEnum | MediaOnCategoryScalarFieldEnum[]
   }
 
 
@@ -5843,38 +6087,38 @@ export namespace Prisma {
 
 
   /**
-   * Model CategoryOnMedia
+   * Model MediaOnCategory
    */
 
-  export type AggregateCategoryOnMedia = {
-    _count: CategoryOnMediaCountAggregateOutputType | null
-    _avg: CategoryOnMediaAvgAggregateOutputType | null
-    _sum: CategoryOnMediaSumAggregateOutputType | null
-    _min: CategoryOnMediaMinAggregateOutputType | null
-    _max: CategoryOnMediaMaxAggregateOutputType | null
+  export type AggregateMediaOnCategory = {
+    _count: MediaOnCategoryCountAggregateOutputType | null
+    _avg: MediaOnCategoryAvgAggregateOutputType | null
+    _sum: MediaOnCategorySumAggregateOutputType | null
+    _min: MediaOnCategoryMinAggregateOutputType | null
+    _max: MediaOnCategoryMaxAggregateOutputType | null
   }
 
-  export type CategoryOnMediaAvgAggregateOutputType = {
+  export type MediaOnCategoryAvgAggregateOutputType = {
     id: number | null
   }
 
-  export type CategoryOnMediaSumAggregateOutputType = {
+  export type MediaOnCategorySumAggregateOutputType = {
     id: number | null
   }
 
-  export type CategoryOnMediaMinAggregateOutputType = {
-    id: number | null
-    categoryId: string | null
-    mediaId: string | null
-  }
-
-  export type CategoryOnMediaMaxAggregateOutputType = {
+  export type MediaOnCategoryMinAggregateOutputType = {
     id: number | null
     categoryId: string | null
     mediaId: string | null
   }
 
-  export type CategoryOnMediaCountAggregateOutputType = {
+  export type MediaOnCategoryMaxAggregateOutputType = {
+    id: number | null
+    categoryId: string | null
+    mediaId: string | null
+  }
+
+  export type MediaOnCategoryCountAggregateOutputType = {
     id: number
     categoryId: number
     mediaId: number
@@ -5882,166 +6126,166 @@ export namespace Prisma {
   }
 
 
-  export type CategoryOnMediaAvgAggregateInputType = {
+  export type MediaOnCategoryAvgAggregateInputType = {
     id?: true
   }
 
-  export type CategoryOnMediaSumAggregateInputType = {
+  export type MediaOnCategorySumAggregateInputType = {
     id?: true
   }
 
-  export type CategoryOnMediaMinAggregateInputType = {
-    id?: true
-    categoryId?: true
-    mediaId?: true
-  }
-
-  export type CategoryOnMediaMaxAggregateInputType = {
+  export type MediaOnCategoryMinAggregateInputType = {
     id?: true
     categoryId?: true
     mediaId?: true
   }
 
-  export type CategoryOnMediaCountAggregateInputType = {
+  export type MediaOnCategoryMaxAggregateInputType = {
+    id?: true
+    categoryId?: true
+    mediaId?: true
+  }
+
+  export type MediaOnCategoryCountAggregateInputType = {
     id?: true
     categoryId?: true
     mediaId?: true
     _all?: true
   }
 
-  export type CategoryOnMediaAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MediaOnCategoryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which CategoryOnMedia to aggregate.
+     * Filter which MediaOnCategory to aggregate.
      */
-    where?: CategoryOnMediaWhereInput
+    where?: MediaOnCategoryWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of CategoryOnMedias to fetch.
+     * Determine the order of MediaOnCategories to fetch.
      */
-    orderBy?: CategoryOnMediaOrderByWithRelationInput | CategoryOnMediaOrderByWithRelationInput[]
+    orderBy?: MediaOnCategoryOrderByWithRelationInput | MediaOnCategoryOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: CategoryOnMediaWhereUniqueInput
+    cursor?: MediaOnCategoryWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` CategoryOnMedias from the position of the cursor.
+     * Take `±n` MediaOnCategories from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` CategoryOnMedias.
+     * Skip the first `n` MediaOnCategories.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned CategoryOnMedias
+     * Count returned MediaOnCategories
     **/
-    _count?: true | CategoryOnMediaCountAggregateInputType
+    _count?: true | MediaOnCategoryCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: CategoryOnMediaAvgAggregateInputType
+    _avg?: MediaOnCategoryAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: CategoryOnMediaSumAggregateInputType
+    _sum?: MediaOnCategorySumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: CategoryOnMediaMinAggregateInputType
+    _min?: MediaOnCategoryMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: CategoryOnMediaMaxAggregateInputType
+    _max?: MediaOnCategoryMaxAggregateInputType
   }
 
-  export type GetCategoryOnMediaAggregateType<T extends CategoryOnMediaAggregateArgs> = {
-        [P in keyof T & keyof AggregateCategoryOnMedia]: P extends '_count' | 'count'
+  export type GetMediaOnCategoryAggregateType<T extends MediaOnCategoryAggregateArgs> = {
+        [P in keyof T & keyof AggregateMediaOnCategory]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateCategoryOnMedia[P]>
-      : GetScalarType<T[P], AggregateCategoryOnMedia[P]>
+        : GetScalarType<T[P], AggregateMediaOnCategory[P]>
+      : GetScalarType<T[P], AggregateMediaOnCategory[P]>
   }
 
 
 
 
-  export type CategoryOnMediaGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: CategoryOnMediaWhereInput
-    orderBy?: CategoryOnMediaOrderByWithAggregationInput | CategoryOnMediaOrderByWithAggregationInput[]
-    by: CategoryOnMediaScalarFieldEnum[] | CategoryOnMediaScalarFieldEnum
-    having?: CategoryOnMediaScalarWhereWithAggregatesInput
+  export type MediaOnCategoryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MediaOnCategoryWhereInput
+    orderBy?: MediaOnCategoryOrderByWithAggregationInput | MediaOnCategoryOrderByWithAggregationInput[]
+    by: MediaOnCategoryScalarFieldEnum[] | MediaOnCategoryScalarFieldEnum
+    having?: MediaOnCategoryScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: CategoryOnMediaCountAggregateInputType | true
-    _avg?: CategoryOnMediaAvgAggregateInputType
-    _sum?: CategoryOnMediaSumAggregateInputType
-    _min?: CategoryOnMediaMinAggregateInputType
-    _max?: CategoryOnMediaMaxAggregateInputType
+    _count?: MediaOnCategoryCountAggregateInputType | true
+    _avg?: MediaOnCategoryAvgAggregateInputType
+    _sum?: MediaOnCategorySumAggregateInputType
+    _min?: MediaOnCategoryMinAggregateInputType
+    _max?: MediaOnCategoryMaxAggregateInputType
   }
 
-  export type CategoryOnMediaGroupByOutputType = {
+  export type MediaOnCategoryGroupByOutputType = {
     id: number
     categoryId: string
     mediaId: string
-    _count: CategoryOnMediaCountAggregateOutputType | null
-    _avg: CategoryOnMediaAvgAggregateOutputType | null
-    _sum: CategoryOnMediaSumAggregateOutputType | null
-    _min: CategoryOnMediaMinAggregateOutputType | null
-    _max: CategoryOnMediaMaxAggregateOutputType | null
+    _count: MediaOnCategoryCountAggregateOutputType | null
+    _avg: MediaOnCategoryAvgAggregateOutputType | null
+    _sum: MediaOnCategorySumAggregateOutputType | null
+    _min: MediaOnCategoryMinAggregateOutputType | null
+    _max: MediaOnCategoryMaxAggregateOutputType | null
   }
 
-  type GetCategoryOnMediaGroupByPayload<T extends CategoryOnMediaGroupByArgs> = Prisma.PrismaPromise<
+  type GetMediaOnCategoryGroupByPayload<T extends MediaOnCategoryGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<CategoryOnMediaGroupByOutputType, T['by']> &
+      PickEnumerable<MediaOnCategoryGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof CategoryOnMediaGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof MediaOnCategoryGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], CategoryOnMediaGroupByOutputType[P]>
-            : GetScalarType<T[P], CategoryOnMediaGroupByOutputType[P]>
+              : GetScalarType<T[P], MediaOnCategoryGroupByOutputType[P]>
+            : GetScalarType<T[P], MediaOnCategoryGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type CategoryOnMediaSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type MediaOnCategorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     categoryId?: boolean
     mediaId?: boolean
     category?: boolean | CategoryDefaultArgs<ExtArgs>
     media?: boolean | MediaDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["categoryOnMedia"]>
+  }, ExtArgs["result"]["mediaOnCategory"]>
 
-  export type CategoryOnMediaSelectScalar = {
+  export type MediaOnCategorySelectScalar = {
     id?: boolean
     categoryId?: boolean
     mediaId?: boolean
   }
 
-  export type CategoryOnMediaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MediaOnCategoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     category?: boolean | CategoryDefaultArgs<ExtArgs>
     media?: boolean | MediaDefaultArgs<ExtArgs>
   }
 
 
-  export type $CategoryOnMediaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "CategoryOnMedia"
+  export type $MediaOnCategoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "MediaOnCategory"
     objects: {
       category: Prisma.$CategoryPayload<ExtArgs>
       media: Prisma.$MediaPayload<ExtArgs>
@@ -6050,160 +6294,160 @@ export namespace Prisma {
       id: number
       categoryId: string
       mediaId: string
-    }, ExtArgs["result"]["categoryOnMedia"]>
+    }, ExtArgs["result"]["mediaOnCategory"]>
     composites: {}
   }
 
 
-  type CategoryOnMediaGetPayload<S extends boolean | null | undefined | CategoryOnMediaDefaultArgs> = $Result.GetResult<Prisma.$CategoryOnMediaPayload, S>
+  type MediaOnCategoryGetPayload<S extends boolean | null | undefined | MediaOnCategoryDefaultArgs> = $Result.GetResult<Prisma.$MediaOnCategoryPayload, S>
 
-  type CategoryOnMediaCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<CategoryOnMediaFindManyArgs, 'select' | 'include'> & {
-      select?: CategoryOnMediaCountAggregateInputType | true
+  type MediaOnCategoryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<MediaOnCategoryFindManyArgs, 'select' | 'include'> & {
+      select?: MediaOnCategoryCountAggregateInputType | true
     }
 
-  export interface CategoryOnMediaDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CategoryOnMedia'], meta: { name: 'CategoryOnMedia' } }
+  export interface MediaOnCategoryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['MediaOnCategory'], meta: { name: 'MediaOnCategory' } }
     /**
-     * Find zero or one CategoryOnMedia that matches the filter.
-     * @param {CategoryOnMediaFindUniqueArgs} args - Arguments to find a CategoryOnMedia
+     * Find zero or one MediaOnCategory that matches the filter.
+     * @param {MediaOnCategoryFindUniqueArgs} args - Arguments to find a MediaOnCategory
      * @example
-     * // Get one CategoryOnMedia
-     * const categoryOnMedia = await prisma.categoryOnMedia.findUnique({
+     * // Get one MediaOnCategory
+     * const mediaOnCategory = await prisma.mediaOnCategory.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findUnique<T extends CategoryOnMediaFindUniqueArgs<ExtArgs>>(
-      args: SelectSubset<T, CategoryOnMediaFindUniqueArgs<ExtArgs>>
-    ): Prisma__CategoryOnMediaClient<$Result.GetResult<Prisma.$CategoryOnMediaPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+    findUnique<T extends MediaOnCategoryFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, MediaOnCategoryFindUniqueArgs<ExtArgs>>
+    ): Prisma__MediaOnCategoryClient<$Result.GetResult<Prisma.$MediaOnCategoryPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
 
     /**
-     * Find one CategoryOnMedia that matches the filter or throw an error  with `error.code='P2025'` 
+     * Find one MediaOnCategory that matches the filter or throw an error  with `error.code='P2025'` 
      *     if no matches were found.
-     * @param {CategoryOnMediaFindUniqueOrThrowArgs} args - Arguments to find a CategoryOnMedia
+     * @param {MediaOnCategoryFindUniqueOrThrowArgs} args - Arguments to find a MediaOnCategory
      * @example
-     * // Get one CategoryOnMedia
-     * const categoryOnMedia = await prisma.categoryOnMedia.findUniqueOrThrow({
+     * // Get one MediaOnCategory
+     * const mediaOnCategory = await prisma.mediaOnCategory.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findUniqueOrThrow<T extends CategoryOnMediaFindUniqueOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, CategoryOnMediaFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__CategoryOnMediaClient<$Result.GetResult<Prisma.$CategoryOnMediaPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+    findUniqueOrThrow<T extends MediaOnCategoryFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, MediaOnCategoryFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__MediaOnCategoryClient<$Result.GetResult<Prisma.$MediaOnCategoryPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
 
     /**
-     * Find the first CategoryOnMedia that matches the filter.
+     * Find the first MediaOnCategory that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {CategoryOnMediaFindFirstArgs} args - Arguments to find a CategoryOnMedia
+     * @param {MediaOnCategoryFindFirstArgs} args - Arguments to find a MediaOnCategory
      * @example
-     * // Get one CategoryOnMedia
-     * const categoryOnMedia = await prisma.categoryOnMedia.findFirst({
+     * // Get one MediaOnCategory
+     * const mediaOnCategory = await prisma.mediaOnCategory.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findFirst<T extends CategoryOnMediaFindFirstArgs<ExtArgs>>(
-      args?: SelectSubset<T, CategoryOnMediaFindFirstArgs<ExtArgs>>
-    ): Prisma__CategoryOnMediaClient<$Result.GetResult<Prisma.$CategoryOnMediaPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+    findFirst<T extends MediaOnCategoryFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, MediaOnCategoryFindFirstArgs<ExtArgs>>
+    ): Prisma__MediaOnCategoryClient<$Result.GetResult<Prisma.$MediaOnCategoryPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
 
     /**
-     * Find the first CategoryOnMedia that matches the filter or
+     * Find the first MediaOnCategory that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {CategoryOnMediaFindFirstOrThrowArgs} args - Arguments to find a CategoryOnMedia
+     * @param {MediaOnCategoryFindFirstOrThrowArgs} args - Arguments to find a MediaOnCategory
      * @example
-     * // Get one CategoryOnMedia
-     * const categoryOnMedia = await prisma.categoryOnMedia.findFirstOrThrow({
+     * // Get one MediaOnCategory
+     * const mediaOnCategory = await prisma.mediaOnCategory.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findFirstOrThrow<T extends CategoryOnMediaFindFirstOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, CategoryOnMediaFindFirstOrThrowArgs<ExtArgs>>
-    ): Prisma__CategoryOnMediaClient<$Result.GetResult<Prisma.$CategoryOnMediaPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+    findFirstOrThrow<T extends MediaOnCategoryFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, MediaOnCategoryFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__MediaOnCategoryClient<$Result.GetResult<Prisma.$MediaOnCategoryPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
 
     /**
-     * Find zero or more CategoryOnMedias that matches the filter.
+     * Find zero or more MediaOnCategories that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {CategoryOnMediaFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @param {MediaOnCategoryFindManyArgs=} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all CategoryOnMedias
-     * const categoryOnMedias = await prisma.categoryOnMedia.findMany()
+     * // Get all MediaOnCategories
+     * const mediaOnCategories = await prisma.mediaOnCategory.findMany()
      * 
-     * // Get first 10 CategoryOnMedias
-     * const categoryOnMedias = await prisma.categoryOnMedia.findMany({ take: 10 })
+     * // Get first 10 MediaOnCategories
+     * const mediaOnCategories = await prisma.mediaOnCategory.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const categoryOnMediaWithIdOnly = await prisma.categoryOnMedia.findMany({ select: { id: true } })
+     * const mediaOnCategoryWithIdOnly = await prisma.mediaOnCategory.findMany({ select: { id: true } })
      * 
     **/
-    findMany<T extends CategoryOnMediaFindManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, CategoryOnMediaFindManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CategoryOnMediaPayload<ExtArgs>, T, 'findMany'>>
+    findMany<T extends MediaOnCategoryFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, MediaOnCategoryFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MediaOnCategoryPayload<ExtArgs>, T, 'findMany'>>
 
     /**
-     * Create a CategoryOnMedia.
-     * @param {CategoryOnMediaCreateArgs} args - Arguments to create a CategoryOnMedia.
+     * Create a MediaOnCategory.
+     * @param {MediaOnCategoryCreateArgs} args - Arguments to create a MediaOnCategory.
      * @example
-     * // Create one CategoryOnMedia
-     * const CategoryOnMedia = await prisma.categoryOnMedia.create({
+     * // Create one MediaOnCategory
+     * const MediaOnCategory = await prisma.mediaOnCategory.create({
      *   data: {
-     *     // ... data to create a CategoryOnMedia
+     *     // ... data to create a MediaOnCategory
      *   }
      * })
      * 
     **/
-    create<T extends CategoryOnMediaCreateArgs<ExtArgs>>(
-      args: SelectSubset<T, CategoryOnMediaCreateArgs<ExtArgs>>
-    ): Prisma__CategoryOnMediaClient<$Result.GetResult<Prisma.$CategoryOnMediaPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+    create<T extends MediaOnCategoryCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, MediaOnCategoryCreateArgs<ExtArgs>>
+    ): Prisma__MediaOnCategoryClient<$Result.GetResult<Prisma.$MediaOnCategoryPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
 
     /**
-     * Create many CategoryOnMedias.
-     *     @param {CategoryOnMediaCreateManyArgs} args - Arguments to create many CategoryOnMedias.
+     * Create many MediaOnCategories.
+     *     @param {MediaOnCategoryCreateManyArgs} args - Arguments to create many MediaOnCategories.
      *     @example
-     *     // Create many CategoryOnMedias
-     *     const categoryOnMedia = await prisma.categoryOnMedia.createMany({
+     *     // Create many MediaOnCategories
+     *     const mediaOnCategory = await prisma.mediaOnCategory.createMany({
      *       data: {
      *         // ... provide data here
      *       }
      *     })
      *     
     **/
-    createMany<T extends CategoryOnMediaCreateManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, CategoryOnMediaCreateManyArgs<ExtArgs>>
+    createMany<T extends MediaOnCategoryCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, MediaOnCategoryCreateManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Delete a CategoryOnMedia.
-     * @param {CategoryOnMediaDeleteArgs} args - Arguments to delete one CategoryOnMedia.
+     * Delete a MediaOnCategory.
+     * @param {MediaOnCategoryDeleteArgs} args - Arguments to delete one MediaOnCategory.
      * @example
-     * // Delete one CategoryOnMedia
-     * const CategoryOnMedia = await prisma.categoryOnMedia.delete({
+     * // Delete one MediaOnCategory
+     * const MediaOnCategory = await prisma.mediaOnCategory.delete({
      *   where: {
-     *     // ... filter to delete one CategoryOnMedia
+     *     // ... filter to delete one MediaOnCategory
      *   }
      * })
      * 
     **/
-    delete<T extends CategoryOnMediaDeleteArgs<ExtArgs>>(
-      args: SelectSubset<T, CategoryOnMediaDeleteArgs<ExtArgs>>
-    ): Prisma__CategoryOnMediaClient<$Result.GetResult<Prisma.$CategoryOnMediaPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+    delete<T extends MediaOnCategoryDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, MediaOnCategoryDeleteArgs<ExtArgs>>
+    ): Prisma__MediaOnCategoryClient<$Result.GetResult<Prisma.$MediaOnCategoryPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
 
     /**
-     * Update one CategoryOnMedia.
-     * @param {CategoryOnMediaUpdateArgs} args - Arguments to update one CategoryOnMedia.
+     * Update one MediaOnCategory.
+     * @param {MediaOnCategoryUpdateArgs} args - Arguments to update one MediaOnCategory.
      * @example
-     * // Update one CategoryOnMedia
-     * const categoryOnMedia = await prisma.categoryOnMedia.update({
+     * // Update one MediaOnCategory
+     * const mediaOnCategory = await prisma.mediaOnCategory.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -6213,34 +6457,34 @@ export namespace Prisma {
      * })
      * 
     **/
-    update<T extends CategoryOnMediaUpdateArgs<ExtArgs>>(
-      args: SelectSubset<T, CategoryOnMediaUpdateArgs<ExtArgs>>
-    ): Prisma__CategoryOnMediaClient<$Result.GetResult<Prisma.$CategoryOnMediaPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+    update<T extends MediaOnCategoryUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, MediaOnCategoryUpdateArgs<ExtArgs>>
+    ): Prisma__MediaOnCategoryClient<$Result.GetResult<Prisma.$MediaOnCategoryPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
 
     /**
-     * Delete zero or more CategoryOnMedias.
-     * @param {CategoryOnMediaDeleteManyArgs} args - Arguments to filter CategoryOnMedias to delete.
+     * Delete zero or more MediaOnCategories.
+     * @param {MediaOnCategoryDeleteManyArgs} args - Arguments to filter MediaOnCategories to delete.
      * @example
-     * // Delete a few CategoryOnMedias
-     * const { count } = await prisma.categoryOnMedia.deleteMany({
+     * // Delete a few MediaOnCategories
+     * const { count } = await prisma.mediaOnCategory.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
     **/
-    deleteMany<T extends CategoryOnMediaDeleteManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, CategoryOnMediaDeleteManyArgs<ExtArgs>>
+    deleteMany<T extends MediaOnCategoryDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, MediaOnCategoryDeleteManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more CategoryOnMedias.
+     * Update zero or more MediaOnCategories.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {CategoryOnMediaUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {MediaOnCategoryUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many CategoryOnMedias
-     * const categoryOnMedia = await prisma.categoryOnMedia.updateMany({
+     * // Update many MediaOnCategories
+     * const mediaOnCategory = await prisma.mediaOnCategory.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -6250,59 +6494,59 @@ export namespace Prisma {
      * })
      * 
     **/
-    updateMany<T extends CategoryOnMediaUpdateManyArgs<ExtArgs>>(
-      args: SelectSubset<T, CategoryOnMediaUpdateManyArgs<ExtArgs>>
+    updateMany<T extends MediaOnCategoryUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, MediaOnCategoryUpdateManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create or update one CategoryOnMedia.
-     * @param {CategoryOnMediaUpsertArgs} args - Arguments to update or create a CategoryOnMedia.
+     * Create or update one MediaOnCategory.
+     * @param {MediaOnCategoryUpsertArgs} args - Arguments to update or create a MediaOnCategory.
      * @example
-     * // Update or create a CategoryOnMedia
-     * const categoryOnMedia = await prisma.categoryOnMedia.upsert({
+     * // Update or create a MediaOnCategory
+     * const mediaOnCategory = await prisma.mediaOnCategory.upsert({
      *   create: {
-     *     // ... data to create a CategoryOnMedia
+     *     // ... data to create a MediaOnCategory
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the CategoryOnMedia we want to update
+     *     // ... the filter for the MediaOnCategory we want to update
      *   }
      * })
     **/
-    upsert<T extends CategoryOnMediaUpsertArgs<ExtArgs>>(
-      args: SelectSubset<T, CategoryOnMediaUpsertArgs<ExtArgs>>
-    ): Prisma__CategoryOnMediaClient<$Result.GetResult<Prisma.$CategoryOnMediaPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+    upsert<T extends MediaOnCategoryUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, MediaOnCategoryUpsertArgs<ExtArgs>>
+    ): Prisma__MediaOnCategoryClient<$Result.GetResult<Prisma.$MediaOnCategoryPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
 
     /**
-     * Count the number of CategoryOnMedias.
+     * Count the number of MediaOnCategories.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {CategoryOnMediaCountArgs} args - Arguments to filter CategoryOnMedias to count.
+     * @param {MediaOnCategoryCountArgs} args - Arguments to filter MediaOnCategories to count.
      * @example
-     * // Count the number of CategoryOnMedias
-     * const count = await prisma.categoryOnMedia.count({
+     * // Count the number of MediaOnCategories
+     * const count = await prisma.mediaOnCategory.count({
      *   where: {
-     *     // ... the filter for the CategoryOnMedias we want to count
+     *     // ... the filter for the MediaOnCategories we want to count
      *   }
      * })
     **/
-    count<T extends CategoryOnMediaCountArgs>(
-      args?: Subset<T, CategoryOnMediaCountArgs>,
+    count<T extends MediaOnCategoryCountArgs>(
+      args?: Subset<T, MediaOnCategoryCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], CategoryOnMediaCountAggregateOutputType>
+          : GetScalarType<T['select'], MediaOnCategoryCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a CategoryOnMedia.
+     * Allows you to perform aggregations operations on a MediaOnCategory.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {CategoryOnMediaAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {MediaOnCategoryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -6322,13 +6566,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends CategoryOnMediaAggregateArgs>(args: Subset<T, CategoryOnMediaAggregateArgs>): Prisma.PrismaPromise<GetCategoryOnMediaAggregateType<T>>
+    aggregate<T extends MediaOnCategoryAggregateArgs>(args: Subset<T, MediaOnCategoryAggregateArgs>): Prisma.PrismaPromise<GetMediaOnCategoryAggregateType<T>>
 
     /**
-     * Group by CategoryOnMedia.
+     * Group by MediaOnCategory.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {CategoryOnMediaGroupByArgs} args - Group by arguments.
+     * @param {MediaOnCategoryGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -6343,14 +6587,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends CategoryOnMediaGroupByArgs,
+      T extends MediaOnCategoryGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: CategoryOnMediaGroupByArgs['orderBy'] }
-        : { orderBy?: CategoryOnMediaGroupByArgs['orderBy'] },
+        ? { orderBy: MediaOnCategoryGroupByArgs['orderBy'] }
+        : { orderBy?: MediaOnCategoryGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -6399,20 +6643,20 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, CategoryOnMediaGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCategoryOnMediaGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, MediaOnCategoryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMediaOnCategoryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the CategoryOnMedia model
+   * Fields of the MediaOnCategory model
    */
-  readonly fields: CategoryOnMediaFieldRefs;
+  readonly fields: MediaOnCategoryFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for CategoryOnMedia.
+   * The delegate class that acts as a "Promise-like" for MediaOnCategory.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__CategoryOnMediaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__MediaOnCategoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
     category<T extends CategoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CategoryDefaultArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
@@ -6444,335 +6688,335 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the CategoryOnMedia model
+   * Fields of the MediaOnCategory model
    */ 
-  interface CategoryOnMediaFieldRefs {
-    readonly id: FieldRef<"CategoryOnMedia", 'Int'>
-    readonly categoryId: FieldRef<"CategoryOnMedia", 'String'>
-    readonly mediaId: FieldRef<"CategoryOnMedia", 'String'>
+  interface MediaOnCategoryFieldRefs {
+    readonly id: FieldRef<"MediaOnCategory", 'Int'>
+    readonly categoryId: FieldRef<"MediaOnCategory", 'String'>
+    readonly mediaId: FieldRef<"MediaOnCategory", 'String'>
   }
     
 
   // Custom InputTypes
 
   /**
-   * CategoryOnMedia findUnique
+   * MediaOnCategory findUnique
    */
-  export type CategoryOnMediaFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MediaOnCategoryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the CategoryOnMedia
+     * Select specific fields to fetch from the MediaOnCategory
      */
-    select?: CategoryOnMediaSelect<ExtArgs> | null
+    select?: MediaOnCategorySelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: CategoryOnMediaInclude<ExtArgs> | null
+    include?: MediaOnCategoryInclude<ExtArgs> | null
     /**
-     * Filter, which CategoryOnMedia to fetch.
+     * Filter, which MediaOnCategory to fetch.
      */
-    where: CategoryOnMediaWhereUniqueInput
+    where: MediaOnCategoryWhereUniqueInput
   }
 
 
   /**
-   * CategoryOnMedia findUniqueOrThrow
+   * MediaOnCategory findUniqueOrThrow
    */
-  export type CategoryOnMediaFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MediaOnCategoryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the CategoryOnMedia
+     * Select specific fields to fetch from the MediaOnCategory
      */
-    select?: CategoryOnMediaSelect<ExtArgs> | null
+    select?: MediaOnCategorySelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: CategoryOnMediaInclude<ExtArgs> | null
+    include?: MediaOnCategoryInclude<ExtArgs> | null
     /**
-     * Filter, which CategoryOnMedia to fetch.
+     * Filter, which MediaOnCategory to fetch.
      */
-    where: CategoryOnMediaWhereUniqueInput
+    where: MediaOnCategoryWhereUniqueInput
   }
 
 
   /**
-   * CategoryOnMedia findFirst
+   * MediaOnCategory findFirst
    */
-  export type CategoryOnMediaFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MediaOnCategoryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the CategoryOnMedia
+     * Select specific fields to fetch from the MediaOnCategory
      */
-    select?: CategoryOnMediaSelect<ExtArgs> | null
+    select?: MediaOnCategorySelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: CategoryOnMediaInclude<ExtArgs> | null
+    include?: MediaOnCategoryInclude<ExtArgs> | null
     /**
-     * Filter, which CategoryOnMedia to fetch.
+     * Filter, which MediaOnCategory to fetch.
      */
-    where?: CategoryOnMediaWhereInput
+    where?: MediaOnCategoryWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of CategoryOnMedias to fetch.
+     * Determine the order of MediaOnCategories to fetch.
      */
-    orderBy?: CategoryOnMediaOrderByWithRelationInput | CategoryOnMediaOrderByWithRelationInput[]
+    orderBy?: MediaOnCategoryOrderByWithRelationInput | MediaOnCategoryOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for CategoryOnMedias.
+     * Sets the position for searching for MediaOnCategories.
      */
-    cursor?: CategoryOnMediaWhereUniqueInput
+    cursor?: MediaOnCategoryWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` CategoryOnMedias from the position of the cursor.
+     * Take `±n` MediaOnCategories from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` CategoryOnMedias.
+     * Skip the first `n` MediaOnCategories.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of CategoryOnMedias.
+     * Filter by unique combinations of MediaOnCategories.
      */
-    distinct?: CategoryOnMediaScalarFieldEnum | CategoryOnMediaScalarFieldEnum[]
+    distinct?: MediaOnCategoryScalarFieldEnum | MediaOnCategoryScalarFieldEnum[]
   }
 
 
   /**
-   * CategoryOnMedia findFirstOrThrow
+   * MediaOnCategory findFirstOrThrow
    */
-  export type CategoryOnMediaFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MediaOnCategoryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the CategoryOnMedia
+     * Select specific fields to fetch from the MediaOnCategory
      */
-    select?: CategoryOnMediaSelect<ExtArgs> | null
+    select?: MediaOnCategorySelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: CategoryOnMediaInclude<ExtArgs> | null
+    include?: MediaOnCategoryInclude<ExtArgs> | null
     /**
-     * Filter, which CategoryOnMedia to fetch.
+     * Filter, which MediaOnCategory to fetch.
      */
-    where?: CategoryOnMediaWhereInput
+    where?: MediaOnCategoryWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of CategoryOnMedias to fetch.
+     * Determine the order of MediaOnCategories to fetch.
      */
-    orderBy?: CategoryOnMediaOrderByWithRelationInput | CategoryOnMediaOrderByWithRelationInput[]
+    orderBy?: MediaOnCategoryOrderByWithRelationInput | MediaOnCategoryOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for CategoryOnMedias.
+     * Sets the position for searching for MediaOnCategories.
      */
-    cursor?: CategoryOnMediaWhereUniqueInput
+    cursor?: MediaOnCategoryWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` CategoryOnMedias from the position of the cursor.
+     * Take `±n` MediaOnCategories from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` CategoryOnMedias.
+     * Skip the first `n` MediaOnCategories.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of CategoryOnMedias.
+     * Filter by unique combinations of MediaOnCategories.
      */
-    distinct?: CategoryOnMediaScalarFieldEnum | CategoryOnMediaScalarFieldEnum[]
+    distinct?: MediaOnCategoryScalarFieldEnum | MediaOnCategoryScalarFieldEnum[]
   }
 
 
   /**
-   * CategoryOnMedia findMany
+   * MediaOnCategory findMany
    */
-  export type CategoryOnMediaFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MediaOnCategoryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the CategoryOnMedia
+     * Select specific fields to fetch from the MediaOnCategory
      */
-    select?: CategoryOnMediaSelect<ExtArgs> | null
+    select?: MediaOnCategorySelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: CategoryOnMediaInclude<ExtArgs> | null
+    include?: MediaOnCategoryInclude<ExtArgs> | null
     /**
-     * Filter, which CategoryOnMedias to fetch.
+     * Filter, which MediaOnCategories to fetch.
      */
-    where?: CategoryOnMediaWhereInput
+    where?: MediaOnCategoryWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of CategoryOnMedias to fetch.
+     * Determine the order of MediaOnCategories to fetch.
      */
-    orderBy?: CategoryOnMediaOrderByWithRelationInput | CategoryOnMediaOrderByWithRelationInput[]
+    orderBy?: MediaOnCategoryOrderByWithRelationInput | MediaOnCategoryOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing CategoryOnMedias.
+     * Sets the position for listing MediaOnCategories.
      */
-    cursor?: CategoryOnMediaWhereUniqueInput
+    cursor?: MediaOnCategoryWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` CategoryOnMedias from the position of the cursor.
+     * Take `±n` MediaOnCategories from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` CategoryOnMedias.
+     * Skip the first `n` MediaOnCategories.
      */
     skip?: number
-    distinct?: CategoryOnMediaScalarFieldEnum | CategoryOnMediaScalarFieldEnum[]
+    distinct?: MediaOnCategoryScalarFieldEnum | MediaOnCategoryScalarFieldEnum[]
   }
 
 
   /**
-   * CategoryOnMedia create
+   * MediaOnCategory create
    */
-  export type CategoryOnMediaCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MediaOnCategoryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the CategoryOnMedia
+     * Select specific fields to fetch from the MediaOnCategory
      */
-    select?: CategoryOnMediaSelect<ExtArgs> | null
+    select?: MediaOnCategorySelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: CategoryOnMediaInclude<ExtArgs> | null
+    include?: MediaOnCategoryInclude<ExtArgs> | null
     /**
-     * The data needed to create a CategoryOnMedia.
+     * The data needed to create a MediaOnCategory.
      */
-    data: XOR<CategoryOnMediaCreateInput, CategoryOnMediaUncheckedCreateInput>
+    data: XOR<MediaOnCategoryCreateInput, MediaOnCategoryUncheckedCreateInput>
   }
 
 
   /**
-   * CategoryOnMedia createMany
+   * MediaOnCategory createMany
    */
-  export type CategoryOnMediaCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MediaOnCategoryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many CategoryOnMedias.
+     * The data used to create many MediaOnCategories.
      */
-    data: CategoryOnMediaCreateManyInput | CategoryOnMediaCreateManyInput[]
+    data: MediaOnCategoryCreateManyInput | MediaOnCategoryCreateManyInput[]
     skipDuplicates?: boolean
   }
 
 
   /**
-   * CategoryOnMedia update
+   * MediaOnCategory update
    */
-  export type CategoryOnMediaUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MediaOnCategoryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the CategoryOnMedia
+     * Select specific fields to fetch from the MediaOnCategory
      */
-    select?: CategoryOnMediaSelect<ExtArgs> | null
+    select?: MediaOnCategorySelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: CategoryOnMediaInclude<ExtArgs> | null
+    include?: MediaOnCategoryInclude<ExtArgs> | null
     /**
-     * The data needed to update a CategoryOnMedia.
+     * The data needed to update a MediaOnCategory.
      */
-    data: XOR<CategoryOnMediaUpdateInput, CategoryOnMediaUncheckedUpdateInput>
+    data: XOR<MediaOnCategoryUpdateInput, MediaOnCategoryUncheckedUpdateInput>
     /**
-     * Choose, which CategoryOnMedia to update.
+     * Choose, which MediaOnCategory to update.
      */
-    where: CategoryOnMediaWhereUniqueInput
+    where: MediaOnCategoryWhereUniqueInput
   }
 
 
   /**
-   * CategoryOnMedia updateMany
+   * MediaOnCategory updateMany
    */
-  export type CategoryOnMediaUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MediaOnCategoryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update CategoryOnMedias.
+     * The data used to update MediaOnCategories.
      */
-    data: XOR<CategoryOnMediaUpdateManyMutationInput, CategoryOnMediaUncheckedUpdateManyInput>
+    data: XOR<MediaOnCategoryUpdateManyMutationInput, MediaOnCategoryUncheckedUpdateManyInput>
     /**
-     * Filter which CategoryOnMedias to update
+     * Filter which MediaOnCategories to update
      */
-    where?: CategoryOnMediaWhereInput
+    where?: MediaOnCategoryWhereInput
   }
 
 
   /**
-   * CategoryOnMedia upsert
+   * MediaOnCategory upsert
    */
-  export type CategoryOnMediaUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MediaOnCategoryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the CategoryOnMedia
+     * Select specific fields to fetch from the MediaOnCategory
      */
-    select?: CategoryOnMediaSelect<ExtArgs> | null
+    select?: MediaOnCategorySelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: CategoryOnMediaInclude<ExtArgs> | null
+    include?: MediaOnCategoryInclude<ExtArgs> | null
     /**
-     * The filter to search for the CategoryOnMedia to update in case it exists.
+     * The filter to search for the MediaOnCategory to update in case it exists.
      */
-    where: CategoryOnMediaWhereUniqueInput
+    where: MediaOnCategoryWhereUniqueInput
     /**
-     * In case the CategoryOnMedia found by the `where` argument doesn't exist, create a new CategoryOnMedia with this data.
+     * In case the MediaOnCategory found by the `where` argument doesn't exist, create a new MediaOnCategory with this data.
      */
-    create: XOR<CategoryOnMediaCreateInput, CategoryOnMediaUncheckedCreateInput>
+    create: XOR<MediaOnCategoryCreateInput, MediaOnCategoryUncheckedCreateInput>
     /**
-     * In case the CategoryOnMedia was found with the provided `where` argument, update it with this data.
+     * In case the MediaOnCategory was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<CategoryOnMediaUpdateInput, CategoryOnMediaUncheckedUpdateInput>
+    update: XOR<MediaOnCategoryUpdateInput, MediaOnCategoryUncheckedUpdateInput>
   }
 
 
   /**
-   * CategoryOnMedia delete
+   * MediaOnCategory delete
    */
-  export type CategoryOnMediaDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MediaOnCategoryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the CategoryOnMedia
+     * Select specific fields to fetch from the MediaOnCategory
      */
-    select?: CategoryOnMediaSelect<ExtArgs> | null
+    select?: MediaOnCategorySelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: CategoryOnMediaInclude<ExtArgs> | null
+    include?: MediaOnCategoryInclude<ExtArgs> | null
     /**
-     * Filter which CategoryOnMedia to delete.
+     * Filter which MediaOnCategory to delete.
      */
-    where: CategoryOnMediaWhereUniqueInput
+    where: MediaOnCategoryWhereUniqueInput
   }
 
 
   /**
-   * CategoryOnMedia deleteMany
+   * MediaOnCategory deleteMany
    */
-  export type CategoryOnMediaDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MediaOnCategoryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which CategoryOnMedias to delete
+     * Filter which MediaOnCategories to delete
      */
-    where?: CategoryOnMediaWhereInput
+    where?: MediaOnCategoryWhereInput
   }
 
 
   /**
-   * CategoryOnMedia without action
+   * MediaOnCategory without action
    */
-  export type CategoryOnMediaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type MediaOnCategoryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the CategoryOnMedia
+     * Select specific fields to fetch from the MediaOnCategory
      */
-    select?: CategoryOnMediaSelect<ExtArgs> | null
+    select?: MediaOnCategorySelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: CategoryOnMediaInclude<ExtArgs> | null
+    include?: MediaOnCategoryInclude<ExtArgs> | null
   }
 
 
@@ -7965,12 +8209,13 @@ export namespace Prisma {
     detail?: boolean | Media$detailArgs<ExtArgs>
     videoResources?: boolean | Media$videoResourcesArgs<ExtArgs>
     audioResources?: boolean | Media$audioResourcesArgs<ExtArgs>
-    MediaReaction?: boolean | Media$MediaReactionArgs<ExtArgs>
-    History?: boolean | Media$HistoryArgs<ExtArgs>
-    CategoryOnVideo?: boolean | Media$CategoryOnVideoArgs<ExtArgs>
-    Comment?: boolean | Media$CommentArgs<ExtArgs>
-    MediaOnPlaylist?: boolean | Media$MediaOnPlaylistArgs<ExtArgs>
-    SessionUpload?: boolean | Media$SessionUploadArgs<ExtArgs>
+    mediaReaction?: boolean | Media$mediaReactionArgs<ExtArgs>
+    history?: boolean | Media$historyArgs<ExtArgs>
+    mediaOnCategory?: boolean | Media$mediaOnCategoryArgs<ExtArgs>
+    comment?: boolean | Media$commentArgs<ExtArgs>
+    mediaOnPlaylist?: boolean | Media$mediaOnPlaylistArgs<ExtArgs>
+    sessionUpload?: boolean | Media$sessionUploadArgs<ExtArgs>
+    mediaOnAlbum?: boolean | Media$mediaOnAlbumArgs<ExtArgs>
     _count?: boolean | MediaCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["media"]>
 
@@ -7994,12 +8239,13 @@ export namespace Prisma {
     detail?: boolean | Media$detailArgs<ExtArgs>
     videoResources?: boolean | Media$videoResourcesArgs<ExtArgs>
     audioResources?: boolean | Media$audioResourcesArgs<ExtArgs>
-    MediaReaction?: boolean | Media$MediaReactionArgs<ExtArgs>
-    History?: boolean | Media$HistoryArgs<ExtArgs>
-    CategoryOnVideo?: boolean | Media$CategoryOnVideoArgs<ExtArgs>
-    Comment?: boolean | Media$CommentArgs<ExtArgs>
-    MediaOnPlaylist?: boolean | Media$MediaOnPlaylistArgs<ExtArgs>
-    SessionUpload?: boolean | Media$SessionUploadArgs<ExtArgs>
+    mediaReaction?: boolean | Media$mediaReactionArgs<ExtArgs>
+    history?: boolean | Media$historyArgs<ExtArgs>
+    mediaOnCategory?: boolean | Media$mediaOnCategoryArgs<ExtArgs>
+    comment?: boolean | Media$commentArgs<ExtArgs>
+    mediaOnPlaylist?: boolean | Media$mediaOnPlaylistArgs<ExtArgs>
+    sessionUpload?: boolean | Media$sessionUploadArgs<ExtArgs>
+    mediaOnAlbum?: boolean | Media$mediaOnAlbumArgs<ExtArgs>
     _count?: boolean | MediaCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -8012,12 +8258,13 @@ export namespace Prisma {
       detail: Prisma.$MediaDetailPayload<ExtArgs> | null
       videoResources: Prisma.$VideoResourcePayload<ExtArgs>[]
       audioResources: Prisma.$AudioResourcePayload<ExtArgs>[]
-      MediaReaction: Prisma.$MediaReactionPayload<ExtArgs>[]
-      History: Prisma.$HistoryPayload<ExtArgs>[]
-      CategoryOnVideo: Prisma.$CategoryOnMediaPayload<ExtArgs>[]
-      Comment: Prisma.$CommentPayload<ExtArgs>[]
-      MediaOnPlaylist: Prisma.$MediaOnPlaylistPayload<ExtArgs>[]
-      SessionUpload: Prisma.$SessionUploadPayload<ExtArgs>[]
+      mediaReaction: Prisma.$MediaReactionPayload<ExtArgs>[]
+      history: Prisma.$HistoryPayload<ExtArgs>[]
+      mediaOnCategory: Prisma.$MediaOnCategoryPayload<ExtArgs>[]
+      comment: Prisma.$CommentPayload<ExtArgs>[]
+      mediaOnPlaylist: Prisma.$MediaOnPlaylistPayload<ExtArgs>[]
+      sessionUpload: Prisma.$SessionUploadPayload<ExtArgs>[]
+      mediaOnAlbum: Prisma.$MediaOnAlbumPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -8406,17 +8653,19 @@ export namespace Prisma {
 
     audioResources<T extends Media$audioResourcesArgs<ExtArgs> = {}>(args?: Subset<T, Media$audioResourcesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AudioResourcePayload<ExtArgs>, T, 'findMany'> | Null>;
 
-    MediaReaction<T extends Media$MediaReactionArgs<ExtArgs> = {}>(args?: Subset<T, Media$MediaReactionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MediaReactionPayload<ExtArgs>, T, 'findMany'> | Null>;
+    mediaReaction<T extends Media$mediaReactionArgs<ExtArgs> = {}>(args?: Subset<T, Media$mediaReactionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MediaReactionPayload<ExtArgs>, T, 'findMany'> | Null>;
 
-    History<T extends Media$HistoryArgs<ExtArgs> = {}>(args?: Subset<T, Media$HistoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HistoryPayload<ExtArgs>, T, 'findMany'> | Null>;
+    history<T extends Media$historyArgs<ExtArgs> = {}>(args?: Subset<T, Media$historyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HistoryPayload<ExtArgs>, T, 'findMany'> | Null>;
 
-    CategoryOnVideo<T extends Media$CategoryOnVideoArgs<ExtArgs> = {}>(args?: Subset<T, Media$CategoryOnVideoArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CategoryOnMediaPayload<ExtArgs>, T, 'findMany'> | Null>;
+    mediaOnCategory<T extends Media$mediaOnCategoryArgs<ExtArgs> = {}>(args?: Subset<T, Media$mediaOnCategoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MediaOnCategoryPayload<ExtArgs>, T, 'findMany'> | Null>;
 
-    Comment<T extends Media$CommentArgs<ExtArgs> = {}>(args?: Subset<T, Media$CommentArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, 'findMany'> | Null>;
+    comment<T extends Media$commentArgs<ExtArgs> = {}>(args?: Subset<T, Media$commentArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, 'findMany'> | Null>;
 
-    MediaOnPlaylist<T extends Media$MediaOnPlaylistArgs<ExtArgs> = {}>(args?: Subset<T, Media$MediaOnPlaylistArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MediaOnPlaylistPayload<ExtArgs>, T, 'findMany'> | Null>;
+    mediaOnPlaylist<T extends Media$mediaOnPlaylistArgs<ExtArgs> = {}>(args?: Subset<T, Media$mediaOnPlaylistArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MediaOnPlaylistPayload<ExtArgs>, T, 'findMany'> | Null>;
 
-    SessionUpload<T extends Media$SessionUploadArgs<ExtArgs> = {}>(args?: Subset<T, Media$SessionUploadArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionUploadPayload<ExtArgs>, T, 'findMany'> | Null>;
+    sessionUpload<T extends Media$sessionUploadArgs<ExtArgs> = {}>(args?: Subset<T, Media$sessionUploadArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionUploadPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    mediaOnAlbum<T extends Media$mediaOnAlbumArgs<ExtArgs> = {}>(args?: Subset<T, Media$mediaOnAlbumArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MediaOnAlbumPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -8848,9 +9097,9 @@ export namespace Prisma {
 
 
   /**
-   * Media.MediaReaction
+   * Media.mediaReaction
    */
-  export type Media$MediaReactionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Media$mediaReactionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the MediaReaction
      */
@@ -8869,9 +9118,9 @@ export namespace Prisma {
 
 
   /**
-   * Media.History
+   * Media.history
    */
-  export type Media$HistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Media$historyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the History
      */
@@ -8890,30 +9139,30 @@ export namespace Prisma {
 
 
   /**
-   * Media.CategoryOnVideo
+   * Media.mediaOnCategory
    */
-  export type Media$CategoryOnVideoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Media$mediaOnCategoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the CategoryOnMedia
+     * Select specific fields to fetch from the MediaOnCategory
      */
-    select?: CategoryOnMediaSelect<ExtArgs> | null
+    select?: MediaOnCategorySelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: CategoryOnMediaInclude<ExtArgs> | null
-    where?: CategoryOnMediaWhereInput
-    orderBy?: CategoryOnMediaOrderByWithRelationInput | CategoryOnMediaOrderByWithRelationInput[]
-    cursor?: CategoryOnMediaWhereUniqueInput
+    include?: MediaOnCategoryInclude<ExtArgs> | null
+    where?: MediaOnCategoryWhereInput
+    orderBy?: MediaOnCategoryOrderByWithRelationInput | MediaOnCategoryOrderByWithRelationInput[]
+    cursor?: MediaOnCategoryWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: CategoryOnMediaScalarFieldEnum | CategoryOnMediaScalarFieldEnum[]
+    distinct?: MediaOnCategoryScalarFieldEnum | MediaOnCategoryScalarFieldEnum[]
   }
 
 
   /**
-   * Media.Comment
+   * Media.comment
    */
-  export type Media$CommentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Media$commentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Comment
      */
@@ -8932,9 +9181,9 @@ export namespace Prisma {
 
 
   /**
-   * Media.MediaOnPlaylist
+   * Media.mediaOnPlaylist
    */
-  export type Media$MediaOnPlaylistArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Media$mediaOnPlaylistArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the MediaOnPlaylist
      */
@@ -8953,9 +9202,9 @@ export namespace Prisma {
 
 
   /**
-   * Media.SessionUpload
+   * Media.sessionUpload
    */
-  export type Media$SessionUploadArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Media$sessionUploadArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the SessionUpload
      */
@@ -8970,6 +9219,27 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: SessionUploadScalarFieldEnum | SessionUploadScalarFieldEnum[]
+  }
+
+
+  /**
+   * Media.mediaOnAlbum
+   */
+  export type Media$mediaOnAlbumArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaOnAlbum
+     */
+    select?: MediaOnAlbumSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: MediaOnAlbumInclude<ExtArgs> | null
+    where?: MediaOnAlbumWhereInput
+    orderBy?: MediaOnAlbumOrderByWithRelationInput | MediaOnAlbumOrderByWithRelationInput[]
+    cursor?: MediaOnAlbumWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MediaOnAlbumScalarFieldEnum | MediaOnAlbumScalarFieldEnum[]
   }
 
 
@@ -21356,6 +21626,1954 @@ export namespace Prisma {
 
 
   /**
+   * Model MediaOnAlbum
+   */
+
+  export type AggregateMediaOnAlbum = {
+    _count: MediaOnAlbumCountAggregateOutputType | null
+    _avg: MediaOnAlbumAvgAggregateOutputType | null
+    _sum: MediaOnAlbumSumAggregateOutputType | null
+    _min: MediaOnAlbumMinAggregateOutputType | null
+    _max: MediaOnAlbumMaxAggregateOutputType | null
+  }
+
+  export type MediaOnAlbumAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type MediaOnAlbumSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type MediaOnAlbumMinAggregateOutputType = {
+    id: number | null
+    albumId: string | null
+    mediaId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type MediaOnAlbumMaxAggregateOutputType = {
+    id: number | null
+    albumId: string | null
+    mediaId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type MediaOnAlbumCountAggregateOutputType = {
+    id: number
+    albumId: number
+    mediaId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type MediaOnAlbumAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type MediaOnAlbumSumAggregateInputType = {
+    id?: true
+  }
+
+  export type MediaOnAlbumMinAggregateInputType = {
+    id?: true
+    albumId?: true
+    mediaId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type MediaOnAlbumMaxAggregateInputType = {
+    id?: true
+    albumId?: true
+    mediaId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type MediaOnAlbumCountAggregateInputType = {
+    id?: true
+    albumId?: true
+    mediaId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type MediaOnAlbumAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MediaOnAlbum to aggregate.
+     */
+    where?: MediaOnAlbumWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MediaOnAlbums to fetch.
+     */
+    orderBy?: MediaOnAlbumOrderByWithRelationInput | MediaOnAlbumOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MediaOnAlbumWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MediaOnAlbums from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MediaOnAlbums.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned MediaOnAlbums
+    **/
+    _count?: true | MediaOnAlbumCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: MediaOnAlbumAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: MediaOnAlbumSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MediaOnAlbumMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MediaOnAlbumMaxAggregateInputType
+  }
+
+  export type GetMediaOnAlbumAggregateType<T extends MediaOnAlbumAggregateArgs> = {
+        [P in keyof T & keyof AggregateMediaOnAlbum]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMediaOnAlbum[P]>
+      : GetScalarType<T[P], AggregateMediaOnAlbum[P]>
+  }
+
+
+
+
+  export type MediaOnAlbumGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MediaOnAlbumWhereInput
+    orderBy?: MediaOnAlbumOrderByWithAggregationInput | MediaOnAlbumOrderByWithAggregationInput[]
+    by: MediaOnAlbumScalarFieldEnum[] | MediaOnAlbumScalarFieldEnum
+    having?: MediaOnAlbumScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MediaOnAlbumCountAggregateInputType | true
+    _avg?: MediaOnAlbumAvgAggregateInputType
+    _sum?: MediaOnAlbumSumAggregateInputType
+    _min?: MediaOnAlbumMinAggregateInputType
+    _max?: MediaOnAlbumMaxAggregateInputType
+  }
+
+  export type MediaOnAlbumGroupByOutputType = {
+    id: number
+    albumId: string
+    mediaId: string
+    createdAt: Date
+    updatedAt: Date
+    _count: MediaOnAlbumCountAggregateOutputType | null
+    _avg: MediaOnAlbumAvgAggregateOutputType | null
+    _sum: MediaOnAlbumSumAggregateOutputType | null
+    _min: MediaOnAlbumMinAggregateOutputType | null
+    _max: MediaOnAlbumMaxAggregateOutputType | null
+  }
+
+  type GetMediaOnAlbumGroupByPayload<T extends MediaOnAlbumGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MediaOnAlbumGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MediaOnAlbumGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MediaOnAlbumGroupByOutputType[P]>
+            : GetScalarType<T[P], MediaOnAlbumGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MediaOnAlbumSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    albumId?: boolean
+    mediaId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    media?: boolean | MediaDefaultArgs<ExtArgs>
+    album?: boolean | AlbumDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["mediaOnAlbum"]>
+
+  export type MediaOnAlbumSelectScalar = {
+    id?: boolean
+    albumId?: boolean
+    mediaId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type MediaOnAlbumInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    media?: boolean | MediaDefaultArgs<ExtArgs>
+    album?: boolean | AlbumDefaultArgs<ExtArgs>
+  }
+
+
+  export type $MediaOnAlbumPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "MediaOnAlbum"
+    objects: {
+      media: Prisma.$MediaPayload<ExtArgs>
+      album: Prisma.$AlbumPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      albumId: string
+      mediaId: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["mediaOnAlbum"]>
+    composites: {}
+  }
+
+
+  type MediaOnAlbumGetPayload<S extends boolean | null | undefined | MediaOnAlbumDefaultArgs> = $Result.GetResult<Prisma.$MediaOnAlbumPayload, S>
+
+  type MediaOnAlbumCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<MediaOnAlbumFindManyArgs, 'select' | 'include'> & {
+      select?: MediaOnAlbumCountAggregateInputType | true
+    }
+
+  export interface MediaOnAlbumDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['MediaOnAlbum'], meta: { name: 'MediaOnAlbum' } }
+    /**
+     * Find zero or one MediaOnAlbum that matches the filter.
+     * @param {MediaOnAlbumFindUniqueArgs} args - Arguments to find a MediaOnAlbum
+     * @example
+     * // Get one MediaOnAlbum
+     * const mediaOnAlbum = await prisma.mediaOnAlbum.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends MediaOnAlbumFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, MediaOnAlbumFindUniqueArgs<ExtArgs>>
+    ): Prisma__MediaOnAlbumClient<$Result.GetResult<Prisma.$MediaOnAlbumPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one MediaOnAlbum that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {MediaOnAlbumFindUniqueOrThrowArgs} args - Arguments to find a MediaOnAlbum
+     * @example
+     * // Get one MediaOnAlbum
+     * const mediaOnAlbum = await prisma.mediaOnAlbum.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends MediaOnAlbumFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, MediaOnAlbumFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__MediaOnAlbumClient<$Result.GetResult<Prisma.$MediaOnAlbumPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first MediaOnAlbum that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MediaOnAlbumFindFirstArgs} args - Arguments to find a MediaOnAlbum
+     * @example
+     * // Get one MediaOnAlbum
+     * const mediaOnAlbum = await prisma.mediaOnAlbum.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends MediaOnAlbumFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, MediaOnAlbumFindFirstArgs<ExtArgs>>
+    ): Prisma__MediaOnAlbumClient<$Result.GetResult<Prisma.$MediaOnAlbumPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first MediaOnAlbum that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MediaOnAlbumFindFirstOrThrowArgs} args - Arguments to find a MediaOnAlbum
+     * @example
+     * // Get one MediaOnAlbum
+     * const mediaOnAlbum = await prisma.mediaOnAlbum.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends MediaOnAlbumFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, MediaOnAlbumFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__MediaOnAlbumClient<$Result.GetResult<Prisma.$MediaOnAlbumPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more MediaOnAlbums that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MediaOnAlbumFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all MediaOnAlbums
+     * const mediaOnAlbums = await prisma.mediaOnAlbum.findMany()
+     * 
+     * // Get first 10 MediaOnAlbums
+     * const mediaOnAlbums = await prisma.mediaOnAlbum.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const mediaOnAlbumWithIdOnly = await prisma.mediaOnAlbum.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends MediaOnAlbumFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, MediaOnAlbumFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MediaOnAlbumPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a MediaOnAlbum.
+     * @param {MediaOnAlbumCreateArgs} args - Arguments to create a MediaOnAlbum.
+     * @example
+     * // Create one MediaOnAlbum
+     * const MediaOnAlbum = await prisma.mediaOnAlbum.create({
+     *   data: {
+     *     // ... data to create a MediaOnAlbum
+     *   }
+     * })
+     * 
+    **/
+    create<T extends MediaOnAlbumCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, MediaOnAlbumCreateArgs<ExtArgs>>
+    ): Prisma__MediaOnAlbumClient<$Result.GetResult<Prisma.$MediaOnAlbumPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many MediaOnAlbums.
+     *     @param {MediaOnAlbumCreateManyArgs} args - Arguments to create many MediaOnAlbums.
+     *     @example
+     *     // Create many MediaOnAlbums
+     *     const mediaOnAlbum = await prisma.mediaOnAlbum.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends MediaOnAlbumCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, MediaOnAlbumCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a MediaOnAlbum.
+     * @param {MediaOnAlbumDeleteArgs} args - Arguments to delete one MediaOnAlbum.
+     * @example
+     * // Delete one MediaOnAlbum
+     * const MediaOnAlbum = await prisma.mediaOnAlbum.delete({
+     *   where: {
+     *     // ... filter to delete one MediaOnAlbum
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends MediaOnAlbumDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, MediaOnAlbumDeleteArgs<ExtArgs>>
+    ): Prisma__MediaOnAlbumClient<$Result.GetResult<Prisma.$MediaOnAlbumPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one MediaOnAlbum.
+     * @param {MediaOnAlbumUpdateArgs} args - Arguments to update one MediaOnAlbum.
+     * @example
+     * // Update one MediaOnAlbum
+     * const mediaOnAlbum = await prisma.mediaOnAlbum.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends MediaOnAlbumUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, MediaOnAlbumUpdateArgs<ExtArgs>>
+    ): Prisma__MediaOnAlbumClient<$Result.GetResult<Prisma.$MediaOnAlbumPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more MediaOnAlbums.
+     * @param {MediaOnAlbumDeleteManyArgs} args - Arguments to filter MediaOnAlbums to delete.
+     * @example
+     * // Delete a few MediaOnAlbums
+     * const { count } = await prisma.mediaOnAlbum.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends MediaOnAlbumDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, MediaOnAlbumDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MediaOnAlbums.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MediaOnAlbumUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many MediaOnAlbums
+     * const mediaOnAlbum = await prisma.mediaOnAlbum.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends MediaOnAlbumUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, MediaOnAlbumUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one MediaOnAlbum.
+     * @param {MediaOnAlbumUpsertArgs} args - Arguments to update or create a MediaOnAlbum.
+     * @example
+     * // Update or create a MediaOnAlbum
+     * const mediaOnAlbum = await prisma.mediaOnAlbum.upsert({
+     *   create: {
+     *     // ... data to create a MediaOnAlbum
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the MediaOnAlbum we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends MediaOnAlbumUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, MediaOnAlbumUpsertArgs<ExtArgs>>
+    ): Prisma__MediaOnAlbumClient<$Result.GetResult<Prisma.$MediaOnAlbumPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of MediaOnAlbums.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MediaOnAlbumCountArgs} args - Arguments to filter MediaOnAlbums to count.
+     * @example
+     * // Count the number of MediaOnAlbums
+     * const count = await prisma.mediaOnAlbum.count({
+     *   where: {
+     *     // ... the filter for the MediaOnAlbums we want to count
+     *   }
+     * })
+    **/
+    count<T extends MediaOnAlbumCountArgs>(
+      args?: Subset<T, MediaOnAlbumCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MediaOnAlbumCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a MediaOnAlbum.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MediaOnAlbumAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MediaOnAlbumAggregateArgs>(args: Subset<T, MediaOnAlbumAggregateArgs>): Prisma.PrismaPromise<GetMediaOnAlbumAggregateType<T>>
+
+    /**
+     * Group by MediaOnAlbum.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MediaOnAlbumGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MediaOnAlbumGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MediaOnAlbumGroupByArgs['orderBy'] }
+        : { orderBy?: MediaOnAlbumGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MediaOnAlbumGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMediaOnAlbumGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the MediaOnAlbum model
+   */
+  readonly fields: MediaOnAlbumFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for MediaOnAlbum.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MediaOnAlbumClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    media<T extends MediaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MediaDefaultArgs<ExtArgs>>): Prisma__MediaClient<$Result.GetResult<Prisma.$MediaPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    album<T extends AlbumDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AlbumDefaultArgs<ExtArgs>>): Prisma__AlbumClient<$Result.GetResult<Prisma.$AlbumPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the MediaOnAlbum model
+   */ 
+  interface MediaOnAlbumFieldRefs {
+    readonly id: FieldRef<"MediaOnAlbum", 'Int'>
+    readonly albumId: FieldRef<"MediaOnAlbum", 'String'>
+    readonly mediaId: FieldRef<"MediaOnAlbum", 'String'>
+    readonly createdAt: FieldRef<"MediaOnAlbum", 'DateTime'>
+    readonly updatedAt: FieldRef<"MediaOnAlbum", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * MediaOnAlbum findUnique
+   */
+  export type MediaOnAlbumFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaOnAlbum
+     */
+    select?: MediaOnAlbumSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: MediaOnAlbumInclude<ExtArgs> | null
+    /**
+     * Filter, which MediaOnAlbum to fetch.
+     */
+    where: MediaOnAlbumWhereUniqueInput
+  }
+
+
+  /**
+   * MediaOnAlbum findUniqueOrThrow
+   */
+  export type MediaOnAlbumFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaOnAlbum
+     */
+    select?: MediaOnAlbumSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: MediaOnAlbumInclude<ExtArgs> | null
+    /**
+     * Filter, which MediaOnAlbum to fetch.
+     */
+    where: MediaOnAlbumWhereUniqueInput
+  }
+
+
+  /**
+   * MediaOnAlbum findFirst
+   */
+  export type MediaOnAlbumFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaOnAlbum
+     */
+    select?: MediaOnAlbumSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: MediaOnAlbumInclude<ExtArgs> | null
+    /**
+     * Filter, which MediaOnAlbum to fetch.
+     */
+    where?: MediaOnAlbumWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MediaOnAlbums to fetch.
+     */
+    orderBy?: MediaOnAlbumOrderByWithRelationInput | MediaOnAlbumOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MediaOnAlbums.
+     */
+    cursor?: MediaOnAlbumWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MediaOnAlbums from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MediaOnAlbums.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MediaOnAlbums.
+     */
+    distinct?: MediaOnAlbumScalarFieldEnum | MediaOnAlbumScalarFieldEnum[]
+  }
+
+
+  /**
+   * MediaOnAlbum findFirstOrThrow
+   */
+  export type MediaOnAlbumFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaOnAlbum
+     */
+    select?: MediaOnAlbumSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: MediaOnAlbumInclude<ExtArgs> | null
+    /**
+     * Filter, which MediaOnAlbum to fetch.
+     */
+    where?: MediaOnAlbumWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MediaOnAlbums to fetch.
+     */
+    orderBy?: MediaOnAlbumOrderByWithRelationInput | MediaOnAlbumOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MediaOnAlbums.
+     */
+    cursor?: MediaOnAlbumWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MediaOnAlbums from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MediaOnAlbums.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MediaOnAlbums.
+     */
+    distinct?: MediaOnAlbumScalarFieldEnum | MediaOnAlbumScalarFieldEnum[]
+  }
+
+
+  /**
+   * MediaOnAlbum findMany
+   */
+  export type MediaOnAlbumFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaOnAlbum
+     */
+    select?: MediaOnAlbumSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: MediaOnAlbumInclude<ExtArgs> | null
+    /**
+     * Filter, which MediaOnAlbums to fetch.
+     */
+    where?: MediaOnAlbumWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MediaOnAlbums to fetch.
+     */
+    orderBy?: MediaOnAlbumOrderByWithRelationInput | MediaOnAlbumOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing MediaOnAlbums.
+     */
+    cursor?: MediaOnAlbumWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MediaOnAlbums from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MediaOnAlbums.
+     */
+    skip?: number
+    distinct?: MediaOnAlbumScalarFieldEnum | MediaOnAlbumScalarFieldEnum[]
+  }
+
+
+  /**
+   * MediaOnAlbum create
+   */
+  export type MediaOnAlbumCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaOnAlbum
+     */
+    select?: MediaOnAlbumSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: MediaOnAlbumInclude<ExtArgs> | null
+    /**
+     * The data needed to create a MediaOnAlbum.
+     */
+    data: XOR<MediaOnAlbumCreateInput, MediaOnAlbumUncheckedCreateInput>
+  }
+
+
+  /**
+   * MediaOnAlbum createMany
+   */
+  export type MediaOnAlbumCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many MediaOnAlbums.
+     */
+    data: MediaOnAlbumCreateManyInput | MediaOnAlbumCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * MediaOnAlbum update
+   */
+  export type MediaOnAlbumUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaOnAlbum
+     */
+    select?: MediaOnAlbumSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: MediaOnAlbumInclude<ExtArgs> | null
+    /**
+     * The data needed to update a MediaOnAlbum.
+     */
+    data: XOR<MediaOnAlbumUpdateInput, MediaOnAlbumUncheckedUpdateInput>
+    /**
+     * Choose, which MediaOnAlbum to update.
+     */
+    where: MediaOnAlbumWhereUniqueInput
+  }
+
+
+  /**
+   * MediaOnAlbum updateMany
+   */
+  export type MediaOnAlbumUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update MediaOnAlbums.
+     */
+    data: XOR<MediaOnAlbumUpdateManyMutationInput, MediaOnAlbumUncheckedUpdateManyInput>
+    /**
+     * Filter which MediaOnAlbums to update
+     */
+    where?: MediaOnAlbumWhereInput
+  }
+
+
+  /**
+   * MediaOnAlbum upsert
+   */
+  export type MediaOnAlbumUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaOnAlbum
+     */
+    select?: MediaOnAlbumSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: MediaOnAlbumInclude<ExtArgs> | null
+    /**
+     * The filter to search for the MediaOnAlbum to update in case it exists.
+     */
+    where: MediaOnAlbumWhereUniqueInput
+    /**
+     * In case the MediaOnAlbum found by the `where` argument doesn't exist, create a new MediaOnAlbum with this data.
+     */
+    create: XOR<MediaOnAlbumCreateInput, MediaOnAlbumUncheckedCreateInput>
+    /**
+     * In case the MediaOnAlbum was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MediaOnAlbumUpdateInput, MediaOnAlbumUncheckedUpdateInput>
+  }
+
+
+  /**
+   * MediaOnAlbum delete
+   */
+  export type MediaOnAlbumDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaOnAlbum
+     */
+    select?: MediaOnAlbumSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: MediaOnAlbumInclude<ExtArgs> | null
+    /**
+     * Filter which MediaOnAlbum to delete.
+     */
+    where: MediaOnAlbumWhereUniqueInput
+  }
+
+
+  /**
+   * MediaOnAlbum deleteMany
+   */
+  export type MediaOnAlbumDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MediaOnAlbums to delete
+     */
+    where?: MediaOnAlbumWhereInput
+  }
+
+
+  /**
+   * MediaOnAlbum without action
+   */
+  export type MediaOnAlbumDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaOnAlbum
+     */
+    select?: MediaOnAlbumSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: MediaOnAlbumInclude<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model Album
+   */
+
+  export type AggregateAlbum = {
+    _count: AlbumCountAggregateOutputType | null
+    _avg: AlbumAvgAggregateOutputType | null
+    _sum: AlbumSumAggregateOutputType | null
+    _min: AlbumMinAggregateOutputType | null
+    _max: AlbumMaxAggregateOutputType | null
+  }
+
+  export type AlbumAvgAggregateOutputType = {
+    userId: number | null
+  }
+
+  export type AlbumSumAggregateOutputType = {
+    userId: number | null
+  }
+
+  export type AlbumMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    description: string | null
+    userId: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AlbumMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    description: string | null
+    userId: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AlbumCountAggregateOutputType = {
+    id: number
+    name: number
+    description: number
+    userId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type AlbumAvgAggregateInputType = {
+    userId?: true
+  }
+
+  export type AlbumSumAggregateInputType = {
+    userId?: true
+  }
+
+  export type AlbumMinAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    userId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AlbumMaxAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    userId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AlbumCountAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    userId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type AlbumAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Album to aggregate.
+     */
+    where?: AlbumWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Albums to fetch.
+     */
+    orderBy?: AlbumOrderByWithRelationInput | AlbumOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AlbumWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Albums from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Albums.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Albums
+    **/
+    _count?: true | AlbumCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AlbumAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AlbumSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AlbumMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AlbumMaxAggregateInputType
+  }
+
+  export type GetAlbumAggregateType<T extends AlbumAggregateArgs> = {
+        [P in keyof T & keyof AggregateAlbum]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAlbum[P]>
+      : GetScalarType<T[P], AggregateAlbum[P]>
+  }
+
+
+
+
+  export type AlbumGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AlbumWhereInput
+    orderBy?: AlbumOrderByWithAggregationInput | AlbumOrderByWithAggregationInput[]
+    by: AlbumScalarFieldEnum[] | AlbumScalarFieldEnum
+    having?: AlbumScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AlbumCountAggregateInputType | true
+    _avg?: AlbumAvgAggregateInputType
+    _sum?: AlbumSumAggregateInputType
+    _min?: AlbumMinAggregateInputType
+    _max?: AlbumMaxAggregateInputType
+  }
+
+  export type AlbumGroupByOutputType = {
+    id: string
+    name: string
+    description: string | null
+    userId: number
+    createdAt: Date
+    updatedAt: Date
+    _count: AlbumCountAggregateOutputType | null
+    _avg: AlbumAvgAggregateOutputType | null
+    _sum: AlbumSumAggregateOutputType | null
+    _min: AlbumMinAggregateOutputType | null
+    _max: AlbumMaxAggregateOutputType | null
+  }
+
+  type GetAlbumGroupByPayload<T extends AlbumGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AlbumGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AlbumGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AlbumGroupByOutputType[P]>
+            : GetScalarType<T[P], AlbumGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AlbumSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    userId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    owner?: boolean | UserDefaultArgs<ExtArgs>
+    mediaOnAlbum?: boolean | Album$mediaOnAlbumArgs<ExtArgs>
+    _count?: boolean | AlbumCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["album"]>
+
+  export type AlbumSelectScalar = {
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    userId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type AlbumInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    owner?: boolean | UserDefaultArgs<ExtArgs>
+    mediaOnAlbum?: boolean | Album$mediaOnAlbumArgs<ExtArgs>
+    _count?: boolean | AlbumCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+
+  export type $AlbumPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Album"
+    objects: {
+      owner: Prisma.$UserPayload<ExtArgs>
+      mediaOnAlbum: Prisma.$MediaOnAlbumPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      description: string | null
+      userId: number
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["album"]>
+    composites: {}
+  }
+
+
+  type AlbumGetPayload<S extends boolean | null | undefined | AlbumDefaultArgs> = $Result.GetResult<Prisma.$AlbumPayload, S>
+
+  type AlbumCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<AlbumFindManyArgs, 'select' | 'include'> & {
+      select?: AlbumCountAggregateInputType | true
+    }
+
+  export interface AlbumDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Album'], meta: { name: 'Album' } }
+    /**
+     * Find zero or one Album that matches the filter.
+     * @param {AlbumFindUniqueArgs} args - Arguments to find a Album
+     * @example
+     * // Get one Album
+     * const album = await prisma.album.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends AlbumFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, AlbumFindUniqueArgs<ExtArgs>>
+    ): Prisma__AlbumClient<$Result.GetResult<Prisma.$AlbumPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one Album that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {AlbumFindUniqueOrThrowArgs} args - Arguments to find a Album
+     * @example
+     * // Get one Album
+     * const album = await prisma.album.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends AlbumFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, AlbumFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__AlbumClient<$Result.GetResult<Prisma.$AlbumPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first Album that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AlbumFindFirstArgs} args - Arguments to find a Album
+     * @example
+     * // Get one Album
+     * const album = await prisma.album.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends AlbumFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, AlbumFindFirstArgs<ExtArgs>>
+    ): Prisma__AlbumClient<$Result.GetResult<Prisma.$AlbumPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first Album that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AlbumFindFirstOrThrowArgs} args - Arguments to find a Album
+     * @example
+     * // Get one Album
+     * const album = await prisma.album.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends AlbumFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, AlbumFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__AlbumClient<$Result.GetResult<Prisma.$AlbumPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more Albums that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AlbumFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Albums
+     * const albums = await prisma.album.findMany()
+     * 
+     * // Get first 10 Albums
+     * const albums = await prisma.album.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const albumWithIdOnly = await prisma.album.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends AlbumFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, AlbumFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AlbumPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a Album.
+     * @param {AlbumCreateArgs} args - Arguments to create a Album.
+     * @example
+     * // Create one Album
+     * const Album = await prisma.album.create({
+     *   data: {
+     *     // ... data to create a Album
+     *   }
+     * })
+     * 
+    **/
+    create<T extends AlbumCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, AlbumCreateArgs<ExtArgs>>
+    ): Prisma__AlbumClient<$Result.GetResult<Prisma.$AlbumPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many Albums.
+     *     @param {AlbumCreateManyArgs} args - Arguments to create many Albums.
+     *     @example
+     *     // Create many Albums
+     *     const album = await prisma.album.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends AlbumCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, AlbumCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Album.
+     * @param {AlbumDeleteArgs} args - Arguments to delete one Album.
+     * @example
+     * // Delete one Album
+     * const Album = await prisma.album.delete({
+     *   where: {
+     *     // ... filter to delete one Album
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends AlbumDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, AlbumDeleteArgs<ExtArgs>>
+    ): Prisma__AlbumClient<$Result.GetResult<Prisma.$AlbumPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one Album.
+     * @param {AlbumUpdateArgs} args - Arguments to update one Album.
+     * @example
+     * // Update one Album
+     * const album = await prisma.album.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends AlbumUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, AlbumUpdateArgs<ExtArgs>>
+    ): Prisma__AlbumClient<$Result.GetResult<Prisma.$AlbumPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more Albums.
+     * @param {AlbumDeleteManyArgs} args - Arguments to filter Albums to delete.
+     * @example
+     * // Delete a few Albums
+     * const { count } = await prisma.album.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends AlbumDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, AlbumDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Albums.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AlbumUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Albums
+     * const album = await prisma.album.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends AlbumUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, AlbumUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Album.
+     * @param {AlbumUpsertArgs} args - Arguments to update or create a Album.
+     * @example
+     * // Update or create a Album
+     * const album = await prisma.album.upsert({
+     *   create: {
+     *     // ... data to create a Album
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Album we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends AlbumUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, AlbumUpsertArgs<ExtArgs>>
+    ): Prisma__AlbumClient<$Result.GetResult<Prisma.$AlbumPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of Albums.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AlbumCountArgs} args - Arguments to filter Albums to count.
+     * @example
+     * // Count the number of Albums
+     * const count = await prisma.album.count({
+     *   where: {
+     *     // ... the filter for the Albums we want to count
+     *   }
+     * })
+    **/
+    count<T extends AlbumCountArgs>(
+      args?: Subset<T, AlbumCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AlbumCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Album.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AlbumAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AlbumAggregateArgs>(args: Subset<T, AlbumAggregateArgs>): Prisma.PrismaPromise<GetAlbumAggregateType<T>>
+
+    /**
+     * Group by Album.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AlbumGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AlbumGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AlbumGroupByArgs['orderBy'] }
+        : { orderBy?: AlbumGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AlbumGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAlbumGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Album model
+   */
+  readonly fields: AlbumFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Album.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AlbumClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    owner<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    mediaOnAlbum<T extends Album$mediaOnAlbumArgs<ExtArgs> = {}>(args?: Subset<T, Album$mediaOnAlbumArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MediaOnAlbumPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the Album model
+   */ 
+  interface AlbumFieldRefs {
+    readonly id: FieldRef<"Album", 'String'>
+    readonly name: FieldRef<"Album", 'String'>
+    readonly description: FieldRef<"Album", 'String'>
+    readonly userId: FieldRef<"Album", 'Int'>
+    readonly createdAt: FieldRef<"Album", 'DateTime'>
+    readonly updatedAt: FieldRef<"Album", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * Album findUnique
+   */
+  export type AlbumFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Album
+     */
+    select?: AlbumSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AlbumInclude<ExtArgs> | null
+    /**
+     * Filter, which Album to fetch.
+     */
+    where: AlbumWhereUniqueInput
+  }
+
+
+  /**
+   * Album findUniqueOrThrow
+   */
+  export type AlbumFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Album
+     */
+    select?: AlbumSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AlbumInclude<ExtArgs> | null
+    /**
+     * Filter, which Album to fetch.
+     */
+    where: AlbumWhereUniqueInput
+  }
+
+
+  /**
+   * Album findFirst
+   */
+  export type AlbumFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Album
+     */
+    select?: AlbumSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AlbumInclude<ExtArgs> | null
+    /**
+     * Filter, which Album to fetch.
+     */
+    where?: AlbumWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Albums to fetch.
+     */
+    orderBy?: AlbumOrderByWithRelationInput | AlbumOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Albums.
+     */
+    cursor?: AlbumWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Albums from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Albums.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Albums.
+     */
+    distinct?: AlbumScalarFieldEnum | AlbumScalarFieldEnum[]
+  }
+
+
+  /**
+   * Album findFirstOrThrow
+   */
+  export type AlbumFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Album
+     */
+    select?: AlbumSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AlbumInclude<ExtArgs> | null
+    /**
+     * Filter, which Album to fetch.
+     */
+    where?: AlbumWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Albums to fetch.
+     */
+    orderBy?: AlbumOrderByWithRelationInput | AlbumOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Albums.
+     */
+    cursor?: AlbumWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Albums from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Albums.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Albums.
+     */
+    distinct?: AlbumScalarFieldEnum | AlbumScalarFieldEnum[]
+  }
+
+
+  /**
+   * Album findMany
+   */
+  export type AlbumFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Album
+     */
+    select?: AlbumSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AlbumInclude<ExtArgs> | null
+    /**
+     * Filter, which Albums to fetch.
+     */
+    where?: AlbumWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Albums to fetch.
+     */
+    orderBy?: AlbumOrderByWithRelationInput | AlbumOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Albums.
+     */
+    cursor?: AlbumWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Albums from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Albums.
+     */
+    skip?: number
+    distinct?: AlbumScalarFieldEnum | AlbumScalarFieldEnum[]
+  }
+
+
+  /**
+   * Album create
+   */
+  export type AlbumCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Album
+     */
+    select?: AlbumSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AlbumInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Album.
+     */
+    data: XOR<AlbumCreateInput, AlbumUncheckedCreateInput>
+  }
+
+
+  /**
+   * Album createMany
+   */
+  export type AlbumCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Albums.
+     */
+    data: AlbumCreateManyInput | AlbumCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * Album update
+   */
+  export type AlbumUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Album
+     */
+    select?: AlbumSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AlbumInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Album.
+     */
+    data: XOR<AlbumUpdateInput, AlbumUncheckedUpdateInput>
+    /**
+     * Choose, which Album to update.
+     */
+    where: AlbumWhereUniqueInput
+  }
+
+
+  /**
+   * Album updateMany
+   */
+  export type AlbumUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Albums.
+     */
+    data: XOR<AlbumUpdateManyMutationInput, AlbumUncheckedUpdateManyInput>
+    /**
+     * Filter which Albums to update
+     */
+    where?: AlbumWhereInput
+  }
+
+
+  /**
+   * Album upsert
+   */
+  export type AlbumUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Album
+     */
+    select?: AlbumSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AlbumInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Album to update in case it exists.
+     */
+    where: AlbumWhereUniqueInput
+    /**
+     * In case the Album found by the `where` argument doesn't exist, create a new Album with this data.
+     */
+    create: XOR<AlbumCreateInput, AlbumUncheckedCreateInput>
+    /**
+     * In case the Album was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AlbumUpdateInput, AlbumUncheckedUpdateInput>
+  }
+
+
+  /**
+   * Album delete
+   */
+  export type AlbumDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Album
+     */
+    select?: AlbumSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AlbumInclude<ExtArgs> | null
+    /**
+     * Filter which Album to delete.
+     */
+    where: AlbumWhereUniqueInput
+  }
+
+
+  /**
+   * Album deleteMany
+   */
+  export type AlbumDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Albums to delete
+     */
+    where?: AlbumWhereInput
+  }
+
+
+  /**
+   * Album.mediaOnAlbum
+   */
+  export type Album$mediaOnAlbumArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaOnAlbum
+     */
+    select?: MediaOnAlbumSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: MediaOnAlbumInclude<ExtArgs> | null
+    where?: MediaOnAlbumWhereInput
+    orderBy?: MediaOnAlbumOrderByWithRelationInput | MediaOnAlbumOrderByWithRelationInput[]
+    cursor?: MediaOnAlbumWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MediaOnAlbumScalarFieldEnum | MediaOnAlbumScalarFieldEnum[]
+  }
+
+
+  /**
+   * Album without action
+   */
+  export type AlbumDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Album
+     */
+    select?: AlbumSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AlbumInclude<ExtArgs> | null
+  }
+
+
+
+  /**
    * Enums
    */
 
@@ -21406,13 +23624,13 @@ export namespace Prisma {
   export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
 
 
-  export const CategoryOnMediaScalarFieldEnum: {
+  export const MediaOnCategoryScalarFieldEnum: {
     id: 'id',
     categoryId: 'categoryId',
     mediaId: 'mediaId'
   };
 
-  export type CategoryOnMediaScalarFieldEnum = (typeof CategoryOnMediaScalarFieldEnum)[keyof typeof CategoryOnMediaScalarFieldEnum]
+  export type MediaOnCategoryScalarFieldEnum = (typeof MediaOnCategoryScalarFieldEnum)[keyof typeof MediaOnCategoryScalarFieldEnum]
 
 
   export const SessionUploadScalarFieldEnum: {
@@ -21589,6 +23807,29 @@ export namespace Prisma {
   export type PaymentTransactionDetailScalarFieldEnum = (typeof PaymentTransactionDetailScalarFieldEnum)[keyof typeof PaymentTransactionDetailScalarFieldEnum]
 
 
+  export const MediaOnAlbumScalarFieldEnum: {
+    id: 'id',
+    albumId: 'albumId',
+    mediaId: 'mediaId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type MediaOnAlbumScalarFieldEnum = (typeof MediaOnAlbumScalarFieldEnum)[keyof typeof MediaOnAlbumScalarFieldEnum]
+
+
+  export const AlbumScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    description: 'description',
+    userId: 'userId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type AlbumScalarFieldEnum = (typeof AlbumScalarFieldEnum)[keyof typeof AlbumScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -21699,6 +23940,7 @@ export namespace Prisma {
     Comment?: CommentListRelationFilter
     Playlist?: PlaylistListRelationFilter
     UserPaymentMethod?: UserPaymentMethodListRelationFilter
+    Album?: AlbumListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -21721,6 +23963,7 @@ export namespace Prisma {
     Comment?: CommentOrderByRelationAggregateInput
     Playlist?: PlaylistOrderByRelationAggregateInput
     UserPaymentMethod?: UserPaymentMethodOrderByRelationAggregateInput
+    Album?: AlbumOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -21746,6 +23989,7 @@ export namespace Prisma {
     Comment?: CommentListRelationFilter
     Playlist?: PlaylistListRelationFilter
     UserPaymentMethod?: UserPaymentMethodListRelationFilter
+    Album?: AlbumListRelationFilter
   }, "id" | "email" | "username">
 
   export type UserOrderByWithAggregationInput = {
@@ -21847,7 +24091,7 @@ export namespace Prisma {
     name?: StringFilter<"Category"> | string
     createdAt?: DateTimeFilter<"Category"> | Date | string
     updatedAt?: DateTimeFilter<"Category"> | Date | string
-    CategoryOnMedia?: CategoryOnMediaListRelationFilter
+    categoryOnMedia?: MediaOnCategoryListRelationFilter
   }
 
   export type CategoryOrderByWithRelationInput = {
@@ -21855,7 +24099,7 @@ export namespace Prisma {
     name?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    CategoryOnMedia?: CategoryOnMediaOrderByRelationAggregateInput
+    categoryOnMedia?: MediaOnCategoryOrderByRelationAggregateInput
   }
 
   export type CategoryWhereUniqueInput = Prisma.AtLeast<{
@@ -21866,7 +24110,7 @@ export namespace Prisma {
     name?: StringFilter<"Category"> | string
     createdAt?: DateTimeFilter<"Category"> | Date | string
     updatedAt?: DateTimeFilter<"Category"> | Date | string
-    CategoryOnMedia?: CategoryOnMediaListRelationFilter
+    categoryOnMedia?: MediaOnCategoryListRelationFilter
   }, "id">
 
   export type CategoryOrderByWithAggregationInput = {
@@ -21889,18 +24133,18 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"Category"> | Date | string
   }
 
-  export type CategoryOnMediaWhereInput = {
-    AND?: CategoryOnMediaWhereInput | CategoryOnMediaWhereInput[]
-    OR?: CategoryOnMediaWhereInput[]
-    NOT?: CategoryOnMediaWhereInput | CategoryOnMediaWhereInput[]
-    id?: IntFilter<"CategoryOnMedia"> | number
-    categoryId?: StringFilter<"CategoryOnMedia"> | string
-    mediaId?: StringFilter<"CategoryOnMedia"> | string
+  export type MediaOnCategoryWhereInput = {
+    AND?: MediaOnCategoryWhereInput | MediaOnCategoryWhereInput[]
+    OR?: MediaOnCategoryWhereInput[]
+    NOT?: MediaOnCategoryWhereInput | MediaOnCategoryWhereInput[]
+    id?: IntFilter<"MediaOnCategory"> | number
+    categoryId?: StringFilter<"MediaOnCategory"> | string
+    mediaId?: StringFilter<"MediaOnCategory"> | string
     category?: XOR<CategoryRelationFilter, CategoryWhereInput>
     media?: XOR<MediaRelationFilter, MediaWhereInput>
   }
 
-  export type CategoryOnMediaOrderByWithRelationInput = {
+  export type MediaOnCategoryOrderByWithRelationInput = {
     id?: SortOrder
     categoryId?: SortOrder
     mediaId?: SortOrder
@@ -21908,36 +24152,36 @@ export namespace Prisma {
     media?: MediaOrderByWithRelationInput
   }
 
-  export type CategoryOnMediaWhereUniqueInput = Prisma.AtLeast<{
+  export type MediaOnCategoryWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    categoryId_mediaId?: CategoryOnMediaCategoryIdMediaIdCompoundUniqueInput
-    AND?: CategoryOnMediaWhereInput | CategoryOnMediaWhereInput[]
-    OR?: CategoryOnMediaWhereInput[]
-    NOT?: CategoryOnMediaWhereInput | CategoryOnMediaWhereInput[]
-    categoryId?: StringFilter<"CategoryOnMedia"> | string
-    mediaId?: StringFilter<"CategoryOnMedia"> | string
+    categoryId_mediaId?: MediaOnCategoryCategoryIdMediaIdCompoundUniqueInput
+    AND?: MediaOnCategoryWhereInput | MediaOnCategoryWhereInput[]
+    OR?: MediaOnCategoryWhereInput[]
+    NOT?: MediaOnCategoryWhereInput | MediaOnCategoryWhereInput[]
+    categoryId?: StringFilter<"MediaOnCategory"> | string
+    mediaId?: StringFilter<"MediaOnCategory"> | string
     category?: XOR<CategoryRelationFilter, CategoryWhereInput>
     media?: XOR<MediaRelationFilter, MediaWhereInput>
   }, "id" | "categoryId_mediaId">
 
-  export type CategoryOnMediaOrderByWithAggregationInput = {
+  export type MediaOnCategoryOrderByWithAggregationInput = {
     id?: SortOrder
     categoryId?: SortOrder
     mediaId?: SortOrder
-    _count?: CategoryOnMediaCountOrderByAggregateInput
-    _avg?: CategoryOnMediaAvgOrderByAggregateInput
-    _max?: CategoryOnMediaMaxOrderByAggregateInput
-    _min?: CategoryOnMediaMinOrderByAggregateInput
-    _sum?: CategoryOnMediaSumOrderByAggregateInput
+    _count?: MediaOnCategoryCountOrderByAggregateInput
+    _avg?: MediaOnCategoryAvgOrderByAggregateInput
+    _max?: MediaOnCategoryMaxOrderByAggregateInput
+    _min?: MediaOnCategoryMinOrderByAggregateInput
+    _sum?: MediaOnCategorySumOrderByAggregateInput
   }
 
-  export type CategoryOnMediaScalarWhereWithAggregatesInput = {
-    AND?: CategoryOnMediaScalarWhereWithAggregatesInput | CategoryOnMediaScalarWhereWithAggregatesInput[]
-    OR?: CategoryOnMediaScalarWhereWithAggregatesInput[]
-    NOT?: CategoryOnMediaScalarWhereWithAggregatesInput | CategoryOnMediaScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"CategoryOnMedia"> | number
-    categoryId?: StringWithAggregatesFilter<"CategoryOnMedia"> | string
-    mediaId?: StringWithAggregatesFilter<"CategoryOnMedia"> | string
+  export type MediaOnCategoryScalarWhereWithAggregatesInput = {
+    AND?: MediaOnCategoryScalarWhereWithAggregatesInput | MediaOnCategoryScalarWhereWithAggregatesInput[]
+    OR?: MediaOnCategoryScalarWhereWithAggregatesInput[]
+    NOT?: MediaOnCategoryScalarWhereWithAggregatesInput | MediaOnCategoryScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"MediaOnCategory"> | number
+    categoryId?: StringWithAggregatesFilter<"MediaOnCategory"> | string
+    mediaId?: StringWithAggregatesFilter<"MediaOnCategory"> | string
   }
 
   export type SessionUploadWhereInput = {
@@ -22020,12 +24264,13 @@ export namespace Prisma {
     detail?: XOR<MediaDetailNullableRelationFilter, MediaDetailWhereInput> | null
     videoResources?: VideoResourceListRelationFilter
     audioResources?: AudioResourceListRelationFilter
-    MediaReaction?: MediaReactionListRelationFilter
-    History?: HistoryListRelationFilter
-    CategoryOnVideo?: CategoryOnMediaListRelationFilter
-    Comment?: CommentListRelationFilter
-    MediaOnPlaylist?: MediaOnPlaylistListRelationFilter
-    SessionUpload?: SessionUploadListRelationFilter
+    mediaReaction?: MediaReactionListRelationFilter
+    history?: HistoryListRelationFilter
+    mediaOnCategory?: MediaOnCategoryListRelationFilter
+    comment?: CommentListRelationFilter
+    mediaOnPlaylist?: MediaOnPlaylistListRelationFilter
+    sessionUpload?: SessionUploadListRelationFilter
+    mediaOnAlbum?: MediaOnAlbumListRelationFilter
   }
 
   export type MediaOrderByWithRelationInput = {
@@ -22045,12 +24290,13 @@ export namespace Prisma {
     detail?: MediaDetailOrderByWithRelationInput
     videoResources?: VideoResourceOrderByRelationAggregateInput
     audioResources?: AudioResourceOrderByRelationAggregateInput
-    MediaReaction?: MediaReactionOrderByRelationAggregateInput
-    History?: HistoryOrderByRelationAggregateInput
-    CategoryOnVideo?: CategoryOnMediaOrderByRelationAggregateInput
-    Comment?: CommentOrderByRelationAggregateInput
-    MediaOnPlaylist?: MediaOnPlaylistOrderByRelationAggregateInput
-    SessionUpload?: SessionUploadOrderByRelationAggregateInput
+    mediaReaction?: MediaReactionOrderByRelationAggregateInput
+    history?: HistoryOrderByRelationAggregateInput
+    mediaOnCategory?: MediaOnCategoryOrderByRelationAggregateInput
+    comment?: CommentOrderByRelationAggregateInput
+    mediaOnPlaylist?: MediaOnPlaylistOrderByRelationAggregateInput
+    sessionUpload?: SessionUploadOrderByRelationAggregateInput
+    mediaOnAlbum?: MediaOnAlbumOrderByRelationAggregateInput
   }
 
   export type MediaWhereUniqueInput = Prisma.AtLeast<{
@@ -22073,12 +24319,13 @@ export namespace Prisma {
     detail?: XOR<MediaDetailNullableRelationFilter, MediaDetailWhereInput> | null
     videoResources?: VideoResourceListRelationFilter
     audioResources?: AudioResourceListRelationFilter
-    MediaReaction?: MediaReactionListRelationFilter
-    History?: HistoryListRelationFilter
-    CategoryOnVideo?: CategoryOnMediaListRelationFilter
-    Comment?: CommentListRelationFilter
-    MediaOnPlaylist?: MediaOnPlaylistListRelationFilter
-    SessionUpload?: SessionUploadListRelationFilter
+    mediaReaction?: MediaReactionListRelationFilter
+    history?: HistoryListRelationFilter
+    mediaOnCategory?: MediaOnCategoryListRelationFilter
+    comment?: CommentListRelationFilter
+    mediaOnPlaylist?: MediaOnPlaylistListRelationFilter
+    sessionUpload?: SessionUploadListRelationFilter
+    mediaOnAlbum?: MediaOnAlbumListRelationFilter
   }, "id">
 
   export type MediaOrderByWithAggregationInput = {
@@ -22882,6 +25129,132 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"PaymentTransactionDetail"> | Date | string
   }
 
+  export type MediaOnAlbumWhereInput = {
+    AND?: MediaOnAlbumWhereInput | MediaOnAlbumWhereInput[]
+    OR?: MediaOnAlbumWhereInput[]
+    NOT?: MediaOnAlbumWhereInput | MediaOnAlbumWhereInput[]
+    id?: IntFilter<"MediaOnAlbum"> | number
+    albumId?: StringFilter<"MediaOnAlbum"> | string
+    mediaId?: StringFilter<"MediaOnAlbum"> | string
+    createdAt?: DateTimeFilter<"MediaOnAlbum"> | Date | string
+    updatedAt?: DateTimeFilter<"MediaOnAlbum"> | Date | string
+    media?: XOR<MediaRelationFilter, MediaWhereInput>
+    album?: XOR<AlbumRelationFilter, AlbumWhereInput>
+  }
+
+  export type MediaOnAlbumOrderByWithRelationInput = {
+    id?: SortOrder
+    albumId?: SortOrder
+    mediaId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    media?: MediaOrderByWithRelationInput
+    album?: AlbumOrderByWithRelationInput
+  }
+
+  export type MediaOnAlbumWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    mediaId_albumId?: MediaOnAlbumMediaIdAlbumIdCompoundUniqueInput
+    AND?: MediaOnAlbumWhereInput | MediaOnAlbumWhereInput[]
+    OR?: MediaOnAlbumWhereInput[]
+    NOT?: MediaOnAlbumWhereInput | MediaOnAlbumWhereInput[]
+    albumId?: StringFilter<"MediaOnAlbum"> | string
+    mediaId?: StringFilter<"MediaOnAlbum"> | string
+    createdAt?: DateTimeFilter<"MediaOnAlbum"> | Date | string
+    updatedAt?: DateTimeFilter<"MediaOnAlbum"> | Date | string
+    media?: XOR<MediaRelationFilter, MediaWhereInput>
+    album?: XOR<AlbumRelationFilter, AlbumWhereInput>
+  }, "id" | "mediaId_albumId">
+
+  export type MediaOnAlbumOrderByWithAggregationInput = {
+    id?: SortOrder
+    albumId?: SortOrder
+    mediaId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: MediaOnAlbumCountOrderByAggregateInput
+    _avg?: MediaOnAlbumAvgOrderByAggregateInput
+    _max?: MediaOnAlbumMaxOrderByAggregateInput
+    _min?: MediaOnAlbumMinOrderByAggregateInput
+    _sum?: MediaOnAlbumSumOrderByAggregateInput
+  }
+
+  export type MediaOnAlbumScalarWhereWithAggregatesInput = {
+    AND?: MediaOnAlbumScalarWhereWithAggregatesInput | MediaOnAlbumScalarWhereWithAggregatesInput[]
+    OR?: MediaOnAlbumScalarWhereWithAggregatesInput[]
+    NOT?: MediaOnAlbumScalarWhereWithAggregatesInput | MediaOnAlbumScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"MediaOnAlbum"> | number
+    albumId?: StringWithAggregatesFilter<"MediaOnAlbum"> | string
+    mediaId?: StringWithAggregatesFilter<"MediaOnAlbum"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"MediaOnAlbum"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"MediaOnAlbum"> | Date | string
+  }
+
+  export type AlbumWhereInput = {
+    AND?: AlbumWhereInput | AlbumWhereInput[]
+    OR?: AlbumWhereInput[]
+    NOT?: AlbumWhereInput | AlbumWhereInput[]
+    id?: StringFilter<"Album"> | string
+    name?: StringFilter<"Album"> | string
+    description?: StringNullableFilter<"Album"> | string | null
+    userId?: IntFilter<"Album"> | number
+    createdAt?: DateTimeFilter<"Album"> | Date | string
+    updatedAt?: DateTimeFilter<"Album"> | Date | string
+    owner?: XOR<UserRelationFilter, UserWhereInput>
+    mediaOnAlbum?: MediaOnAlbumListRelationFilter
+  }
+
+  export type AlbumOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    owner?: UserOrderByWithRelationInput
+    mediaOnAlbum?: MediaOnAlbumOrderByRelationAggregateInput
+  }
+
+  export type AlbumWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AlbumWhereInput | AlbumWhereInput[]
+    OR?: AlbumWhereInput[]
+    NOT?: AlbumWhereInput | AlbumWhereInput[]
+    name?: StringFilter<"Album"> | string
+    description?: StringNullableFilter<"Album"> | string | null
+    userId?: IntFilter<"Album"> | number
+    createdAt?: DateTimeFilter<"Album"> | Date | string
+    updatedAt?: DateTimeFilter<"Album"> | Date | string
+    owner?: XOR<UserRelationFilter, UserWhereInput>
+    mediaOnAlbum?: MediaOnAlbumListRelationFilter
+  }, "id">
+
+  export type AlbumOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: AlbumCountOrderByAggregateInput
+    _avg?: AlbumAvgOrderByAggregateInput
+    _max?: AlbumMaxOrderByAggregateInput
+    _min?: AlbumMinOrderByAggregateInput
+    _sum?: AlbumSumOrderByAggregateInput
+  }
+
+  export type AlbumScalarWhereWithAggregatesInput = {
+    AND?: AlbumScalarWhereWithAggregatesInput | AlbumScalarWhereWithAggregatesInput[]
+    OR?: AlbumScalarWhereWithAggregatesInput[]
+    NOT?: AlbumScalarWhereWithAggregatesInput | AlbumScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Album"> | string
+    name?: StringWithAggregatesFilter<"Album"> | string
+    description?: StringNullableWithAggregatesFilter<"Album"> | string | null
+    userId?: IntWithAggregatesFilter<"Album"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"Album"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Album"> | Date | string
+  }
+
   export type UserCreateInput = {
     firstName: string
     lastName: string
@@ -22901,6 +25274,7 @@ export namespace Prisma {
     Comment?: CommentCreateNestedManyWithoutUserInput
     Playlist?: PlaylistCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodCreateNestedManyWithoutUserInput
+    Album?: AlbumCreateNestedManyWithoutOwnerInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -22923,6 +25297,7 @@ export namespace Prisma {
     Comment?: CommentUncheckedCreateNestedManyWithoutUserInput
     Playlist?: PlaylistUncheckedCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodUncheckedCreateNestedManyWithoutUserInput
+    Album?: AlbumUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type UserUpdateInput = {
@@ -22944,6 +25319,7 @@ export namespace Prisma {
     Comment?: CommentUpdateManyWithoutUserNestedInput
     Playlist?: PlaylistUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUpdateManyWithoutUserNestedInput
+    Album?: AlbumUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -22966,6 +25342,7 @@ export namespace Prisma {
     Comment?: CommentUncheckedUpdateManyWithoutUserNestedInput
     Playlist?: PlaylistUncheckedUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUncheckedUpdateManyWithoutUserNestedInput
+    Album?: AlbumUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -23063,7 +25440,7 @@ export namespace Prisma {
     name: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    CategoryOnMedia?: CategoryOnMediaCreateNestedManyWithoutCategoryInput
+    categoryOnMedia?: MediaOnCategoryCreateNestedManyWithoutCategoryInput
   }
 
   export type CategoryUncheckedCreateInput = {
@@ -23071,7 +25448,7 @@ export namespace Prisma {
     name: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    CategoryOnMedia?: CategoryOnMediaUncheckedCreateNestedManyWithoutCategoryInput
+    categoryOnMedia?: MediaOnCategoryUncheckedCreateNestedManyWithoutCategoryInput
   }
 
   export type CategoryUpdateInput = {
@@ -23079,7 +25456,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    CategoryOnMedia?: CategoryOnMediaUpdateManyWithoutCategoryNestedInput
+    categoryOnMedia?: MediaOnCategoryUpdateManyWithoutCategoryNestedInput
   }
 
   export type CategoryUncheckedUpdateInput = {
@@ -23087,7 +25464,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    CategoryOnMedia?: CategoryOnMediaUncheckedUpdateManyWithoutCategoryNestedInput
+    categoryOnMedia?: MediaOnCategoryUncheckedUpdateManyWithoutCategoryNestedInput
   }
 
   export type CategoryCreateManyInput = {
@@ -23111,39 +25488,39 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type CategoryOnMediaCreateInput = {
+  export type MediaOnCategoryCreateInput = {
     category: CategoryCreateNestedOneWithoutCategoryOnMediaInput
-    media: MediaCreateNestedOneWithoutCategoryOnVideoInput
+    media: MediaCreateNestedOneWithoutMediaOnCategoryInput
   }
 
-  export type CategoryOnMediaUncheckedCreateInput = {
+  export type MediaOnCategoryUncheckedCreateInput = {
     id?: number
     categoryId: string
     mediaId: string
   }
 
-  export type CategoryOnMediaUpdateInput = {
+  export type MediaOnCategoryUpdateInput = {
     category?: CategoryUpdateOneRequiredWithoutCategoryOnMediaNestedInput
-    media?: MediaUpdateOneRequiredWithoutCategoryOnVideoNestedInput
+    media?: MediaUpdateOneRequiredWithoutMediaOnCategoryNestedInput
   }
 
-  export type CategoryOnMediaUncheckedUpdateInput = {
+  export type MediaOnCategoryUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     categoryId?: StringFieldUpdateOperationsInput | string
     mediaId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type CategoryOnMediaCreateManyInput = {
+  export type MediaOnCategoryCreateManyInput = {
     id?: number
     categoryId: string
     mediaId: string
   }
 
-  export type CategoryOnMediaUpdateManyMutationInput = {
+  export type MediaOnCategoryUpdateManyMutationInput = {
 
   }
 
-  export type CategoryOnMediaUncheckedUpdateManyInput = {
+  export type MediaOnCategoryUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     categoryId?: StringFieldUpdateOperationsInput | string
     mediaId?: StringFieldUpdateOperationsInput | string
@@ -23227,12 +25604,13 @@ export namespace Prisma {
     detail?: MediaDetailCreateNestedOneWithoutMediaInput
     videoResources?: VideoResourceCreateNestedManyWithoutMediaInput
     audioResources?: AudioResourceCreateNestedManyWithoutMediaInput
-    MediaReaction?: MediaReactionCreateNestedManyWithoutMediaInput
-    History?: HistoryCreateNestedManyWithoutMeidaInput
-    CategoryOnVideo?: CategoryOnMediaCreateNestedManyWithoutMediaInput
-    Comment?: CommentCreateNestedManyWithoutMediaInput
-    MediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
-    SessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
+    mediaReaction?: MediaReactionCreateNestedManyWithoutMediaInput
+    history?: HistoryCreateNestedManyWithoutMeidaInput
+    mediaOnCategory?: MediaOnCategoryCreateNestedManyWithoutMediaInput
+    comment?: CommentCreateNestedManyWithoutMediaInput
+    mediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
+    sessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
+    mediaOnAlbum?: MediaOnAlbumCreateNestedManyWithoutMediaInput
   }
 
   export type MediaUncheckedCreateInput = {
@@ -23251,12 +25629,13 @@ export namespace Prisma {
     detail?: MediaDetailUncheckedCreateNestedOneWithoutMediaInput
     videoResources?: VideoResourceUncheckedCreateNestedManyWithoutMediaInput
     audioResources?: AudioResourceUncheckedCreateNestedManyWithoutMediaInput
-    MediaReaction?: MediaReactionUncheckedCreateNestedManyWithoutMediaInput
-    History?: HistoryUncheckedCreateNestedManyWithoutMeidaInput
-    CategoryOnVideo?: CategoryOnMediaUncheckedCreateNestedManyWithoutMediaInput
-    Comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
-    MediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
-    SessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
+    mediaReaction?: MediaReactionUncheckedCreateNestedManyWithoutMediaInput
+    history?: HistoryUncheckedCreateNestedManyWithoutMeidaInput
+    mediaOnCategory?: MediaOnCategoryUncheckedCreateNestedManyWithoutMediaInput
+    comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
+    mediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
+    sessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
+    mediaOnAlbum?: MediaOnAlbumUncheckedCreateNestedManyWithoutMediaInput
   }
 
   export type MediaUpdateInput = {
@@ -23275,12 +25654,13 @@ export namespace Prisma {
     detail?: MediaDetailUpdateOneWithoutMediaNestedInput
     videoResources?: VideoResourceUpdateManyWithoutMediaNestedInput
     audioResources?: AudioResourceUpdateManyWithoutMediaNestedInput
-    MediaReaction?: MediaReactionUpdateManyWithoutMediaNestedInput
-    History?: HistoryUpdateManyWithoutMeidaNestedInput
-    CategoryOnVideo?: CategoryOnMediaUpdateManyWithoutMediaNestedInput
-    Comment?: CommentUpdateManyWithoutMediaNestedInput
-    MediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
-    SessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
+    mediaReaction?: MediaReactionUpdateManyWithoutMediaNestedInput
+    history?: HistoryUpdateManyWithoutMeidaNestedInput
+    mediaOnCategory?: MediaOnCategoryUpdateManyWithoutMediaNestedInput
+    comment?: CommentUpdateManyWithoutMediaNestedInput
+    mediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
+    sessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
+    mediaOnAlbum?: MediaOnAlbumUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaUncheckedUpdateInput = {
@@ -23299,12 +25679,13 @@ export namespace Prisma {
     detail?: MediaDetailUncheckedUpdateOneWithoutMediaNestedInput
     videoResources?: VideoResourceUncheckedUpdateManyWithoutMediaNestedInput
     audioResources?: AudioResourceUncheckedUpdateManyWithoutMediaNestedInput
-    MediaReaction?: MediaReactionUncheckedUpdateManyWithoutMediaNestedInput
-    History?: HistoryUncheckedUpdateManyWithoutMeidaNestedInput
-    CategoryOnVideo?: CategoryOnMediaUncheckedUpdateManyWithoutMediaNestedInput
-    Comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
-    MediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
-    SessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
+    mediaReaction?: MediaReactionUncheckedUpdateManyWithoutMediaNestedInput
+    history?: HistoryUncheckedUpdateManyWithoutMeidaNestedInput
+    mediaOnCategory?: MediaOnCategoryUncheckedUpdateManyWithoutMediaNestedInput
+    comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
+    mediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
+    sessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
+    mediaOnAlbum?: MediaOnAlbumUncheckedUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaCreateManyInput = {
@@ -24060,6 +26441,123 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type MediaOnAlbumCreateInput = {
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    media: MediaCreateNestedOneWithoutMediaOnAlbumInput
+    album: AlbumCreateNestedOneWithoutMediaOnAlbumInput
+  }
+
+  export type MediaOnAlbumUncheckedCreateInput = {
+    id?: number
+    albumId: string
+    mediaId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MediaOnAlbumUpdateInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    media?: MediaUpdateOneRequiredWithoutMediaOnAlbumNestedInput
+    album?: AlbumUpdateOneRequiredWithoutMediaOnAlbumNestedInput
+  }
+
+  export type MediaOnAlbumUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    albumId?: StringFieldUpdateOperationsInput | string
+    mediaId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MediaOnAlbumCreateManyInput = {
+    id?: number
+    albumId: string
+    mediaId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MediaOnAlbumUpdateManyMutationInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MediaOnAlbumUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    albumId?: StringFieldUpdateOperationsInput | string
+    mediaId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AlbumCreateInput = {
+    id?: string
+    name: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    owner: UserCreateNestedOneWithoutAlbumInput
+    mediaOnAlbum?: MediaOnAlbumCreateNestedManyWithoutAlbumInput
+  }
+
+  export type AlbumUncheckedCreateInput = {
+    id?: string
+    name: string
+    description?: string | null
+    userId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    mediaOnAlbum?: MediaOnAlbumUncheckedCreateNestedManyWithoutAlbumInput
+  }
+
+  export type AlbumUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    owner?: UserUpdateOneRequiredWithoutAlbumNestedInput
+    mediaOnAlbum?: MediaOnAlbumUpdateManyWithoutAlbumNestedInput
+  }
+
+  export type AlbumUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    mediaOnAlbum?: MediaOnAlbumUncheckedUpdateManyWithoutAlbumNestedInput
+  }
+
+  export type AlbumCreateManyInput = {
+    id?: string
+    name: string
+    description?: string | null
+    userId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AlbumUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AlbumUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[]
@@ -24169,6 +26667,12 @@ export namespace Prisma {
     none?: UserPaymentMethodWhereInput
   }
 
+  export type AlbumListRelationFilter = {
+    every?: AlbumWhereInput
+    some?: AlbumWhereInput
+    none?: AlbumWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -24203,6 +26707,10 @@ export namespace Prisma {
   }
 
   export type UserPaymentMethodOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type AlbumOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -24387,13 +26895,13 @@ export namespace Prisma {
     _max?: NestedEnumPaymentMethodFilter<$PrismaModel>
   }
 
-  export type CategoryOnMediaListRelationFilter = {
-    every?: CategoryOnMediaWhereInput
-    some?: CategoryOnMediaWhereInput
-    none?: CategoryOnMediaWhereInput
+  export type MediaOnCategoryListRelationFilter = {
+    every?: MediaOnCategoryWhereInput
+    some?: MediaOnCategoryWhereInput
+    none?: MediaOnCategoryWhereInput
   }
 
-  export type CategoryOnMediaOrderByRelationAggregateInput = {
+  export type MediaOnCategoryOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -24428,34 +26936,34 @@ export namespace Prisma {
     isNot?: MediaWhereInput
   }
 
-  export type CategoryOnMediaCategoryIdMediaIdCompoundUniqueInput = {
+  export type MediaOnCategoryCategoryIdMediaIdCompoundUniqueInput = {
     categoryId: string
     mediaId: string
   }
 
-  export type CategoryOnMediaCountOrderByAggregateInput = {
+  export type MediaOnCategoryCountOrderByAggregateInput = {
     id?: SortOrder
     categoryId?: SortOrder
     mediaId?: SortOrder
   }
 
-  export type CategoryOnMediaAvgOrderByAggregateInput = {
+  export type MediaOnCategoryAvgOrderByAggregateInput = {
     id?: SortOrder
   }
 
-  export type CategoryOnMediaMaxOrderByAggregateInput = {
-    id?: SortOrder
-    categoryId?: SortOrder
-    mediaId?: SortOrder
-  }
-
-  export type CategoryOnMediaMinOrderByAggregateInput = {
+  export type MediaOnCategoryMaxOrderByAggregateInput = {
     id?: SortOrder
     categoryId?: SortOrder
     mediaId?: SortOrder
   }
 
-  export type CategoryOnMediaSumOrderByAggregateInput = {
+  export type MediaOnCategoryMinOrderByAggregateInput = {
+    id?: SortOrder
+    categoryId?: SortOrder
+    mediaId?: SortOrder
+  }
+
+  export type MediaOnCategorySumOrderByAggregateInput = {
     id?: SortOrder
   }
 
@@ -24546,6 +27054,12 @@ export namespace Prisma {
     none?: SessionUploadWhereInput
   }
 
+  export type MediaOnAlbumListRelationFilter = {
+    every?: MediaOnAlbumWhereInput
+    some?: MediaOnAlbumWhereInput
+    none?: MediaOnAlbumWhereInput
+  }
+
   export type ThumbnailOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -24563,6 +27077,10 @@ export namespace Prisma {
   }
 
   export type SessionUploadOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type MediaOnAlbumOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -25130,6 +27648,83 @@ export namespace Prisma {
     totalPrice?: SortOrder
   }
 
+  export type AlbumRelationFilter = {
+    is?: AlbumWhereInput
+    isNot?: AlbumWhereInput
+  }
+
+  export type MediaOnAlbumMediaIdAlbumIdCompoundUniqueInput = {
+    mediaId: string
+    albumId: string
+  }
+
+  export type MediaOnAlbumCountOrderByAggregateInput = {
+    id?: SortOrder
+    albumId?: SortOrder
+    mediaId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MediaOnAlbumAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type MediaOnAlbumMaxOrderByAggregateInput = {
+    id?: SortOrder
+    albumId?: SortOrder
+    mediaId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MediaOnAlbumMinOrderByAggregateInput = {
+    id?: SortOrder
+    albumId?: SortOrder
+    mediaId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MediaOnAlbumSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type AlbumCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AlbumAvgOrderByAggregateInput = {
+    userId?: SortOrder
+  }
+
+  export type AlbumMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AlbumMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AlbumSumOrderByAggregateInput = {
+    userId?: SortOrder
+  }
+
   export type MediaCreateNestedManyWithoutOwnerInput = {
     create?: XOR<MediaCreateWithoutOwnerInput, MediaUncheckedCreateWithoutOwnerInput> | MediaCreateWithoutOwnerInput[] | MediaUncheckedCreateWithoutOwnerInput[]
     connectOrCreate?: MediaCreateOrConnectWithoutOwnerInput | MediaCreateOrConnectWithoutOwnerInput[]
@@ -25193,6 +27788,13 @@ export namespace Prisma {
     connect?: UserPaymentMethodWhereUniqueInput | UserPaymentMethodWhereUniqueInput[]
   }
 
+  export type AlbumCreateNestedManyWithoutOwnerInput = {
+    create?: XOR<AlbumCreateWithoutOwnerInput, AlbumUncheckedCreateWithoutOwnerInput> | AlbumCreateWithoutOwnerInput[] | AlbumUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: AlbumCreateOrConnectWithoutOwnerInput | AlbumCreateOrConnectWithoutOwnerInput[]
+    createMany?: AlbumCreateManyOwnerInputEnvelope
+    connect?: AlbumWhereUniqueInput | AlbumWhereUniqueInput[]
+  }
+
   export type MediaUncheckedCreateNestedManyWithoutOwnerInput = {
     create?: XOR<MediaCreateWithoutOwnerInput, MediaUncheckedCreateWithoutOwnerInput> | MediaCreateWithoutOwnerInput[] | MediaUncheckedCreateWithoutOwnerInput[]
     connectOrCreate?: MediaCreateOrConnectWithoutOwnerInput | MediaCreateOrConnectWithoutOwnerInput[]
@@ -25254,6 +27856,13 @@ export namespace Prisma {
     connectOrCreate?: UserPaymentMethodCreateOrConnectWithoutUserInput | UserPaymentMethodCreateOrConnectWithoutUserInput[]
     createMany?: UserPaymentMethodCreateManyUserInputEnvelope
     connect?: UserPaymentMethodWhereUniqueInput | UserPaymentMethodWhereUniqueInput[]
+  }
+
+  export type AlbumUncheckedCreateNestedManyWithoutOwnerInput = {
+    create?: XOR<AlbumCreateWithoutOwnerInput, AlbumUncheckedCreateWithoutOwnerInput> | AlbumCreateWithoutOwnerInput[] | AlbumUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: AlbumCreateOrConnectWithoutOwnerInput | AlbumCreateOrConnectWithoutOwnerInput[]
+    createMany?: AlbumCreateManyOwnerInputEnvelope
+    connect?: AlbumWhereUniqueInput | AlbumWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -25398,6 +28007,20 @@ export namespace Prisma {
     deleteMany?: UserPaymentMethodScalarWhereInput | UserPaymentMethodScalarWhereInput[]
   }
 
+  export type AlbumUpdateManyWithoutOwnerNestedInput = {
+    create?: XOR<AlbumCreateWithoutOwnerInput, AlbumUncheckedCreateWithoutOwnerInput> | AlbumCreateWithoutOwnerInput[] | AlbumUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: AlbumCreateOrConnectWithoutOwnerInput | AlbumCreateOrConnectWithoutOwnerInput[]
+    upsert?: AlbumUpsertWithWhereUniqueWithoutOwnerInput | AlbumUpsertWithWhereUniqueWithoutOwnerInput[]
+    createMany?: AlbumCreateManyOwnerInputEnvelope
+    set?: AlbumWhereUniqueInput | AlbumWhereUniqueInput[]
+    disconnect?: AlbumWhereUniqueInput | AlbumWhereUniqueInput[]
+    delete?: AlbumWhereUniqueInput | AlbumWhereUniqueInput[]
+    connect?: AlbumWhereUniqueInput | AlbumWhereUniqueInput[]
+    update?: AlbumUpdateWithWhereUniqueWithoutOwnerInput | AlbumUpdateWithWhereUniqueWithoutOwnerInput[]
+    updateMany?: AlbumUpdateManyWithWhereWithoutOwnerInput | AlbumUpdateManyWithWhereWithoutOwnerInput[]
+    deleteMany?: AlbumScalarWhereInput | AlbumScalarWhereInput[]
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -25532,6 +28155,20 @@ export namespace Prisma {
     deleteMany?: UserPaymentMethodScalarWhereInput | UserPaymentMethodScalarWhereInput[]
   }
 
+  export type AlbumUncheckedUpdateManyWithoutOwnerNestedInput = {
+    create?: XOR<AlbumCreateWithoutOwnerInput, AlbumUncheckedCreateWithoutOwnerInput> | AlbumCreateWithoutOwnerInput[] | AlbumUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: AlbumCreateOrConnectWithoutOwnerInput | AlbumCreateOrConnectWithoutOwnerInput[]
+    upsert?: AlbumUpsertWithWhereUniqueWithoutOwnerInput | AlbumUpsertWithWhereUniqueWithoutOwnerInput[]
+    createMany?: AlbumCreateManyOwnerInputEnvelope
+    set?: AlbumWhereUniqueInput | AlbumWhereUniqueInput[]
+    disconnect?: AlbumWhereUniqueInput | AlbumWhereUniqueInput[]
+    delete?: AlbumWhereUniqueInput | AlbumWhereUniqueInput[]
+    connect?: AlbumWhereUniqueInput | AlbumWhereUniqueInput[]
+    update?: AlbumUpdateWithWhereUniqueWithoutOwnerInput | AlbumUpdateWithWhereUniqueWithoutOwnerInput[]
+    updateMany?: AlbumUpdateManyWithWhereWithoutOwnerInput | AlbumUpdateManyWithWhereWithoutOwnerInput[]
+    deleteMany?: AlbumScalarWhereInput | AlbumScalarWhereInput[]
+  }
+
   export type UserCreateNestedOneWithoutUserPaymentMethodInput = {
     create?: XOR<UserCreateWithoutUserPaymentMethodInput, UserUncheckedCreateWithoutUserPaymentMethodInput>
     connectOrCreate?: UserCreateOrConnectWithoutUserPaymentMethodInput
@@ -25550,46 +28187,46 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutUserPaymentMethodInput, UserUpdateWithoutUserPaymentMethodInput>, UserUncheckedUpdateWithoutUserPaymentMethodInput>
   }
 
-  export type CategoryOnMediaCreateNestedManyWithoutCategoryInput = {
-    create?: XOR<CategoryOnMediaCreateWithoutCategoryInput, CategoryOnMediaUncheckedCreateWithoutCategoryInput> | CategoryOnMediaCreateWithoutCategoryInput[] | CategoryOnMediaUncheckedCreateWithoutCategoryInput[]
-    connectOrCreate?: CategoryOnMediaCreateOrConnectWithoutCategoryInput | CategoryOnMediaCreateOrConnectWithoutCategoryInput[]
-    createMany?: CategoryOnMediaCreateManyCategoryInputEnvelope
-    connect?: CategoryOnMediaWhereUniqueInput | CategoryOnMediaWhereUniqueInput[]
+  export type MediaOnCategoryCreateNestedManyWithoutCategoryInput = {
+    create?: XOR<MediaOnCategoryCreateWithoutCategoryInput, MediaOnCategoryUncheckedCreateWithoutCategoryInput> | MediaOnCategoryCreateWithoutCategoryInput[] | MediaOnCategoryUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: MediaOnCategoryCreateOrConnectWithoutCategoryInput | MediaOnCategoryCreateOrConnectWithoutCategoryInput[]
+    createMany?: MediaOnCategoryCreateManyCategoryInputEnvelope
+    connect?: MediaOnCategoryWhereUniqueInput | MediaOnCategoryWhereUniqueInput[]
   }
 
-  export type CategoryOnMediaUncheckedCreateNestedManyWithoutCategoryInput = {
-    create?: XOR<CategoryOnMediaCreateWithoutCategoryInput, CategoryOnMediaUncheckedCreateWithoutCategoryInput> | CategoryOnMediaCreateWithoutCategoryInput[] | CategoryOnMediaUncheckedCreateWithoutCategoryInput[]
-    connectOrCreate?: CategoryOnMediaCreateOrConnectWithoutCategoryInput | CategoryOnMediaCreateOrConnectWithoutCategoryInput[]
-    createMany?: CategoryOnMediaCreateManyCategoryInputEnvelope
-    connect?: CategoryOnMediaWhereUniqueInput | CategoryOnMediaWhereUniqueInput[]
+  export type MediaOnCategoryUncheckedCreateNestedManyWithoutCategoryInput = {
+    create?: XOR<MediaOnCategoryCreateWithoutCategoryInput, MediaOnCategoryUncheckedCreateWithoutCategoryInput> | MediaOnCategoryCreateWithoutCategoryInput[] | MediaOnCategoryUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: MediaOnCategoryCreateOrConnectWithoutCategoryInput | MediaOnCategoryCreateOrConnectWithoutCategoryInput[]
+    createMany?: MediaOnCategoryCreateManyCategoryInputEnvelope
+    connect?: MediaOnCategoryWhereUniqueInput | MediaOnCategoryWhereUniqueInput[]
   }
 
-  export type CategoryOnMediaUpdateManyWithoutCategoryNestedInput = {
-    create?: XOR<CategoryOnMediaCreateWithoutCategoryInput, CategoryOnMediaUncheckedCreateWithoutCategoryInput> | CategoryOnMediaCreateWithoutCategoryInput[] | CategoryOnMediaUncheckedCreateWithoutCategoryInput[]
-    connectOrCreate?: CategoryOnMediaCreateOrConnectWithoutCategoryInput | CategoryOnMediaCreateOrConnectWithoutCategoryInput[]
-    upsert?: CategoryOnMediaUpsertWithWhereUniqueWithoutCategoryInput | CategoryOnMediaUpsertWithWhereUniqueWithoutCategoryInput[]
-    createMany?: CategoryOnMediaCreateManyCategoryInputEnvelope
-    set?: CategoryOnMediaWhereUniqueInput | CategoryOnMediaWhereUniqueInput[]
-    disconnect?: CategoryOnMediaWhereUniqueInput | CategoryOnMediaWhereUniqueInput[]
-    delete?: CategoryOnMediaWhereUniqueInput | CategoryOnMediaWhereUniqueInput[]
-    connect?: CategoryOnMediaWhereUniqueInput | CategoryOnMediaWhereUniqueInput[]
-    update?: CategoryOnMediaUpdateWithWhereUniqueWithoutCategoryInput | CategoryOnMediaUpdateWithWhereUniqueWithoutCategoryInput[]
-    updateMany?: CategoryOnMediaUpdateManyWithWhereWithoutCategoryInput | CategoryOnMediaUpdateManyWithWhereWithoutCategoryInput[]
-    deleteMany?: CategoryOnMediaScalarWhereInput | CategoryOnMediaScalarWhereInput[]
+  export type MediaOnCategoryUpdateManyWithoutCategoryNestedInput = {
+    create?: XOR<MediaOnCategoryCreateWithoutCategoryInput, MediaOnCategoryUncheckedCreateWithoutCategoryInput> | MediaOnCategoryCreateWithoutCategoryInput[] | MediaOnCategoryUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: MediaOnCategoryCreateOrConnectWithoutCategoryInput | MediaOnCategoryCreateOrConnectWithoutCategoryInput[]
+    upsert?: MediaOnCategoryUpsertWithWhereUniqueWithoutCategoryInput | MediaOnCategoryUpsertWithWhereUniqueWithoutCategoryInput[]
+    createMany?: MediaOnCategoryCreateManyCategoryInputEnvelope
+    set?: MediaOnCategoryWhereUniqueInput | MediaOnCategoryWhereUniqueInput[]
+    disconnect?: MediaOnCategoryWhereUniqueInput | MediaOnCategoryWhereUniqueInput[]
+    delete?: MediaOnCategoryWhereUniqueInput | MediaOnCategoryWhereUniqueInput[]
+    connect?: MediaOnCategoryWhereUniqueInput | MediaOnCategoryWhereUniqueInput[]
+    update?: MediaOnCategoryUpdateWithWhereUniqueWithoutCategoryInput | MediaOnCategoryUpdateWithWhereUniqueWithoutCategoryInput[]
+    updateMany?: MediaOnCategoryUpdateManyWithWhereWithoutCategoryInput | MediaOnCategoryUpdateManyWithWhereWithoutCategoryInput[]
+    deleteMany?: MediaOnCategoryScalarWhereInput | MediaOnCategoryScalarWhereInput[]
   }
 
-  export type CategoryOnMediaUncheckedUpdateManyWithoutCategoryNestedInput = {
-    create?: XOR<CategoryOnMediaCreateWithoutCategoryInput, CategoryOnMediaUncheckedCreateWithoutCategoryInput> | CategoryOnMediaCreateWithoutCategoryInput[] | CategoryOnMediaUncheckedCreateWithoutCategoryInput[]
-    connectOrCreate?: CategoryOnMediaCreateOrConnectWithoutCategoryInput | CategoryOnMediaCreateOrConnectWithoutCategoryInput[]
-    upsert?: CategoryOnMediaUpsertWithWhereUniqueWithoutCategoryInput | CategoryOnMediaUpsertWithWhereUniqueWithoutCategoryInput[]
-    createMany?: CategoryOnMediaCreateManyCategoryInputEnvelope
-    set?: CategoryOnMediaWhereUniqueInput | CategoryOnMediaWhereUniqueInput[]
-    disconnect?: CategoryOnMediaWhereUniqueInput | CategoryOnMediaWhereUniqueInput[]
-    delete?: CategoryOnMediaWhereUniqueInput | CategoryOnMediaWhereUniqueInput[]
-    connect?: CategoryOnMediaWhereUniqueInput | CategoryOnMediaWhereUniqueInput[]
-    update?: CategoryOnMediaUpdateWithWhereUniqueWithoutCategoryInput | CategoryOnMediaUpdateWithWhereUniqueWithoutCategoryInput[]
-    updateMany?: CategoryOnMediaUpdateManyWithWhereWithoutCategoryInput | CategoryOnMediaUpdateManyWithWhereWithoutCategoryInput[]
-    deleteMany?: CategoryOnMediaScalarWhereInput | CategoryOnMediaScalarWhereInput[]
+  export type MediaOnCategoryUncheckedUpdateManyWithoutCategoryNestedInput = {
+    create?: XOR<MediaOnCategoryCreateWithoutCategoryInput, MediaOnCategoryUncheckedCreateWithoutCategoryInput> | MediaOnCategoryCreateWithoutCategoryInput[] | MediaOnCategoryUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: MediaOnCategoryCreateOrConnectWithoutCategoryInput | MediaOnCategoryCreateOrConnectWithoutCategoryInput[]
+    upsert?: MediaOnCategoryUpsertWithWhereUniqueWithoutCategoryInput | MediaOnCategoryUpsertWithWhereUniqueWithoutCategoryInput[]
+    createMany?: MediaOnCategoryCreateManyCategoryInputEnvelope
+    set?: MediaOnCategoryWhereUniqueInput | MediaOnCategoryWhereUniqueInput[]
+    disconnect?: MediaOnCategoryWhereUniqueInput | MediaOnCategoryWhereUniqueInput[]
+    delete?: MediaOnCategoryWhereUniqueInput | MediaOnCategoryWhereUniqueInput[]
+    connect?: MediaOnCategoryWhereUniqueInput | MediaOnCategoryWhereUniqueInput[]
+    update?: MediaOnCategoryUpdateWithWhereUniqueWithoutCategoryInput | MediaOnCategoryUpdateWithWhereUniqueWithoutCategoryInput[]
+    updateMany?: MediaOnCategoryUpdateManyWithWhereWithoutCategoryInput | MediaOnCategoryUpdateManyWithWhereWithoutCategoryInput[]
+    deleteMany?: MediaOnCategoryScalarWhereInput | MediaOnCategoryScalarWhereInput[]
   }
 
   export type CategoryCreateNestedOneWithoutCategoryOnMediaInput = {
@@ -25598,9 +28235,9 @@ export namespace Prisma {
     connect?: CategoryWhereUniqueInput
   }
 
-  export type MediaCreateNestedOneWithoutCategoryOnVideoInput = {
-    create?: XOR<MediaCreateWithoutCategoryOnVideoInput, MediaUncheckedCreateWithoutCategoryOnVideoInput>
-    connectOrCreate?: MediaCreateOrConnectWithoutCategoryOnVideoInput
+  export type MediaCreateNestedOneWithoutMediaOnCategoryInput = {
+    create?: XOR<MediaCreateWithoutMediaOnCategoryInput, MediaUncheckedCreateWithoutMediaOnCategoryInput>
+    connectOrCreate?: MediaCreateOrConnectWithoutMediaOnCategoryInput
     connect?: MediaWhereUniqueInput
   }
 
@@ -25612,12 +28249,12 @@ export namespace Prisma {
     update?: XOR<XOR<CategoryUpdateToOneWithWhereWithoutCategoryOnMediaInput, CategoryUpdateWithoutCategoryOnMediaInput>, CategoryUncheckedUpdateWithoutCategoryOnMediaInput>
   }
 
-  export type MediaUpdateOneRequiredWithoutCategoryOnVideoNestedInput = {
-    create?: XOR<MediaCreateWithoutCategoryOnVideoInput, MediaUncheckedCreateWithoutCategoryOnVideoInput>
-    connectOrCreate?: MediaCreateOrConnectWithoutCategoryOnVideoInput
-    upsert?: MediaUpsertWithoutCategoryOnVideoInput
+  export type MediaUpdateOneRequiredWithoutMediaOnCategoryNestedInput = {
+    create?: XOR<MediaCreateWithoutMediaOnCategoryInput, MediaUncheckedCreateWithoutMediaOnCategoryInput>
+    connectOrCreate?: MediaCreateOrConnectWithoutMediaOnCategoryInput
+    upsert?: MediaUpsertWithoutMediaOnCategoryInput
     connect?: MediaWhereUniqueInput
-    update?: XOR<XOR<MediaUpdateToOneWithWhereWithoutCategoryOnVideoInput, MediaUpdateWithoutCategoryOnVideoInput>, MediaUncheckedUpdateWithoutCategoryOnVideoInput>
+    update?: XOR<XOR<MediaUpdateToOneWithWhereWithoutMediaOnCategoryInput, MediaUpdateWithoutMediaOnCategoryInput>, MediaUncheckedUpdateWithoutMediaOnCategoryInput>
   }
 
   export type MediaCreateNestedOneWithoutSessionUploadInput = {
@@ -25681,11 +28318,11 @@ export namespace Prisma {
     connect?: HistoryWhereUniqueInput | HistoryWhereUniqueInput[]
   }
 
-  export type CategoryOnMediaCreateNestedManyWithoutMediaInput = {
-    create?: XOR<CategoryOnMediaCreateWithoutMediaInput, CategoryOnMediaUncheckedCreateWithoutMediaInput> | CategoryOnMediaCreateWithoutMediaInput[] | CategoryOnMediaUncheckedCreateWithoutMediaInput[]
-    connectOrCreate?: CategoryOnMediaCreateOrConnectWithoutMediaInput | CategoryOnMediaCreateOrConnectWithoutMediaInput[]
-    createMany?: CategoryOnMediaCreateManyMediaInputEnvelope
-    connect?: CategoryOnMediaWhereUniqueInput | CategoryOnMediaWhereUniqueInput[]
+  export type MediaOnCategoryCreateNestedManyWithoutMediaInput = {
+    create?: XOR<MediaOnCategoryCreateWithoutMediaInput, MediaOnCategoryUncheckedCreateWithoutMediaInput> | MediaOnCategoryCreateWithoutMediaInput[] | MediaOnCategoryUncheckedCreateWithoutMediaInput[]
+    connectOrCreate?: MediaOnCategoryCreateOrConnectWithoutMediaInput | MediaOnCategoryCreateOrConnectWithoutMediaInput[]
+    createMany?: MediaOnCategoryCreateManyMediaInputEnvelope
+    connect?: MediaOnCategoryWhereUniqueInput | MediaOnCategoryWhereUniqueInput[]
   }
 
   export type CommentCreateNestedManyWithoutMediaInput = {
@@ -25707,6 +28344,13 @@ export namespace Prisma {
     connectOrCreate?: SessionUploadCreateOrConnectWithoutMediaInput | SessionUploadCreateOrConnectWithoutMediaInput[]
     createMany?: SessionUploadCreateManyMediaInputEnvelope
     connect?: SessionUploadWhereUniqueInput | SessionUploadWhereUniqueInput[]
+  }
+
+  export type MediaOnAlbumCreateNestedManyWithoutMediaInput = {
+    create?: XOR<MediaOnAlbumCreateWithoutMediaInput, MediaOnAlbumUncheckedCreateWithoutMediaInput> | MediaOnAlbumCreateWithoutMediaInput[] | MediaOnAlbumUncheckedCreateWithoutMediaInput[]
+    connectOrCreate?: MediaOnAlbumCreateOrConnectWithoutMediaInput | MediaOnAlbumCreateOrConnectWithoutMediaInput[]
+    createMany?: MediaOnAlbumCreateManyMediaInputEnvelope
+    connect?: MediaOnAlbumWhereUniqueInput | MediaOnAlbumWhereUniqueInput[]
   }
 
   export type ThumbnailUncheckedCreateNestedManyWithoutMediaInput = {
@@ -25750,11 +28394,11 @@ export namespace Prisma {
     connect?: HistoryWhereUniqueInput | HistoryWhereUniqueInput[]
   }
 
-  export type CategoryOnMediaUncheckedCreateNestedManyWithoutMediaInput = {
-    create?: XOR<CategoryOnMediaCreateWithoutMediaInput, CategoryOnMediaUncheckedCreateWithoutMediaInput> | CategoryOnMediaCreateWithoutMediaInput[] | CategoryOnMediaUncheckedCreateWithoutMediaInput[]
-    connectOrCreate?: CategoryOnMediaCreateOrConnectWithoutMediaInput | CategoryOnMediaCreateOrConnectWithoutMediaInput[]
-    createMany?: CategoryOnMediaCreateManyMediaInputEnvelope
-    connect?: CategoryOnMediaWhereUniqueInput | CategoryOnMediaWhereUniqueInput[]
+  export type MediaOnCategoryUncheckedCreateNestedManyWithoutMediaInput = {
+    create?: XOR<MediaOnCategoryCreateWithoutMediaInput, MediaOnCategoryUncheckedCreateWithoutMediaInput> | MediaOnCategoryCreateWithoutMediaInput[] | MediaOnCategoryUncheckedCreateWithoutMediaInput[]
+    connectOrCreate?: MediaOnCategoryCreateOrConnectWithoutMediaInput | MediaOnCategoryCreateOrConnectWithoutMediaInput[]
+    createMany?: MediaOnCategoryCreateManyMediaInputEnvelope
+    connect?: MediaOnCategoryWhereUniqueInput | MediaOnCategoryWhereUniqueInput[]
   }
 
   export type CommentUncheckedCreateNestedManyWithoutMediaInput = {
@@ -25776,6 +28420,13 @@ export namespace Prisma {
     connectOrCreate?: SessionUploadCreateOrConnectWithoutMediaInput | SessionUploadCreateOrConnectWithoutMediaInput[]
     createMany?: SessionUploadCreateManyMediaInputEnvelope
     connect?: SessionUploadWhereUniqueInput | SessionUploadWhereUniqueInput[]
+  }
+
+  export type MediaOnAlbumUncheckedCreateNestedManyWithoutMediaInput = {
+    create?: XOR<MediaOnAlbumCreateWithoutMediaInput, MediaOnAlbumUncheckedCreateWithoutMediaInput> | MediaOnAlbumCreateWithoutMediaInput[] | MediaOnAlbumUncheckedCreateWithoutMediaInput[]
+    connectOrCreate?: MediaOnAlbumCreateOrConnectWithoutMediaInput | MediaOnAlbumCreateOrConnectWithoutMediaInput[]
+    createMany?: MediaOnAlbumCreateManyMediaInputEnvelope
+    connect?: MediaOnAlbumWhereUniqueInput | MediaOnAlbumWhereUniqueInput[]
   }
 
   export type FloatFieldUpdateOperationsInput = {
@@ -25882,18 +28533,18 @@ export namespace Prisma {
     deleteMany?: HistoryScalarWhereInput | HistoryScalarWhereInput[]
   }
 
-  export type CategoryOnMediaUpdateManyWithoutMediaNestedInput = {
-    create?: XOR<CategoryOnMediaCreateWithoutMediaInput, CategoryOnMediaUncheckedCreateWithoutMediaInput> | CategoryOnMediaCreateWithoutMediaInput[] | CategoryOnMediaUncheckedCreateWithoutMediaInput[]
-    connectOrCreate?: CategoryOnMediaCreateOrConnectWithoutMediaInput | CategoryOnMediaCreateOrConnectWithoutMediaInput[]
-    upsert?: CategoryOnMediaUpsertWithWhereUniqueWithoutMediaInput | CategoryOnMediaUpsertWithWhereUniqueWithoutMediaInput[]
-    createMany?: CategoryOnMediaCreateManyMediaInputEnvelope
-    set?: CategoryOnMediaWhereUniqueInput | CategoryOnMediaWhereUniqueInput[]
-    disconnect?: CategoryOnMediaWhereUniqueInput | CategoryOnMediaWhereUniqueInput[]
-    delete?: CategoryOnMediaWhereUniqueInput | CategoryOnMediaWhereUniqueInput[]
-    connect?: CategoryOnMediaWhereUniqueInput | CategoryOnMediaWhereUniqueInput[]
-    update?: CategoryOnMediaUpdateWithWhereUniqueWithoutMediaInput | CategoryOnMediaUpdateWithWhereUniqueWithoutMediaInput[]
-    updateMany?: CategoryOnMediaUpdateManyWithWhereWithoutMediaInput | CategoryOnMediaUpdateManyWithWhereWithoutMediaInput[]
-    deleteMany?: CategoryOnMediaScalarWhereInput | CategoryOnMediaScalarWhereInput[]
+  export type MediaOnCategoryUpdateManyWithoutMediaNestedInput = {
+    create?: XOR<MediaOnCategoryCreateWithoutMediaInput, MediaOnCategoryUncheckedCreateWithoutMediaInput> | MediaOnCategoryCreateWithoutMediaInput[] | MediaOnCategoryUncheckedCreateWithoutMediaInput[]
+    connectOrCreate?: MediaOnCategoryCreateOrConnectWithoutMediaInput | MediaOnCategoryCreateOrConnectWithoutMediaInput[]
+    upsert?: MediaOnCategoryUpsertWithWhereUniqueWithoutMediaInput | MediaOnCategoryUpsertWithWhereUniqueWithoutMediaInput[]
+    createMany?: MediaOnCategoryCreateManyMediaInputEnvelope
+    set?: MediaOnCategoryWhereUniqueInput | MediaOnCategoryWhereUniqueInput[]
+    disconnect?: MediaOnCategoryWhereUniqueInput | MediaOnCategoryWhereUniqueInput[]
+    delete?: MediaOnCategoryWhereUniqueInput | MediaOnCategoryWhereUniqueInput[]
+    connect?: MediaOnCategoryWhereUniqueInput | MediaOnCategoryWhereUniqueInput[]
+    update?: MediaOnCategoryUpdateWithWhereUniqueWithoutMediaInput | MediaOnCategoryUpdateWithWhereUniqueWithoutMediaInput[]
+    updateMany?: MediaOnCategoryUpdateManyWithWhereWithoutMediaInput | MediaOnCategoryUpdateManyWithWhereWithoutMediaInput[]
+    deleteMany?: MediaOnCategoryScalarWhereInput | MediaOnCategoryScalarWhereInput[]
   }
 
   export type CommentUpdateManyWithoutMediaNestedInput = {
@@ -25936,6 +28587,20 @@ export namespace Prisma {
     update?: SessionUploadUpdateWithWhereUniqueWithoutMediaInput | SessionUploadUpdateWithWhereUniqueWithoutMediaInput[]
     updateMany?: SessionUploadUpdateManyWithWhereWithoutMediaInput | SessionUploadUpdateManyWithWhereWithoutMediaInput[]
     deleteMany?: SessionUploadScalarWhereInput | SessionUploadScalarWhereInput[]
+  }
+
+  export type MediaOnAlbumUpdateManyWithoutMediaNestedInput = {
+    create?: XOR<MediaOnAlbumCreateWithoutMediaInput, MediaOnAlbumUncheckedCreateWithoutMediaInput> | MediaOnAlbumCreateWithoutMediaInput[] | MediaOnAlbumUncheckedCreateWithoutMediaInput[]
+    connectOrCreate?: MediaOnAlbumCreateOrConnectWithoutMediaInput | MediaOnAlbumCreateOrConnectWithoutMediaInput[]
+    upsert?: MediaOnAlbumUpsertWithWhereUniqueWithoutMediaInput | MediaOnAlbumUpsertWithWhereUniqueWithoutMediaInput[]
+    createMany?: MediaOnAlbumCreateManyMediaInputEnvelope
+    set?: MediaOnAlbumWhereUniqueInput | MediaOnAlbumWhereUniqueInput[]
+    disconnect?: MediaOnAlbumWhereUniqueInput | MediaOnAlbumWhereUniqueInput[]
+    delete?: MediaOnAlbumWhereUniqueInput | MediaOnAlbumWhereUniqueInput[]
+    connect?: MediaOnAlbumWhereUniqueInput | MediaOnAlbumWhereUniqueInput[]
+    update?: MediaOnAlbumUpdateWithWhereUniqueWithoutMediaInput | MediaOnAlbumUpdateWithWhereUniqueWithoutMediaInput[]
+    updateMany?: MediaOnAlbumUpdateManyWithWhereWithoutMediaInput | MediaOnAlbumUpdateManyWithWhereWithoutMediaInput[]
+    deleteMany?: MediaOnAlbumScalarWhereInput | MediaOnAlbumScalarWhereInput[]
   }
 
   export type ThumbnailUncheckedUpdateManyWithoutMediaNestedInput = {
@@ -26018,18 +28683,18 @@ export namespace Prisma {
     deleteMany?: HistoryScalarWhereInput | HistoryScalarWhereInput[]
   }
 
-  export type CategoryOnMediaUncheckedUpdateManyWithoutMediaNestedInput = {
-    create?: XOR<CategoryOnMediaCreateWithoutMediaInput, CategoryOnMediaUncheckedCreateWithoutMediaInput> | CategoryOnMediaCreateWithoutMediaInput[] | CategoryOnMediaUncheckedCreateWithoutMediaInput[]
-    connectOrCreate?: CategoryOnMediaCreateOrConnectWithoutMediaInput | CategoryOnMediaCreateOrConnectWithoutMediaInput[]
-    upsert?: CategoryOnMediaUpsertWithWhereUniqueWithoutMediaInput | CategoryOnMediaUpsertWithWhereUniqueWithoutMediaInput[]
-    createMany?: CategoryOnMediaCreateManyMediaInputEnvelope
-    set?: CategoryOnMediaWhereUniqueInput | CategoryOnMediaWhereUniqueInput[]
-    disconnect?: CategoryOnMediaWhereUniqueInput | CategoryOnMediaWhereUniqueInput[]
-    delete?: CategoryOnMediaWhereUniqueInput | CategoryOnMediaWhereUniqueInput[]
-    connect?: CategoryOnMediaWhereUniqueInput | CategoryOnMediaWhereUniqueInput[]
-    update?: CategoryOnMediaUpdateWithWhereUniqueWithoutMediaInput | CategoryOnMediaUpdateWithWhereUniqueWithoutMediaInput[]
-    updateMany?: CategoryOnMediaUpdateManyWithWhereWithoutMediaInput | CategoryOnMediaUpdateManyWithWhereWithoutMediaInput[]
-    deleteMany?: CategoryOnMediaScalarWhereInput | CategoryOnMediaScalarWhereInput[]
+  export type MediaOnCategoryUncheckedUpdateManyWithoutMediaNestedInput = {
+    create?: XOR<MediaOnCategoryCreateWithoutMediaInput, MediaOnCategoryUncheckedCreateWithoutMediaInput> | MediaOnCategoryCreateWithoutMediaInput[] | MediaOnCategoryUncheckedCreateWithoutMediaInput[]
+    connectOrCreate?: MediaOnCategoryCreateOrConnectWithoutMediaInput | MediaOnCategoryCreateOrConnectWithoutMediaInput[]
+    upsert?: MediaOnCategoryUpsertWithWhereUniqueWithoutMediaInput | MediaOnCategoryUpsertWithWhereUniqueWithoutMediaInput[]
+    createMany?: MediaOnCategoryCreateManyMediaInputEnvelope
+    set?: MediaOnCategoryWhereUniqueInput | MediaOnCategoryWhereUniqueInput[]
+    disconnect?: MediaOnCategoryWhereUniqueInput | MediaOnCategoryWhereUniqueInput[]
+    delete?: MediaOnCategoryWhereUniqueInput | MediaOnCategoryWhereUniqueInput[]
+    connect?: MediaOnCategoryWhereUniqueInput | MediaOnCategoryWhereUniqueInput[]
+    update?: MediaOnCategoryUpdateWithWhereUniqueWithoutMediaInput | MediaOnCategoryUpdateWithWhereUniqueWithoutMediaInput[]
+    updateMany?: MediaOnCategoryUpdateManyWithWhereWithoutMediaInput | MediaOnCategoryUpdateManyWithWhereWithoutMediaInput[]
+    deleteMany?: MediaOnCategoryScalarWhereInput | MediaOnCategoryScalarWhereInput[]
   }
 
   export type CommentUncheckedUpdateManyWithoutMediaNestedInput = {
@@ -26072,6 +28737,20 @@ export namespace Prisma {
     update?: SessionUploadUpdateWithWhereUniqueWithoutMediaInput | SessionUploadUpdateWithWhereUniqueWithoutMediaInput[]
     updateMany?: SessionUploadUpdateManyWithWhereWithoutMediaInput | SessionUploadUpdateManyWithWhereWithoutMediaInput[]
     deleteMany?: SessionUploadScalarWhereInput | SessionUploadScalarWhereInput[]
+  }
+
+  export type MediaOnAlbumUncheckedUpdateManyWithoutMediaNestedInput = {
+    create?: XOR<MediaOnAlbumCreateWithoutMediaInput, MediaOnAlbumUncheckedCreateWithoutMediaInput> | MediaOnAlbumCreateWithoutMediaInput[] | MediaOnAlbumUncheckedCreateWithoutMediaInput[]
+    connectOrCreate?: MediaOnAlbumCreateOrConnectWithoutMediaInput | MediaOnAlbumCreateOrConnectWithoutMediaInput[]
+    upsert?: MediaOnAlbumUpsertWithWhereUniqueWithoutMediaInput | MediaOnAlbumUpsertWithWhereUniqueWithoutMediaInput[]
+    createMany?: MediaOnAlbumCreateManyMediaInputEnvelope
+    set?: MediaOnAlbumWhereUniqueInput | MediaOnAlbumWhereUniqueInput[]
+    disconnect?: MediaOnAlbumWhereUniqueInput | MediaOnAlbumWhereUniqueInput[]
+    delete?: MediaOnAlbumWhereUniqueInput | MediaOnAlbumWhereUniqueInput[]
+    connect?: MediaOnAlbumWhereUniqueInput | MediaOnAlbumWhereUniqueInput[]
+    update?: MediaOnAlbumUpdateWithWhereUniqueWithoutMediaInput | MediaOnAlbumUpdateWithWhereUniqueWithoutMediaInput[]
+    updateMany?: MediaOnAlbumUpdateManyWithWhereWithoutMediaInput | MediaOnAlbumUpdateManyWithWhereWithoutMediaInput[]
+    deleteMany?: MediaOnAlbumScalarWhereInput | MediaOnAlbumScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutMediaReactionsInput = {
@@ -26404,6 +29083,90 @@ export namespace Prisma {
     update?: XOR<XOR<PaymentTransactionUpdateToOneWithWhereWithoutPaymentTransactionDetailInput, PaymentTransactionUpdateWithoutPaymentTransactionDetailInput>, PaymentTransactionUncheckedUpdateWithoutPaymentTransactionDetailInput>
   }
 
+  export type MediaCreateNestedOneWithoutMediaOnAlbumInput = {
+    create?: XOR<MediaCreateWithoutMediaOnAlbumInput, MediaUncheckedCreateWithoutMediaOnAlbumInput>
+    connectOrCreate?: MediaCreateOrConnectWithoutMediaOnAlbumInput
+    connect?: MediaWhereUniqueInput
+  }
+
+  export type AlbumCreateNestedOneWithoutMediaOnAlbumInput = {
+    create?: XOR<AlbumCreateWithoutMediaOnAlbumInput, AlbumUncheckedCreateWithoutMediaOnAlbumInput>
+    connectOrCreate?: AlbumCreateOrConnectWithoutMediaOnAlbumInput
+    connect?: AlbumWhereUniqueInput
+  }
+
+  export type MediaUpdateOneRequiredWithoutMediaOnAlbumNestedInput = {
+    create?: XOR<MediaCreateWithoutMediaOnAlbumInput, MediaUncheckedCreateWithoutMediaOnAlbumInput>
+    connectOrCreate?: MediaCreateOrConnectWithoutMediaOnAlbumInput
+    upsert?: MediaUpsertWithoutMediaOnAlbumInput
+    connect?: MediaWhereUniqueInput
+    update?: XOR<XOR<MediaUpdateToOneWithWhereWithoutMediaOnAlbumInput, MediaUpdateWithoutMediaOnAlbumInput>, MediaUncheckedUpdateWithoutMediaOnAlbumInput>
+  }
+
+  export type AlbumUpdateOneRequiredWithoutMediaOnAlbumNestedInput = {
+    create?: XOR<AlbumCreateWithoutMediaOnAlbumInput, AlbumUncheckedCreateWithoutMediaOnAlbumInput>
+    connectOrCreate?: AlbumCreateOrConnectWithoutMediaOnAlbumInput
+    upsert?: AlbumUpsertWithoutMediaOnAlbumInput
+    connect?: AlbumWhereUniqueInput
+    update?: XOR<XOR<AlbumUpdateToOneWithWhereWithoutMediaOnAlbumInput, AlbumUpdateWithoutMediaOnAlbumInput>, AlbumUncheckedUpdateWithoutMediaOnAlbumInput>
+  }
+
+  export type UserCreateNestedOneWithoutAlbumInput = {
+    create?: XOR<UserCreateWithoutAlbumInput, UserUncheckedCreateWithoutAlbumInput>
+    connectOrCreate?: UserCreateOrConnectWithoutAlbumInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type MediaOnAlbumCreateNestedManyWithoutAlbumInput = {
+    create?: XOR<MediaOnAlbumCreateWithoutAlbumInput, MediaOnAlbumUncheckedCreateWithoutAlbumInput> | MediaOnAlbumCreateWithoutAlbumInput[] | MediaOnAlbumUncheckedCreateWithoutAlbumInput[]
+    connectOrCreate?: MediaOnAlbumCreateOrConnectWithoutAlbumInput | MediaOnAlbumCreateOrConnectWithoutAlbumInput[]
+    createMany?: MediaOnAlbumCreateManyAlbumInputEnvelope
+    connect?: MediaOnAlbumWhereUniqueInput | MediaOnAlbumWhereUniqueInput[]
+  }
+
+  export type MediaOnAlbumUncheckedCreateNestedManyWithoutAlbumInput = {
+    create?: XOR<MediaOnAlbumCreateWithoutAlbumInput, MediaOnAlbumUncheckedCreateWithoutAlbumInput> | MediaOnAlbumCreateWithoutAlbumInput[] | MediaOnAlbumUncheckedCreateWithoutAlbumInput[]
+    connectOrCreate?: MediaOnAlbumCreateOrConnectWithoutAlbumInput | MediaOnAlbumCreateOrConnectWithoutAlbumInput[]
+    createMany?: MediaOnAlbumCreateManyAlbumInputEnvelope
+    connect?: MediaOnAlbumWhereUniqueInput | MediaOnAlbumWhereUniqueInput[]
+  }
+
+  export type UserUpdateOneRequiredWithoutAlbumNestedInput = {
+    create?: XOR<UserCreateWithoutAlbumInput, UserUncheckedCreateWithoutAlbumInput>
+    connectOrCreate?: UserCreateOrConnectWithoutAlbumInput
+    upsert?: UserUpsertWithoutAlbumInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutAlbumInput, UserUpdateWithoutAlbumInput>, UserUncheckedUpdateWithoutAlbumInput>
+  }
+
+  export type MediaOnAlbumUpdateManyWithoutAlbumNestedInput = {
+    create?: XOR<MediaOnAlbumCreateWithoutAlbumInput, MediaOnAlbumUncheckedCreateWithoutAlbumInput> | MediaOnAlbumCreateWithoutAlbumInput[] | MediaOnAlbumUncheckedCreateWithoutAlbumInput[]
+    connectOrCreate?: MediaOnAlbumCreateOrConnectWithoutAlbumInput | MediaOnAlbumCreateOrConnectWithoutAlbumInput[]
+    upsert?: MediaOnAlbumUpsertWithWhereUniqueWithoutAlbumInput | MediaOnAlbumUpsertWithWhereUniqueWithoutAlbumInput[]
+    createMany?: MediaOnAlbumCreateManyAlbumInputEnvelope
+    set?: MediaOnAlbumWhereUniqueInput | MediaOnAlbumWhereUniqueInput[]
+    disconnect?: MediaOnAlbumWhereUniqueInput | MediaOnAlbumWhereUniqueInput[]
+    delete?: MediaOnAlbumWhereUniqueInput | MediaOnAlbumWhereUniqueInput[]
+    connect?: MediaOnAlbumWhereUniqueInput | MediaOnAlbumWhereUniqueInput[]
+    update?: MediaOnAlbumUpdateWithWhereUniqueWithoutAlbumInput | MediaOnAlbumUpdateWithWhereUniqueWithoutAlbumInput[]
+    updateMany?: MediaOnAlbumUpdateManyWithWhereWithoutAlbumInput | MediaOnAlbumUpdateManyWithWhereWithoutAlbumInput[]
+    deleteMany?: MediaOnAlbumScalarWhereInput | MediaOnAlbumScalarWhereInput[]
+  }
+
+  export type MediaOnAlbumUncheckedUpdateManyWithoutAlbumNestedInput = {
+    create?: XOR<MediaOnAlbumCreateWithoutAlbumInput, MediaOnAlbumUncheckedCreateWithoutAlbumInput> | MediaOnAlbumCreateWithoutAlbumInput[] | MediaOnAlbumUncheckedCreateWithoutAlbumInput[]
+    connectOrCreate?: MediaOnAlbumCreateOrConnectWithoutAlbumInput | MediaOnAlbumCreateOrConnectWithoutAlbumInput[]
+    upsert?: MediaOnAlbumUpsertWithWhereUniqueWithoutAlbumInput | MediaOnAlbumUpsertWithWhereUniqueWithoutAlbumInput[]
+    createMany?: MediaOnAlbumCreateManyAlbumInputEnvelope
+    set?: MediaOnAlbumWhereUniqueInput | MediaOnAlbumWhereUniqueInput[]
+    disconnect?: MediaOnAlbumWhereUniqueInput | MediaOnAlbumWhereUniqueInput[]
+    delete?: MediaOnAlbumWhereUniqueInput | MediaOnAlbumWhereUniqueInput[]
+    connect?: MediaOnAlbumWhereUniqueInput | MediaOnAlbumWhereUniqueInput[]
+    update?: MediaOnAlbumUpdateWithWhereUniqueWithoutAlbumInput | MediaOnAlbumUpdateWithWhereUniqueWithoutAlbumInput[]
+    updateMany?: MediaOnAlbumUpdateManyWithWhereWithoutAlbumInput | MediaOnAlbumUpdateManyWithWhereWithoutAlbumInput[]
+    deleteMany?: MediaOnAlbumScalarWhereInput | MediaOnAlbumScalarWhereInput[]
+  }
+
   export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[]
@@ -26677,12 +29440,13 @@ export namespace Prisma {
     detail?: MediaDetailCreateNestedOneWithoutMediaInput
     videoResources?: VideoResourceCreateNestedManyWithoutMediaInput
     audioResources?: AudioResourceCreateNestedManyWithoutMediaInput
-    MediaReaction?: MediaReactionCreateNestedManyWithoutMediaInput
-    History?: HistoryCreateNestedManyWithoutMeidaInput
-    CategoryOnVideo?: CategoryOnMediaCreateNestedManyWithoutMediaInput
-    Comment?: CommentCreateNestedManyWithoutMediaInput
-    MediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
-    SessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
+    mediaReaction?: MediaReactionCreateNestedManyWithoutMediaInput
+    history?: HistoryCreateNestedManyWithoutMeidaInput
+    mediaOnCategory?: MediaOnCategoryCreateNestedManyWithoutMediaInput
+    comment?: CommentCreateNestedManyWithoutMediaInput
+    mediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
+    sessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
+    mediaOnAlbum?: MediaOnAlbumCreateNestedManyWithoutMediaInput
   }
 
   export type MediaUncheckedCreateWithoutOwnerInput = {
@@ -26700,12 +29464,13 @@ export namespace Prisma {
     detail?: MediaDetailUncheckedCreateNestedOneWithoutMediaInput
     videoResources?: VideoResourceUncheckedCreateNestedManyWithoutMediaInput
     audioResources?: AudioResourceUncheckedCreateNestedManyWithoutMediaInput
-    MediaReaction?: MediaReactionUncheckedCreateNestedManyWithoutMediaInput
-    History?: HistoryUncheckedCreateNestedManyWithoutMeidaInput
-    CategoryOnVideo?: CategoryOnMediaUncheckedCreateNestedManyWithoutMediaInput
-    Comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
-    MediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
-    SessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
+    mediaReaction?: MediaReactionUncheckedCreateNestedManyWithoutMediaInput
+    history?: HistoryUncheckedCreateNestedManyWithoutMeidaInput
+    mediaOnCategory?: MediaOnCategoryUncheckedCreateNestedManyWithoutMediaInput
+    comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
+    mediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
+    sessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
+    mediaOnAlbum?: MediaOnAlbumUncheckedCreateNestedManyWithoutMediaInput
   }
 
   export type MediaCreateOrConnectWithoutOwnerInput = {
@@ -26906,6 +29671,34 @@ export namespace Prisma {
 
   export type UserPaymentMethodCreateManyUserInputEnvelope = {
     data: UserPaymentMethodCreateManyUserInput | UserPaymentMethodCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AlbumCreateWithoutOwnerInput = {
+    id?: string
+    name: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    mediaOnAlbum?: MediaOnAlbumCreateNestedManyWithoutAlbumInput
+  }
+
+  export type AlbumUncheckedCreateWithoutOwnerInput = {
+    id?: string
+    name: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    mediaOnAlbum?: MediaOnAlbumUncheckedCreateNestedManyWithoutAlbumInput
+  }
+
+  export type AlbumCreateOrConnectWithoutOwnerInput = {
+    where: AlbumWhereUniqueInput
+    create: XOR<AlbumCreateWithoutOwnerInput, AlbumUncheckedCreateWithoutOwnerInput>
+  }
+
+  export type AlbumCreateManyOwnerInputEnvelope = {
+    data: AlbumCreateManyOwnerInput | AlbumCreateManyOwnerInput[]
     skipDuplicates?: boolean
   }
 
@@ -27149,6 +29942,34 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"UserPaymentMethod"> | Date | string
   }
 
+  export type AlbumUpsertWithWhereUniqueWithoutOwnerInput = {
+    where: AlbumWhereUniqueInput
+    update: XOR<AlbumUpdateWithoutOwnerInput, AlbumUncheckedUpdateWithoutOwnerInput>
+    create: XOR<AlbumCreateWithoutOwnerInput, AlbumUncheckedCreateWithoutOwnerInput>
+  }
+
+  export type AlbumUpdateWithWhereUniqueWithoutOwnerInput = {
+    where: AlbumWhereUniqueInput
+    data: XOR<AlbumUpdateWithoutOwnerInput, AlbumUncheckedUpdateWithoutOwnerInput>
+  }
+
+  export type AlbumUpdateManyWithWhereWithoutOwnerInput = {
+    where: AlbumScalarWhereInput
+    data: XOR<AlbumUpdateManyMutationInput, AlbumUncheckedUpdateManyWithoutOwnerInput>
+  }
+
+  export type AlbumScalarWhereInput = {
+    AND?: AlbumScalarWhereInput | AlbumScalarWhereInput[]
+    OR?: AlbumScalarWhereInput[]
+    NOT?: AlbumScalarWhereInput | AlbumScalarWhereInput[]
+    id?: StringFilter<"Album"> | string
+    name?: StringFilter<"Album"> | string
+    description?: StringNullableFilter<"Album"> | string | null
+    userId?: IntFilter<"Album"> | number
+    createdAt?: DateTimeFilter<"Album"> | Date | string
+    updatedAt?: DateTimeFilter<"Album"> | Date | string
+  }
+
   export type UserCreateWithoutUserPaymentMethodInput = {
     firstName: string
     lastName: string
@@ -27167,6 +29988,7 @@ export namespace Prisma {
     NotificationSubscriptions?: NotificationSubscriptionsCreateNestedManyWithoutUserInput
     Comment?: CommentCreateNestedManyWithoutUserInput
     Playlist?: PlaylistCreateNestedManyWithoutUserInput
+    Album?: AlbumCreateNestedManyWithoutOwnerInput
   }
 
   export type UserUncheckedCreateWithoutUserPaymentMethodInput = {
@@ -27188,6 +30010,7 @@ export namespace Prisma {
     NotificationSubscriptions?: NotificationSubscriptionsUncheckedCreateNestedManyWithoutUserInput
     Comment?: CommentUncheckedCreateNestedManyWithoutUserInput
     Playlist?: PlaylistUncheckedCreateNestedManyWithoutUserInput
+    Album?: AlbumUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type UserCreateOrConnectWithoutUserPaymentMethodInput = {
@@ -27224,6 +30047,7 @@ export namespace Prisma {
     NotificationSubscriptions?: NotificationSubscriptionsUpdateManyWithoutUserNestedInput
     Comment?: CommentUpdateManyWithoutUserNestedInput
     Playlist?: PlaylistUpdateManyWithoutUserNestedInput
+    Album?: AlbumUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutUserPaymentMethodInput = {
@@ -27245,50 +30069,51 @@ export namespace Prisma {
     NotificationSubscriptions?: NotificationSubscriptionsUncheckedUpdateManyWithoutUserNestedInput
     Comment?: CommentUncheckedUpdateManyWithoutUserNestedInput
     Playlist?: PlaylistUncheckedUpdateManyWithoutUserNestedInput
+    Album?: AlbumUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
-  export type CategoryOnMediaCreateWithoutCategoryInput = {
-    media: MediaCreateNestedOneWithoutCategoryOnVideoInput
+  export type MediaOnCategoryCreateWithoutCategoryInput = {
+    media: MediaCreateNestedOneWithoutMediaOnCategoryInput
   }
 
-  export type CategoryOnMediaUncheckedCreateWithoutCategoryInput = {
+  export type MediaOnCategoryUncheckedCreateWithoutCategoryInput = {
     id?: number
     mediaId: string
   }
 
-  export type CategoryOnMediaCreateOrConnectWithoutCategoryInput = {
-    where: CategoryOnMediaWhereUniqueInput
-    create: XOR<CategoryOnMediaCreateWithoutCategoryInput, CategoryOnMediaUncheckedCreateWithoutCategoryInput>
+  export type MediaOnCategoryCreateOrConnectWithoutCategoryInput = {
+    where: MediaOnCategoryWhereUniqueInput
+    create: XOR<MediaOnCategoryCreateWithoutCategoryInput, MediaOnCategoryUncheckedCreateWithoutCategoryInput>
   }
 
-  export type CategoryOnMediaCreateManyCategoryInputEnvelope = {
-    data: CategoryOnMediaCreateManyCategoryInput | CategoryOnMediaCreateManyCategoryInput[]
+  export type MediaOnCategoryCreateManyCategoryInputEnvelope = {
+    data: MediaOnCategoryCreateManyCategoryInput | MediaOnCategoryCreateManyCategoryInput[]
     skipDuplicates?: boolean
   }
 
-  export type CategoryOnMediaUpsertWithWhereUniqueWithoutCategoryInput = {
-    where: CategoryOnMediaWhereUniqueInput
-    update: XOR<CategoryOnMediaUpdateWithoutCategoryInput, CategoryOnMediaUncheckedUpdateWithoutCategoryInput>
-    create: XOR<CategoryOnMediaCreateWithoutCategoryInput, CategoryOnMediaUncheckedCreateWithoutCategoryInput>
+  export type MediaOnCategoryUpsertWithWhereUniqueWithoutCategoryInput = {
+    where: MediaOnCategoryWhereUniqueInput
+    update: XOR<MediaOnCategoryUpdateWithoutCategoryInput, MediaOnCategoryUncheckedUpdateWithoutCategoryInput>
+    create: XOR<MediaOnCategoryCreateWithoutCategoryInput, MediaOnCategoryUncheckedCreateWithoutCategoryInput>
   }
 
-  export type CategoryOnMediaUpdateWithWhereUniqueWithoutCategoryInput = {
-    where: CategoryOnMediaWhereUniqueInput
-    data: XOR<CategoryOnMediaUpdateWithoutCategoryInput, CategoryOnMediaUncheckedUpdateWithoutCategoryInput>
+  export type MediaOnCategoryUpdateWithWhereUniqueWithoutCategoryInput = {
+    where: MediaOnCategoryWhereUniqueInput
+    data: XOR<MediaOnCategoryUpdateWithoutCategoryInput, MediaOnCategoryUncheckedUpdateWithoutCategoryInput>
   }
 
-  export type CategoryOnMediaUpdateManyWithWhereWithoutCategoryInput = {
-    where: CategoryOnMediaScalarWhereInput
-    data: XOR<CategoryOnMediaUpdateManyMutationInput, CategoryOnMediaUncheckedUpdateManyWithoutCategoryInput>
+  export type MediaOnCategoryUpdateManyWithWhereWithoutCategoryInput = {
+    where: MediaOnCategoryScalarWhereInput
+    data: XOR<MediaOnCategoryUpdateManyMutationInput, MediaOnCategoryUncheckedUpdateManyWithoutCategoryInput>
   }
 
-  export type CategoryOnMediaScalarWhereInput = {
-    AND?: CategoryOnMediaScalarWhereInput | CategoryOnMediaScalarWhereInput[]
-    OR?: CategoryOnMediaScalarWhereInput[]
-    NOT?: CategoryOnMediaScalarWhereInput | CategoryOnMediaScalarWhereInput[]
-    id?: IntFilter<"CategoryOnMedia"> | number
-    categoryId?: StringFilter<"CategoryOnMedia"> | string
-    mediaId?: StringFilter<"CategoryOnMedia"> | string
+  export type MediaOnCategoryScalarWhereInput = {
+    AND?: MediaOnCategoryScalarWhereInput | MediaOnCategoryScalarWhereInput[]
+    OR?: MediaOnCategoryScalarWhereInput[]
+    NOT?: MediaOnCategoryScalarWhereInput | MediaOnCategoryScalarWhereInput[]
+    id?: IntFilter<"MediaOnCategory"> | number
+    categoryId?: StringFilter<"MediaOnCategory"> | string
+    mediaId?: StringFilter<"MediaOnCategory"> | string
   }
 
   export type CategoryCreateWithoutCategoryOnMediaInput = {
@@ -27310,7 +30135,7 @@ export namespace Prisma {
     create: XOR<CategoryCreateWithoutCategoryOnMediaInput, CategoryUncheckedCreateWithoutCategoryOnMediaInput>
   }
 
-  export type MediaCreateWithoutCategoryOnVideoInput = {
+  export type MediaCreateWithoutMediaOnCategoryInput = {
     id?: string
     title: string
     views?: number
@@ -27326,14 +30151,15 @@ export namespace Prisma {
     detail?: MediaDetailCreateNestedOneWithoutMediaInput
     videoResources?: VideoResourceCreateNestedManyWithoutMediaInput
     audioResources?: AudioResourceCreateNestedManyWithoutMediaInput
-    MediaReaction?: MediaReactionCreateNestedManyWithoutMediaInput
-    History?: HistoryCreateNestedManyWithoutMeidaInput
-    Comment?: CommentCreateNestedManyWithoutMediaInput
-    MediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
-    SessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
+    mediaReaction?: MediaReactionCreateNestedManyWithoutMediaInput
+    history?: HistoryCreateNestedManyWithoutMeidaInput
+    comment?: CommentCreateNestedManyWithoutMediaInput
+    mediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
+    sessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
+    mediaOnAlbum?: MediaOnAlbumCreateNestedManyWithoutMediaInput
   }
 
-  export type MediaUncheckedCreateWithoutCategoryOnVideoInput = {
+  export type MediaUncheckedCreateWithoutMediaOnCategoryInput = {
     id?: string
     userId: number
     title: string
@@ -27349,16 +30175,17 @@ export namespace Prisma {
     detail?: MediaDetailUncheckedCreateNestedOneWithoutMediaInput
     videoResources?: VideoResourceUncheckedCreateNestedManyWithoutMediaInput
     audioResources?: AudioResourceUncheckedCreateNestedManyWithoutMediaInput
-    MediaReaction?: MediaReactionUncheckedCreateNestedManyWithoutMediaInput
-    History?: HistoryUncheckedCreateNestedManyWithoutMeidaInput
-    Comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
-    MediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
-    SessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
+    mediaReaction?: MediaReactionUncheckedCreateNestedManyWithoutMediaInput
+    history?: HistoryUncheckedCreateNestedManyWithoutMeidaInput
+    comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
+    mediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
+    sessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
+    mediaOnAlbum?: MediaOnAlbumUncheckedCreateNestedManyWithoutMediaInput
   }
 
-  export type MediaCreateOrConnectWithoutCategoryOnVideoInput = {
+  export type MediaCreateOrConnectWithoutMediaOnCategoryInput = {
     where: MediaWhereUniqueInput
-    create: XOR<MediaCreateWithoutCategoryOnVideoInput, MediaUncheckedCreateWithoutCategoryOnVideoInput>
+    create: XOR<MediaCreateWithoutMediaOnCategoryInput, MediaUncheckedCreateWithoutMediaOnCategoryInput>
   }
 
   export type CategoryUpsertWithoutCategoryOnMediaInput = {
@@ -27386,18 +30213,18 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type MediaUpsertWithoutCategoryOnVideoInput = {
-    update: XOR<MediaUpdateWithoutCategoryOnVideoInput, MediaUncheckedUpdateWithoutCategoryOnVideoInput>
-    create: XOR<MediaCreateWithoutCategoryOnVideoInput, MediaUncheckedCreateWithoutCategoryOnVideoInput>
+  export type MediaUpsertWithoutMediaOnCategoryInput = {
+    update: XOR<MediaUpdateWithoutMediaOnCategoryInput, MediaUncheckedUpdateWithoutMediaOnCategoryInput>
+    create: XOR<MediaCreateWithoutMediaOnCategoryInput, MediaUncheckedCreateWithoutMediaOnCategoryInput>
     where?: MediaWhereInput
   }
 
-  export type MediaUpdateToOneWithWhereWithoutCategoryOnVideoInput = {
+  export type MediaUpdateToOneWithWhereWithoutMediaOnCategoryInput = {
     where?: MediaWhereInput
-    data: XOR<MediaUpdateWithoutCategoryOnVideoInput, MediaUncheckedUpdateWithoutCategoryOnVideoInput>
+    data: XOR<MediaUpdateWithoutMediaOnCategoryInput, MediaUncheckedUpdateWithoutMediaOnCategoryInput>
   }
 
-  export type MediaUpdateWithoutCategoryOnVideoInput = {
+  export type MediaUpdateWithoutMediaOnCategoryInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
@@ -27413,14 +30240,15 @@ export namespace Prisma {
     detail?: MediaDetailUpdateOneWithoutMediaNestedInput
     videoResources?: VideoResourceUpdateManyWithoutMediaNestedInput
     audioResources?: AudioResourceUpdateManyWithoutMediaNestedInput
-    MediaReaction?: MediaReactionUpdateManyWithoutMediaNestedInput
-    History?: HistoryUpdateManyWithoutMeidaNestedInput
-    Comment?: CommentUpdateManyWithoutMediaNestedInput
-    MediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
-    SessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
+    mediaReaction?: MediaReactionUpdateManyWithoutMediaNestedInput
+    history?: HistoryUpdateManyWithoutMeidaNestedInput
+    comment?: CommentUpdateManyWithoutMediaNestedInput
+    mediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
+    sessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
+    mediaOnAlbum?: MediaOnAlbumUpdateManyWithoutMediaNestedInput
   }
 
-  export type MediaUncheckedUpdateWithoutCategoryOnVideoInput = {
+  export type MediaUncheckedUpdateWithoutMediaOnCategoryInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
@@ -27436,11 +30264,12 @@ export namespace Prisma {
     detail?: MediaDetailUncheckedUpdateOneWithoutMediaNestedInput
     videoResources?: VideoResourceUncheckedUpdateManyWithoutMediaNestedInput
     audioResources?: AudioResourceUncheckedUpdateManyWithoutMediaNestedInput
-    MediaReaction?: MediaReactionUncheckedUpdateManyWithoutMediaNestedInput
-    History?: HistoryUncheckedUpdateManyWithoutMeidaNestedInput
-    Comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
-    MediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
-    SessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
+    mediaReaction?: MediaReactionUncheckedUpdateManyWithoutMediaNestedInput
+    history?: HistoryUncheckedUpdateManyWithoutMeidaNestedInput
+    comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
+    mediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
+    sessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
+    mediaOnAlbum?: MediaOnAlbumUncheckedUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaCreateWithoutSessionUploadInput = {
@@ -27459,11 +30288,12 @@ export namespace Prisma {
     detail?: MediaDetailCreateNestedOneWithoutMediaInput
     videoResources?: VideoResourceCreateNestedManyWithoutMediaInput
     audioResources?: AudioResourceCreateNestedManyWithoutMediaInput
-    MediaReaction?: MediaReactionCreateNestedManyWithoutMediaInput
-    History?: HistoryCreateNestedManyWithoutMeidaInput
-    CategoryOnVideo?: CategoryOnMediaCreateNestedManyWithoutMediaInput
-    Comment?: CommentCreateNestedManyWithoutMediaInput
-    MediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
+    mediaReaction?: MediaReactionCreateNestedManyWithoutMediaInput
+    history?: HistoryCreateNestedManyWithoutMeidaInput
+    mediaOnCategory?: MediaOnCategoryCreateNestedManyWithoutMediaInput
+    comment?: CommentCreateNestedManyWithoutMediaInput
+    mediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
+    mediaOnAlbum?: MediaOnAlbumCreateNestedManyWithoutMediaInput
   }
 
   export type MediaUncheckedCreateWithoutSessionUploadInput = {
@@ -27482,11 +30312,12 @@ export namespace Prisma {
     detail?: MediaDetailUncheckedCreateNestedOneWithoutMediaInput
     videoResources?: VideoResourceUncheckedCreateNestedManyWithoutMediaInput
     audioResources?: AudioResourceUncheckedCreateNestedManyWithoutMediaInput
-    MediaReaction?: MediaReactionUncheckedCreateNestedManyWithoutMediaInput
-    History?: HistoryUncheckedCreateNestedManyWithoutMeidaInput
-    CategoryOnVideo?: CategoryOnMediaUncheckedCreateNestedManyWithoutMediaInput
-    Comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
-    MediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
+    mediaReaction?: MediaReactionUncheckedCreateNestedManyWithoutMediaInput
+    history?: HistoryUncheckedCreateNestedManyWithoutMeidaInput
+    mediaOnCategory?: MediaOnCategoryUncheckedCreateNestedManyWithoutMediaInput
+    comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
+    mediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
+    mediaOnAlbum?: MediaOnAlbumUncheckedCreateNestedManyWithoutMediaInput
   }
 
   export type MediaCreateOrConnectWithoutSessionUploadInput = {
@@ -27521,11 +30352,12 @@ export namespace Prisma {
     detail?: MediaDetailUpdateOneWithoutMediaNestedInput
     videoResources?: VideoResourceUpdateManyWithoutMediaNestedInput
     audioResources?: AudioResourceUpdateManyWithoutMediaNestedInput
-    MediaReaction?: MediaReactionUpdateManyWithoutMediaNestedInput
-    History?: HistoryUpdateManyWithoutMeidaNestedInput
-    CategoryOnVideo?: CategoryOnMediaUpdateManyWithoutMediaNestedInput
-    Comment?: CommentUpdateManyWithoutMediaNestedInput
-    MediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
+    mediaReaction?: MediaReactionUpdateManyWithoutMediaNestedInput
+    history?: HistoryUpdateManyWithoutMeidaNestedInput
+    mediaOnCategory?: MediaOnCategoryUpdateManyWithoutMediaNestedInput
+    comment?: CommentUpdateManyWithoutMediaNestedInput
+    mediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
+    mediaOnAlbum?: MediaOnAlbumUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaUncheckedUpdateWithoutSessionUploadInput = {
@@ -27544,11 +30376,12 @@ export namespace Prisma {
     detail?: MediaDetailUncheckedUpdateOneWithoutMediaNestedInput
     videoResources?: VideoResourceUncheckedUpdateManyWithoutMediaNestedInput
     audioResources?: AudioResourceUncheckedUpdateManyWithoutMediaNestedInput
-    MediaReaction?: MediaReactionUncheckedUpdateManyWithoutMediaNestedInput
-    History?: HistoryUncheckedUpdateManyWithoutMeidaNestedInput
-    CategoryOnVideo?: CategoryOnMediaUncheckedUpdateManyWithoutMediaNestedInput
-    Comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
-    MediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
+    mediaReaction?: MediaReactionUncheckedUpdateManyWithoutMediaNestedInput
+    history?: HistoryUncheckedUpdateManyWithoutMeidaNestedInput
+    mediaOnCategory?: MediaOnCategoryUncheckedUpdateManyWithoutMediaNestedInput
+    comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
+    mediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
+    mediaOnAlbum?: MediaOnAlbumUncheckedUpdateManyWithoutMediaNestedInput
   }
 
   export type UserCreateWithoutMediaInput = {
@@ -27569,6 +30402,7 @@ export namespace Prisma {
     Comment?: CommentCreateNestedManyWithoutUserInput
     Playlist?: PlaylistCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodCreateNestedManyWithoutUserInput
+    Album?: AlbumCreateNestedManyWithoutOwnerInput
   }
 
   export type UserUncheckedCreateWithoutMediaInput = {
@@ -27590,6 +30424,7 @@ export namespace Prisma {
     Comment?: CommentUncheckedCreateNestedManyWithoutUserInput
     Playlist?: PlaylistUncheckedCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodUncheckedCreateNestedManyWithoutUserInput
+    Album?: AlbumUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type UserCreateOrConnectWithoutMediaInput = {
@@ -27740,22 +30575,22 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type CategoryOnMediaCreateWithoutMediaInput = {
+  export type MediaOnCategoryCreateWithoutMediaInput = {
     category: CategoryCreateNestedOneWithoutCategoryOnMediaInput
   }
 
-  export type CategoryOnMediaUncheckedCreateWithoutMediaInput = {
+  export type MediaOnCategoryUncheckedCreateWithoutMediaInput = {
     id?: number
     categoryId: string
   }
 
-  export type CategoryOnMediaCreateOrConnectWithoutMediaInput = {
-    where: CategoryOnMediaWhereUniqueInput
-    create: XOR<CategoryOnMediaCreateWithoutMediaInput, CategoryOnMediaUncheckedCreateWithoutMediaInput>
+  export type MediaOnCategoryCreateOrConnectWithoutMediaInput = {
+    where: MediaOnCategoryWhereUniqueInput
+    create: XOR<MediaOnCategoryCreateWithoutMediaInput, MediaOnCategoryUncheckedCreateWithoutMediaInput>
   }
 
-  export type CategoryOnMediaCreateManyMediaInputEnvelope = {
-    data: CategoryOnMediaCreateManyMediaInput | CategoryOnMediaCreateManyMediaInput[]
+  export type MediaOnCategoryCreateManyMediaInputEnvelope = {
+    data: MediaOnCategoryCreateManyMediaInput | MediaOnCategoryCreateManyMediaInput[]
     skipDuplicates?: boolean
   }
 
@@ -27833,6 +30668,29 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type MediaOnAlbumCreateWithoutMediaInput = {
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    album: AlbumCreateNestedOneWithoutMediaOnAlbumInput
+  }
+
+  export type MediaOnAlbumUncheckedCreateWithoutMediaInput = {
+    id?: number
+    albumId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MediaOnAlbumCreateOrConnectWithoutMediaInput = {
+    where: MediaOnAlbumWhereUniqueInput
+    create: XOR<MediaOnAlbumCreateWithoutMediaInput, MediaOnAlbumUncheckedCreateWithoutMediaInput>
+  }
+
+  export type MediaOnAlbumCreateManyMediaInputEnvelope = {
+    data: MediaOnAlbumCreateManyMediaInput | MediaOnAlbumCreateManyMediaInput[]
+    skipDuplicates?: boolean
+  }
+
   export type UserUpsertWithoutMediaInput = {
     update: XOR<UserUpdateWithoutMediaInput, UserUncheckedUpdateWithoutMediaInput>
     create: XOR<UserCreateWithoutMediaInput, UserUncheckedCreateWithoutMediaInput>
@@ -27862,6 +30720,7 @@ export namespace Prisma {
     Comment?: CommentUpdateManyWithoutUserNestedInput
     Playlist?: PlaylistUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUpdateManyWithoutUserNestedInput
+    Album?: AlbumUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMediaInput = {
@@ -27883,6 +30742,7 @@ export namespace Prisma {
     Comment?: CommentUncheckedUpdateManyWithoutUserNestedInput
     Playlist?: PlaylistUncheckedUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUncheckedUpdateManyWithoutUserNestedInput
+    Album?: AlbumUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type ThumbnailUpsertWithWhereUniqueWithoutMediaInput = {
@@ -28024,20 +30884,20 @@ export namespace Prisma {
     data: XOR<HistoryUpdateManyMutationInput, HistoryUncheckedUpdateManyWithoutMeidaInput>
   }
 
-  export type CategoryOnMediaUpsertWithWhereUniqueWithoutMediaInput = {
-    where: CategoryOnMediaWhereUniqueInput
-    update: XOR<CategoryOnMediaUpdateWithoutMediaInput, CategoryOnMediaUncheckedUpdateWithoutMediaInput>
-    create: XOR<CategoryOnMediaCreateWithoutMediaInput, CategoryOnMediaUncheckedCreateWithoutMediaInput>
+  export type MediaOnCategoryUpsertWithWhereUniqueWithoutMediaInput = {
+    where: MediaOnCategoryWhereUniqueInput
+    update: XOR<MediaOnCategoryUpdateWithoutMediaInput, MediaOnCategoryUncheckedUpdateWithoutMediaInput>
+    create: XOR<MediaOnCategoryCreateWithoutMediaInput, MediaOnCategoryUncheckedCreateWithoutMediaInput>
   }
 
-  export type CategoryOnMediaUpdateWithWhereUniqueWithoutMediaInput = {
-    where: CategoryOnMediaWhereUniqueInput
-    data: XOR<CategoryOnMediaUpdateWithoutMediaInput, CategoryOnMediaUncheckedUpdateWithoutMediaInput>
+  export type MediaOnCategoryUpdateWithWhereUniqueWithoutMediaInput = {
+    where: MediaOnCategoryWhereUniqueInput
+    data: XOR<MediaOnCategoryUpdateWithoutMediaInput, MediaOnCategoryUncheckedUpdateWithoutMediaInput>
   }
 
-  export type CategoryOnMediaUpdateManyWithWhereWithoutMediaInput = {
-    where: CategoryOnMediaScalarWhereInput
-    data: XOR<CategoryOnMediaUpdateManyMutationInput, CategoryOnMediaUncheckedUpdateManyWithoutMediaInput>
+  export type MediaOnCategoryUpdateManyWithWhereWithoutMediaInput = {
+    where: MediaOnCategoryScalarWhereInput
+    data: XOR<MediaOnCategoryUpdateManyMutationInput, MediaOnCategoryUncheckedUpdateManyWithoutMediaInput>
   }
 
   export type CommentUpsertWithWhereUniqueWithoutMediaInput = {
@@ -28111,6 +30971,33 @@ export namespace Prisma {
     expired_at?: DateTimeNullableFilter<"SessionUpload"> | Date | string | null
   }
 
+  export type MediaOnAlbumUpsertWithWhereUniqueWithoutMediaInput = {
+    where: MediaOnAlbumWhereUniqueInput
+    update: XOR<MediaOnAlbumUpdateWithoutMediaInput, MediaOnAlbumUncheckedUpdateWithoutMediaInput>
+    create: XOR<MediaOnAlbumCreateWithoutMediaInput, MediaOnAlbumUncheckedCreateWithoutMediaInput>
+  }
+
+  export type MediaOnAlbumUpdateWithWhereUniqueWithoutMediaInput = {
+    where: MediaOnAlbumWhereUniqueInput
+    data: XOR<MediaOnAlbumUpdateWithoutMediaInput, MediaOnAlbumUncheckedUpdateWithoutMediaInput>
+  }
+
+  export type MediaOnAlbumUpdateManyWithWhereWithoutMediaInput = {
+    where: MediaOnAlbumScalarWhereInput
+    data: XOR<MediaOnAlbumUpdateManyMutationInput, MediaOnAlbumUncheckedUpdateManyWithoutMediaInput>
+  }
+
+  export type MediaOnAlbumScalarWhereInput = {
+    AND?: MediaOnAlbumScalarWhereInput | MediaOnAlbumScalarWhereInput[]
+    OR?: MediaOnAlbumScalarWhereInput[]
+    NOT?: MediaOnAlbumScalarWhereInput | MediaOnAlbumScalarWhereInput[]
+    id?: IntFilter<"MediaOnAlbum"> | number
+    albumId?: StringFilter<"MediaOnAlbum"> | string
+    mediaId?: StringFilter<"MediaOnAlbum"> | string
+    createdAt?: DateTimeFilter<"MediaOnAlbum"> | Date | string
+    updatedAt?: DateTimeFilter<"MediaOnAlbum"> | Date | string
+  }
+
   export type UserCreateWithoutMediaReactionsInput = {
     firstName: string
     lastName: string
@@ -28129,6 +31016,7 @@ export namespace Prisma {
     Comment?: CommentCreateNestedManyWithoutUserInput
     Playlist?: PlaylistCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodCreateNestedManyWithoutUserInput
+    Album?: AlbumCreateNestedManyWithoutOwnerInput
   }
 
   export type UserUncheckedCreateWithoutMediaReactionsInput = {
@@ -28150,6 +31038,7 @@ export namespace Prisma {
     Comment?: CommentUncheckedCreateNestedManyWithoutUserInput
     Playlist?: PlaylistUncheckedCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodUncheckedCreateNestedManyWithoutUserInput
+    Album?: AlbumUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type UserCreateOrConnectWithoutMediaReactionsInput = {
@@ -28173,11 +31062,12 @@ export namespace Prisma {
     detail?: MediaDetailCreateNestedOneWithoutMediaInput
     videoResources?: VideoResourceCreateNestedManyWithoutMediaInput
     audioResources?: AudioResourceCreateNestedManyWithoutMediaInput
-    History?: HistoryCreateNestedManyWithoutMeidaInput
-    CategoryOnVideo?: CategoryOnMediaCreateNestedManyWithoutMediaInput
-    Comment?: CommentCreateNestedManyWithoutMediaInput
-    MediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
-    SessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
+    history?: HistoryCreateNestedManyWithoutMeidaInput
+    mediaOnCategory?: MediaOnCategoryCreateNestedManyWithoutMediaInput
+    comment?: CommentCreateNestedManyWithoutMediaInput
+    mediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
+    sessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
+    mediaOnAlbum?: MediaOnAlbumCreateNestedManyWithoutMediaInput
   }
 
   export type MediaUncheckedCreateWithoutMediaReactionInput = {
@@ -28196,11 +31086,12 @@ export namespace Prisma {
     detail?: MediaDetailUncheckedCreateNestedOneWithoutMediaInput
     videoResources?: VideoResourceUncheckedCreateNestedManyWithoutMediaInput
     audioResources?: AudioResourceUncheckedCreateNestedManyWithoutMediaInput
-    History?: HistoryUncheckedCreateNestedManyWithoutMeidaInput
-    CategoryOnVideo?: CategoryOnMediaUncheckedCreateNestedManyWithoutMediaInput
-    Comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
-    MediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
-    SessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
+    history?: HistoryUncheckedCreateNestedManyWithoutMeidaInput
+    mediaOnCategory?: MediaOnCategoryUncheckedCreateNestedManyWithoutMediaInput
+    comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
+    mediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
+    sessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
+    mediaOnAlbum?: MediaOnAlbumUncheckedCreateNestedManyWithoutMediaInput
   }
 
   export type MediaCreateOrConnectWithoutMediaReactionInput = {
@@ -28237,6 +31128,7 @@ export namespace Prisma {
     Comment?: CommentUpdateManyWithoutUserNestedInput
     Playlist?: PlaylistUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUpdateManyWithoutUserNestedInput
+    Album?: AlbumUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMediaReactionsInput = {
@@ -28258,6 +31150,7 @@ export namespace Prisma {
     Comment?: CommentUncheckedUpdateManyWithoutUserNestedInput
     Playlist?: PlaylistUncheckedUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUncheckedUpdateManyWithoutUserNestedInput
+    Album?: AlbumUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type MediaUpsertWithoutMediaReactionInput = {
@@ -28287,11 +31180,12 @@ export namespace Prisma {
     detail?: MediaDetailUpdateOneWithoutMediaNestedInput
     videoResources?: VideoResourceUpdateManyWithoutMediaNestedInput
     audioResources?: AudioResourceUpdateManyWithoutMediaNestedInput
-    History?: HistoryUpdateManyWithoutMeidaNestedInput
-    CategoryOnVideo?: CategoryOnMediaUpdateManyWithoutMediaNestedInput
-    Comment?: CommentUpdateManyWithoutMediaNestedInput
-    MediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
-    SessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
+    history?: HistoryUpdateManyWithoutMeidaNestedInput
+    mediaOnCategory?: MediaOnCategoryUpdateManyWithoutMediaNestedInput
+    comment?: CommentUpdateManyWithoutMediaNestedInput
+    mediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
+    sessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
+    mediaOnAlbum?: MediaOnAlbumUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaUncheckedUpdateWithoutMediaReactionInput = {
@@ -28310,11 +31204,12 @@ export namespace Prisma {
     detail?: MediaDetailUncheckedUpdateOneWithoutMediaNestedInput
     videoResources?: VideoResourceUncheckedUpdateManyWithoutMediaNestedInput
     audioResources?: AudioResourceUncheckedUpdateManyWithoutMediaNestedInput
-    History?: HistoryUncheckedUpdateManyWithoutMeidaNestedInput
-    CategoryOnVideo?: CategoryOnMediaUncheckedUpdateManyWithoutMediaNestedInput
-    Comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
-    MediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
-    SessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
+    history?: HistoryUncheckedUpdateManyWithoutMeidaNestedInput
+    mediaOnCategory?: MediaOnCategoryUncheckedUpdateManyWithoutMediaNestedInput
+    comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
+    mediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
+    sessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
+    mediaOnAlbum?: MediaOnAlbumUncheckedUpdateManyWithoutMediaNestedInput
   }
 
   export type UserCreateWithoutCommentInput = {
@@ -28335,6 +31230,7 @@ export namespace Prisma {
     NotificationSubscriptions?: NotificationSubscriptionsCreateNestedManyWithoutUserInput
     Playlist?: PlaylistCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodCreateNestedManyWithoutUserInput
+    Album?: AlbumCreateNestedManyWithoutOwnerInput
   }
 
   export type UserUncheckedCreateWithoutCommentInput = {
@@ -28356,6 +31252,7 @@ export namespace Prisma {
     NotificationSubscriptions?: NotificationSubscriptionsUncheckedCreateNestedManyWithoutUserInput
     Playlist?: PlaylistUncheckedCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodUncheckedCreateNestedManyWithoutUserInput
+    Album?: AlbumUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type UserCreateOrConnectWithoutCommentInput = {
@@ -28379,11 +31276,12 @@ export namespace Prisma {
     detail?: MediaDetailCreateNestedOneWithoutMediaInput
     videoResources?: VideoResourceCreateNestedManyWithoutMediaInput
     audioResources?: AudioResourceCreateNestedManyWithoutMediaInput
-    MediaReaction?: MediaReactionCreateNestedManyWithoutMediaInput
-    History?: HistoryCreateNestedManyWithoutMeidaInput
-    CategoryOnVideo?: CategoryOnMediaCreateNestedManyWithoutMediaInput
-    MediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
-    SessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
+    mediaReaction?: MediaReactionCreateNestedManyWithoutMediaInput
+    history?: HistoryCreateNestedManyWithoutMeidaInput
+    mediaOnCategory?: MediaOnCategoryCreateNestedManyWithoutMediaInput
+    mediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
+    sessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
+    mediaOnAlbum?: MediaOnAlbumCreateNestedManyWithoutMediaInput
   }
 
   export type MediaUncheckedCreateWithoutCommentInput = {
@@ -28402,11 +31300,12 @@ export namespace Prisma {
     detail?: MediaDetailUncheckedCreateNestedOneWithoutMediaInput
     videoResources?: VideoResourceUncheckedCreateNestedManyWithoutMediaInput
     audioResources?: AudioResourceUncheckedCreateNestedManyWithoutMediaInput
-    MediaReaction?: MediaReactionUncheckedCreateNestedManyWithoutMediaInput
-    History?: HistoryUncheckedCreateNestedManyWithoutMeidaInput
-    CategoryOnVideo?: CategoryOnMediaUncheckedCreateNestedManyWithoutMediaInput
-    MediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
-    SessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
+    mediaReaction?: MediaReactionUncheckedCreateNestedManyWithoutMediaInput
+    history?: HistoryUncheckedCreateNestedManyWithoutMeidaInput
+    mediaOnCategory?: MediaOnCategoryUncheckedCreateNestedManyWithoutMediaInput
+    mediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
+    sessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
+    mediaOnAlbum?: MediaOnAlbumUncheckedCreateNestedManyWithoutMediaInput
   }
 
   export type MediaCreateOrConnectWithoutCommentInput = {
@@ -28443,6 +31342,7 @@ export namespace Prisma {
     NotificationSubscriptions?: NotificationSubscriptionsUpdateManyWithoutUserNestedInput
     Playlist?: PlaylistUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUpdateManyWithoutUserNestedInput
+    Album?: AlbumUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCommentInput = {
@@ -28464,6 +31364,7 @@ export namespace Prisma {
     NotificationSubscriptions?: NotificationSubscriptionsUncheckedUpdateManyWithoutUserNestedInput
     Playlist?: PlaylistUncheckedUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUncheckedUpdateManyWithoutUserNestedInput
+    Album?: AlbumUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type MediaUpsertWithoutCommentInput = {
@@ -28493,11 +31394,12 @@ export namespace Prisma {
     detail?: MediaDetailUpdateOneWithoutMediaNestedInput
     videoResources?: VideoResourceUpdateManyWithoutMediaNestedInput
     audioResources?: AudioResourceUpdateManyWithoutMediaNestedInput
-    MediaReaction?: MediaReactionUpdateManyWithoutMediaNestedInput
-    History?: HistoryUpdateManyWithoutMeidaNestedInput
-    CategoryOnVideo?: CategoryOnMediaUpdateManyWithoutMediaNestedInput
-    MediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
-    SessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
+    mediaReaction?: MediaReactionUpdateManyWithoutMediaNestedInput
+    history?: HistoryUpdateManyWithoutMeidaNestedInput
+    mediaOnCategory?: MediaOnCategoryUpdateManyWithoutMediaNestedInput
+    mediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
+    sessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
+    mediaOnAlbum?: MediaOnAlbumUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaUncheckedUpdateWithoutCommentInput = {
@@ -28516,11 +31418,12 @@ export namespace Prisma {
     detail?: MediaDetailUncheckedUpdateOneWithoutMediaNestedInput
     videoResources?: VideoResourceUncheckedUpdateManyWithoutMediaNestedInput
     audioResources?: AudioResourceUncheckedUpdateManyWithoutMediaNestedInput
-    MediaReaction?: MediaReactionUncheckedUpdateManyWithoutMediaNestedInput
-    History?: HistoryUncheckedUpdateManyWithoutMeidaNestedInput
-    CategoryOnVideo?: CategoryOnMediaUncheckedUpdateManyWithoutMediaNestedInput
-    MediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
-    SessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
+    mediaReaction?: MediaReactionUncheckedUpdateManyWithoutMediaNestedInput
+    history?: HistoryUncheckedUpdateManyWithoutMeidaNestedInput
+    mediaOnCategory?: MediaOnCategoryUncheckedUpdateManyWithoutMediaNestedInput
+    mediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
+    sessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
+    mediaOnAlbum?: MediaOnAlbumUncheckedUpdateManyWithoutMediaNestedInput
   }
 
   export type UserCreateWithoutPlaylistInput = {
@@ -28541,6 +31444,7 @@ export namespace Prisma {
     NotificationSubscriptions?: NotificationSubscriptionsCreateNestedManyWithoutUserInput
     Comment?: CommentCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodCreateNestedManyWithoutUserInput
+    Album?: AlbumCreateNestedManyWithoutOwnerInput
   }
 
   export type UserUncheckedCreateWithoutPlaylistInput = {
@@ -28562,6 +31466,7 @@ export namespace Prisma {
     NotificationSubscriptions?: NotificationSubscriptionsUncheckedCreateNestedManyWithoutUserInput
     Comment?: CommentUncheckedCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodUncheckedCreateNestedManyWithoutUserInput
+    Album?: AlbumUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type UserCreateOrConnectWithoutPlaylistInput = {
@@ -28621,6 +31526,7 @@ export namespace Prisma {
     NotificationSubscriptions?: NotificationSubscriptionsUpdateManyWithoutUserNestedInput
     Comment?: CommentUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUpdateManyWithoutUserNestedInput
+    Album?: AlbumUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPlaylistInput = {
@@ -28642,6 +31548,7 @@ export namespace Prisma {
     NotificationSubscriptions?: NotificationSubscriptionsUncheckedUpdateManyWithoutUserNestedInput
     Comment?: CommentUncheckedUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUncheckedUpdateManyWithoutUserNestedInput
+    Album?: AlbumUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type MediaOnPlaylistUpsertWithWhereUniqueWithoutPlaylistInput = {
@@ -28697,11 +31604,12 @@ export namespace Prisma {
     detail?: MediaDetailCreateNestedOneWithoutMediaInput
     videoResources?: VideoResourceCreateNestedManyWithoutMediaInput
     audioResources?: AudioResourceCreateNestedManyWithoutMediaInput
-    MediaReaction?: MediaReactionCreateNestedManyWithoutMediaInput
-    History?: HistoryCreateNestedManyWithoutMeidaInput
-    CategoryOnVideo?: CategoryOnMediaCreateNestedManyWithoutMediaInput
-    Comment?: CommentCreateNestedManyWithoutMediaInput
-    SessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
+    mediaReaction?: MediaReactionCreateNestedManyWithoutMediaInput
+    history?: HistoryCreateNestedManyWithoutMeidaInput
+    mediaOnCategory?: MediaOnCategoryCreateNestedManyWithoutMediaInput
+    comment?: CommentCreateNestedManyWithoutMediaInput
+    sessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
+    mediaOnAlbum?: MediaOnAlbumCreateNestedManyWithoutMediaInput
   }
 
   export type MediaUncheckedCreateWithoutMediaOnPlaylistInput = {
@@ -28720,11 +31628,12 @@ export namespace Prisma {
     detail?: MediaDetailUncheckedCreateNestedOneWithoutMediaInput
     videoResources?: VideoResourceUncheckedCreateNestedManyWithoutMediaInput
     audioResources?: AudioResourceUncheckedCreateNestedManyWithoutMediaInput
-    MediaReaction?: MediaReactionUncheckedCreateNestedManyWithoutMediaInput
-    History?: HistoryUncheckedCreateNestedManyWithoutMeidaInput
-    CategoryOnVideo?: CategoryOnMediaUncheckedCreateNestedManyWithoutMediaInput
-    Comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
-    SessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
+    mediaReaction?: MediaReactionUncheckedCreateNestedManyWithoutMediaInput
+    history?: HistoryUncheckedCreateNestedManyWithoutMeidaInput
+    mediaOnCategory?: MediaOnCategoryUncheckedCreateNestedManyWithoutMediaInput
+    comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
+    sessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
+    mediaOnAlbum?: MediaOnAlbumUncheckedCreateNestedManyWithoutMediaInput
   }
 
   export type MediaCreateOrConnectWithoutMediaOnPlaylistInput = {
@@ -28786,11 +31695,12 @@ export namespace Prisma {
     detail?: MediaDetailUpdateOneWithoutMediaNestedInput
     videoResources?: VideoResourceUpdateManyWithoutMediaNestedInput
     audioResources?: AudioResourceUpdateManyWithoutMediaNestedInput
-    MediaReaction?: MediaReactionUpdateManyWithoutMediaNestedInput
-    History?: HistoryUpdateManyWithoutMeidaNestedInput
-    CategoryOnVideo?: CategoryOnMediaUpdateManyWithoutMediaNestedInput
-    Comment?: CommentUpdateManyWithoutMediaNestedInput
-    SessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
+    mediaReaction?: MediaReactionUpdateManyWithoutMediaNestedInput
+    history?: HistoryUpdateManyWithoutMeidaNestedInput
+    mediaOnCategory?: MediaOnCategoryUpdateManyWithoutMediaNestedInput
+    comment?: CommentUpdateManyWithoutMediaNestedInput
+    sessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
+    mediaOnAlbum?: MediaOnAlbumUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaUncheckedUpdateWithoutMediaOnPlaylistInput = {
@@ -28809,11 +31719,12 @@ export namespace Prisma {
     detail?: MediaDetailUncheckedUpdateOneWithoutMediaNestedInput
     videoResources?: VideoResourceUncheckedUpdateManyWithoutMediaNestedInput
     audioResources?: AudioResourceUncheckedUpdateManyWithoutMediaNestedInput
-    MediaReaction?: MediaReactionUncheckedUpdateManyWithoutMediaNestedInput
-    History?: HistoryUncheckedUpdateManyWithoutMeidaNestedInput
-    CategoryOnVideo?: CategoryOnMediaUncheckedUpdateManyWithoutMediaNestedInput
-    Comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
-    SessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
+    mediaReaction?: MediaReactionUncheckedUpdateManyWithoutMediaNestedInput
+    history?: HistoryUncheckedUpdateManyWithoutMeidaNestedInput
+    mediaOnCategory?: MediaOnCategoryUncheckedUpdateManyWithoutMediaNestedInput
+    comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
+    sessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
+    mediaOnAlbum?: MediaOnAlbumUncheckedUpdateManyWithoutMediaNestedInput
   }
 
   export type UserCreateWithoutHistoriesInput = {
@@ -28834,6 +31745,7 @@ export namespace Prisma {
     Comment?: CommentCreateNestedManyWithoutUserInput
     Playlist?: PlaylistCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodCreateNestedManyWithoutUserInput
+    Album?: AlbumCreateNestedManyWithoutOwnerInput
   }
 
   export type UserUncheckedCreateWithoutHistoriesInput = {
@@ -28855,6 +31767,7 @@ export namespace Prisma {
     Comment?: CommentUncheckedCreateNestedManyWithoutUserInput
     Playlist?: PlaylistUncheckedCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodUncheckedCreateNestedManyWithoutUserInput
+    Album?: AlbumUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type UserCreateOrConnectWithoutHistoriesInput = {
@@ -28878,11 +31791,12 @@ export namespace Prisma {
     detail?: MediaDetailCreateNestedOneWithoutMediaInput
     videoResources?: VideoResourceCreateNestedManyWithoutMediaInput
     audioResources?: AudioResourceCreateNestedManyWithoutMediaInput
-    MediaReaction?: MediaReactionCreateNestedManyWithoutMediaInput
-    CategoryOnVideo?: CategoryOnMediaCreateNestedManyWithoutMediaInput
-    Comment?: CommentCreateNestedManyWithoutMediaInput
-    MediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
-    SessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
+    mediaReaction?: MediaReactionCreateNestedManyWithoutMediaInput
+    mediaOnCategory?: MediaOnCategoryCreateNestedManyWithoutMediaInput
+    comment?: CommentCreateNestedManyWithoutMediaInput
+    mediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
+    sessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
+    mediaOnAlbum?: MediaOnAlbumCreateNestedManyWithoutMediaInput
   }
 
   export type MediaUncheckedCreateWithoutHistoryInput = {
@@ -28901,11 +31815,12 @@ export namespace Prisma {
     detail?: MediaDetailUncheckedCreateNestedOneWithoutMediaInput
     videoResources?: VideoResourceUncheckedCreateNestedManyWithoutMediaInput
     audioResources?: AudioResourceUncheckedCreateNestedManyWithoutMediaInput
-    MediaReaction?: MediaReactionUncheckedCreateNestedManyWithoutMediaInput
-    CategoryOnVideo?: CategoryOnMediaUncheckedCreateNestedManyWithoutMediaInput
-    Comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
-    MediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
-    SessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
+    mediaReaction?: MediaReactionUncheckedCreateNestedManyWithoutMediaInput
+    mediaOnCategory?: MediaOnCategoryUncheckedCreateNestedManyWithoutMediaInput
+    comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
+    mediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
+    sessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
+    mediaOnAlbum?: MediaOnAlbumUncheckedCreateNestedManyWithoutMediaInput
   }
 
   export type MediaCreateOrConnectWithoutHistoryInput = {
@@ -28942,6 +31857,7 @@ export namespace Prisma {
     Comment?: CommentUpdateManyWithoutUserNestedInput
     Playlist?: PlaylistUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUpdateManyWithoutUserNestedInput
+    Album?: AlbumUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutHistoriesInput = {
@@ -28963,6 +31879,7 @@ export namespace Prisma {
     Comment?: CommentUncheckedUpdateManyWithoutUserNestedInput
     Playlist?: PlaylistUncheckedUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUncheckedUpdateManyWithoutUserNestedInput
+    Album?: AlbumUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type MediaUpsertWithoutHistoryInput = {
@@ -28992,11 +31909,12 @@ export namespace Prisma {
     detail?: MediaDetailUpdateOneWithoutMediaNestedInput
     videoResources?: VideoResourceUpdateManyWithoutMediaNestedInput
     audioResources?: AudioResourceUpdateManyWithoutMediaNestedInput
-    MediaReaction?: MediaReactionUpdateManyWithoutMediaNestedInput
-    CategoryOnVideo?: CategoryOnMediaUpdateManyWithoutMediaNestedInput
-    Comment?: CommentUpdateManyWithoutMediaNestedInput
-    MediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
-    SessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
+    mediaReaction?: MediaReactionUpdateManyWithoutMediaNestedInput
+    mediaOnCategory?: MediaOnCategoryUpdateManyWithoutMediaNestedInput
+    comment?: CommentUpdateManyWithoutMediaNestedInput
+    mediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
+    sessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
+    mediaOnAlbum?: MediaOnAlbumUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaUncheckedUpdateWithoutHistoryInput = {
@@ -29015,11 +31933,12 @@ export namespace Prisma {
     detail?: MediaDetailUncheckedUpdateOneWithoutMediaNestedInput
     videoResources?: VideoResourceUncheckedUpdateManyWithoutMediaNestedInput
     audioResources?: AudioResourceUncheckedUpdateManyWithoutMediaNestedInput
-    MediaReaction?: MediaReactionUncheckedUpdateManyWithoutMediaNestedInput
-    CategoryOnVideo?: CategoryOnMediaUncheckedUpdateManyWithoutMediaNestedInput
-    Comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
-    MediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
-    SessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
+    mediaReaction?: MediaReactionUncheckedUpdateManyWithoutMediaNestedInput
+    mediaOnCategory?: MediaOnCategoryUncheckedUpdateManyWithoutMediaNestedInput
+    comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
+    mediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
+    sessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
+    mediaOnAlbum?: MediaOnAlbumUncheckedUpdateManyWithoutMediaNestedInput
   }
 
   export type UserCreateWithoutSubscribersInput = {
@@ -29040,6 +31959,7 @@ export namespace Prisma {
     Comment?: CommentCreateNestedManyWithoutUserInput
     Playlist?: PlaylistCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodCreateNestedManyWithoutUserInput
+    Album?: AlbumCreateNestedManyWithoutOwnerInput
   }
 
   export type UserUncheckedCreateWithoutSubscribersInput = {
@@ -29061,6 +31981,7 @@ export namespace Prisma {
     Comment?: CommentUncheckedCreateNestedManyWithoutUserInput
     Playlist?: PlaylistUncheckedCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodUncheckedCreateNestedManyWithoutUserInput
+    Album?: AlbumUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type UserCreateOrConnectWithoutSubscribersInput = {
@@ -29086,6 +32007,7 @@ export namespace Prisma {
     Comment?: CommentCreateNestedManyWithoutUserInput
     Playlist?: PlaylistCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodCreateNestedManyWithoutUserInput
+    Album?: AlbumCreateNestedManyWithoutOwnerInput
   }
 
   export type UserUncheckedCreateWithoutChannelInput = {
@@ -29107,6 +32029,7 @@ export namespace Prisma {
     Comment?: CommentUncheckedCreateNestedManyWithoutUserInput
     Playlist?: PlaylistUncheckedCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodUncheckedCreateNestedManyWithoutUserInput
+    Album?: AlbumUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type UserCreateOrConnectWithoutChannelInput = {
@@ -29143,6 +32066,7 @@ export namespace Prisma {
     Comment?: CommentUpdateManyWithoutUserNestedInput
     Playlist?: PlaylistUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUpdateManyWithoutUserNestedInput
+    Album?: AlbumUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSubscribersInput = {
@@ -29164,6 +32088,7 @@ export namespace Prisma {
     Comment?: CommentUncheckedUpdateManyWithoutUserNestedInput
     Playlist?: PlaylistUncheckedUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUncheckedUpdateManyWithoutUserNestedInput
+    Album?: AlbumUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserUpsertWithoutChannelInput = {
@@ -29195,6 +32120,7 @@ export namespace Prisma {
     Comment?: CommentUpdateManyWithoutUserNestedInput
     Playlist?: PlaylistUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUpdateManyWithoutUserNestedInput
+    Album?: AlbumUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutChannelInput = {
@@ -29216,6 +32142,7 @@ export namespace Prisma {
     Comment?: CommentUncheckedUpdateManyWithoutUserNestedInput
     Playlist?: PlaylistUncheckedUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUncheckedUpdateManyWithoutUserNestedInput
+    Album?: AlbumUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserCreateWithoutNotificationSubscriptionsInput = {
@@ -29236,6 +32163,7 @@ export namespace Prisma {
     Comment?: CommentCreateNestedManyWithoutUserInput
     Playlist?: PlaylistCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodCreateNestedManyWithoutUserInput
+    Album?: AlbumCreateNestedManyWithoutOwnerInput
   }
 
   export type UserUncheckedCreateWithoutNotificationSubscriptionsInput = {
@@ -29257,6 +32185,7 @@ export namespace Prisma {
     Comment?: CommentUncheckedCreateNestedManyWithoutUserInput
     Playlist?: PlaylistUncheckedCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodUncheckedCreateNestedManyWithoutUserInput
+    Album?: AlbumUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type UserCreateOrConnectWithoutNotificationSubscriptionsInput = {
@@ -29293,6 +32222,7 @@ export namespace Prisma {
     Comment?: CommentUpdateManyWithoutUserNestedInput
     Playlist?: PlaylistUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUpdateManyWithoutUserNestedInput
+    Album?: AlbumUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutNotificationSubscriptionsInput = {
@@ -29314,6 +32244,7 @@ export namespace Prisma {
     Comment?: CommentUncheckedUpdateManyWithoutUserNestedInput
     Playlist?: PlaylistUncheckedUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUncheckedUpdateManyWithoutUserNestedInput
+    Album?: AlbumUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type MediaCreateWithoutVideoResourcesInput = {
@@ -29331,12 +32262,13 @@ export namespace Prisma {
     thumbnails?: ThumbnailCreateNestedManyWithoutMediaInput
     detail?: MediaDetailCreateNestedOneWithoutMediaInput
     audioResources?: AudioResourceCreateNestedManyWithoutMediaInput
-    MediaReaction?: MediaReactionCreateNestedManyWithoutMediaInput
-    History?: HistoryCreateNestedManyWithoutMeidaInput
-    CategoryOnVideo?: CategoryOnMediaCreateNestedManyWithoutMediaInput
-    Comment?: CommentCreateNestedManyWithoutMediaInput
-    MediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
-    SessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
+    mediaReaction?: MediaReactionCreateNestedManyWithoutMediaInput
+    history?: HistoryCreateNestedManyWithoutMeidaInput
+    mediaOnCategory?: MediaOnCategoryCreateNestedManyWithoutMediaInput
+    comment?: CommentCreateNestedManyWithoutMediaInput
+    mediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
+    sessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
+    mediaOnAlbum?: MediaOnAlbumCreateNestedManyWithoutMediaInput
   }
 
   export type MediaUncheckedCreateWithoutVideoResourcesInput = {
@@ -29354,12 +32286,13 @@ export namespace Prisma {
     thumbnails?: ThumbnailUncheckedCreateNestedManyWithoutMediaInput
     detail?: MediaDetailUncheckedCreateNestedOneWithoutMediaInput
     audioResources?: AudioResourceUncheckedCreateNestedManyWithoutMediaInput
-    MediaReaction?: MediaReactionUncheckedCreateNestedManyWithoutMediaInput
-    History?: HistoryUncheckedCreateNestedManyWithoutMeidaInput
-    CategoryOnVideo?: CategoryOnMediaUncheckedCreateNestedManyWithoutMediaInput
-    Comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
-    MediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
-    SessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
+    mediaReaction?: MediaReactionUncheckedCreateNestedManyWithoutMediaInput
+    history?: HistoryUncheckedCreateNestedManyWithoutMeidaInput
+    mediaOnCategory?: MediaOnCategoryUncheckedCreateNestedManyWithoutMediaInput
+    comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
+    mediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
+    sessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
+    mediaOnAlbum?: MediaOnAlbumUncheckedCreateNestedManyWithoutMediaInput
   }
 
   export type MediaCreateOrConnectWithoutVideoResourcesInput = {
@@ -29393,12 +32326,13 @@ export namespace Prisma {
     thumbnails?: ThumbnailUpdateManyWithoutMediaNestedInput
     detail?: MediaDetailUpdateOneWithoutMediaNestedInput
     audioResources?: AudioResourceUpdateManyWithoutMediaNestedInput
-    MediaReaction?: MediaReactionUpdateManyWithoutMediaNestedInput
-    History?: HistoryUpdateManyWithoutMeidaNestedInput
-    CategoryOnVideo?: CategoryOnMediaUpdateManyWithoutMediaNestedInput
-    Comment?: CommentUpdateManyWithoutMediaNestedInput
-    MediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
-    SessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
+    mediaReaction?: MediaReactionUpdateManyWithoutMediaNestedInput
+    history?: HistoryUpdateManyWithoutMeidaNestedInput
+    mediaOnCategory?: MediaOnCategoryUpdateManyWithoutMediaNestedInput
+    comment?: CommentUpdateManyWithoutMediaNestedInput
+    mediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
+    sessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
+    mediaOnAlbum?: MediaOnAlbumUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaUncheckedUpdateWithoutVideoResourcesInput = {
@@ -29416,12 +32350,13 @@ export namespace Prisma {
     thumbnails?: ThumbnailUncheckedUpdateManyWithoutMediaNestedInput
     detail?: MediaDetailUncheckedUpdateOneWithoutMediaNestedInput
     audioResources?: AudioResourceUncheckedUpdateManyWithoutMediaNestedInput
-    MediaReaction?: MediaReactionUncheckedUpdateManyWithoutMediaNestedInput
-    History?: HistoryUncheckedUpdateManyWithoutMeidaNestedInput
-    CategoryOnVideo?: CategoryOnMediaUncheckedUpdateManyWithoutMediaNestedInput
-    Comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
-    MediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
-    SessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
+    mediaReaction?: MediaReactionUncheckedUpdateManyWithoutMediaNestedInput
+    history?: HistoryUncheckedUpdateManyWithoutMeidaNestedInput
+    mediaOnCategory?: MediaOnCategoryUncheckedUpdateManyWithoutMediaNestedInput
+    comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
+    mediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
+    sessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
+    mediaOnAlbum?: MediaOnAlbumUncheckedUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaCreateWithoutAudioResourcesInput = {
@@ -29439,12 +32374,13 @@ export namespace Prisma {
     thumbnails?: ThumbnailCreateNestedManyWithoutMediaInput
     detail?: MediaDetailCreateNestedOneWithoutMediaInput
     videoResources?: VideoResourceCreateNestedManyWithoutMediaInput
-    MediaReaction?: MediaReactionCreateNestedManyWithoutMediaInput
-    History?: HistoryCreateNestedManyWithoutMeidaInput
-    CategoryOnVideo?: CategoryOnMediaCreateNestedManyWithoutMediaInput
-    Comment?: CommentCreateNestedManyWithoutMediaInput
-    MediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
-    SessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
+    mediaReaction?: MediaReactionCreateNestedManyWithoutMediaInput
+    history?: HistoryCreateNestedManyWithoutMeidaInput
+    mediaOnCategory?: MediaOnCategoryCreateNestedManyWithoutMediaInput
+    comment?: CommentCreateNestedManyWithoutMediaInput
+    mediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
+    sessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
+    mediaOnAlbum?: MediaOnAlbumCreateNestedManyWithoutMediaInput
   }
 
   export type MediaUncheckedCreateWithoutAudioResourcesInput = {
@@ -29462,12 +32398,13 @@ export namespace Prisma {
     thumbnails?: ThumbnailUncheckedCreateNestedManyWithoutMediaInput
     detail?: MediaDetailUncheckedCreateNestedOneWithoutMediaInput
     videoResources?: VideoResourceUncheckedCreateNestedManyWithoutMediaInput
-    MediaReaction?: MediaReactionUncheckedCreateNestedManyWithoutMediaInput
-    History?: HistoryUncheckedCreateNestedManyWithoutMeidaInput
-    CategoryOnVideo?: CategoryOnMediaUncheckedCreateNestedManyWithoutMediaInput
-    Comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
-    MediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
-    SessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
+    mediaReaction?: MediaReactionUncheckedCreateNestedManyWithoutMediaInput
+    history?: HistoryUncheckedCreateNestedManyWithoutMeidaInput
+    mediaOnCategory?: MediaOnCategoryUncheckedCreateNestedManyWithoutMediaInput
+    comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
+    mediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
+    sessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
+    mediaOnAlbum?: MediaOnAlbumUncheckedCreateNestedManyWithoutMediaInput
   }
 
   export type MediaCreateOrConnectWithoutAudioResourcesInput = {
@@ -29501,12 +32438,13 @@ export namespace Prisma {
     thumbnails?: ThumbnailUpdateManyWithoutMediaNestedInput
     detail?: MediaDetailUpdateOneWithoutMediaNestedInput
     videoResources?: VideoResourceUpdateManyWithoutMediaNestedInput
-    MediaReaction?: MediaReactionUpdateManyWithoutMediaNestedInput
-    History?: HistoryUpdateManyWithoutMeidaNestedInput
-    CategoryOnVideo?: CategoryOnMediaUpdateManyWithoutMediaNestedInput
-    Comment?: CommentUpdateManyWithoutMediaNestedInput
-    MediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
-    SessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
+    mediaReaction?: MediaReactionUpdateManyWithoutMediaNestedInput
+    history?: HistoryUpdateManyWithoutMeidaNestedInput
+    mediaOnCategory?: MediaOnCategoryUpdateManyWithoutMediaNestedInput
+    comment?: CommentUpdateManyWithoutMediaNestedInput
+    mediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
+    sessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
+    mediaOnAlbum?: MediaOnAlbumUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaUncheckedUpdateWithoutAudioResourcesInput = {
@@ -29524,12 +32462,13 @@ export namespace Prisma {
     thumbnails?: ThumbnailUncheckedUpdateManyWithoutMediaNestedInput
     detail?: MediaDetailUncheckedUpdateOneWithoutMediaNestedInput
     videoResources?: VideoResourceUncheckedUpdateManyWithoutMediaNestedInput
-    MediaReaction?: MediaReactionUncheckedUpdateManyWithoutMediaNestedInput
-    History?: HistoryUncheckedUpdateManyWithoutMeidaNestedInput
-    CategoryOnVideo?: CategoryOnMediaUncheckedUpdateManyWithoutMediaNestedInput
-    Comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
-    MediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
-    SessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
+    mediaReaction?: MediaReactionUncheckedUpdateManyWithoutMediaNestedInput
+    history?: HistoryUncheckedUpdateManyWithoutMeidaNestedInput
+    mediaOnCategory?: MediaOnCategoryUncheckedUpdateManyWithoutMediaNestedInput
+    comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
+    mediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
+    sessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
+    mediaOnAlbum?: MediaOnAlbumUncheckedUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaCreateWithoutDetailInput = {
@@ -29547,12 +32486,13 @@ export namespace Prisma {
     thumbnails?: ThumbnailCreateNestedManyWithoutMediaInput
     videoResources?: VideoResourceCreateNestedManyWithoutMediaInput
     audioResources?: AudioResourceCreateNestedManyWithoutMediaInput
-    MediaReaction?: MediaReactionCreateNestedManyWithoutMediaInput
-    History?: HistoryCreateNestedManyWithoutMeidaInput
-    CategoryOnVideo?: CategoryOnMediaCreateNestedManyWithoutMediaInput
-    Comment?: CommentCreateNestedManyWithoutMediaInput
-    MediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
-    SessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
+    mediaReaction?: MediaReactionCreateNestedManyWithoutMediaInput
+    history?: HistoryCreateNestedManyWithoutMeidaInput
+    mediaOnCategory?: MediaOnCategoryCreateNestedManyWithoutMediaInput
+    comment?: CommentCreateNestedManyWithoutMediaInput
+    mediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
+    sessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
+    mediaOnAlbum?: MediaOnAlbumCreateNestedManyWithoutMediaInput
   }
 
   export type MediaUncheckedCreateWithoutDetailInput = {
@@ -29570,12 +32510,13 @@ export namespace Prisma {
     thumbnails?: ThumbnailUncheckedCreateNestedManyWithoutMediaInput
     videoResources?: VideoResourceUncheckedCreateNestedManyWithoutMediaInput
     audioResources?: AudioResourceUncheckedCreateNestedManyWithoutMediaInput
-    MediaReaction?: MediaReactionUncheckedCreateNestedManyWithoutMediaInput
-    History?: HistoryUncheckedCreateNestedManyWithoutMeidaInput
-    CategoryOnVideo?: CategoryOnMediaUncheckedCreateNestedManyWithoutMediaInput
-    Comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
-    MediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
-    SessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
+    mediaReaction?: MediaReactionUncheckedCreateNestedManyWithoutMediaInput
+    history?: HistoryUncheckedCreateNestedManyWithoutMeidaInput
+    mediaOnCategory?: MediaOnCategoryUncheckedCreateNestedManyWithoutMediaInput
+    comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
+    mediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
+    sessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
+    mediaOnAlbum?: MediaOnAlbumUncheckedCreateNestedManyWithoutMediaInput
   }
 
   export type MediaCreateOrConnectWithoutDetailInput = {
@@ -29609,12 +32550,13 @@ export namespace Prisma {
     thumbnails?: ThumbnailUpdateManyWithoutMediaNestedInput
     videoResources?: VideoResourceUpdateManyWithoutMediaNestedInput
     audioResources?: AudioResourceUpdateManyWithoutMediaNestedInput
-    MediaReaction?: MediaReactionUpdateManyWithoutMediaNestedInput
-    History?: HistoryUpdateManyWithoutMeidaNestedInput
-    CategoryOnVideo?: CategoryOnMediaUpdateManyWithoutMediaNestedInput
-    Comment?: CommentUpdateManyWithoutMediaNestedInput
-    MediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
-    SessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
+    mediaReaction?: MediaReactionUpdateManyWithoutMediaNestedInput
+    history?: HistoryUpdateManyWithoutMeidaNestedInput
+    mediaOnCategory?: MediaOnCategoryUpdateManyWithoutMediaNestedInput
+    comment?: CommentUpdateManyWithoutMediaNestedInput
+    mediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
+    sessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
+    mediaOnAlbum?: MediaOnAlbumUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaUncheckedUpdateWithoutDetailInput = {
@@ -29632,12 +32574,13 @@ export namespace Prisma {
     thumbnails?: ThumbnailUncheckedUpdateManyWithoutMediaNestedInput
     videoResources?: VideoResourceUncheckedUpdateManyWithoutMediaNestedInput
     audioResources?: AudioResourceUncheckedUpdateManyWithoutMediaNestedInput
-    MediaReaction?: MediaReactionUncheckedUpdateManyWithoutMediaNestedInput
-    History?: HistoryUncheckedUpdateManyWithoutMeidaNestedInput
-    CategoryOnVideo?: CategoryOnMediaUncheckedUpdateManyWithoutMediaNestedInput
-    Comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
-    MediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
-    SessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
+    mediaReaction?: MediaReactionUncheckedUpdateManyWithoutMediaNestedInput
+    history?: HistoryUncheckedUpdateManyWithoutMeidaNestedInput
+    mediaOnCategory?: MediaOnCategoryUncheckedUpdateManyWithoutMediaNestedInput
+    comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
+    mediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
+    sessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
+    mediaOnAlbum?: MediaOnAlbumUncheckedUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaCreateWithoutThumbnailsInput = {
@@ -29655,12 +32598,13 @@ export namespace Prisma {
     detail?: MediaDetailCreateNestedOneWithoutMediaInput
     videoResources?: VideoResourceCreateNestedManyWithoutMediaInput
     audioResources?: AudioResourceCreateNestedManyWithoutMediaInput
-    MediaReaction?: MediaReactionCreateNestedManyWithoutMediaInput
-    History?: HistoryCreateNestedManyWithoutMeidaInput
-    CategoryOnVideo?: CategoryOnMediaCreateNestedManyWithoutMediaInput
-    Comment?: CommentCreateNestedManyWithoutMediaInput
-    MediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
-    SessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
+    mediaReaction?: MediaReactionCreateNestedManyWithoutMediaInput
+    history?: HistoryCreateNestedManyWithoutMeidaInput
+    mediaOnCategory?: MediaOnCategoryCreateNestedManyWithoutMediaInput
+    comment?: CommentCreateNestedManyWithoutMediaInput
+    mediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
+    sessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
+    mediaOnAlbum?: MediaOnAlbumCreateNestedManyWithoutMediaInput
   }
 
   export type MediaUncheckedCreateWithoutThumbnailsInput = {
@@ -29678,12 +32622,13 @@ export namespace Prisma {
     detail?: MediaDetailUncheckedCreateNestedOneWithoutMediaInput
     videoResources?: VideoResourceUncheckedCreateNestedManyWithoutMediaInput
     audioResources?: AudioResourceUncheckedCreateNestedManyWithoutMediaInput
-    MediaReaction?: MediaReactionUncheckedCreateNestedManyWithoutMediaInput
-    History?: HistoryUncheckedCreateNestedManyWithoutMeidaInput
-    CategoryOnVideo?: CategoryOnMediaUncheckedCreateNestedManyWithoutMediaInput
-    Comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
-    MediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
-    SessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
+    mediaReaction?: MediaReactionUncheckedCreateNestedManyWithoutMediaInput
+    history?: HistoryUncheckedCreateNestedManyWithoutMeidaInput
+    mediaOnCategory?: MediaOnCategoryUncheckedCreateNestedManyWithoutMediaInput
+    comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
+    mediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
+    sessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
+    mediaOnAlbum?: MediaOnAlbumUncheckedCreateNestedManyWithoutMediaInput
   }
 
   export type MediaCreateOrConnectWithoutThumbnailsInput = {
@@ -29717,12 +32662,13 @@ export namespace Prisma {
     detail?: MediaDetailUpdateOneWithoutMediaNestedInput
     videoResources?: VideoResourceUpdateManyWithoutMediaNestedInput
     audioResources?: AudioResourceUpdateManyWithoutMediaNestedInput
-    MediaReaction?: MediaReactionUpdateManyWithoutMediaNestedInput
-    History?: HistoryUpdateManyWithoutMeidaNestedInput
-    CategoryOnVideo?: CategoryOnMediaUpdateManyWithoutMediaNestedInput
-    Comment?: CommentUpdateManyWithoutMediaNestedInput
-    MediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
-    SessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
+    mediaReaction?: MediaReactionUpdateManyWithoutMediaNestedInput
+    history?: HistoryUpdateManyWithoutMeidaNestedInput
+    mediaOnCategory?: MediaOnCategoryUpdateManyWithoutMediaNestedInput
+    comment?: CommentUpdateManyWithoutMediaNestedInput
+    mediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
+    sessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
+    mediaOnAlbum?: MediaOnAlbumUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaUncheckedUpdateWithoutThumbnailsInput = {
@@ -29740,12 +32686,13 @@ export namespace Prisma {
     detail?: MediaDetailUncheckedUpdateOneWithoutMediaNestedInput
     videoResources?: VideoResourceUncheckedUpdateManyWithoutMediaNestedInput
     audioResources?: AudioResourceUncheckedUpdateManyWithoutMediaNestedInput
-    MediaReaction?: MediaReactionUncheckedUpdateManyWithoutMediaNestedInput
-    History?: HistoryUncheckedUpdateManyWithoutMeidaNestedInput
-    CategoryOnVideo?: CategoryOnMediaUncheckedUpdateManyWithoutMediaNestedInput
-    Comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
-    MediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
-    SessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
+    mediaReaction?: MediaReactionUncheckedUpdateManyWithoutMediaNestedInput
+    history?: HistoryUncheckedUpdateManyWithoutMeidaNestedInput
+    mediaOnCategory?: MediaOnCategoryUncheckedUpdateManyWithoutMediaNestedInput
+    comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
+    mediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
+    sessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
+    mediaOnAlbum?: MediaOnAlbumUncheckedUpdateManyWithoutMediaNestedInput
   }
 
   export type PaymentTransactionDetailCreateWithoutPaymentTransactionInput = {
@@ -29837,6 +32784,311 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type MediaCreateWithoutMediaOnAlbumInput = {
+    id?: string
+    title: string
+    views?: number
+    duration?: number
+    status?: $Enums.StatusResource
+    viewMode?: $Enums.Status
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    lockedAt?: Date | string | null
+    publishedAt?: Date | string | null
+    owner: UserCreateNestedOneWithoutMediaInput
+    thumbnails?: ThumbnailCreateNestedManyWithoutMediaInput
+    detail?: MediaDetailCreateNestedOneWithoutMediaInput
+    videoResources?: VideoResourceCreateNestedManyWithoutMediaInput
+    audioResources?: AudioResourceCreateNestedManyWithoutMediaInput
+    mediaReaction?: MediaReactionCreateNestedManyWithoutMediaInput
+    history?: HistoryCreateNestedManyWithoutMeidaInput
+    mediaOnCategory?: MediaOnCategoryCreateNestedManyWithoutMediaInput
+    comment?: CommentCreateNestedManyWithoutMediaInput
+    mediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
+    sessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
+  }
+
+  export type MediaUncheckedCreateWithoutMediaOnAlbumInput = {
+    id?: string
+    userId: number
+    title: string
+    views?: number
+    duration?: number
+    status?: $Enums.StatusResource
+    viewMode?: $Enums.Status
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    lockedAt?: Date | string | null
+    publishedAt?: Date | string | null
+    thumbnails?: ThumbnailUncheckedCreateNestedManyWithoutMediaInput
+    detail?: MediaDetailUncheckedCreateNestedOneWithoutMediaInput
+    videoResources?: VideoResourceUncheckedCreateNestedManyWithoutMediaInput
+    audioResources?: AudioResourceUncheckedCreateNestedManyWithoutMediaInput
+    mediaReaction?: MediaReactionUncheckedCreateNestedManyWithoutMediaInput
+    history?: HistoryUncheckedCreateNestedManyWithoutMeidaInput
+    mediaOnCategory?: MediaOnCategoryUncheckedCreateNestedManyWithoutMediaInput
+    comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
+    mediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
+    sessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
+  }
+
+  export type MediaCreateOrConnectWithoutMediaOnAlbumInput = {
+    where: MediaWhereUniqueInput
+    create: XOR<MediaCreateWithoutMediaOnAlbumInput, MediaUncheckedCreateWithoutMediaOnAlbumInput>
+  }
+
+  export type AlbumCreateWithoutMediaOnAlbumInput = {
+    id?: string
+    name: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    owner: UserCreateNestedOneWithoutAlbumInput
+  }
+
+  export type AlbumUncheckedCreateWithoutMediaOnAlbumInput = {
+    id?: string
+    name: string
+    description?: string | null
+    userId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AlbumCreateOrConnectWithoutMediaOnAlbumInput = {
+    where: AlbumWhereUniqueInput
+    create: XOR<AlbumCreateWithoutMediaOnAlbumInput, AlbumUncheckedCreateWithoutMediaOnAlbumInput>
+  }
+
+  export type MediaUpsertWithoutMediaOnAlbumInput = {
+    update: XOR<MediaUpdateWithoutMediaOnAlbumInput, MediaUncheckedUpdateWithoutMediaOnAlbumInput>
+    create: XOR<MediaCreateWithoutMediaOnAlbumInput, MediaUncheckedCreateWithoutMediaOnAlbumInput>
+    where?: MediaWhereInput
+  }
+
+  export type MediaUpdateToOneWithWhereWithoutMediaOnAlbumInput = {
+    where?: MediaWhereInput
+    data: XOR<MediaUpdateWithoutMediaOnAlbumInput, MediaUncheckedUpdateWithoutMediaOnAlbumInput>
+  }
+
+  export type MediaUpdateWithoutMediaOnAlbumInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    views?: IntFieldUpdateOperationsInput | number
+    duration?: FloatFieldUpdateOperationsInput | number
+    status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
+    viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    owner?: UserUpdateOneRequiredWithoutMediaNestedInput
+    thumbnails?: ThumbnailUpdateManyWithoutMediaNestedInput
+    detail?: MediaDetailUpdateOneWithoutMediaNestedInput
+    videoResources?: VideoResourceUpdateManyWithoutMediaNestedInput
+    audioResources?: AudioResourceUpdateManyWithoutMediaNestedInput
+    mediaReaction?: MediaReactionUpdateManyWithoutMediaNestedInput
+    history?: HistoryUpdateManyWithoutMeidaNestedInput
+    mediaOnCategory?: MediaOnCategoryUpdateManyWithoutMediaNestedInput
+    comment?: CommentUpdateManyWithoutMediaNestedInput
+    mediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
+    sessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
+  }
+
+  export type MediaUncheckedUpdateWithoutMediaOnAlbumInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    views?: IntFieldUpdateOperationsInput | number
+    duration?: FloatFieldUpdateOperationsInput | number
+    status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
+    viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    thumbnails?: ThumbnailUncheckedUpdateManyWithoutMediaNestedInput
+    detail?: MediaDetailUncheckedUpdateOneWithoutMediaNestedInput
+    videoResources?: VideoResourceUncheckedUpdateManyWithoutMediaNestedInput
+    audioResources?: AudioResourceUncheckedUpdateManyWithoutMediaNestedInput
+    mediaReaction?: MediaReactionUncheckedUpdateManyWithoutMediaNestedInput
+    history?: HistoryUncheckedUpdateManyWithoutMeidaNestedInput
+    mediaOnCategory?: MediaOnCategoryUncheckedUpdateManyWithoutMediaNestedInput
+    comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
+    mediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
+    sessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
+  }
+
+  export type AlbumUpsertWithoutMediaOnAlbumInput = {
+    update: XOR<AlbumUpdateWithoutMediaOnAlbumInput, AlbumUncheckedUpdateWithoutMediaOnAlbumInput>
+    create: XOR<AlbumCreateWithoutMediaOnAlbumInput, AlbumUncheckedCreateWithoutMediaOnAlbumInput>
+    where?: AlbumWhereInput
+  }
+
+  export type AlbumUpdateToOneWithWhereWithoutMediaOnAlbumInput = {
+    where?: AlbumWhereInput
+    data: XOR<AlbumUpdateWithoutMediaOnAlbumInput, AlbumUncheckedUpdateWithoutMediaOnAlbumInput>
+  }
+
+  export type AlbumUpdateWithoutMediaOnAlbumInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    owner?: UserUpdateOneRequiredWithoutAlbumNestedInput
+  }
+
+  export type AlbumUncheckedUpdateWithoutMediaOnAlbumInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserCreateWithoutAlbumInput = {
+    firstName: string
+    lastName: string
+    email: string
+    username: string
+    password: string
+    avatar?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    lockedAt?: Date | string | null
+    media?: MediaCreateNestedManyWithoutOwnerInput
+    mediaReactions?: MediaReactionCreateNestedManyWithoutUserInput
+    histories?: HistoryCreateNestedManyWithoutUserInput
+    subscribers?: SubscriberCreateNestedManyWithoutUserInput
+    channel?: SubscriberCreateNestedManyWithoutChannelInput
+    NotificationSubscriptions?: NotificationSubscriptionsCreateNestedManyWithoutUserInput
+    Comment?: CommentCreateNestedManyWithoutUserInput
+    Playlist?: PlaylistCreateNestedManyWithoutUserInput
+    UserPaymentMethod?: UserPaymentMethodCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutAlbumInput = {
+    id?: number
+    firstName: string
+    lastName: string
+    email: string
+    username: string
+    password: string
+    avatar?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    lockedAt?: Date | string | null
+    media?: MediaUncheckedCreateNestedManyWithoutOwnerInput
+    mediaReactions?: MediaReactionUncheckedCreateNestedManyWithoutUserInput
+    histories?: HistoryUncheckedCreateNestedManyWithoutUserInput
+    subscribers?: SubscriberUncheckedCreateNestedManyWithoutUserInput
+    channel?: SubscriberUncheckedCreateNestedManyWithoutChannelInput
+    NotificationSubscriptions?: NotificationSubscriptionsUncheckedCreateNestedManyWithoutUserInput
+    Comment?: CommentUncheckedCreateNestedManyWithoutUserInput
+    Playlist?: PlaylistUncheckedCreateNestedManyWithoutUserInput
+    UserPaymentMethod?: UserPaymentMethodUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutAlbumInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutAlbumInput, UserUncheckedCreateWithoutAlbumInput>
+  }
+
+  export type MediaOnAlbumCreateWithoutAlbumInput = {
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    media: MediaCreateNestedOneWithoutMediaOnAlbumInput
+  }
+
+  export type MediaOnAlbumUncheckedCreateWithoutAlbumInput = {
+    id?: number
+    mediaId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MediaOnAlbumCreateOrConnectWithoutAlbumInput = {
+    where: MediaOnAlbumWhereUniqueInput
+    create: XOR<MediaOnAlbumCreateWithoutAlbumInput, MediaOnAlbumUncheckedCreateWithoutAlbumInput>
+  }
+
+  export type MediaOnAlbumCreateManyAlbumInputEnvelope = {
+    data: MediaOnAlbumCreateManyAlbumInput | MediaOnAlbumCreateManyAlbumInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserUpsertWithoutAlbumInput = {
+    update: XOR<UserUpdateWithoutAlbumInput, UserUncheckedUpdateWithoutAlbumInput>
+    create: XOR<UserCreateWithoutAlbumInput, UserUncheckedCreateWithoutAlbumInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutAlbumInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutAlbumInput, UserUncheckedUpdateWithoutAlbumInput>
+  }
+
+  export type UserUpdateWithoutAlbumInput = {
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    media?: MediaUpdateManyWithoutOwnerNestedInput
+    mediaReactions?: MediaReactionUpdateManyWithoutUserNestedInput
+    histories?: HistoryUpdateManyWithoutUserNestedInput
+    subscribers?: SubscriberUpdateManyWithoutUserNestedInput
+    channel?: SubscriberUpdateManyWithoutChannelNestedInput
+    NotificationSubscriptions?: NotificationSubscriptionsUpdateManyWithoutUserNestedInput
+    Comment?: CommentUpdateManyWithoutUserNestedInput
+    Playlist?: PlaylistUpdateManyWithoutUserNestedInput
+    UserPaymentMethod?: UserPaymentMethodUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutAlbumInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    media?: MediaUncheckedUpdateManyWithoutOwnerNestedInput
+    mediaReactions?: MediaReactionUncheckedUpdateManyWithoutUserNestedInput
+    histories?: HistoryUncheckedUpdateManyWithoutUserNestedInput
+    subscribers?: SubscriberUncheckedUpdateManyWithoutUserNestedInput
+    channel?: SubscriberUncheckedUpdateManyWithoutChannelNestedInput
+    NotificationSubscriptions?: NotificationSubscriptionsUncheckedUpdateManyWithoutUserNestedInput
+    Comment?: CommentUncheckedUpdateManyWithoutUserNestedInput
+    Playlist?: PlaylistUncheckedUpdateManyWithoutUserNestedInput
+    UserPaymentMethod?: UserPaymentMethodUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type MediaOnAlbumUpsertWithWhereUniqueWithoutAlbumInput = {
+    where: MediaOnAlbumWhereUniqueInput
+    update: XOR<MediaOnAlbumUpdateWithoutAlbumInput, MediaOnAlbumUncheckedUpdateWithoutAlbumInput>
+    create: XOR<MediaOnAlbumCreateWithoutAlbumInput, MediaOnAlbumUncheckedCreateWithoutAlbumInput>
+  }
+
+  export type MediaOnAlbumUpdateWithWhereUniqueWithoutAlbumInput = {
+    where: MediaOnAlbumWhereUniqueInput
+    data: XOR<MediaOnAlbumUpdateWithoutAlbumInput, MediaOnAlbumUncheckedUpdateWithoutAlbumInput>
+  }
+
+  export type MediaOnAlbumUpdateManyWithWhereWithoutAlbumInput = {
+    where: MediaOnAlbumScalarWhereInput
+    data: XOR<MediaOnAlbumUpdateManyMutationInput, MediaOnAlbumUncheckedUpdateManyWithoutAlbumInput>
+  }
+
   export type MediaCreateManyOwnerInput = {
     id?: string
     title: string
@@ -29908,6 +33160,14 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
+  export type AlbumCreateManyOwnerInput = {
+    id?: string
+    name: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
   export type MediaUpdateWithoutOwnerInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
@@ -29923,12 +33183,13 @@ export namespace Prisma {
     detail?: MediaDetailUpdateOneWithoutMediaNestedInput
     videoResources?: VideoResourceUpdateManyWithoutMediaNestedInput
     audioResources?: AudioResourceUpdateManyWithoutMediaNestedInput
-    MediaReaction?: MediaReactionUpdateManyWithoutMediaNestedInput
-    History?: HistoryUpdateManyWithoutMeidaNestedInput
-    CategoryOnVideo?: CategoryOnMediaUpdateManyWithoutMediaNestedInput
-    Comment?: CommentUpdateManyWithoutMediaNestedInput
-    MediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
-    SessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
+    mediaReaction?: MediaReactionUpdateManyWithoutMediaNestedInput
+    history?: HistoryUpdateManyWithoutMeidaNestedInput
+    mediaOnCategory?: MediaOnCategoryUpdateManyWithoutMediaNestedInput
+    comment?: CommentUpdateManyWithoutMediaNestedInput
+    mediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
+    sessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
+    mediaOnAlbum?: MediaOnAlbumUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaUncheckedUpdateWithoutOwnerInput = {
@@ -29946,12 +33207,13 @@ export namespace Prisma {
     detail?: MediaDetailUncheckedUpdateOneWithoutMediaNestedInput
     videoResources?: VideoResourceUncheckedUpdateManyWithoutMediaNestedInput
     audioResources?: AudioResourceUncheckedUpdateManyWithoutMediaNestedInput
-    MediaReaction?: MediaReactionUncheckedUpdateManyWithoutMediaNestedInput
-    History?: HistoryUncheckedUpdateManyWithoutMeidaNestedInput
-    CategoryOnVideo?: CategoryOnMediaUncheckedUpdateManyWithoutMediaNestedInput
-    Comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
-    MediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
-    SessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
+    mediaReaction?: MediaReactionUncheckedUpdateManyWithoutMediaNestedInput
+    history?: HistoryUncheckedUpdateManyWithoutMeidaNestedInput
+    mediaOnCategory?: MediaOnCategoryUncheckedUpdateManyWithoutMediaNestedInput
+    comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
+    mediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
+    sessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
+    mediaOnAlbum?: MediaOnAlbumUncheckedUpdateManyWithoutMediaNestedInput
   }
 
   export type MediaUncheckedUpdateManyWithoutOwnerInput = {
@@ -30136,21 +33398,47 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type CategoryOnMediaCreateManyCategoryInput = {
+  export type AlbumUpdateWithoutOwnerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    mediaOnAlbum?: MediaOnAlbumUpdateManyWithoutAlbumNestedInput
+  }
+
+  export type AlbumUncheckedUpdateWithoutOwnerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    mediaOnAlbum?: MediaOnAlbumUncheckedUpdateManyWithoutAlbumNestedInput
+  }
+
+  export type AlbumUncheckedUpdateManyWithoutOwnerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MediaOnCategoryCreateManyCategoryInput = {
     id?: number
     mediaId: string
   }
 
-  export type CategoryOnMediaUpdateWithoutCategoryInput = {
-    media?: MediaUpdateOneRequiredWithoutCategoryOnVideoNestedInput
+  export type MediaOnCategoryUpdateWithoutCategoryInput = {
+    media?: MediaUpdateOneRequiredWithoutMediaOnCategoryNestedInput
   }
 
-  export type CategoryOnMediaUncheckedUpdateWithoutCategoryInput = {
+  export type MediaOnCategoryUncheckedUpdateWithoutCategoryInput = {
     id?: IntFieldUpdateOperationsInput | number
     mediaId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type CategoryOnMediaUncheckedUpdateManyWithoutCategoryInput = {
+  export type MediaOnCategoryUncheckedUpdateManyWithoutCategoryInput = {
     id?: IntFieldUpdateOperationsInput | number
     mediaId?: StringFieldUpdateOperationsInput | string
   }
@@ -30194,7 +33482,7 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type CategoryOnMediaCreateManyMediaInput = {
+  export type MediaOnCategoryCreateManyMediaInput = {
     id?: number
     categoryId: string
   }
@@ -30220,6 +33508,13 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     expired_at?: Date | string | null
+  }
+
+  export type MediaOnAlbumCreateManyMediaInput = {
+    id?: number
+    albumId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ThumbnailUpdateWithoutMediaInput = {
@@ -30337,16 +33632,16 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type CategoryOnMediaUpdateWithoutMediaInput = {
+  export type MediaOnCategoryUpdateWithoutMediaInput = {
     category?: CategoryUpdateOneRequiredWithoutCategoryOnMediaNestedInput
   }
 
-  export type CategoryOnMediaUncheckedUpdateWithoutMediaInput = {
+  export type MediaOnCategoryUncheckedUpdateWithoutMediaInput = {
     id?: IntFieldUpdateOperationsInput | number
     categoryId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type CategoryOnMediaUncheckedUpdateManyWithoutMediaInput = {
+  export type MediaOnCategoryUncheckedUpdateManyWithoutMediaInput = {
     id?: IntFieldUpdateOperationsInput | number
     categoryId?: StringFieldUpdateOperationsInput | string
   }
@@ -30418,6 +33713,26 @@ export namespace Prisma {
     expired_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
+  export type MediaOnAlbumUpdateWithoutMediaInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    album?: AlbumUpdateOneRequiredWithoutMediaOnAlbumNestedInput
+  }
+
+  export type MediaOnAlbumUncheckedUpdateWithoutMediaInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    albumId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MediaOnAlbumUncheckedUpdateManyWithoutMediaInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    albumId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type MediaOnPlaylistCreateManyPlaylistInput = {
     id?: number
     mediaId: string
@@ -30473,6 +33788,33 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type MediaOnAlbumCreateManyAlbumInput = {
+    id?: number
+    mediaId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MediaOnAlbumUpdateWithoutAlbumInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    media?: MediaUpdateOneRequiredWithoutMediaOnAlbumNestedInput
+  }
+
+  export type MediaOnAlbumUncheckedUpdateWithoutAlbumInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    mediaId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MediaOnAlbumUncheckedUpdateManyWithoutAlbumInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    mediaId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
 
 
   /**
@@ -30499,6 +33841,10 @@ export namespace Prisma {
      */
     export type PaymentTransactionCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PaymentTransactionCountOutputTypeDefaultArgs<ExtArgs>
     /**
+     * @deprecated Use AlbumCountOutputTypeDefaultArgs instead
+     */
+    export type AlbumCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = AlbumCountOutputTypeDefaultArgs<ExtArgs>
+    /**
      * @deprecated Use UserDefaultArgs instead
      */
     export type UserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UserDefaultArgs<ExtArgs>
@@ -30511,9 +33857,9 @@ export namespace Prisma {
      */
     export type CategoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = CategoryDefaultArgs<ExtArgs>
     /**
-     * @deprecated Use CategoryOnMediaDefaultArgs instead
+     * @deprecated Use MediaOnCategoryDefaultArgs instead
      */
-    export type CategoryOnMediaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = CategoryOnMediaDefaultArgs<ExtArgs>
+    export type MediaOnCategoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = MediaOnCategoryDefaultArgs<ExtArgs>
     /**
      * @deprecated Use SessionUploadDefaultArgs instead
      */
@@ -30574,6 +33920,14 @@ export namespace Prisma {
      * @deprecated Use PaymentTransactionDetailDefaultArgs instead
      */
     export type PaymentTransactionDetailArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PaymentTransactionDetailDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use MediaOnAlbumDefaultArgs instead
+     */
+    export type MediaOnAlbumArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = MediaOnAlbumDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use AlbumDefaultArgs instead
+     */
+    export type AlbumArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = AlbumDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

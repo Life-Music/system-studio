@@ -85,6 +85,16 @@ const props = defineProps<{
       audioResources: true
       videoResources: true
       thumbnails: true
+      mediaOnAlbum: {
+        select: {
+          album: true
+        }
+      }
+      mediaOnCategory: {
+        select: {
+          category: true
+        }
+      }
     }
   }>
   onSave: Function
@@ -152,9 +162,8 @@ const handleSubmit = async () => {
     if (!mediaInfo.value) return
     saving.value = true
     const request = {
-      title: mediaInfo.value.title,
-      description: mediaInfo.value.detail?.description ?? '',
-      viewMode: mediaInfo.value.viewMode
+      ...mediaInfo.value,
+      description: mediaInfo.value.detail?.description ?? ''
     }
     const res = await requestInstance
       .patch<ResponseSuccess<Media>>(`/studio/media/${mediaInfo.value.id}`, request)

@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import routerNames from './routerNames'
 import ContentView from "../views/management/ContentView.vue"
+import AlbumView from '@/views/management/AlbumView.vue'
+import ListMediaView from '@/views/management/album/ListMediaView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,6 +28,21 @@ const router = createRouter({
           path: 'content',
           name: routerNames.CONTENT,
           component: ContentView,
+        },
+        {
+          path: 'album',
+          children: [
+            {
+              path: '',
+              name: routerNames.ALBUM,
+              component: AlbumView,
+            },
+            {
+              path: ':albumId/media',
+              name: routerNames.ALBUM_MEDIA,
+              component: ListMediaView,
+            }
+          ]
         }
       ]
     }

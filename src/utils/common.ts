@@ -1,5 +1,6 @@
 import dayjs from "dayjs";
 import axios from "axios";
+import type { Thumbnail } from "~/prisma/generated/mysql";
 
 export async function sha256(message: string) {
   // encode as UTF-8
@@ -114,7 +115,11 @@ export const convertDuration = (durationSec: number): string => {
     return `${hourStr}:${minuteStr}:${secondStr}`
   }
   return `${minuteStr}:${secondStr}`
+}
 
+export const getThumbnailUrlPrimary = (thumbnails: Thumbnail[], id?: string): string => {
+  const primary = thumbnails.find((thumbnail) => id && thumbnail.id === id || !id && thumbnail.isPrimary)
+  return primary?.url ?? "/images/audio/default.png"
 }
 
 export const getAudioSource = (fileId: string) => {
