@@ -19,10 +19,7 @@
           <div class="text-blue-500 cursor-pointer font-semibold" @click="openModalEdit(record)">
             <div class="flex gap-x-5 items-center">
               <div class="flex-shrink-0">
-                <img
-                  class="w-10 aspect-square rounded-lg"
-                  :src="getThumbnailUrlPrimary(record.thumbnails)"
-                />
+                <img class="w-10 aspect-square rounded-lg" :src="getThumbnailUrlPrimary(record.thumbnails)" />
               </div>
               <div>{{ text }}</div>
             </div>
@@ -31,7 +28,7 @@
         <template v-if="column.dataIndex === 'created_at'">
           {{ formatDate(record.publishedAt ?? text) }}
         </template>
-        <template v-if="column.dataIndex === 'number_view'">
+        <template v-if="column.dataIndex === 'plays'">
           {{ formatNumber(text) }}
         </template>
         <template v-if="column.dataIndex === 'number_comment'">
@@ -39,15 +36,11 @@
         </template>
       </template>
     </Table>
-    <ModalUploadContent
-      v-model:open="isOpenModalUploadContent"
-      :p-media-info="currentMedia"
-      :on-save="loadResource"
-    />
+    <ModalUploadContent v-model:open="isOpenModalUploadContent" :p-media-info="currentMedia" :on-save="loadResource" />
   </div>
 </template>
 <script setup lang="ts">
-import { Table, Button, Image, Avatar } from 'ant-design-vue'
+import { Table, Button } from 'ant-design-vue'
 import type { ColumnType } from 'ant-design-vue/es/table'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -61,23 +54,23 @@ const { t } = useI18n()
 const isOpenModalUploadContent = ref(false)
 const currentMedia = ref<
   | Prisma.MediaGetPayload<{
-      include: {
-        mediaOnAlbum: {
-          select: {
-            album: true
-          }
+    include: {
+      mediaOnAlbum: {
+        select: {
+          album: true
         }
-        mediaOnCategory: {
-          select: {
-            category: true
-          }
-        }
-        detail: true
-        audioResources: true
-        videoResources: true
-        thumbnails: true
       }
-    }>
+      mediaOnCategory: {
+        select: {
+          category: true
+        }
+      }
+      detail: true
+      audioResources: true
+      videoResources: true
+      thumbnails: true
+    }
+  }>
   | undefined
 >()
 const isLoading = ref<boolean>(true)
@@ -116,8 +109,8 @@ const columns = ref<ColumnType[]>([
   },
   {
     title: t('number_view'),
-    dataIndex: 'views',
-    key: 'views'
+    dataIndex: 'plays',
+    key: 'plays'
   },
   {
     title: t('number_comment'),
@@ -125,7 +118,7 @@ const columns = ref<ColumnType[]>([
     key: 'number_comment'
   },
   {
-    title: t('like', { unit: '%' }),
+    title: t('like', { unit: '' }),
     dataIndex: 'like',
     key: 'like',
     customRender({ record }) {

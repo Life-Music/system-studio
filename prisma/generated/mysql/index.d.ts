@@ -118,6 +118,11 @@ export type MediaOnAlbum = $Result.DefaultSelection<Prisma.$MediaOnAlbumPayload>
  * 
  */
 export type Album = $Result.DefaultSelection<Prisma.$AlbumPayload>
+/**
+ * Model SocialAccount
+ * 
+ */
+export type SocialAccount = $Result.DefaultSelection<Prisma.$SocialAccountPayload>
 
 /**
  * Enums
@@ -158,6 +163,13 @@ export const AudioQuality: {
 
 export type AudioQuality = (typeof AudioQuality)[keyof typeof AudioQuality]
 
+
+export const AccountType: {
+  YOUTUBE: 'YOUTUBE'
+};
+
+export type AccountType = (typeof AccountType)[keyof typeof AccountType]
+
 }
 
 export type PaymentMethod = $Enums.PaymentMethod
@@ -175,6 +187,10 @@ export const Status: typeof $Enums.Status
 export type AudioQuality = $Enums.AudioQuality
 
 export const AudioQuality: typeof $Enums.AudioQuality
+
+export type AccountType = $Enums.AccountType
+
+export const AccountType: typeof $Enums.AccountType
 
 /**
  * ##  Prisma Client ʲˢ
@@ -507,6 +523,16 @@ export class PrismaClient<
     * ```
     */
   get album(): Prisma.AlbumDelegate<ExtArgs>;
+
+  /**
+   * `prisma.socialAccount`: Exposes CRUD operations for the **SocialAccount** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more SocialAccounts
+    * const socialAccounts = await prisma.socialAccount.findMany()
+    * ```
+    */
+  get socialAccount(): Prisma.SocialAccountDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -997,7 +1023,8 @@ export namespace Prisma {
     PaymentTransaction: 'PaymentTransaction',
     PaymentTransactionDetail: 'PaymentTransactionDetail',
     MediaOnAlbum: 'MediaOnAlbum',
-    Album: 'Album'
+    Album: 'Album',
+    SocialAccount: 'SocialAccount'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1014,7 +1041,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'user' | 'userPaymentMethod' | 'category' | 'mediaOnCategory' | 'sessionUpload' | 'media' | 'mediaReaction' | 'comment' | 'playlist' | 'mediaOnPlaylist' | 'history' | 'subscriber' | 'notificationSubscriptions' | 'videoResource' | 'audioResource' | 'mediaDetail' | 'thumbnail' | 'paymentTransaction' | 'paymentTransactionDetail' | 'mediaOnAlbum' | 'album'
+      modelProps: 'user' | 'userPaymentMethod' | 'category' | 'mediaOnCategory' | 'sessionUpload' | 'media' | 'mediaReaction' | 'comment' | 'playlist' | 'mediaOnPlaylist' | 'history' | 'subscriber' | 'notificationSubscriptions' | 'videoResource' | 'audioResource' | 'mediaDetail' | 'thumbnail' | 'paymentTransaction' | 'paymentTransactionDetail' | 'mediaOnAlbum' | 'album' | 'socialAccount'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
@@ -2404,6 +2431,72 @@ export namespace Prisma {
           }
         }
       }
+      SocialAccount: {
+        payload: Prisma.$SocialAccountPayload<ExtArgs>
+        fields: Prisma.SocialAccountFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SocialAccountFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$SocialAccountPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SocialAccountFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$SocialAccountPayload>
+          }
+          findFirst: {
+            args: Prisma.SocialAccountFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$SocialAccountPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SocialAccountFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$SocialAccountPayload>
+          }
+          findMany: {
+            args: Prisma.SocialAccountFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$SocialAccountPayload>[]
+          }
+          create: {
+            args: Prisma.SocialAccountCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$SocialAccountPayload>
+          }
+          createMany: {
+            args: Prisma.SocialAccountCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.SocialAccountDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$SocialAccountPayload>
+          }
+          update: {
+            args: Prisma.SocialAccountUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$SocialAccountPayload>
+          }
+          deleteMany: {
+            args: Prisma.SocialAccountDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SocialAccountUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.SocialAccountUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$SocialAccountPayload>
+          }
+          aggregate: {
+            args: Prisma.SocialAccountAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateSocialAccount>
+          }
+          groupBy: {
+            args: Prisma.SocialAccountGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<SocialAccountGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SocialAccountCountArgs<ExtArgs>,
+            result: $Utils.Optional<SocialAccountCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2563,6 +2656,7 @@ export namespace Prisma {
     Playlist: number
     UserPaymentMethod: number
     Album: number
+    SocialAccount: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2576,6 +2670,7 @@ export namespace Prisma {
     Playlist?: boolean | UserCountOutputTypeCountPlaylistArgs
     UserPaymentMethod?: boolean | UserCountOutputTypeCountUserPaymentMethodArgs
     Album?: boolean | UserCountOutputTypeCountAlbumArgs
+    SocialAccount?: boolean | UserCountOutputTypeCountSocialAccountArgs
   }
 
   // Custom InputTypes
@@ -2668,6 +2763,14 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountAlbumArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AlbumWhereInput
+  }
+
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountSocialAccountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SocialAccountWhereInput
   }
 
 
@@ -2942,22 +3045,12 @@ export namespace Prisma {
 
   export type AggregateUser = {
     _count: UserCountAggregateOutputType | null
-    _avg: UserAvgAggregateOutputType | null
-    _sum: UserSumAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
   }
 
-  export type UserAvgAggregateOutputType = {
-    id: number | null
-  }
-
-  export type UserSumAggregateOutputType = {
-    id: number | null
-  }
-
   export type UserMinAggregateOutputType = {
-    id: number | null
+    id: string | null
     firstName: string | null
     lastName: string | null
     email: string | null
@@ -2970,7 +3063,7 @@ export namespace Prisma {
   }
 
   export type UserMaxAggregateOutputType = {
-    id: number | null
+    id: string | null
     firstName: string | null
     lastName: string | null
     email: string | null
@@ -2996,14 +3089,6 @@ export namespace Prisma {
     _all: number
   }
 
-
-  export type UserAvgAggregateInputType = {
-    id?: true
-  }
-
-  export type UserSumAggregateInputType = {
-    id?: true
-  }
 
   export type UserMinAggregateInputType = {
     id?: true
@@ -3083,18 +3168,6 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Select which fields to average
-    **/
-    _avg?: UserAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: UserSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
      * Select which fields to find the minimum value
     **/
     _min?: UserMinAggregateInputType
@@ -3125,14 +3198,12 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: UserCountAggregateInputType | true
-    _avg?: UserAvgAggregateInputType
-    _sum?: UserSumAggregateInputType
     _min?: UserMinAggregateInputType
     _max?: UserMaxAggregateInputType
   }
 
   export type UserGroupByOutputType = {
-    id: number
+    id: string
     firstName: string
     lastName: string
     email: string
@@ -3143,8 +3214,6 @@ export namespace Prisma {
     updatedAt: Date
     lockedAt: Date | null
     _count: UserCountAggregateOutputType | null
-    _avg: UserAvgAggregateOutputType | null
-    _sum: UserSumAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
   }
@@ -3184,6 +3253,7 @@ export namespace Prisma {
     Playlist?: boolean | User$PlaylistArgs<ExtArgs>
     UserPaymentMethod?: boolean | User$UserPaymentMethodArgs<ExtArgs>
     Album?: boolean | User$AlbumArgs<ExtArgs>
+    SocialAccount?: boolean | User$SocialAccountArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -3211,6 +3281,7 @@ export namespace Prisma {
     Playlist?: boolean | User$PlaylistArgs<ExtArgs>
     UserPaymentMethod?: boolean | User$UserPaymentMethodArgs<ExtArgs>
     Album?: boolean | User$AlbumArgs<ExtArgs>
+    SocialAccount?: boolean | User$SocialAccountArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -3228,9 +3299,10 @@ export namespace Prisma {
       Playlist: Prisma.$PlaylistPayload<ExtArgs>[]
       UserPaymentMethod: Prisma.$UserPaymentMethodPayload<ExtArgs>[]
       Album: Prisma.$AlbumPayload<ExtArgs>[]
+      SocialAccount: Prisma.$SocialAccountPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
-      id: number
+      id: string
       firstName: string
       lastName: string
       email: string
@@ -3625,6 +3697,8 @@ export namespace Prisma {
 
     Album<T extends User$AlbumArgs<ExtArgs> = {}>(args?: Subset<T, User$AlbumArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AlbumPayload<ExtArgs>, T, 'findMany'> | Null>;
 
+    SocialAccount<T extends User$SocialAccountArgs<ExtArgs> = {}>(args?: Subset<T, User$SocialAccountArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SocialAccountPayload<ExtArgs>, T, 'findMany'> | Null>;
+
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3653,7 +3727,7 @@ export namespace Prisma {
    * Fields of the User model
    */ 
   interface UserFieldRefs {
-    readonly id: FieldRef<"User", 'Int'>
+    readonly id: FieldRef<"User", 'String'>
     readonly firstName: FieldRef<"User", 'String'>
     readonly lastName: FieldRef<"User", 'String'>
     readonly email: FieldRef<"User", 'String'>
@@ -4185,6 +4259,27 @@ export namespace Prisma {
 
 
   /**
+   * User.SocialAccount
+   */
+  export type User$SocialAccountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SocialAccount
+     */
+    select?: SocialAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SocialAccountInclude<ExtArgs> | null
+    where?: SocialAccountWhereInput
+    orderBy?: SocialAccountOrderByWithRelationInput | SocialAccountOrderByWithRelationInput[]
+    cursor?: SocialAccountWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SocialAccountScalarFieldEnum | SocialAccountScalarFieldEnum[]
+  }
+
+
+  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4214,17 +4309,15 @@ export namespace Prisma {
 
   export type UserPaymentMethodAvgAggregateOutputType = {
     id: number | null
-    userId: number | null
   }
 
   export type UserPaymentMethodSumAggregateOutputType = {
     id: number | null
-    userId: number | null
   }
 
   export type UserPaymentMethodMinAggregateOutputType = {
     id: number | null
-    userId: number | null
+    userId: string | null
     paymentMethod: $Enums.PaymentMethod | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -4232,7 +4325,7 @@ export namespace Prisma {
 
   export type UserPaymentMethodMaxAggregateOutputType = {
     id: number | null
-    userId: number | null
+    userId: string | null
     paymentMethod: $Enums.PaymentMethod | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -4250,12 +4343,10 @@ export namespace Prisma {
 
   export type UserPaymentMethodAvgAggregateInputType = {
     id?: true
-    userId?: true
   }
 
   export type UserPaymentMethodSumAggregateInputType = {
     id?: true
-    userId?: true
   }
 
   export type UserPaymentMethodMinAggregateInputType = {
@@ -4371,7 +4462,7 @@ export namespace Prisma {
 
   export type UserPaymentMethodGroupByOutputType = {
     id: number
-    userId: number
+    userId: string
     paymentMethod: $Enums.PaymentMethod
     createdAt: Date
     updatedAt: Date
@@ -4425,7 +4516,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      userId: number
+      userId: string
       paymentMethod: $Enums.PaymentMethod
       createdAt: Date
       updatedAt: Date
@@ -4825,7 +4916,7 @@ export namespace Prisma {
    */ 
   interface UserPaymentMethodFieldRefs {
     readonly id: FieldRef<"UserPaymentMethod", 'Int'>
-    readonly userId: FieldRef<"UserPaymentMethod", 'Int'>
+    readonly userId: FieldRef<"UserPaymentMethod", 'String'>
     readonly paymentMethod: FieldRef<"UserPaymentMethod", 'PaymentMethod'>
     readonly createdAt: FieldRef<"UserPaymentMethod", 'DateTime'>
     readonly updatedAt: FieldRef<"UserPaymentMethod", 'DateTime'>
@@ -6110,18 +6201,24 @@ export namespace Prisma {
     id: number | null
     categoryId: string | null
     mediaId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type MediaOnCategoryMaxAggregateOutputType = {
     id: number | null
     categoryId: string | null
     mediaId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type MediaOnCategoryCountAggregateOutputType = {
     id: number
     categoryId: number
     mediaId: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -6138,18 +6235,24 @@ export namespace Prisma {
     id?: true
     categoryId?: true
     mediaId?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type MediaOnCategoryMaxAggregateInputType = {
     id?: true
     categoryId?: true
     mediaId?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type MediaOnCategoryCountAggregateInputType = {
     id?: true
     categoryId?: true
     mediaId?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -6243,6 +6346,8 @@ export namespace Prisma {
     id: number
     categoryId: string
     mediaId: string
+    createdAt: Date
+    updatedAt: Date
     _count: MediaOnCategoryCountAggregateOutputType | null
     _avg: MediaOnCategoryAvgAggregateOutputType | null
     _sum: MediaOnCategorySumAggregateOutputType | null
@@ -6268,6 +6373,8 @@ export namespace Prisma {
     id?: boolean
     categoryId?: boolean
     mediaId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     category?: boolean | CategoryDefaultArgs<ExtArgs>
     media?: boolean | MediaDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["mediaOnCategory"]>
@@ -6276,6 +6383,8 @@ export namespace Prisma {
     id?: boolean
     categoryId?: boolean
     mediaId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
   export type MediaOnCategoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6294,6 +6403,8 @@ export namespace Prisma {
       id: number
       categoryId: string
       mediaId: string
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["mediaOnCategory"]>
     composites: {}
   }
@@ -6694,6 +6805,8 @@ export namespace Prisma {
     readonly id: FieldRef<"MediaOnCategory", 'Int'>
     readonly categoryId: FieldRef<"MediaOnCategory", 'String'>
     readonly mediaId: FieldRef<"MediaOnCategory", 'String'>
+    readonly createdAt: FieldRef<"MediaOnCategory", 'DateTime'>
+    readonly updatedAt: FieldRef<"MediaOnCategory", 'DateTime'>
   }
     
 
@@ -7963,23 +8076,24 @@ export namespace Prisma {
   }
 
   export type MediaAvgAggregateOutputType = {
-    userId: number | null
     views: number | null
     duration: number | null
+    plays: number | null
   }
 
   export type MediaSumAggregateOutputType = {
-    userId: number | null
     views: number | null
     duration: number | null
+    plays: number | null
   }
 
   export type MediaMinAggregateOutputType = {
     id: string | null
-    userId: number | null
+    userId: string | null
     title: string | null
     views: number | null
     duration: number | null
+    plays: number | null
     status: $Enums.StatusResource | null
     viewMode: $Enums.Status | null
     createdAt: Date | null
@@ -7990,10 +8104,11 @@ export namespace Prisma {
 
   export type MediaMaxAggregateOutputType = {
     id: string | null
-    userId: number | null
+    userId: string | null
     title: string | null
     views: number | null
     duration: number | null
+    plays: number | null
     status: $Enums.StatusResource | null
     viewMode: $Enums.Status | null
     createdAt: Date | null
@@ -8008,6 +8123,7 @@ export namespace Prisma {
     title: number
     views: number
     duration: number
+    plays: number
     status: number
     viewMode: number
     createdAt: number
@@ -8019,15 +8135,15 @@ export namespace Prisma {
 
 
   export type MediaAvgAggregateInputType = {
-    userId?: true
     views?: true
     duration?: true
+    plays?: true
   }
 
   export type MediaSumAggregateInputType = {
-    userId?: true
     views?: true
     duration?: true
+    plays?: true
   }
 
   export type MediaMinAggregateInputType = {
@@ -8036,6 +8152,7 @@ export namespace Prisma {
     title?: true
     views?: true
     duration?: true
+    plays?: true
     status?: true
     viewMode?: true
     createdAt?: true
@@ -8050,6 +8167,7 @@ export namespace Prisma {
     title?: true
     views?: true
     duration?: true
+    plays?: true
     status?: true
     viewMode?: true
     createdAt?: true
@@ -8064,6 +8182,7 @@ export namespace Prisma {
     title?: true
     views?: true
     duration?: true
+    plays?: true
     status?: true
     viewMode?: true
     createdAt?: true
@@ -8161,10 +8280,11 @@ export namespace Prisma {
 
   export type MediaGroupByOutputType = {
     id: string
-    userId: number
+    userId: string
     title: string
     views: number
     duration: number
+    plays: number
     status: $Enums.StatusResource
     viewMode: $Enums.Status
     createdAt: Date
@@ -8198,6 +8318,7 @@ export namespace Prisma {
     title?: boolean
     views?: boolean
     duration?: boolean
+    plays?: boolean
     status?: boolean
     viewMode?: boolean
     createdAt?: boolean
@@ -8225,6 +8346,7 @@ export namespace Prisma {
     title?: boolean
     views?: boolean
     duration?: boolean
+    plays?: boolean
     status?: boolean
     viewMode?: boolean
     createdAt?: boolean
@@ -8268,10 +8390,11 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      userId: number
+      userId: string
       title: string
       views: number
       duration: number
+      plays: number
       status: $Enums.StatusResource
       viewMode: $Enums.Status
       createdAt: Date
@@ -8696,10 +8819,11 @@ export namespace Prisma {
    */ 
   interface MediaFieldRefs {
     readonly id: FieldRef<"Media", 'String'>
-    readonly userId: FieldRef<"Media", 'Int'>
+    readonly userId: FieldRef<"Media", 'String'>
     readonly title: FieldRef<"Media", 'String'>
     readonly views: FieldRef<"Media", 'Int'>
     readonly duration: FieldRef<"Media", 'Float'>
+    readonly plays: FieldRef<"Media", 'Int'>
     readonly status: FieldRef<"Media", 'StatusResource'>
     readonly viewMode: FieldRef<"Media", 'Status'>
     readonly createdAt: FieldRef<"Media", 'DateTime'>
@@ -9265,25 +9389,13 @@ export namespace Prisma {
 
   export type AggregateMediaReaction = {
     _count: MediaReactionCountAggregateOutputType | null
-    _avg: MediaReactionAvgAggregateOutputType | null
-    _sum: MediaReactionSumAggregateOutputType | null
     _min: MediaReactionMinAggregateOutputType | null
     _max: MediaReactionMaxAggregateOutputType | null
   }
 
-  export type MediaReactionAvgAggregateOutputType = {
-    id: number | null
-    userId: number | null
-  }
-
-  export type MediaReactionSumAggregateOutputType = {
-    id: number | null
-    userId: number | null
-  }
-
   export type MediaReactionMinAggregateOutputType = {
-    id: number | null
-    userId: number | null
+    id: string | null
+    userId: string | null
     mediaId: string | null
     isLike: boolean | null
     createdAt: Date | null
@@ -9291,8 +9403,8 @@ export namespace Prisma {
   }
 
   export type MediaReactionMaxAggregateOutputType = {
-    id: number | null
-    userId: number | null
+    id: string | null
+    userId: string | null
     mediaId: string | null
     isLike: boolean | null
     createdAt: Date | null
@@ -9309,16 +9421,6 @@ export namespace Prisma {
     _all: number
   }
 
-
-  export type MediaReactionAvgAggregateInputType = {
-    id?: true
-    userId?: true
-  }
-
-  export type MediaReactionSumAggregateInputType = {
-    id?: true
-    userId?: true
-  }
 
   export type MediaReactionMinAggregateInputType = {
     id?: true
@@ -9386,18 +9488,6 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Select which fields to average
-    **/
-    _avg?: MediaReactionAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: MediaReactionSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
      * Select which fields to find the minimum value
     **/
     _min?: MediaReactionMinAggregateInputType
@@ -9428,22 +9518,18 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: MediaReactionCountAggregateInputType | true
-    _avg?: MediaReactionAvgAggregateInputType
-    _sum?: MediaReactionSumAggregateInputType
     _min?: MediaReactionMinAggregateInputType
     _max?: MediaReactionMaxAggregateInputType
   }
 
   export type MediaReactionGroupByOutputType = {
-    id: number
-    userId: number
+    id: string
+    userId: string
     mediaId: string
     isLike: boolean
     createdAt: Date
     updatedAt: Date
     _count: MediaReactionCountAggregateOutputType | null
-    _avg: MediaReactionAvgAggregateOutputType | null
-    _sum: MediaReactionSumAggregateOutputType | null
     _min: MediaReactionMinAggregateOutputType | null
     _max: MediaReactionMaxAggregateOutputType | null
   }
@@ -9495,8 +9581,8 @@ export namespace Prisma {
       media: Prisma.$MediaPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
-      id: number
-      userId: number
+      id: string
+      userId: string
       mediaId: string
       isLike: boolean
       createdAt: Date
@@ -9898,8 +9984,8 @@ export namespace Prisma {
    * Fields of the MediaReaction model
    */ 
   interface MediaReactionFieldRefs {
-    readonly id: FieldRef<"MediaReaction", 'Int'>
-    readonly userId: FieldRef<"MediaReaction", 'Int'>
+    readonly id: FieldRef<"MediaReaction", 'String'>
+    readonly userId: FieldRef<"MediaReaction", 'String'>
     readonly mediaId: FieldRef<"MediaReaction", 'String'>
     readonly isLike: FieldRef<"MediaReaction", 'Boolean'>
     readonly createdAt: FieldRef<"MediaReaction", 'DateTime'>
@@ -10237,25 +10323,13 @@ export namespace Prisma {
 
   export type AggregateComment = {
     _count: CommentCountAggregateOutputType | null
-    _avg: CommentAvgAggregateOutputType | null
-    _sum: CommentSumAggregateOutputType | null
     _min: CommentMinAggregateOutputType | null
     _max: CommentMaxAggregateOutputType | null
   }
 
-  export type CommentAvgAggregateOutputType = {
-    id: number | null
-    userId: number | null
-  }
-
-  export type CommentSumAggregateOutputType = {
-    id: number | null
-    userId: number | null
-  }
-
   export type CommentMinAggregateOutputType = {
-    id: number | null
-    userId: number | null
+    id: string | null
+    userId: string | null
     mediaId: string | null
     comment: string | null
     createdAt: Date | null
@@ -10263,8 +10337,8 @@ export namespace Prisma {
   }
 
   export type CommentMaxAggregateOutputType = {
-    id: number | null
-    userId: number | null
+    id: string | null
+    userId: string | null
     mediaId: string | null
     comment: string | null
     createdAt: Date | null
@@ -10281,16 +10355,6 @@ export namespace Prisma {
     _all: number
   }
 
-
-  export type CommentAvgAggregateInputType = {
-    id?: true
-    userId?: true
-  }
-
-  export type CommentSumAggregateInputType = {
-    id?: true
-    userId?: true
-  }
 
   export type CommentMinAggregateInputType = {
     id?: true
@@ -10358,18 +10422,6 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Select which fields to average
-    **/
-    _avg?: CommentAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: CommentSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
      * Select which fields to find the minimum value
     **/
     _min?: CommentMinAggregateInputType
@@ -10400,22 +10452,18 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: CommentCountAggregateInputType | true
-    _avg?: CommentAvgAggregateInputType
-    _sum?: CommentSumAggregateInputType
     _min?: CommentMinAggregateInputType
     _max?: CommentMaxAggregateInputType
   }
 
   export type CommentGroupByOutputType = {
-    id: number
-    userId: number
+    id: string
+    userId: string
     mediaId: string
     comment: string
     createdAt: Date
     updatedAt: Date
     _count: CommentCountAggregateOutputType | null
-    _avg: CommentAvgAggregateOutputType | null
-    _sum: CommentSumAggregateOutputType | null
     _min: CommentMinAggregateOutputType | null
     _max: CommentMaxAggregateOutputType | null
   }
@@ -10467,8 +10515,8 @@ export namespace Prisma {
       media: Prisma.$MediaPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
-      id: number
-      userId: number
+      id: string
+      userId: string
       mediaId: string
       comment: string
       createdAt: Date
@@ -10870,8 +10918,8 @@ export namespace Prisma {
    * Fields of the Comment model
    */ 
   interface CommentFieldRefs {
-    readonly id: FieldRef<"Comment", 'Int'>
-    readonly userId: FieldRef<"Comment", 'Int'>
+    readonly id: FieldRef<"Comment", 'String'>
+    readonly userId: FieldRef<"Comment", 'String'>
     readonly mediaId: FieldRef<"Comment", 'String'>
     readonly comment: FieldRef<"Comment", 'String'>
     readonly createdAt: FieldRef<"Comment", 'DateTime'>
@@ -11209,23 +11257,13 @@ export namespace Prisma {
 
   export type AggregatePlaylist = {
     _count: PlaylistCountAggregateOutputType | null
-    _avg: PlaylistAvgAggregateOutputType | null
-    _sum: PlaylistSumAggregateOutputType | null
     _min: PlaylistMinAggregateOutputType | null
     _max: PlaylistMaxAggregateOutputType | null
   }
 
-  export type PlaylistAvgAggregateOutputType = {
-    userId: number | null
-  }
-
-  export type PlaylistSumAggregateOutputType = {
-    userId: number | null
-  }
-
   export type PlaylistMinAggregateOutputType = {
     id: string | null
-    userId: number | null
+    userId: string | null
     title: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -11233,7 +11271,7 @@ export namespace Prisma {
 
   export type PlaylistMaxAggregateOutputType = {
     id: string | null
-    userId: number | null
+    userId: string | null
     title: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -11248,14 +11286,6 @@ export namespace Prisma {
     _all: number
   }
 
-
-  export type PlaylistAvgAggregateInputType = {
-    userId?: true
-  }
-
-  export type PlaylistSumAggregateInputType = {
-    userId?: true
-  }
 
   export type PlaylistMinAggregateInputType = {
     id?: true
@@ -11320,18 +11350,6 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Select which fields to average
-    **/
-    _avg?: PlaylistAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: PlaylistSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
      * Select which fields to find the minimum value
     **/
     _min?: PlaylistMinAggregateInputType
@@ -11362,21 +11380,17 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: PlaylistCountAggregateInputType | true
-    _avg?: PlaylistAvgAggregateInputType
-    _sum?: PlaylistSumAggregateInputType
     _min?: PlaylistMinAggregateInputType
     _max?: PlaylistMaxAggregateInputType
   }
 
   export type PlaylistGroupByOutputType = {
     id: string
-    userId: number
+    userId: string
     title: string
     createdAt: Date
     updatedAt: Date
     _count: PlaylistCountAggregateOutputType | null
-    _avg: PlaylistAvgAggregateOutputType | null
-    _sum: PlaylistSumAggregateOutputType | null
     _min: PlaylistMinAggregateOutputType | null
     _max: PlaylistMaxAggregateOutputType | null
   }
@@ -11429,7 +11443,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      userId: number
+      userId: string
       title: string
       createdAt: Date
       updatedAt: Date
@@ -11831,7 +11845,7 @@ export namespace Prisma {
    */ 
   interface PlaylistFieldRefs {
     readonly id: FieldRef<"Playlist", 'String'>
-    readonly userId: FieldRef<"Playlist", 'Int'>
+    readonly userId: FieldRef<"Playlist", 'String'>
     readonly title: FieldRef<"Playlist", 'String'>
     readonly createdAt: FieldRef<"Playlist", 'DateTime'>
     readonly updatedAt: FieldRef<"Playlist", 'DateTime'>
@@ -12197,68 +12211,78 @@ export namespace Prisma {
 
   export type MediaOnPlaylistAvgAggregateOutputType = {
     id: number | null
+    sortNo: number | null
   }
 
   export type MediaOnPlaylistSumAggregateOutputType = {
     id: number | null
+    sortNo: number | null
   }
 
   export type MediaOnPlaylistMinAggregateOutputType = {
     id: number | null
-    playListId: string | null
+    playlistId: string | null
     mediaId: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    sortNo: number | null
   }
 
   export type MediaOnPlaylistMaxAggregateOutputType = {
     id: number | null
-    playListId: string | null
+    playlistId: string | null
     mediaId: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    sortNo: number | null
   }
 
   export type MediaOnPlaylistCountAggregateOutputType = {
     id: number
-    playListId: number
+    playlistId: number
     mediaId: number
     createdAt: number
     updatedAt: number
+    sortNo: number
     _all: number
   }
 
 
   export type MediaOnPlaylistAvgAggregateInputType = {
     id?: true
+    sortNo?: true
   }
 
   export type MediaOnPlaylistSumAggregateInputType = {
     id?: true
+    sortNo?: true
   }
 
   export type MediaOnPlaylistMinAggregateInputType = {
     id?: true
-    playListId?: true
+    playlistId?: true
     mediaId?: true
     createdAt?: true
     updatedAt?: true
+    sortNo?: true
   }
 
   export type MediaOnPlaylistMaxAggregateInputType = {
     id?: true
-    playListId?: true
+    playlistId?: true
     mediaId?: true
     createdAt?: true
     updatedAt?: true
+    sortNo?: true
   }
 
   export type MediaOnPlaylistCountAggregateInputType = {
     id?: true
-    playListId?: true
+    playlistId?: true
     mediaId?: true
     createdAt?: true
     updatedAt?: true
+    sortNo?: true
     _all?: true
   }
 
@@ -12350,10 +12374,11 @@ export namespace Prisma {
 
   export type MediaOnPlaylistGroupByOutputType = {
     id: number
-    playListId: string
+    playlistId: string
     mediaId: string
     createdAt: Date
     updatedAt: Date
+    sortNo: number
     _count: MediaOnPlaylistCountAggregateOutputType | null
     _avg: MediaOnPlaylistAvgAggregateOutputType | null
     _sum: MediaOnPlaylistSumAggregateOutputType | null
@@ -12377,20 +12402,22 @@ export namespace Prisma {
 
   export type MediaOnPlaylistSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    playListId?: boolean
+    playlistId?: boolean
     mediaId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    sortNo?: boolean
     playlist?: boolean | PlaylistDefaultArgs<ExtArgs>
     media?: boolean | MediaDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["mediaOnPlaylist"]>
 
   export type MediaOnPlaylistSelectScalar = {
     id?: boolean
-    playListId?: boolean
+    playlistId?: boolean
     mediaId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    sortNo?: boolean
   }
 
   export type MediaOnPlaylistInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -12407,10 +12434,11 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      playListId: string
+      playlistId: string
       mediaId: string
       createdAt: Date
       updatedAt: Date
+      sortNo: number
     }, ExtArgs["result"]["mediaOnPlaylist"]>
     composites: {}
   }
@@ -12809,10 +12837,11 @@ export namespace Prisma {
    */ 
   interface MediaOnPlaylistFieldRefs {
     readonly id: FieldRef<"MediaOnPlaylist", 'Int'>
-    readonly playListId: FieldRef<"MediaOnPlaylist", 'String'>
+    readonly playlistId: FieldRef<"MediaOnPlaylist", 'String'>
     readonly mediaId: FieldRef<"MediaOnPlaylist", 'String'>
     readonly createdAt: FieldRef<"MediaOnPlaylist", 'DateTime'>
     readonly updatedAt: FieldRef<"MediaOnPlaylist", 'DateTime'>
+    readonly sortNo: FieldRef<"MediaOnPlaylist", 'Int'>
   }
     
 
@@ -13154,17 +13183,15 @@ export namespace Prisma {
 
   export type HistoryAvgAggregateOutputType = {
     id: number | null
-    userId: number | null
   }
 
   export type HistorySumAggregateOutputType = {
     id: number | null
-    userId: number | null
   }
 
   export type HistoryMinAggregateOutputType = {
     id: number | null
-    userId: number | null
+    userId: string | null
     mediaId: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -13172,7 +13199,7 @@ export namespace Prisma {
 
   export type HistoryMaxAggregateOutputType = {
     id: number | null
-    userId: number | null
+    userId: string | null
     mediaId: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -13190,12 +13217,10 @@ export namespace Prisma {
 
   export type HistoryAvgAggregateInputType = {
     id?: true
-    userId?: true
   }
 
   export type HistorySumAggregateInputType = {
     id?: true
-    userId?: true
   }
 
   export type HistoryMinAggregateInputType = {
@@ -13311,7 +13336,7 @@ export namespace Prisma {
 
   export type HistoryGroupByOutputType = {
     id: number
-    userId: number
+    userId: string
     mediaId: string
     createdAt: Date
     updatedAt: Date
@@ -13343,7 +13368,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
-    meida?: boolean | MediaDefaultArgs<ExtArgs>
+    media?: boolean | MediaDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["history"]>
 
   export type HistorySelectScalar = {
@@ -13356,7 +13381,7 @@ export namespace Prisma {
 
   export type HistoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
-    meida?: boolean | MediaDefaultArgs<ExtArgs>
+    media?: boolean | MediaDefaultArgs<ExtArgs>
   }
 
 
@@ -13364,11 +13389,11 @@ export namespace Prisma {
     name: "History"
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
-      meida: Prisma.$MediaPayload<ExtArgs>
+      media: Prisma.$MediaPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      userId: number
+      userId: string
       mediaId: string
       createdAt: Date
       updatedAt: Date
@@ -13739,7 +13764,7 @@ export namespace Prisma {
 
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
-    meida<T extends MediaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MediaDefaultArgs<ExtArgs>>): Prisma__MediaClient<$Result.GetResult<Prisma.$MediaPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+    media<T extends MediaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MediaDefaultArgs<ExtArgs>>): Prisma__MediaClient<$Result.GetResult<Prisma.$MediaPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -13770,7 +13795,7 @@ export namespace Prisma {
    */ 
   interface HistoryFieldRefs {
     readonly id: FieldRef<"History", 'Int'>
-    readonly userId: FieldRef<"History", 'Int'>
+    readonly userId: FieldRef<"History", 'String'>
     readonly mediaId: FieldRef<"History", 'String'>
     readonly createdAt: FieldRef<"History", 'DateTime'>
     readonly updatedAt: FieldRef<"History", 'DateTime'>
@@ -14115,28 +14140,24 @@ export namespace Prisma {
 
   export type SubscriberAvgAggregateOutputType = {
     id: number | null
-    userId: number | null
-    channelId: number | null
   }
 
   export type SubscriberSumAggregateOutputType = {
     id: number | null
-    userId: number | null
-    channelId: number | null
   }
 
   export type SubscriberMinAggregateOutputType = {
     id: number | null
-    userId: number | null
-    channelId: number | null
+    userId: string | null
+    channelId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
 
   export type SubscriberMaxAggregateOutputType = {
     id: number | null
-    userId: number | null
-    channelId: number | null
+    userId: string | null
+    channelId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -14153,14 +14174,10 @@ export namespace Prisma {
 
   export type SubscriberAvgAggregateInputType = {
     id?: true
-    userId?: true
-    channelId?: true
   }
 
   export type SubscriberSumAggregateInputType = {
     id?: true
-    userId?: true
-    channelId?: true
   }
 
   export type SubscriberMinAggregateInputType = {
@@ -14276,8 +14293,8 @@ export namespace Prisma {
 
   export type SubscriberGroupByOutputType = {
     id: number
-    userId: number
-    channelId: number
+    userId: string
+    channelId: string
     createdAt: Date
     updatedAt: Date
     _count: SubscriberCountAggregateOutputType | null
@@ -14333,8 +14350,8 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      userId: number
-      channelId: number
+      userId: string
+      channelId: string
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["subscriber"]>
@@ -14735,8 +14752,8 @@ export namespace Prisma {
    */ 
   interface SubscriberFieldRefs {
     readonly id: FieldRef<"Subscriber", 'Int'>
-    readonly userId: FieldRef<"Subscriber", 'Int'>
-    readonly channelId: FieldRef<"Subscriber", 'Int'>
+    readonly userId: FieldRef<"Subscriber", 'String'>
+    readonly channelId: FieldRef<"Subscriber", 'String'>
     readonly createdAt: FieldRef<"Subscriber", 'DateTime'>
     readonly updatedAt: FieldRef<"Subscriber", 'DateTime'>
   }
@@ -15080,17 +15097,15 @@ export namespace Prisma {
 
   export type NotificationSubscriptionsAvgAggregateOutputType = {
     id: number | null
-    userId: number | null
   }
 
   export type NotificationSubscriptionsSumAggregateOutputType = {
     id: number | null
-    userId: number | null
   }
 
   export type NotificationSubscriptionsMinAggregateOutputType = {
     id: number | null
-    userId: number | null
+    userId: string | null
     subscription: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -15098,7 +15113,7 @@ export namespace Prisma {
 
   export type NotificationSubscriptionsMaxAggregateOutputType = {
     id: number | null
-    userId: number | null
+    userId: string | null
     subscription: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -15116,12 +15131,10 @@ export namespace Prisma {
 
   export type NotificationSubscriptionsAvgAggregateInputType = {
     id?: true
-    userId?: true
   }
 
   export type NotificationSubscriptionsSumAggregateInputType = {
     id?: true
-    userId?: true
   }
 
   export type NotificationSubscriptionsMinAggregateInputType = {
@@ -15237,7 +15250,7 @@ export namespace Prisma {
 
   export type NotificationSubscriptionsGroupByOutputType = {
     id: number
-    userId: number
+    userId: string
     subscription: string
     createdAt: Date
     updatedAt: Date
@@ -15291,7 +15304,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      userId: number
+      userId: string
       subscription: string
       createdAt: Date
       updatedAt: Date
@@ -15691,7 +15704,7 @@ export namespace Prisma {
    */ 
   interface NotificationSubscriptionsFieldRefs {
     readonly id: FieldRef<"NotificationSubscriptions", 'Int'>
-    readonly userId: FieldRef<"NotificationSubscriptions", 'Int'>
+    readonly userId: FieldRef<"NotificationSubscriptions", 'String'>
     readonly subscription: FieldRef<"NotificationSubscriptions", 'String'>
     readonly createdAt: FieldRef<"NotificationSubscriptions", 'DateTime'>
     readonly updatedAt: FieldRef<"NotificationSubscriptions", 'DateTime'>
@@ -22588,25 +22601,15 @@ export namespace Prisma {
 
   export type AggregateAlbum = {
     _count: AlbumCountAggregateOutputType | null
-    _avg: AlbumAvgAggregateOutputType | null
-    _sum: AlbumSumAggregateOutputType | null
     _min: AlbumMinAggregateOutputType | null
     _max: AlbumMaxAggregateOutputType | null
-  }
-
-  export type AlbumAvgAggregateOutputType = {
-    userId: number | null
-  }
-
-  export type AlbumSumAggregateOutputType = {
-    userId: number | null
   }
 
   export type AlbumMinAggregateOutputType = {
     id: string | null
     name: string | null
     description: string | null
-    userId: number | null
+    userId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -22615,7 +22618,7 @@ export namespace Prisma {
     id: string | null
     name: string | null
     description: string | null
-    userId: number | null
+    userId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -22630,14 +22633,6 @@ export namespace Prisma {
     _all: number
   }
 
-
-  export type AlbumAvgAggregateInputType = {
-    userId?: true
-  }
-
-  export type AlbumSumAggregateInputType = {
-    userId?: true
-  }
 
   export type AlbumMinAggregateInputType = {
     id?: true
@@ -22705,18 +22700,6 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Select which fields to average
-    **/
-    _avg?: AlbumAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: AlbumSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
      * Select which fields to find the minimum value
     **/
     _min?: AlbumMinAggregateInputType
@@ -22747,8 +22730,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: AlbumCountAggregateInputType | true
-    _avg?: AlbumAvgAggregateInputType
-    _sum?: AlbumSumAggregateInputType
     _min?: AlbumMinAggregateInputType
     _max?: AlbumMaxAggregateInputType
   }
@@ -22757,12 +22738,10 @@ export namespace Prisma {
     id: string
     name: string
     description: string | null
-    userId: number
+    userId: string
     createdAt: Date
     updatedAt: Date
     _count: AlbumCountAggregateOutputType | null
-    _avg: AlbumAvgAggregateOutputType | null
-    _sum: AlbumSumAggregateOutputType | null
     _min: AlbumMinAggregateOutputType | null
     _max: AlbumMaxAggregateOutputType | null
   }
@@ -22819,7 +22798,7 @@ export namespace Prisma {
       id: string
       name: string
       description: string | null
-      userId: number
+      userId: string
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["album"]>
@@ -23222,7 +23201,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Album", 'String'>
     readonly name: FieldRef<"Album", 'String'>
     readonly description: FieldRef<"Album", 'String'>
-    readonly userId: FieldRef<"Album", 'Int'>
+    readonly userId: FieldRef<"Album", 'String'>
     readonly createdAt: FieldRef<"Album", 'DateTime'>
     readonly updatedAt: FieldRef<"Album", 'DateTime'>
   }
@@ -23574,6 +23553,1035 @@ export namespace Prisma {
 
 
   /**
+   * Model SocialAccount
+   */
+
+  export type AggregateSocialAccount = {
+    _count: SocialAccountCountAggregateOutputType | null
+    _avg: SocialAccountAvgAggregateOutputType | null
+    _sum: SocialAccountSumAggregateOutputType | null
+    _min: SocialAccountMinAggregateOutputType | null
+    _max: SocialAccountMaxAggregateOutputType | null
+  }
+
+  export type SocialAccountAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type SocialAccountSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type SocialAccountMinAggregateOutputType = {
+    id: number | null
+    userId: string | null
+    type: $Enums.AccountType | null
+    fullName: string | null
+    avatarUrl: string | null
+    accountUrl: string | null
+    accessToken: string | null
+    refreshToken: string | null
+    expiredAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    disabledAt: Date | null
+  }
+
+  export type SocialAccountMaxAggregateOutputType = {
+    id: number | null
+    userId: string | null
+    type: $Enums.AccountType | null
+    fullName: string | null
+    avatarUrl: string | null
+    accountUrl: string | null
+    accessToken: string | null
+    refreshToken: string | null
+    expiredAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    disabledAt: Date | null
+  }
+
+  export type SocialAccountCountAggregateOutputType = {
+    id: number
+    userId: number
+    type: number
+    fullName: number
+    avatarUrl: number
+    accountUrl: number
+    accessToken: number
+    refreshToken: number
+    expiredAt: number
+    createdAt: number
+    updatedAt: number
+    disabledAt: number
+    _all: number
+  }
+
+
+  export type SocialAccountAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type SocialAccountSumAggregateInputType = {
+    id?: true
+  }
+
+  export type SocialAccountMinAggregateInputType = {
+    id?: true
+    userId?: true
+    type?: true
+    fullName?: true
+    avatarUrl?: true
+    accountUrl?: true
+    accessToken?: true
+    refreshToken?: true
+    expiredAt?: true
+    createdAt?: true
+    updatedAt?: true
+    disabledAt?: true
+  }
+
+  export type SocialAccountMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    type?: true
+    fullName?: true
+    avatarUrl?: true
+    accountUrl?: true
+    accessToken?: true
+    refreshToken?: true
+    expiredAt?: true
+    createdAt?: true
+    updatedAt?: true
+    disabledAt?: true
+  }
+
+  export type SocialAccountCountAggregateInputType = {
+    id?: true
+    userId?: true
+    type?: true
+    fullName?: true
+    avatarUrl?: true
+    accountUrl?: true
+    accessToken?: true
+    refreshToken?: true
+    expiredAt?: true
+    createdAt?: true
+    updatedAt?: true
+    disabledAt?: true
+    _all?: true
+  }
+
+  export type SocialAccountAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SocialAccount to aggregate.
+     */
+    where?: SocialAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SocialAccounts to fetch.
+     */
+    orderBy?: SocialAccountOrderByWithRelationInput | SocialAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SocialAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SocialAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SocialAccounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned SocialAccounts
+    **/
+    _count?: true | SocialAccountCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: SocialAccountAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: SocialAccountSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SocialAccountMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SocialAccountMaxAggregateInputType
+  }
+
+  export type GetSocialAccountAggregateType<T extends SocialAccountAggregateArgs> = {
+        [P in keyof T & keyof AggregateSocialAccount]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSocialAccount[P]>
+      : GetScalarType<T[P], AggregateSocialAccount[P]>
+  }
+
+
+
+
+  export type SocialAccountGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SocialAccountWhereInput
+    orderBy?: SocialAccountOrderByWithAggregationInput | SocialAccountOrderByWithAggregationInput[]
+    by: SocialAccountScalarFieldEnum[] | SocialAccountScalarFieldEnum
+    having?: SocialAccountScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SocialAccountCountAggregateInputType | true
+    _avg?: SocialAccountAvgAggregateInputType
+    _sum?: SocialAccountSumAggregateInputType
+    _min?: SocialAccountMinAggregateInputType
+    _max?: SocialAccountMaxAggregateInputType
+  }
+
+  export type SocialAccountGroupByOutputType = {
+    id: number
+    userId: string
+    type: $Enums.AccountType
+    fullName: string
+    avatarUrl: string | null
+    accountUrl: string | null
+    accessToken: string | null
+    refreshToken: string | null
+    expiredAt: Date
+    createdAt: Date
+    updatedAt: Date
+    disabledAt: Date | null
+    _count: SocialAccountCountAggregateOutputType | null
+    _avg: SocialAccountAvgAggregateOutputType | null
+    _sum: SocialAccountSumAggregateOutputType | null
+    _min: SocialAccountMinAggregateOutputType | null
+    _max: SocialAccountMaxAggregateOutputType | null
+  }
+
+  type GetSocialAccountGroupByPayload<T extends SocialAccountGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SocialAccountGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SocialAccountGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SocialAccountGroupByOutputType[P]>
+            : GetScalarType<T[P], SocialAccountGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SocialAccountSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    type?: boolean
+    fullName?: boolean
+    avatarUrl?: boolean
+    accountUrl?: boolean
+    accessToken?: boolean
+    refreshToken?: boolean
+    expiredAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    disabledAt?: boolean
+    owner?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["socialAccount"]>
+
+  export type SocialAccountSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    type?: boolean
+    fullName?: boolean
+    avatarUrl?: boolean
+    accountUrl?: boolean
+    accessToken?: boolean
+    refreshToken?: boolean
+    expiredAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    disabledAt?: boolean
+  }
+
+  export type SocialAccountInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    owner?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+
+  export type $SocialAccountPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "SocialAccount"
+    objects: {
+      owner: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      userId: string
+      type: $Enums.AccountType
+      fullName: string
+      avatarUrl: string | null
+      accountUrl: string | null
+      accessToken: string | null
+      refreshToken: string | null
+      expiredAt: Date
+      createdAt: Date
+      updatedAt: Date
+      disabledAt: Date | null
+    }, ExtArgs["result"]["socialAccount"]>
+    composites: {}
+  }
+
+
+  type SocialAccountGetPayload<S extends boolean | null | undefined | SocialAccountDefaultArgs> = $Result.GetResult<Prisma.$SocialAccountPayload, S>
+
+  type SocialAccountCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<SocialAccountFindManyArgs, 'select' | 'include'> & {
+      select?: SocialAccountCountAggregateInputType | true
+    }
+
+  export interface SocialAccountDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['SocialAccount'], meta: { name: 'SocialAccount' } }
+    /**
+     * Find zero or one SocialAccount that matches the filter.
+     * @param {SocialAccountFindUniqueArgs} args - Arguments to find a SocialAccount
+     * @example
+     * // Get one SocialAccount
+     * const socialAccount = await prisma.socialAccount.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends SocialAccountFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, SocialAccountFindUniqueArgs<ExtArgs>>
+    ): Prisma__SocialAccountClient<$Result.GetResult<Prisma.$SocialAccountPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one SocialAccount that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {SocialAccountFindUniqueOrThrowArgs} args - Arguments to find a SocialAccount
+     * @example
+     * // Get one SocialAccount
+     * const socialAccount = await prisma.socialAccount.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends SocialAccountFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, SocialAccountFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__SocialAccountClient<$Result.GetResult<Prisma.$SocialAccountPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first SocialAccount that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SocialAccountFindFirstArgs} args - Arguments to find a SocialAccount
+     * @example
+     * // Get one SocialAccount
+     * const socialAccount = await prisma.socialAccount.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends SocialAccountFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, SocialAccountFindFirstArgs<ExtArgs>>
+    ): Prisma__SocialAccountClient<$Result.GetResult<Prisma.$SocialAccountPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first SocialAccount that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SocialAccountFindFirstOrThrowArgs} args - Arguments to find a SocialAccount
+     * @example
+     * // Get one SocialAccount
+     * const socialAccount = await prisma.socialAccount.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends SocialAccountFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, SocialAccountFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__SocialAccountClient<$Result.GetResult<Prisma.$SocialAccountPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more SocialAccounts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SocialAccountFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all SocialAccounts
+     * const socialAccounts = await prisma.socialAccount.findMany()
+     * 
+     * // Get first 10 SocialAccounts
+     * const socialAccounts = await prisma.socialAccount.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const socialAccountWithIdOnly = await prisma.socialAccount.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends SocialAccountFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, SocialAccountFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SocialAccountPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a SocialAccount.
+     * @param {SocialAccountCreateArgs} args - Arguments to create a SocialAccount.
+     * @example
+     * // Create one SocialAccount
+     * const SocialAccount = await prisma.socialAccount.create({
+     *   data: {
+     *     // ... data to create a SocialAccount
+     *   }
+     * })
+     * 
+    **/
+    create<T extends SocialAccountCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, SocialAccountCreateArgs<ExtArgs>>
+    ): Prisma__SocialAccountClient<$Result.GetResult<Prisma.$SocialAccountPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many SocialAccounts.
+     *     @param {SocialAccountCreateManyArgs} args - Arguments to create many SocialAccounts.
+     *     @example
+     *     // Create many SocialAccounts
+     *     const socialAccount = await prisma.socialAccount.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends SocialAccountCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, SocialAccountCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a SocialAccount.
+     * @param {SocialAccountDeleteArgs} args - Arguments to delete one SocialAccount.
+     * @example
+     * // Delete one SocialAccount
+     * const SocialAccount = await prisma.socialAccount.delete({
+     *   where: {
+     *     // ... filter to delete one SocialAccount
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends SocialAccountDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, SocialAccountDeleteArgs<ExtArgs>>
+    ): Prisma__SocialAccountClient<$Result.GetResult<Prisma.$SocialAccountPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one SocialAccount.
+     * @param {SocialAccountUpdateArgs} args - Arguments to update one SocialAccount.
+     * @example
+     * // Update one SocialAccount
+     * const socialAccount = await prisma.socialAccount.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends SocialAccountUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, SocialAccountUpdateArgs<ExtArgs>>
+    ): Prisma__SocialAccountClient<$Result.GetResult<Prisma.$SocialAccountPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more SocialAccounts.
+     * @param {SocialAccountDeleteManyArgs} args - Arguments to filter SocialAccounts to delete.
+     * @example
+     * // Delete a few SocialAccounts
+     * const { count } = await prisma.socialAccount.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends SocialAccountDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, SocialAccountDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SocialAccounts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SocialAccountUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many SocialAccounts
+     * const socialAccount = await prisma.socialAccount.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends SocialAccountUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, SocialAccountUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one SocialAccount.
+     * @param {SocialAccountUpsertArgs} args - Arguments to update or create a SocialAccount.
+     * @example
+     * // Update or create a SocialAccount
+     * const socialAccount = await prisma.socialAccount.upsert({
+     *   create: {
+     *     // ... data to create a SocialAccount
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the SocialAccount we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends SocialAccountUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, SocialAccountUpsertArgs<ExtArgs>>
+    ): Prisma__SocialAccountClient<$Result.GetResult<Prisma.$SocialAccountPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of SocialAccounts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SocialAccountCountArgs} args - Arguments to filter SocialAccounts to count.
+     * @example
+     * // Count the number of SocialAccounts
+     * const count = await prisma.socialAccount.count({
+     *   where: {
+     *     // ... the filter for the SocialAccounts we want to count
+     *   }
+     * })
+    **/
+    count<T extends SocialAccountCountArgs>(
+      args?: Subset<T, SocialAccountCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SocialAccountCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a SocialAccount.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SocialAccountAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SocialAccountAggregateArgs>(args: Subset<T, SocialAccountAggregateArgs>): Prisma.PrismaPromise<GetSocialAccountAggregateType<T>>
+
+    /**
+     * Group by SocialAccount.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SocialAccountGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SocialAccountGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SocialAccountGroupByArgs['orderBy'] }
+        : { orderBy?: SocialAccountGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SocialAccountGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSocialAccountGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the SocialAccount model
+   */
+  readonly fields: SocialAccountFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for SocialAccount.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SocialAccountClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    owner<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the SocialAccount model
+   */ 
+  interface SocialAccountFieldRefs {
+    readonly id: FieldRef<"SocialAccount", 'Int'>
+    readonly userId: FieldRef<"SocialAccount", 'String'>
+    readonly type: FieldRef<"SocialAccount", 'AccountType'>
+    readonly fullName: FieldRef<"SocialAccount", 'String'>
+    readonly avatarUrl: FieldRef<"SocialAccount", 'String'>
+    readonly accountUrl: FieldRef<"SocialAccount", 'String'>
+    readonly accessToken: FieldRef<"SocialAccount", 'String'>
+    readonly refreshToken: FieldRef<"SocialAccount", 'String'>
+    readonly expiredAt: FieldRef<"SocialAccount", 'DateTime'>
+    readonly createdAt: FieldRef<"SocialAccount", 'DateTime'>
+    readonly updatedAt: FieldRef<"SocialAccount", 'DateTime'>
+    readonly disabledAt: FieldRef<"SocialAccount", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * SocialAccount findUnique
+   */
+  export type SocialAccountFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SocialAccount
+     */
+    select?: SocialAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SocialAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which SocialAccount to fetch.
+     */
+    where: SocialAccountWhereUniqueInput
+  }
+
+
+  /**
+   * SocialAccount findUniqueOrThrow
+   */
+  export type SocialAccountFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SocialAccount
+     */
+    select?: SocialAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SocialAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which SocialAccount to fetch.
+     */
+    where: SocialAccountWhereUniqueInput
+  }
+
+
+  /**
+   * SocialAccount findFirst
+   */
+  export type SocialAccountFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SocialAccount
+     */
+    select?: SocialAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SocialAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which SocialAccount to fetch.
+     */
+    where?: SocialAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SocialAccounts to fetch.
+     */
+    orderBy?: SocialAccountOrderByWithRelationInput | SocialAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SocialAccounts.
+     */
+    cursor?: SocialAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SocialAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SocialAccounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SocialAccounts.
+     */
+    distinct?: SocialAccountScalarFieldEnum | SocialAccountScalarFieldEnum[]
+  }
+
+
+  /**
+   * SocialAccount findFirstOrThrow
+   */
+  export type SocialAccountFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SocialAccount
+     */
+    select?: SocialAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SocialAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which SocialAccount to fetch.
+     */
+    where?: SocialAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SocialAccounts to fetch.
+     */
+    orderBy?: SocialAccountOrderByWithRelationInput | SocialAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SocialAccounts.
+     */
+    cursor?: SocialAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SocialAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SocialAccounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SocialAccounts.
+     */
+    distinct?: SocialAccountScalarFieldEnum | SocialAccountScalarFieldEnum[]
+  }
+
+
+  /**
+   * SocialAccount findMany
+   */
+  export type SocialAccountFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SocialAccount
+     */
+    select?: SocialAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SocialAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which SocialAccounts to fetch.
+     */
+    where?: SocialAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SocialAccounts to fetch.
+     */
+    orderBy?: SocialAccountOrderByWithRelationInput | SocialAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing SocialAccounts.
+     */
+    cursor?: SocialAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SocialAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SocialAccounts.
+     */
+    skip?: number
+    distinct?: SocialAccountScalarFieldEnum | SocialAccountScalarFieldEnum[]
+  }
+
+
+  /**
+   * SocialAccount create
+   */
+  export type SocialAccountCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SocialAccount
+     */
+    select?: SocialAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SocialAccountInclude<ExtArgs> | null
+    /**
+     * The data needed to create a SocialAccount.
+     */
+    data: XOR<SocialAccountCreateInput, SocialAccountUncheckedCreateInput>
+  }
+
+
+  /**
+   * SocialAccount createMany
+   */
+  export type SocialAccountCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many SocialAccounts.
+     */
+    data: SocialAccountCreateManyInput | SocialAccountCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * SocialAccount update
+   */
+  export type SocialAccountUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SocialAccount
+     */
+    select?: SocialAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SocialAccountInclude<ExtArgs> | null
+    /**
+     * The data needed to update a SocialAccount.
+     */
+    data: XOR<SocialAccountUpdateInput, SocialAccountUncheckedUpdateInput>
+    /**
+     * Choose, which SocialAccount to update.
+     */
+    where: SocialAccountWhereUniqueInput
+  }
+
+
+  /**
+   * SocialAccount updateMany
+   */
+  export type SocialAccountUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update SocialAccounts.
+     */
+    data: XOR<SocialAccountUpdateManyMutationInput, SocialAccountUncheckedUpdateManyInput>
+    /**
+     * Filter which SocialAccounts to update
+     */
+    where?: SocialAccountWhereInput
+  }
+
+
+  /**
+   * SocialAccount upsert
+   */
+  export type SocialAccountUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SocialAccount
+     */
+    select?: SocialAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SocialAccountInclude<ExtArgs> | null
+    /**
+     * The filter to search for the SocialAccount to update in case it exists.
+     */
+    where: SocialAccountWhereUniqueInput
+    /**
+     * In case the SocialAccount found by the `where` argument doesn't exist, create a new SocialAccount with this data.
+     */
+    create: XOR<SocialAccountCreateInput, SocialAccountUncheckedCreateInput>
+    /**
+     * In case the SocialAccount was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SocialAccountUpdateInput, SocialAccountUncheckedUpdateInput>
+  }
+
+
+  /**
+   * SocialAccount delete
+   */
+  export type SocialAccountDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SocialAccount
+     */
+    select?: SocialAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SocialAccountInclude<ExtArgs> | null
+    /**
+     * Filter which SocialAccount to delete.
+     */
+    where: SocialAccountWhereUniqueInput
+  }
+
+
+  /**
+   * SocialAccount deleteMany
+   */
+  export type SocialAccountDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SocialAccounts to delete
+     */
+    where?: SocialAccountWhereInput
+  }
+
+
+  /**
+   * SocialAccount without action
+   */
+  export type SocialAccountDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SocialAccount
+     */
+    select?: SocialAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SocialAccountInclude<ExtArgs> | null
+  }
+
+
+
+  /**
    * Enums
    */
 
@@ -23627,7 +24635,9 @@ export namespace Prisma {
   export const MediaOnCategoryScalarFieldEnum: {
     id: 'id',
     categoryId: 'categoryId',
-    mediaId: 'mediaId'
+    mediaId: 'mediaId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type MediaOnCategoryScalarFieldEnum = (typeof MediaOnCategoryScalarFieldEnum)[keyof typeof MediaOnCategoryScalarFieldEnum]
@@ -23651,6 +24661,7 @@ export namespace Prisma {
     title: 'title',
     views: 'views',
     duration: 'duration',
+    plays: 'plays',
     status: 'status',
     viewMode: 'viewMode',
     createdAt: 'createdAt',
@@ -23699,10 +24710,11 @@ export namespace Prisma {
 
   export const MediaOnPlaylistScalarFieldEnum: {
     id: 'id',
-    playListId: 'playListId',
+    playlistId: 'playlistId',
     mediaId: 'mediaId',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    sortNo: 'sortNo'
   };
 
   export type MediaOnPlaylistScalarFieldEnum = (typeof MediaOnPlaylistScalarFieldEnum)[keyof typeof MediaOnPlaylistScalarFieldEnum]
@@ -23830,6 +24842,24 @@ export namespace Prisma {
   export type AlbumScalarFieldEnum = (typeof AlbumScalarFieldEnum)[keyof typeof AlbumScalarFieldEnum]
 
 
+  export const SocialAccountScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    type: 'type',
+    fullName: 'fullName',
+    avatarUrl: 'avatarUrl',
+    accountUrl: 'accountUrl',
+    accessToken: 'accessToken',
+    refreshToken: 'refreshToken',
+    expiredAt: 'expiredAt',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    disabledAt: 'disabledAt'
+  };
+
+  export type SocialAccountScalarFieldEnum = (typeof SocialAccountScalarFieldEnum)[keyof typeof SocialAccountScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -23852,13 +24882,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Int'
-   */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
-    
-
-
-  /**
    * Reference to a field of type 'String'
    */
   export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
@@ -23869,6 +24892,13 @@ export namespace Prisma {
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int'
+   */
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
     
 
 
@@ -23912,6 +24942,13 @@ export namespace Prisma {
    */
   export type EnumAudioQualityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AudioQuality'>
     
+
+
+  /**
+   * Reference to a field of type 'AccountType'
+   */
+  export type EnumAccountTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AccountType'>
+    
   /**
    * Deep Input Types
    */
@@ -23921,7 +24958,7 @@ export namespace Prisma {
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
-    id?: IntFilter<"User"> | number
+    id?: StringFilter<"User"> | string
     firstName?: StringFilter<"User"> | string
     lastName?: StringFilter<"User"> | string
     email?: StringFilter<"User"> | string
@@ -23941,6 +24978,7 @@ export namespace Prisma {
     Playlist?: PlaylistListRelationFilter
     UserPaymentMethod?: UserPaymentMethodListRelationFilter
     Album?: AlbumListRelationFilter
+    SocialAccount?: SocialAccountListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -23964,10 +25002,11 @@ export namespace Prisma {
     Playlist?: PlaylistOrderByRelationAggregateInput
     UserPaymentMethod?: UserPaymentMethodOrderByRelationAggregateInput
     Album?: AlbumOrderByRelationAggregateInput
+    SocialAccount?: SocialAccountOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
+    id?: string
     email?: string
     username?: string
     AND?: UserWhereInput | UserWhereInput[]
@@ -23990,6 +25029,7 @@ export namespace Prisma {
     Playlist?: PlaylistListRelationFilter
     UserPaymentMethod?: UserPaymentMethodListRelationFilter
     Album?: AlbumListRelationFilter
+    SocialAccount?: SocialAccountListRelationFilter
   }, "id" | "email" | "username">
 
   export type UserOrderByWithAggregationInput = {
@@ -24004,17 +25044,15 @@ export namespace Prisma {
     updatedAt?: SortOrder
     lockedAt?: SortOrderInput | SortOrder
     _count?: UserCountOrderByAggregateInput
-    _avg?: UserAvgOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
     _min?: UserMinOrderByAggregateInput
-    _sum?: UserSumOrderByAggregateInput
   }
 
   export type UserScalarWhereWithAggregatesInput = {
     AND?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
     OR?: UserScalarWhereWithAggregatesInput[]
     NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"User"> | number
+    id?: StringWithAggregatesFilter<"User"> | string
     firstName?: StringWithAggregatesFilter<"User"> | string
     lastName?: StringWithAggregatesFilter<"User"> | string
     email?: StringWithAggregatesFilter<"User"> | string
@@ -24031,7 +25069,7 @@ export namespace Prisma {
     OR?: UserPaymentMethodWhereInput[]
     NOT?: UserPaymentMethodWhereInput | UserPaymentMethodWhereInput[]
     id?: IntFilter<"UserPaymentMethod"> | number
-    userId?: IntFilter<"UserPaymentMethod"> | number
+    userId?: StringFilter<"UserPaymentMethod"> | string
     paymentMethod?: EnumPaymentMethodFilter<"UserPaymentMethod"> | $Enums.PaymentMethod
     createdAt?: DateTimeFilter<"UserPaymentMethod"> | Date | string
     updatedAt?: DateTimeFilter<"UserPaymentMethod"> | Date | string
@@ -24052,7 +25090,7 @@ export namespace Prisma {
     AND?: UserPaymentMethodWhereInput | UserPaymentMethodWhereInput[]
     OR?: UserPaymentMethodWhereInput[]
     NOT?: UserPaymentMethodWhereInput | UserPaymentMethodWhereInput[]
-    userId?: IntFilter<"UserPaymentMethod"> | number
+    userId?: StringFilter<"UserPaymentMethod"> | string
     paymentMethod?: EnumPaymentMethodFilter<"UserPaymentMethod"> | $Enums.PaymentMethod
     createdAt?: DateTimeFilter<"UserPaymentMethod"> | Date | string
     updatedAt?: DateTimeFilter<"UserPaymentMethod"> | Date | string
@@ -24077,7 +25115,7 @@ export namespace Prisma {
     OR?: UserPaymentMethodScalarWhereWithAggregatesInput[]
     NOT?: UserPaymentMethodScalarWhereWithAggregatesInput | UserPaymentMethodScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"UserPaymentMethod"> | number
-    userId?: IntWithAggregatesFilter<"UserPaymentMethod"> | number
+    userId?: StringWithAggregatesFilter<"UserPaymentMethod"> | string
     paymentMethod?: EnumPaymentMethodWithAggregatesFilter<"UserPaymentMethod"> | $Enums.PaymentMethod
     createdAt?: DateTimeWithAggregatesFilter<"UserPaymentMethod"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"UserPaymentMethod"> | Date | string
@@ -24140,6 +25178,8 @@ export namespace Prisma {
     id?: IntFilter<"MediaOnCategory"> | number
     categoryId?: StringFilter<"MediaOnCategory"> | string
     mediaId?: StringFilter<"MediaOnCategory"> | string
+    createdAt?: DateTimeFilter<"MediaOnCategory"> | Date | string
+    updatedAt?: DateTimeFilter<"MediaOnCategory"> | Date | string
     category?: XOR<CategoryRelationFilter, CategoryWhereInput>
     media?: XOR<MediaRelationFilter, MediaWhereInput>
   }
@@ -24148,6 +25188,8 @@ export namespace Prisma {
     id?: SortOrder
     categoryId?: SortOrder
     mediaId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     category?: CategoryOrderByWithRelationInput
     media?: MediaOrderByWithRelationInput
   }
@@ -24160,6 +25202,8 @@ export namespace Prisma {
     NOT?: MediaOnCategoryWhereInput | MediaOnCategoryWhereInput[]
     categoryId?: StringFilter<"MediaOnCategory"> | string
     mediaId?: StringFilter<"MediaOnCategory"> | string
+    createdAt?: DateTimeFilter<"MediaOnCategory"> | Date | string
+    updatedAt?: DateTimeFilter<"MediaOnCategory"> | Date | string
     category?: XOR<CategoryRelationFilter, CategoryWhereInput>
     media?: XOR<MediaRelationFilter, MediaWhereInput>
   }, "id" | "categoryId_mediaId">
@@ -24168,6 +25212,8 @@ export namespace Prisma {
     id?: SortOrder
     categoryId?: SortOrder
     mediaId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: MediaOnCategoryCountOrderByAggregateInput
     _avg?: MediaOnCategoryAvgOrderByAggregateInput
     _max?: MediaOnCategoryMaxOrderByAggregateInput
@@ -24182,6 +25228,8 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"MediaOnCategory"> | number
     categoryId?: StringWithAggregatesFilter<"MediaOnCategory"> | string
     mediaId?: StringWithAggregatesFilter<"MediaOnCategory"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"MediaOnCategory"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"MediaOnCategory"> | Date | string
   }
 
   export type SessionUploadWhereInput = {
@@ -24249,10 +25297,11 @@ export namespace Prisma {
     OR?: MediaWhereInput[]
     NOT?: MediaWhereInput | MediaWhereInput[]
     id?: StringFilter<"Media"> | string
-    userId?: IntFilter<"Media"> | number
+    userId?: StringFilter<"Media"> | string
     title?: StringFilter<"Media"> | string
     views?: IntFilter<"Media"> | number
     duration?: FloatFilter<"Media"> | number
+    plays?: IntFilter<"Media"> | number
     status?: EnumStatusResourceFilter<"Media"> | $Enums.StatusResource
     viewMode?: EnumStatusFilter<"Media"> | $Enums.Status
     createdAt?: DateTimeFilter<"Media"> | Date | string
@@ -24279,6 +25328,7 @@ export namespace Prisma {
     title?: SortOrder
     views?: SortOrder
     duration?: SortOrder
+    plays?: SortOrder
     status?: SortOrder
     viewMode?: SortOrder
     createdAt?: SortOrder
@@ -24304,10 +25354,11 @@ export namespace Prisma {
     AND?: MediaWhereInput | MediaWhereInput[]
     OR?: MediaWhereInput[]
     NOT?: MediaWhereInput | MediaWhereInput[]
-    userId?: IntFilter<"Media"> | number
+    userId?: StringFilter<"Media"> | string
     title?: StringFilter<"Media"> | string
     views?: IntFilter<"Media"> | number
     duration?: FloatFilter<"Media"> | number
+    plays?: IntFilter<"Media"> | number
     status?: EnumStatusResourceFilter<"Media"> | $Enums.StatusResource
     viewMode?: EnumStatusFilter<"Media"> | $Enums.Status
     createdAt?: DateTimeFilter<"Media"> | Date | string
@@ -24334,6 +25385,7 @@ export namespace Prisma {
     title?: SortOrder
     views?: SortOrder
     duration?: SortOrder
+    plays?: SortOrder
     status?: SortOrder
     viewMode?: SortOrder
     createdAt?: SortOrder
@@ -24352,10 +25404,11 @@ export namespace Prisma {
     OR?: MediaScalarWhereWithAggregatesInput[]
     NOT?: MediaScalarWhereWithAggregatesInput | MediaScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Media"> | string
-    userId?: IntWithAggregatesFilter<"Media"> | number
+    userId?: StringWithAggregatesFilter<"Media"> | string
     title?: StringWithAggregatesFilter<"Media"> | string
     views?: IntWithAggregatesFilter<"Media"> | number
     duration?: FloatWithAggregatesFilter<"Media"> | number
+    plays?: IntWithAggregatesFilter<"Media"> | number
     status?: EnumStatusResourceWithAggregatesFilter<"Media"> | $Enums.StatusResource
     viewMode?: EnumStatusWithAggregatesFilter<"Media"> | $Enums.Status
     createdAt?: DateTimeWithAggregatesFilter<"Media"> | Date | string
@@ -24368,8 +25421,8 @@ export namespace Prisma {
     AND?: MediaReactionWhereInput | MediaReactionWhereInput[]
     OR?: MediaReactionWhereInput[]
     NOT?: MediaReactionWhereInput | MediaReactionWhereInput[]
-    id?: IntFilter<"MediaReaction"> | number
-    userId?: IntFilter<"MediaReaction"> | number
+    id?: StringFilter<"MediaReaction"> | string
+    userId?: StringFilter<"MediaReaction"> | string
     mediaId?: StringFilter<"MediaReaction"> | string
     isLike?: BoolFilter<"MediaReaction"> | boolean
     createdAt?: DateTimeFilter<"MediaReaction"> | Date | string
@@ -24390,12 +25443,12 @@ export namespace Prisma {
   }
 
   export type MediaReactionWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
+    id?: string
     onlyReaction?: MediaReactionOnlyReactionCompoundUniqueInput
     AND?: MediaReactionWhereInput | MediaReactionWhereInput[]
     OR?: MediaReactionWhereInput[]
     NOT?: MediaReactionWhereInput | MediaReactionWhereInput[]
-    userId?: IntFilter<"MediaReaction"> | number
+    userId?: StringFilter<"MediaReaction"> | string
     mediaId?: StringFilter<"MediaReaction"> | string
     isLike?: BoolFilter<"MediaReaction"> | boolean
     createdAt?: DateTimeFilter<"MediaReaction"> | Date | string
@@ -24412,18 +25465,16 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: MediaReactionCountOrderByAggregateInput
-    _avg?: MediaReactionAvgOrderByAggregateInput
     _max?: MediaReactionMaxOrderByAggregateInput
     _min?: MediaReactionMinOrderByAggregateInput
-    _sum?: MediaReactionSumOrderByAggregateInput
   }
 
   export type MediaReactionScalarWhereWithAggregatesInput = {
     AND?: MediaReactionScalarWhereWithAggregatesInput | MediaReactionScalarWhereWithAggregatesInput[]
     OR?: MediaReactionScalarWhereWithAggregatesInput[]
     NOT?: MediaReactionScalarWhereWithAggregatesInput | MediaReactionScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"MediaReaction"> | number
-    userId?: IntWithAggregatesFilter<"MediaReaction"> | number
+    id?: StringWithAggregatesFilter<"MediaReaction"> | string
+    userId?: StringWithAggregatesFilter<"MediaReaction"> | string
     mediaId?: StringWithAggregatesFilter<"MediaReaction"> | string
     isLike?: BoolWithAggregatesFilter<"MediaReaction"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"MediaReaction"> | Date | string
@@ -24434,8 +25485,8 @@ export namespace Prisma {
     AND?: CommentWhereInput | CommentWhereInput[]
     OR?: CommentWhereInput[]
     NOT?: CommentWhereInput | CommentWhereInput[]
-    id?: IntFilter<"Comment"> | number
-    userId?: IntFilter<"Comment"> | number
+    id?: StringFilter<"Comment"> | string
+    userId?: StringFilter<"Comment"> | string
     mediaId?: StringFilter<"Comment"> | string
     comment?: StringFilter<"Comment"> | string
     createdAt?: DateTimeFilter<"Comment"> | Date | string
@@ -24456,11 +25507,11 @@ export namespace Prisma {
   }
 
   export type CommentWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
+    id?: string
     AND?: CommentWhereInput | CommentWhereInput[]
     OR?: CommentWhereInput[]
     NOT?: CommentWhereInput | CommentWhereInput[]
-    userId?: IntFilter<"Comment"> | number
+    userId?: StringFilter<"Comment"> | string
     mediaId?: StringFilter<"Comment"> | string
     comment?: StringFilter<"Comment"> | string
     createdAt?: DateTimeFilter<"Comment"> | Date | string
@@ -24477,18 +25528,16 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: CommentCountOrderByAggregateInput
-    _avg?: CommentAvgOrderByAggregateInput
     _max?: CommentMaxOrderByAggregateInput
     _min?: CommentMinOrderByAggregateInput
-    _sum?: CommentSumOrderByAggregateInput
   }
 
   export type CommentScalarWhereWithAggregatesInput = {
     AND?: CommentScalarWhereWithAggregatesInput | CommentScalarWhereWithAggregatesInput[]
     OR?: CommentScalarWhereWithAggregatesInput[]
     NOT?: CommentScalarWhereWithAggregatesInput | CommentScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"Comment"> | number
-    userId?: IntWithAggregatesFilter<"Comment"> | number
+    id?: StringWithAggregatesFilter<"Comment"> | string
+    userId?: StringWithAggregatesFilter<"Comment"> | string
     mediaId?: StringWithAggregatesFilter<"Comment"> | string
     comment?: StringWithAggregatesFilter<"Comment"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Comment"> | Date | string
@@ -24500,7 +25549,7 @@ export namespace Prisma {
     OR?: PlaylistWhereInput[]
     NOT?: PlaylistWhereInput | PlaylistWhereInput[]
     id?: StringFilter<"Playlist"> | string
-    userId?: IntFilter<"Playlist"> | number
+    userId?: StringFilter<"Playlist"> | string
     title?: StringFilter<"Playlist"> | string
     createdAt?: DateTimeFilter<"Playlist"> | Date | string
     updatedAt?: DateTimeFilter<"Playlist"> | Date | string
@@ -24523,7 +25572,7 @@ export namespace Prisma {
     AND?: PlaylistWhereInput | PlaylistWhereInput[]
     OR?: PlaylistWhereInput[]
     NOT?: PlaylistWhereInput | PlaylistWhereInput[]
-    userId?: IntFilter<"Playlist"> | number
+    userId?: StringFilter<"Playlist"> | string
     title?: StringFilter<"Playlist"> | string
     createdAt?: DateTimeFilter<"Playlist"> | Date | string
     updatedAt?: DateTimeFilter<"Playlist"> | Date | string
@@ -24538,10 +25587,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: PlaylistCountOrderByAggregateInput
-    _avg?: PlaylistAvgOrderByAggregateInput
     _max?: PlaylistMaxOrderByAggregateInput
     _min?: PlaylistMinOrderByAggregateInput
-    _sum?: PlaylistSumOrderByAggregateInput
   }
 
   export type PlaylistScalarWhereWithAggregatesInput = {
@@ -24549,7 +25596,7 @@ export namespace Prisma {
     OR?: PlaylistScalarWhereWithAggregatesInput[]
     NOT?: PlaylistScalarWhereWithAggregatesInput | PlaylistScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Playlist"> | string
-    userId?: IntWithAggregatesFilter<"Playlist"> | number
+    userId?: StringWithAggregatesFilter<"Playlist"> | string
     title?: StringWithAggregatesFilter<"Playlist"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Playlist"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Playlist"> | Date | string
@@ -24560,44 +25607,48 @@ export namespace Prisma {
     OR?: MediaOnPlaylistWhereInput[]
     NOT?: MediaOnPlaylistWhereInput | MediaOnPlaylistWhereInput[]
     id?: IntFilter<"MediaOnPlaylist"> | number
-    playListId?: StringFilter<"MediaOnPlaylist"> | string
+    playlistId?: StringFilter<"MediaOnPlaylist"> | string
     mediaId?: StringFilter<"MediaOnPlaylist"> | string
     createdAt?: DateTimeFilter<"MediaOnPlaylist"> | Date | string
     updatedAt?: DateTimeFilter<"MediaOnPlaylist"> | Date | string
+    sortNo?: IntFilter<"MediaOnPlaylist"> | number
     playlist?: XOR<PlaylistRelationFilter, PlaylistWhereInput>
     media?: XOR<MediaRelationFilter, MediaWhereInput>
   }
 
   export type MediaOnPlaylistOrderByWithRelationInput = {
     id?: SortOrder
-    playListId?: SortOrder
+    playlistId?: SortOrder
     mediaId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    sortNo?: SortOrder
     playlist?: PlaylistOrderByWithRelationInput
     media?: MediaOrderByWithRelationInput
   }
 
   export type MediaOnPlaylistWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    playListId_mediaId?: MediaOnPlaylistPlayListIdMediaIdCompoundUniqueInput
+    playlistId_mediaId?: MediaOnPlaylistPlaylistIdMediaIdCompoundUniqueInput
     AND?: MediaOnPlaylistWhereInput | MediaOnPlaylistWhereInput[]
     OR?: MediaOnPlaylistWhereInput[]
     NOT?: MediaOnPlaylistWhereInput | MediaOnPlaylistWhereInput[]
-    playListId?: StringFilter<"MediaOnPlaylist"> | string
+    playlistId?: StringFilter<"MediaOnPlaylist"> | string
     mediaId?: StringFilter<"MediaOnPlaylist"> | string
     createdAt?: DateTimeFilter<"MediaOnPlaylist"> | Date | string
     updatedAt?: DateTimeFilter<"MediaOnPlaylist"> | Date | string
+    sortNo?: IntFilter<"MediaOnPlaylist"> | number
     playlist?: XOR<PlaylistRelationFilter, PlaylistWhereInput>
     media?: XOR<MediaRelationFilter, MediaWhereInput>
-  }, "id" | "playListId_mediaId">
+  }, "id" | "playlistId_mediaId">
 
   export type MediaOnPlaylistOrderByWithAggregationInput = {
     id?: SortOrder
-    playListId?: SortOrder
+    playlistId?: SortOrder
     mediaId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    sortNo?: SortOrder
     _count?: MediaOnPlaylistCountOrderByAggregateInput
     _avg?: MediaOnPlaylistAvgOrderByAggregateInput
     _max?: MediaOnPlaylistMaxOrderByAggregateInput
@@ -24610,10 +25661,11 @@ export namespace Prisma {
     OR?: MediaOnPlaylistScalarWhereWithAggregatesInput[]
     NOT?: MediaOnPlaylistScalarWhereWithAggregatesInput | MediaOnPlaylistScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"MediaOnPlaylist"> | number
-    playListId?: StringWithAggregatesFilter<"MediaOnPlaylist"> | string
+    playlistId?: StringWithAggregatesFilter<"MediaOnPlaylist"> | string
     mediaId?: StringWithAggregatesFilter<"MediaOnPlaylist"> | string
     createdAt?: DateTimeWithAggregatesFilter<"MediaOnPlaylist"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"MediaOnPlaylist"> | Date | string
+    sortNo?: IntWithAggregatesFilter<"MediaOnPlaylist"> | number
   }
 
   export type HistoryWhereInput = {
@@ -24621,12 +25673,12 @@ export namespace Prisma {
     OR?: HistoryWhereInput[]
     NOT?: HistoryWhereInput | HistoryWhereInput[]
     id?: IntFilter<"History"> | number
-    userId?: IntFilter<"History"> | number
+    userId?: StringFilter<"History"> | string
     mediaId?: StringFilter<"History"> | string
     createdAt?: DateTimeFilter<"History"> | Date | string
     updatedAt?: DateTimeFilter<"History"> | Date | string
     user?: XOR<UserRelationFilter, UserWhereInput>
-    meida?: XOR<MediaRelationFilter, MediaWhereInput>
+    media?: XOR<MediaRelationFilter, MediaWhereInput>
   }
 
   export type HistoryOrderByWithRelationInput = {
@@ -24636,22 +25688,22 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     user?: UserOrderByWithRelationInput
-    meida?: MediaOrderByWithRelationInput
+    media?: MediaOrderByWithRelationInput
   }
 
   export type HistoryWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    onlyReaction?: HistoryOnlyReactionCompoundUniqueInput
+    onlyOne?: HistoryOnlyOneCompoundUniqueInput
     AND?: HistoryWhereInput | HistoryWhereInput[]
     OR?: HistoryWhereInput[]
     NOT?: HistoryWhereInput | HistoryWhereInput[]
-    userId?: IntFilter<"History"> | number
+    userId?: StringFilter<"History"> | string
     mediaId?: StringFilter<"History"> | string
     createdAt?: DateTimeFilter<"History"> | Date | string
     updatedAt?: DateTimeFilter<"History"> | Date | string
     user?: XOR<UserRelationFilter, UserWhereInput>
-    meida?: XOR<MediaRelationFilter, MediaWhereInput>
-  }, "id" | "onlyReaction">
+    media?: XOR<MediaRelationFilter, MediaWhereInput>
+  }, "id" | "onlyOne">
 
   export type HistoryOrderByWithAggregationInput = {
     id?: SortOrder
@@ -24671,7 +25723,7 @@ export namespace Prisma {
     OR?: HistoryScalarWhereWithAggregatesInput[]
     NOT?: HistoryScalarWhereWithAggregatesInput | HistoryScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"History"> | number
-    userId?: IntWithAggregatesFilter<"History"> | number
+    userId?: StringWithAggregatesFilter<"History"> | string
     mediaId?: StringWithAggregatesFilter<"History"> | string
     createdAt?: DateTimeWithAggregatesFilter<"History"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"History"> | Date | string
@@ -24682,8 +25734,8 @@ export namespace Prisma {
     OR?: SubscriberWhereInput[]
     NOT?: SubscriberWhereInput | SubscriberWhereInput[]
     id?: IntFilter<"Subscriber"> | number
-    userId?: IntFilter<"Subscriber"> | number
-    channelId?: IntFilter<"Subscriber"> | number
+    userId?: StringFilter<"Subscriber"> | string
+    channelId?: StringFilter<"Subscriber"> | string
     createdAt?: DateTimeFilter<"Subscriber"> | Date | string
     updatedAt?: DateTimeFilter<"Subscriber"> | Date | string
     user?: XOR<UserRelationFilter, UserWhereInput>
@@ -24702,16 +25754,17 @@ export namespace Prisma {
 
   export type SubscriberWhereUniqueInput = Prisma.AtLeast<{
     id?: number
+    userId_channelId?: SubscriberUserIdChannelIdCompoundUniqueInput
     AND?: SubscriberWhereInput | SubscriberWhereInput[]
     OR?: SubscriberWhereInput[]
     NOT?: SubscriberWhereInput | SubscriberWhereInput[]
-    userId?: IntFilter<"Subscriber"> | number
-    channelId?: IntFilter<"Subscriber"> | number
+    userId?: StringFilter<"Subscriber"> | string
+    channelId?: StringFilter<"Subscriber"> | string
     createdAt?: DateTimeFilter<"Subscriber"> | Date | string
     updatedAt?: DateTimeFilter<"Subscriber"> | Date | string
     user?: XOR<UserRelationFilter, UserWhereInput>
     channel?: XOR<UserRelationFilter, UserWhereInput>
-  }, "id">
+  }, "id" | "userId_channelId">
 
   export type SubscriberOrderByWithAggregationInput = {
     id?: SortOrder
@@ -24731,8 +25784,8 @@ export namespace Prisma {
     OR?: SubscriberScalarWhereWithAggregatesInput[]
     NOT?: SubscriberScalarWhereWithAggregatesInput | SubscriberScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Subscriber"> | number
-    userId?: IntWithAggregatesFilter<"Subscriber"> | number
-    channelId?: IntWithAggregatesFilter<"Subscriber"> | number
+    userId?: StringWithAggregatesFilter<"Subscriber"> | string
+    channelId?: StringWithAggregatesFilter<"Subscriber"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Subscriber"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Subscriber"> | Date | string
   }
@@ -24742,7 +25795,7 @@ export namespace Prisma {
     OR?: NotificationSubscriptionsWhereInput[]
     NOT?: NotificationSubscriptionsWhereInput | NotificationSubscriptionsWhereInput[]
     id?: IntFilter<"NotificationSubscriptions"> | number
-    userId?: IntFilter<"NotificationSubscriptions"> | number
+    userId?: StringFilter<"NotificationSubscriptions"> | string
     subscription?: StringFilter<"NotificationSubscriptions"> | string
     createdAt?: DateTimeFilter<"NotificationSubscriptions"> | Date | string
     updatedAt?: DateTimeFilter<"NotificationSubscriptions"> | Date | string
@@ -24763,7 +25816,7 @@ export namespace Prisma {
     AND?: NotificationSubscriptionsWhereInput | NotificationSubscriptionsWhereInput[]
     OR?: NotificationSubscriptionsWhereInput[]
     NOT?: NotificationSubscriptionsWhereInput | NotificationSubscriptionsWhereInput[]
-    userId?: IntFilter<"NotificationSubscriptions"> | number
+    userId?: StringFilter<"NotificationSubscriptions"> | string
     subscription?: StringFilter<"NotificationSubscriptions"> | string
     createdAt?: DateTimeFilter<"NotificationSubscriptions"> | Date | string
     updatedAt?: DateTimeFilter<"NotificationSubscriptions"> | Date | string
@@ -24788,7 +25841,7 @@ export namespace Prisma {
     OR?: NotificationSubscriptionsScalarWhereWithAggregatesInput[]
     NOT?: NotificationSubscriptionsScalarWhereWithAggregatesInput | NotificationSubscriptionsScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"NotificationSubscriptions"> | number
-    userId?: IntWithAggregatesFilter<"NotificationSubscriptions"> | number
+    userId?: StringWithAggregatesFilter<"NotificationSubscriptions"> | string
     subscription?: StringWithAggregatesFilter<"NotificationSubscriptions"> | string
     createdAt?: DateTimeWithAggregatesFilter<"NotificationSubscriptions"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"NotificationSubscriptions"> | Date | string
@@ -25197,7 +26250,7 @@ export namespace Prisma {
     id?: StringFilter<"Album"> | string
     name?: StringFilter<"Album"> | string
     description?: StringNullableFilter<"Album"> | string | null
-    userId?: IntFilter<"Album"> | number
+    userId?: StringFilter<"Album"> | string
     createdAt?: DateTimeFilter<"Album"> | Date | string
     updatedAt?: DateTimeFilter<"Album"> | Date | string
     owner?: XOR<UserRelationFilter, UserWhereInput>
@@ -25222,7 +26275,7 @@ export namespace Prisma {
     NOT?: AlbumWhereInput | AlbumWhereInput[]
     name?: StringFilter<"Album"> | string
     description?: StringNullableFilter<"Album"> | string | null
-    userId?: IntFilter<"Album"> | number
+    userId?: StringFilter<"Album"> | string
     createdAt?: DateTimeFilter<"Album"> | Date | string
     updatedAt?: DateTimeFilter<"Album"> | Date | string
     owner?: XOR<UserRelationFilter, UserWhereInput>
@@ -25237,10 +26290,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: AlbumCountOrderByAggregateInput
-    _avg?: AlbumAvgOrderByAggregateInput
     _max?: AlbumMaxOrderByAggregateInput
     _min?: AlbumMinOrderByAggregateInput
-    _sum?: AlbumSumOrderByAggregateInput
   }
 
   export type AlbumScalarWhereWithAggregatesInput = {
@@ -25250,12 +26301,106 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Album"> | string
     name?: StringWithAggregatesFilter<"Album"> | string
     description?: StringNullableWithAggregatesFilter<"Album"> | string | null
-    userId?: IntWithAggregatesFilter<"Album"> | number
+    userId?: StringWithAggregatesFilter<"Album"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Album"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Album"> | Date | string
   }
 
+  export type SocialAccountWhereInput = {
+    AND?: SocialAccountWhereInput | SocialAccountWhereInput[]
+    OR?: SocialAccountWhereInput[]
+    NOT?: SocialAccountWhereInput | SocialAccountWhereInput[]
+    id?: IntFilter<"SocialAccount"> | number
+    userId?: StringFilter<"SocialAccount"> | string
+    type?: EnumAccountTypeFilter<"SocialAccount"> | $Enums.AccountType
+    fullName?: StringFilter<"SocialAccount"> | string
+    avatarUrl?: StringNullableFilter<"SocialAccount"> | string | null
+    accountUrl?: StringNullableFilter<"SocialAccount"> | string | null
+    accessToken?: StringNullableFilter<"SocialAccount"> | string | null
+    refreshToken?: StringNullableFilter<"SocialAccount"> | string | null
+    expiredAt?: DateTimeFilter<"SocialAccount"> | Date | string
+    createdAt?: DateTimeFilter<"SocialAccount"> | Date | string
+    updatedAt?: DateTimeFilter<"SocialAccount"> | Date | string
+    disabledAt?: DateTimeNullableFilter<"SocialAccount"> | Date | string | null
+    owner?: XOR<UserRelationFilter, UserWhereInput>
+  }
+
+  export type SocialAccountOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    type?: SortOrder
+    fullName?: SortOrder
+    avatarUrl?: SortOrderInput | SortOrder
+    accountUrl?: SortOrderInput | SortOrder
+    accessToken?: SortOrderInput | SortOrder
+    refreshToken?: SortOrderInput | SortOrder
+    expiredAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    disabledAt?: SortOrderInput | SortOrder
+    owner?: UserOrderByWithRelationInput
+  }
+
+  export type SocialAccountWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    userId_accountUrl_type?: SocialAccountUserIdAccountUrlTypeCompoundUniqueInput
+    AND?: SocialAccountWhereInput | SocialAccountWhereInput[]
+    OR?: SocialAccountWhereInput[]
+    NOT?: SocialAccountWhereInput | SocialAccountWhereInput[]
+    userId?: StringFilter<"SocialAccount"> | string
+    type?: EnumAccountTypeFilter<"SocialAccount"> | $Enums.AccountType
+    fullName?: StringFilter<"SocialAccount"> | string
+    avatarUrl?: StringNullableFilter<"SocialAccount"> | string | null
+    accountUrl?: StringNullableFilter<"SocialAccount"> | string | null
+    accessToken?: StringNullableFilter<"SocialAccount"> | string | null
+    refreshToken?: StringNullableFilter<"SocialAccount"> | string | null
+    expiredAt?: DateTimeFilter<"SocialAccount"> | Date | string
+    createdAt?: DateTimeFilter<"SocialAccount"> | Date | string
+    updatedAt?: DateTimeFilter<"SocialAccount"> | Date | string
+    disabledAt?: DateTimeNullableFilter<"SocialAccount"> | Date | string | null
+    owner?: XOR<UserRelationFilter, UserWhereInput>
+  }, "id" | "userId_accountUrl_type">
+
+  export type SocialAccountOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    type?: SortOrder
+    fullName?: SortOrder
+    avatarUrl?: SortOrderInput | SortOrder
+    accountUrl?: SortOrderInput | SortOrder
+    accessToken?: SortOrderInput | SortOrder
+    refreshToken?: SortOrderInput | SortOrder
+    expiredAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    disabledAt?: SortOrderInput | SortOrder
+    _count?: SocialAccountCountOrderByAggregateInput
+    _avg?: SocialAccountAvgOrderByAggregateInput
+    _max?: SocialAccountMaxOrderByAggregateInput
+    _min?: SocialAccountMinOrderByAggregateInput
+    _sum?: SocialAccountSumOrderByAggregateInput
+  }
+
+  export type SocialAccountScalarWhereWithAggregatesInput = {
+    AND?: SocialAccountScalarWhereWithAggregatesInput | SocialAccountScalarWhereWithAggregatesInput[]
+    OR?: SocialAccountScalarWhereWithAggregatesInput[]
+    NOT?: SocialAccountScalarWhereWithAggregatesInput | SocialAccountScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"SocialAccount"> | number
+    userId?: StringWithAggregatesFilter<"SocialAccount"> | string
+    type?: EnumAccountTypeWithAggregatesFilter<"SocialAccount"> | $Enums.AccountType
+    fullName?: StringWithAggregatesFilter<"SocialAccount"> | string
+    avatarUrl?: StringNullableWithAggregatesFilter<"SocialAccount"> | string | null
+    accountUrl?: StringNullableWithAggregatesFilter<"SocialAccount"> | string | null
+    accessToken?: StringNullableWithAggregatesFilter<"SocialAccount"> | string | null
+    refreshToken?: StringNullableWithAggregatesFilter<"SocialAccount"> | string | null
+    expiredAt?: DateTimeWithAggregatesFilter<"SocialAccount"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"SocialAccount"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"SocialAccount"> | Date | string
+    disabledAt?: DateTimeNullableWithAggregatesFilter<"SocialAccount"> | Date | string | null
+  }
+
   export type UserCreateInput = {
+    id?: string
     firstName: string
     lastName: string
     email: string
@@ -25275,10 +26420,11 @@ export namespace Prisma {
     Playlist?: PlaylistCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodCreateNestedManyWithoutUserInput
     Album?: AlbumCreateNestedManyWithoutOwnerInput
+    SocialAccount?: SocialAccountCreateNestedManyWithoutOwnerInput
   }
 
   export type UserUncheckedCreateInput = {
-    id?: number
+    id?: string
     firstName: string
     lastName: string
     email: string
@@ -25298,9 +26444,11 @@ export namespace Prisma {
     Playlist?: PlaylistUncheckedCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodUncheckedCreateNestedManyWithoutUserInput
     Album?: AlbumUncheckedCreateNestedManyWithoutOwnerInput
+    SocialAccount?: SocialAccountUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type UserUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -25320,10 +26468,11 @@ export namespace Prisma {
     Playlist?: PlaylistUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUpdateManyWithoutUserNestedInput
     Album?: AlbumUpdateManyWithoutOwnerNestedInput
+    SocialAccount?: SocialAccountUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -25343,10 +26492,11 @@ export namespace Prisma {
     Playlist?: PlaylistUncheckedUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUncheckedUpdateManyWithoutUserNestedInput
     Album?: AlbumUncheckedUpdateManyWithoutOwnerNestedInput
+    SocialAccount?: SocialAccountUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserCreateManyInput = {
-    id?: number
+    id?: string
     firstName: string
     lastName: string
     email: string
@@ -25359,6 +26509,7 @@ export namespace Prisma {
   }
 
   export type UserUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -25371,7 +26522,7 @@ export namespace Prisma {
   }
 
   export type UserUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -25392,7 +26543,7 @@ export namespace Prisma {
 
   export type UserPaymentMethodUncheckedCreateInput = {
     id?: number
-    userId: number
+    userId: string
     paymentMethod: $Enums.PaymentMethod
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -25407,7 +26558,7 @@ export namespace Prisma {
 
   export type UserPaymentMethodUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
     paymentMethod?: EnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25415,7 +26566,7 @@ export namespace Prisma {
 
   export type UserPaymentMethodCreateManyInput = {
     id?: number
-    userId: number
+    userId: string
     paymentMethod: $Enums.PaymentMethod
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -25429,7 +26580,7 @@ export namespace Prisma {
 
   export type UserPaymentMethodUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
     paymentMethod?: EnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25489,6 +26640,8 @@ export namespace Prisma {
   }
 
   export type MediaOnCategoryCreateInput = {
+    createdAt?: Date | string
+    updatedAt?: Date | string
     category: CategoryCreateNestedOneWithoutCategoryOnMediaInput
     media: MediaCreateNestedOneWithoutMediaOnCategoryInput
   }
@@ -25497,9 +26650,13 @@ export namespace Prisma {
     id?: number
     categoryId: string
     mediaId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type MediaOnCategoryUpdateInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: CategoryUpdateOneRequiredWithoutCategoryOnMediaNestedInput
     media?: MediaUpdateOneRequiredWithoutMediaOnCategoryNestedInput
   }
@@ -25508,22 +26665,29 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     categoryId?: StringFieldUpdateOperationsInput | string
     mediaId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type MediaOnCategoryCreateManyInput = {
     id?: number
     categoryId: string
     mediaId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type MediaOnCategoryUpdateManyMutationInput = {
-
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type MediaOnCategoryUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     categoryId?: StringFieldUpdateOperationsInput | string
     mediaId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SessionUploadCreateInput = {
@@ -25593,6 +26757,7 @@ export namespace Prisma {
     title: string
     views?: number
     duration?: number
+    plays?: number
     status?: $Enums.StatusResource
     viewMode?: $Enums.Status
     createdAt?: Date | string
@@ -25605,7 +26770,7 @@ export namespace Prisma {
     videoResources?: VideoResourceCreateNestedManyWithoutMediaInput
     audioResources?: AudioResourceCreateNestedManyWithoutMediaInput
     mediaReaction?: MediaReactionCreateNestedManyWithoutMediaInput
-    history?: HistoryCreateNestedManyWithoutMeidaInput
+    history?: HistoryCreateNestedManyWithoutMediaInput
     mediaOnCategory?: MediaOnCategoryCreateNestedManyWithoutMediaInput
     comment?: CommentCreateNestedManyWithoutMediaInput
     mediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
@@ -25615,10 +26780,11 @@ export namespace Prisma {
 
   export type MediaUncheckedCreateInput = {
     id?: string
-    userId: number
+    userId: string
     title: string
     views?: number
     duration?: number
+    plays?: number
     status?: $Enums.StatusResource
     viewMode?: $Enums.Status
     createdAt?: Date | string
@@ -25630,7 +26796,7 @@ export namespace Prisma {
     videoResources?: VideoResourceUncheckedCreateNestedManyWithoutMediaInput
     audioResources?: AudioResourceUncheckedCreateNestedManyWithoutMediaInput
     mediaReaction?: MediaReactionUncheckedCreateNestedManyWithoutMediaInput
-    history?: HistoryUncheckedCreateNestedManyWithoutMeidaInput
+    history?: HistoryUncheckedCreateNestedManyWithoutMediaInput
     mediaOnCategory?: MediaOnCategoryUncheckedCreateNestedManyWithoutMediaInput
     comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
     mediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
@@ -25643,6 +26809,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
+    plays?: IntFieldUpdateOperationsInput | number
     status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
     viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25655,7 +26822,7 @@ export namespace Prisma {
     videoResources?: VideoResourceUpdateManyWithoutMediaNestedInput
     audioResources?: AudioResourceUpdateManyWithoutMediaNestedInput
     mediaReaction?: MediaReactionUpdateManyWithoutMediaNestedInput
-    history?: HistoryUpdateManyWithoutMeidaNestedInput
+    history?: HistoryUpdateManyWithoutMediaNestedInput
     mediaOnCategory?: MediaOnCategoryUpdateManyWithoutMediaNestedInput
     comment?: CommentUpdateManyWithoutMediaNestedInput
     mediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
@@ -25665,10 +26832,11 @@ export namespace Prisma {
 
   export type MediaUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
+    plays?: IntFieldUpdateOperationsInput | number
     status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
     viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25680,7 +26848,7 @@ export namespace Prisma {
     videoResources?: VideoResourceUncheckedUpdateManyWithoutMediaNestedInput
     audioResources?: AudioResourceUncheckedUpdateManyWithoutMediaNestedInput
     mediaReaction?: MediaReactionUncheckedUpdateManyWithoutMediaNestedInput
-    history?: HistoryUncheckedUpdateManyWithoutMeidaNestedInput
+    history?: HistoryUncheckedUpdateManyWithoutMediaNestedInput
     mediaOnCategory?: MediaOnCategoryUncheckedUpdateManyWithoutMediaNestedInput
     comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
     mediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
@@ -25690,10 +26858,11 @@ export namespace Prisma {
 
   export type MediaCreateManyInput = {
     id?: string
-    userId: number
+    userId: string
     title: string
     views?: number
     duration?: number
+    plays?: number
     status?: $Enums.StatusResource
     viewMode?: $Enums.Status
     createdAt?: Date | string
@@ -25707,6 +26876,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
+    plays?: IntFieldUpdateOperationsInput | number
     status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
     viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25717,10 +26887,11 @@ export namespace Prisma {
 
   export type MediaUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
+    plays?: IntFieldUpdateOperationsInput | number
     status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
     viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25730,6 +26901,7 @@ export namespace Prisma {
   }
 
   export type MediaReactionCreateInput = {
+    id?: string
     isLike: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -25738,8 +26910,8 @@ export namespace Prisma {
   }
 
   export type MediaReactionUncheckedCreateInput = {
-    id?: number
-    userId: number
+    id?: string
+    userId: string
     mediaId: string
     isLike: boolean
     createdAt?: Date | string
@@ -25747,6 +26919,7 @@ export namespace Prisma {
   }
 
   export type MediaReactionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
     isLike?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25755,8 +26928,8 @@ export namespace Prisma {
   }
 
   export type MediaReactionUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
     mediaId?: StringFieldUpdateOperationsInput | string
     isLike?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25764,8 +26937,8 @@ export namespace Prisma {
   }
 
   export type MediaReactionCreateManyInput = {
-    id?: number
-    userId: number
+    id?: string
+    userId: string
     mediaId: string
     isLike: boolean
     createdAt?: Date | string
@@ -25773,14 +26946,15 @@ export namespace Prisma {
   }
 
   export type MediaReactionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
     isLike?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type MediaReactionUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
     mediaId?: StringFieldUpdateOperationsInput | string
     isLike?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25788,6 +26962,7 @@ export namespace Prisma {
   }
 
   export type CommentCreateInput = {
+    id?: string
     comment: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -25796,8 +26971,8 @@ export namespace Prisma {
   }
 
   export type CommentUncheckedCreateInput = {
-    id?: number
-    userId: number
+    id?: string
+    userId: string
     mediaId: string
     comment: string
     createdAt?: Date | string
@@ -25805,6 +26980,7 @@ export namespace Prisma {
   }
 
   export type CommentUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
     comment?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25813,8 +26989,8 @@ export namespace Prisma {
   }
 
   export type CommentUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
     mediaId?: StringFieldUpdateOperationsInput | string
     comment?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25822,8 +26998,8 @@ export namespace Prisma {
   }
 
   export type CommentCreateManyInput = {
-    id?: number
-    userId: number
+    id?: string
+    userId: string
     mediaId: string
     comment: string
     createdAt?: Date | string
@@ -25831,14 +27007,15 @@ export namespace Prisma {
   }
 
   export type CommentUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
     comment?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CommentUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
     mediaId?: StringFieldUpdateOperationsInput | string
     comment?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25856,7 +27033,7 @@ export namespace Prisma {
 
   export type PlaylistUncheckedCreateInput = {
     id?: string
-    userId: number
+    userId: string
     title: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -25874,7 +27051,7 @@ export namespace Prisma {
 
   export type PlaylistUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25883,7 +27060,7 @@ export namespace Prisma {
 
   export type PlaylistCreateManyInput = {
     id?: string
-    userId: number
+    userId: string
     title: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -25898,7 +27075,7 @@ export namespace Prisma {
 
   export type PlaylistUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25907,64 +27084,71 @@ export namespace Prisma {
   export type MediaOnPlaylistCreateInput = {
     createdAt?: Date | string
     updatedAt?: Date | string
+    sortNo?: number
     playlist: PlaylistCreateNestedOneWithoutMediaOnPlaylistInput
     media: MediaCreateNestedOneWithoutMediaOnPlaylistInput
   }
 
   export type MediaOnPlaylistUncheckedCreateInput = {
     id?: number
-    playListId: string
+    playlistId: string
     mediaId: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    sortNo?: number
   }
 
   export type MediaOnPlaylistUpdateInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sortNo?: IntFieldUpdateOperationsInput | number
     playlist?: PlaylistUpdateOneRequiredWithoutMediaOnPlaylistNestedInput
     media?: MediaUpdateOneRequiredWithoutMediaOnPlaylistNestedInput
   }
 
   export type MediaOnPlaylistUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    playListId?: StringFieldUpdateOperationsInput | string
+    playlistId?: StringFieldUpdateOperationsInput | string
     mediaId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sortNo?: IntFieldUpdateOperationsInput | number
   }
 
   export type MediaOnPlaylistCreateManyInput = {
     id?: number
-    playListId: string
+    playlistId: string
     mediaId: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    sortNo?: number
   }
 
   export type MediaOnPlaylistUpdateManyMutationInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sortNo?: IntFieldUpdateOperationsInput | number
   }
 
   export type MediaOnPlaylistUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    playListId?: StringFieldUpdateOperationsInput | string
+    playlistId?: StringFieldUpdateOperationsInput | string
     mediaId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sortNo?: IntFieldUpdateOperationsInput | number
   }
 
   export type HistoryCreateInput = {
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutHistoriesInput
-    meida: MediaCreateNestedOneWithoutHistoryInput
+    media: MediaCreateNestedOneWithoutHistoryInput
   }
 
   export type HistoryUncheckedCreateInput = {
     id?: number
-    userId: number
+    userId: string
     mediaId: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -25974,12 +27158,12 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutHistoriesNestedInput
-    meida?: MediaUpdateOneRequiredWithoutHistoryNestedInput
+    media?: MediaUpdateOneRequiredWithoutHistoryNestedInput
   }
 
   export type HistoryUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
     mediaId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25987,7 +27171,7 @@ export namespace Prisma {
 
   export type HistoryCreateManyInput = {
     id?: number
-    userId: number
+    userId: string
     mediaId: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -26000,7 +27184,7 @@ export namespace Prisma {
 
   export type HistoryUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
     mediaId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -26015,8 +27199,8 @@ export namespace Prisma {
 
   export type SubscriberUncheckedCreateInput = {
     id?: number
-    userId: number
-    channelId: number
+    userId: string
+    channelId: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -26030,16 +27214,16 @@ export namespace Prisma {
 
   export type SubscriberUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    channelId?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
+    channelId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SubscriberCreateManyInput = {
     id?: number
-    userId: number
-    channelId: number
+    userId: string
+    channelId: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -26051,8 +27235,8 @@ export namespace Prisma {
 
   export type SubscriberUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    channelId?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
+    channelId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -26066,7 +27250,7 @@ export namespace Prisma {
 
   export type NotificationSubscriptionsUncheckedCreateInput = {
     id?: number
-    userId: number
+    userId: string
     subscription: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -26081,7 +27265,7 @@ export namespace Prisma {
 
   export type NotificationSubscriptionsUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
     subscription?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -26089,7 +27273,7 @@ export namespace Prisma {
 
   export type NotificationSubscriptionsCreateManyInput = {
     id?: number
-    userId: number
+    userId: string
     subscription: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -26103,7 +27287,7 @@ export namespace Prisma {
 
   export type NotificationSubscriptionsUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
     subscription?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -26506,7 +27690,7 @@ export namespace Prisma {
     id?: string
     name: string
     description?: string | null
-    userId: number
+    userId: string
     createdAt?: Date | string
     updatedAt?: Date | string
     mediaOnAlbum?: MediaOnAlbumUncheckedCreateNestedManyWithoutAlbumInput
@@ -26526,7 +27710,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    userId?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     mediaOnAlbum?: MediaOnAlbumUncheckedUpdateManyWithoutAlbumNestedInput
@@ -26536,7 +27720,7 @@ export namespace Prisma {
     id?: string
     name: string
     description?: string | null
-    userId: number
+    userId: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -26553,20 +27737,110 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    userId?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
+  export type SocialAccountCreateInput = {
+    type?: $Enums.AccountType
+    fullName: string
+    avatarUrl?: string | null
+    accountUrl?: string | null
+    accessToken?: string | null
+    refreshToken?: string | null
+    expiredAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    disabledAt?: Date | string | null
+    owner: UserCreateNestedOneWithoutSocialAccountInput
+  }
+
+  export type SocialAccountUncheckedCreateInput = {
+    id?: number
+    userId: string
+    type?: $Enums.AccountType
+    fullName: string
+    avatarUrl?: string | null
+    accountUrl?: string | null
+    accessToken?: string | null
+    refreshToken?: string | null
+    expiredAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    disabledAt?: Date | string | null
+  }
+
+  export type SocialAccountUpdateInput = {
+    type?: EnumAccountTypeFieldUpdateOperationsInput | $Enums.AccountType
+    fullName?: StringFieldUpdateOperationsInput | string
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    accountUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    disabledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    owner?: UserUpdateOneRequiredWithoutSocialAccountNestedInput
+  }
+
+  export type SocialAccountUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
+    type?: EnumAccountTypeFieldUpdateOperationsInput | $Enums.AccountType
+    fullName?: StringFieldUpdateOperationsInput | string
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    accountUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    disabledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type SocialAccountCreateManyInput = {
+    id?: number
+    userId: string
+    type?: $Enums.AccountType
+    fullName: string
+    avatarUrl?: string | null
+    accountUrl?: string | null
+    accessToken?: string | null
+    refreshToken?: string | null
+    expiredAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    disabledAt?: Date | string | null
+  }
+
+  export type SocialAccountUpdateManyMutationInput = {
+    type?: EnumAccountTypeFieldUpdateOperationsInput | $Enums.AccountType
+    fullName?: StringFieldUpdateOperationsInput | string
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    accountUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    disabledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type SocialAccountUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
+    type?: EnumAccountTypeFieldUpdateOperationsInput | $Enums.AccountType
+    fullName?: StringFieldUpdateOperationsInput | string
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    accountUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    disabledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -26673,6 +27947,12 @@ export namespace Prisma {
     none?: AlbumWhereInput
   }
 
+  export type SocialAccountListRelationFilter = {
+    every?: SocialAccountWhereInput
+    some?: SocialAccountWhereInput
+    none?: SocialAccountWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -26714,6 +27994,10 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
+  export type SocialAccountOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     firstName?: SortOrder
@@ -26725,10 +28009,6 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     lockedAt?: SortOrder
-  }
-
-  export type UserAvgOrderByAggregateInput = {
-    id?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
@@ -26755,26 +28035,6 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     lockedAt?: SortOrder
-  }
-
-  export type UserSumOrderByAggregateInput = {
-    id?: SortOrder
-  }
-
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -26839,6 +28099,17 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
   export type EnumPaymentMethodFilter<$PrismaModel = never> = {
     equals?: $Enums.PaymentMethod | EnumPaymentMethodFieldRefInput<$PrismaModel>
     in?: $Enums.PaymentMethod[]
@@ -26861,7 +28132,6 @@ export namespace Prisma {
 
   export type UserPaymentMethodAvgOrderByAggregateInput = {
     id?: SortOrder
-    userId?: SortOrder
   }
 
   export type UserPaymentMethodMaxOrderByAggregateInput = {
@@ -26882,7 +28152,22 @@ export namespace Prisma {
 
   export type UserPaymentMethodSumOrderByAggregateInput = {
     id?: SortOrder
-    userId?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type EnumPaymentMethodWithAggregatesFilter<$PrismaModel = never> = {
@@ -26945,6 +28230,8 @@ export namespace Prisma {
     id?: SortOrder
     categoryId?: SortOrder
     mediaId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type MediaOnCategoryAvgOrderByAggregateInput = {
@@ -26955,12 +28242,16 @@ export namespace Prisma {
     id?: SortOrder
     categoryId?: SortOrder
     mediaId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type MediaOnCategoryMinOrderByAggregateInput = {
     id?: SortOrder
     categoryId?: SortOrder
     mediaId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type MediaOnCategorySumOrderByAggregateInput = {
@@ -27090,6 +28381,7 @@ export namespace Prisma {
     title?: SortOrder
     views?: SortOrder
     duration?: SortOrder
+    plays?: SortOrder
     status?: SortOrder
     viewMode?: SortOrder
     createdAt?: SortOrder
@@ -27099,9 +28391,9 @@ export namespace Prisma {
   }
 
   export type MediaAvgOrderByAggregateInput = {
-    userId?: SortOrder
     views?: SortOrder
     duration?: SortOrder
+    plays?: SortOrder
   }
 
   export type MediaMaxOrderByAggregateInput = {
@@ -27110,6 +28402,7 @@ export namespace Prisma {
     title?: SortOrder
     views?: SortOrder
     duration?: SortOrder
+    plays?: SortOrder
     status?: SortOrder
     viewMode?: SortOrder
     createdAt?: SortOrder
@@ -27124,6 +28417,7 @@ export namespace Prisma {
     title?: SortOrder
     views?: SortOrder
     duration?: SortOrder
+    plays?: SortOrder
     status?: SortOrder
     viewMode?: SortOrder
     createdAt?: SortOrder
@@ -27133,9 +28427,9 @@ export namespace Prisma {
   }
 
   export type MediaSumOrderByAggregateInput = {
-    userId?: SortOrder
     views?: SortOrder
     duration?: SortOrder
+    plays?: SortOrder
   }
 
   export type FloatWithAggregatesFilter<$PrismaModel = never> = {
@@ -27180,7 +28474,7 @@ export namespace Prisma {
   }
 
   export type MediaReactionOnlyReactionCompoundUniqueInput = {
-    userId: number
+    userId: string
     mediaId: string
   }
 
@@ -27191,11 +28485,6 @@ export namespace Prisma {
     isLike?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-  }
-
-  export type MediaReactionAvgOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
   }
 
   export type MediaReactionMaxOrderByAggregateInput = {
@@ -27216,11 +28505,6 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type MediaReactionSumOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-  }
-
   export type BoolWithAggregatesFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
@@ -27236,11 +28520,6 @@ export namespace Prisma {
     comment?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-  }
-
-  export type CommentAvgOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
   }
 
   export type CommentMaxOrderByAggregateInput = {
@@ -27261,21 +28540,12 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type CommentSumOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-  }
-
   export type PlaylistCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
     title?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-  }
-
-  export type PlaylistAvgOrderByAggregateInput = {
-    userId?: SortOrder
   }
 
   export type PlaylistMaxOrderByAggregateInput = {
@@ -27294,54 +28564,55 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type PlaylistSumOrderByAggregateInput = {
-    userId?: SortOrder
-  }
-
   export type PlaylistRelationFilter = {
     is?: PlaylistWhereInput
     isNot?: PlaylistWhereInput
   }
 
-  export type MediaOnPlaylistPlayListIdMediaIdCompoundUniqueInput = {
-    playListId: string
+  export type MediaOnPlaylistPlaylistIdMediaIdCompoundUniqueInput = {
+    playlistId: string
     mediaId: string
   }
 
   export type MediaOnPlaylistCountOrderByAggregateInput = {
     id?: SortOrder
-    playListId?: SortOrder
+    playlistId?: SortOrder
     mediaId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    sortNo?: SortOrder
   }
 
   export type MediaOnPlaylistAvgOrderByAggregateInput = {
     id?: SortOrder
+    sortNo?: SortOrder
   }
 
   export type MediaOnPlaylistMaxOrderByAggregateInput = {
     id?: SortOrder
-    playListId?: SortOrder
+    playlistId?: SortOrder
     mediaId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    sortNo?: SortOrder
   }
 
   export type MediaOnPlaylistMinOrderByAggregateInput = {
     id?: SortOrder
-    playListId?: SortOrder
+    playlistId?: SortOrder
     mediaId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    sortNo?: SortOrder
   }
 
   export type MediaOnPlaylistSumOrderByAggregateInput = {
     id?: SortOrder
+    sortNo?: SortOrder
   }
 
-  export type HistoryOnlyReactionCompoundUniqueInput = {
-    userId: number
+  export type HistoryOnlyOneCompoundUniqueInput = {
+    userId: string
     mediaId: string
   }
 
@@ -27355,7 +28626,6 @@ export namespace Prisma {
 
   export type HistoryAvgOrderByAggregateInput = {
     id?: SortOrder
-    userId?: SortOrder
   }
 
   export type HistoryMaxOrderByAggregateInput = {
@@ -27376,7 +28646,11 @@ export namespace Prisma {
 
   export type HistorySumOrderByAggregateInput = {
     id?: SortOrder
-    userId?: SortOrder
+  }
+
+  export type SubscriberUserIdChannelIdCompoundUniqueInput = {
+    userId: string
+    channelId: string
   }
 
   export type SubscriberCountOrderByAggregateInput = {
@@ -27389,8 +28663,6 @@ export namespace Prisma {
 
   export type SubscriberAvgOrderByAggregateInput = {
     id?: SortOrder
-    userId?: SortOrder
-    channelId?: SortOrder
   }
 
   export type SubscriberMaxOrderByAggregateInput = {
@@ -27411,8 +28683,6 @@ export namespace Prisma {
 
   export type SubscriberSumOrderByAggregateInput = {
     id?: SortOrder
-    userId?: SortOrder
-    channelId?: SortOrder
   }
 
   export type NotificationSubscriptionsCountOrderByAggregateInput = {
@@ -27425,7 +28695,6 @@ export namespace Prisma {
 
   export type NotificationSubscriptionsAvgOrderByAggregateInput = {
     id?: SortOrder
-    userId?: SortOrder
   }
 
   export type NotificationSubscriptionsMaxOrderByAggregateInput = {
@@ -27446,7 +28715,6 @@ export namespace Prisma {
 
   export type NotificationSubscriptionsSumOrderByAggregateInput = {
     id?: SortOrder
-    userId?: SortOrder
   }
 
   export type VideoResourceCountOrderByAggregateInput = {
@@ -27699,10 +28967,6 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type AlbumAvgOrderByAggregateInput = {
-    userId?: SortOrder
-  }
-
   export type AlbumMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
@@ -27721,8 +28985,80 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type AlbumSumOrderByAggregateInput = {
+  export type EnumAccountTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.AccountType | EnumAccountTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.AccountType[]
+    notIn?: $Enums.AccountType[]
+    not?: NestedEnumAccountTypeFilter<$PrismaModel> | $Enums.AccountType
+  }
+
+  export type SocialAccountUserIdAccountUrlTypeCompoundUniqueInput = {
+    userId: string
+    accountUrl: string
+    type: $Enums.AccountType
+  }
+
+  export type SocialAccountCountOrderByAggregateInput = {
+    id?: SortOrder
     userId?: SortOrder
+    type?: SortOrder
+    fullName?: SortOrder
+    avatarUrl?: SortOrder
+    accountUrl?: SortOrder
+    accessToken?: SortOrder
+    refreshToken?: SortOrder
+    expiredAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    disabledAt?: SortOrder
+  }
+
+  export type SocialAccountAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type SocialAccountMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    type?: SortOrder
+    fullName?: SortOrder
+    avatarUrl?: SortOrder
+    accountUrl?: SortOrder
+    accessToken?: SortOrder
+    refreshToken?: SortOrder
+    expiredAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    disabledAt?: SortOrder
+  }
+
+  export type SocialAccountMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    type?: SortOrder
+    fullName?: SortOrder
+    avatarUrl?: SortOrder
+    accountUrl?: SortOrder
+    accessToken?: SortOrder
+    refreshToken?: SortOrder
+    expiredAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    disabledAt?: SortOrder
+  }
+
+  export type SocialAccountSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type EnumAccountTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AccountType | EnumAccountTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.AccountType[]
+    notIn?: $Enums.AccountType[]
+    not?: NestedEnumAccountTypeWithAggregatesFilter<$PrismaModel> | $Enums.AccountType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumAccountTypeFilter<$PrismaModel>
+    _max?: NestedEnumAccountTypeFilter<$PrismaModel>
   }
 
   export type MediaCreateNestedManyWithoutOwnerInput = {
@@ -27795,6 +29131,13 @@ export namespace Prisma {
     connect?: AlbumWhereUniqueInput | AlbumWhereUniqueInput[]
   }
 
+  export type SocialAccountCreateNestedManyWithoutOwnerInput = {
+    create?: XOR<SocialAccountCreateWithoutOwnerInput, SocialAccountUncheckedCreateWithoutOwnerInput> | SocialAccountCreateWithoutOwnerInput[] | SocialAccountUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: SocialAccountCreateOrConnectWithoutOwnerInput | SocialAccountCreateOrConnectWithoutOwnerInput[]
+    createMany?: SocialAccountCreateManyOwnerInputEnvelope
+    connect?: SocialAccountWhereUniqueInput | SocialAccountWhereUniqueInput[]
+  }
+
   export type MediaUncheckedCreateNestedManyWithoutOwnerInput = {
     create?: XOR<MediaCreateWithoutOwnerInput, MediaUncheckedCreateWithoutOwnerInput> | MediaCreateWithoutOwnerInput[] | MediaUncheckedCreateWithoutOwnerInput[]
     connectOrCreate?: MediaCreateOrConnectWithoutOwnerInput | MediaCreateOrConnectWithoutOwnerInput[]
@@ -27863,6 +29206,13 @@ export namespace Prisma {
     connectOrCreate?: AlbumCreateOrConnectWithoutOwnerInput | AlbumCreateOrConnectWithoutOwnerInput[]
     createMany?: AlbumCreateManyOwnerInputEnvelope
     connect?: AlbumWhereUniqueInput | AlbumWhereUniqueInput[]
+  }
+
+  export type SocialAccountUncheckedCreateNestedManyWithoutOwnerInput = {
+    create?: XOR<SocialAccountCreateWithoutOwnerInput, SocialAccountUncheckedCreateWithoutOwnerInput> | SocialAccountCreateWithoutOwnerInput[] | SocialAccountUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: SocialAccountCreateOrConnectWithoutOwnerInput | SocialAccountCreateOrConnectWithoutOwnerInput[]
+    createMany?: SocialAccountCreateManyOwnerInputEnvelope
+    connect?: SocialAccountWhereUniqueInput | SocialAccountWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -28021,12 +29371,18 @@ export namespace Prisma {
     deleteMany?: AlbumScalarWhereInput | AlbumScalarWhereInput[]
   }
 
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
+  export type SocialAccountUpdateManyWithoutOwnerNestedInput = {
+    create?: XOR<SocialAccountCreateWithoutOwnerInput, SocialAccountUncheckedCreateWithoutOwnerInput> | SocialAccountCreateWithoutOwnerInput[] | SocialAccountUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: SocialAccountCreateOrConnectWithoutOwnerInput | SocialAccountCreateOrConnectWithoutOwnerInput[]
+    upsert?: SocialAccountUpsertWithWhereUniqueWithoutOwnerInput | SocialAccountUpsertWithWhereUniqueWithoutOwnerInput[]
+    createMany?: SocialAccountCreateManyOwnerInputEnvelope
+    set?: SocialAccountWhereUniqueInput | SocialAccountWhereUniqueInput[]
+    disconnect?: SocialAccountWhereUniqueInput | SocialAccountWhereUniqueInput[]
+    delete?: SocialAccountWhereUniqueInput | SocialAccountWhereUniqueInput[]
+    connect?: SocialAccountWhereUniqueInput | SocialAccountWhereUniqueInput[]
+    update?: SocialAccountUpdateWithWhereUniqueWithoutOwnerInput | SocialAccountUpdateWithWhereUniqueWithoutOwnerInput[]
+    updateMany?: SocialAccountUpdateManyWithWhereWithoutOwnerInput | SocialAccountUpdateManyWithWhereWithoutOwnerInput[]
+    deleteMany?: SocialAccountScalarWhereInput | SocialAccountScalarWhereInput[]
   }
 
   export type MediaUncheckedUpdateManyWithoutOwnerNestedInput = {
@@ -28169,6 +29525,20 @@ export namespace Prisma {
     deleteMany?: AlbumScalarWhereInput | AlbumScalarWhereInput[]
   }
 
+  export type SocialAccountUncheckedUpdateManyWithoutOwnerNestedInput = {
+    create?: XOR<SocialAccountCreateWithoutOwnerInput, SocialAccountUncheckedCreateWithoutOwnerInput> | SocialAccountCreateWithoutOwnerInput[] | SocialAccountUncheckedCreateWithoutOwnerInput[]
+    connectOrCreate?: SocialAccountCreateOrConnectWithoutOwnerInput | SocialAccountCreateOrConnectWithoutOwnerInput[]
+    upsert?: SocialAccountUpsertWithWhereUniqueWithoutOwnerInput | SocialAccountUpsertWithWhereUniqueWithoutOwnerInput[]
+    createMany?: SocialAccountCreateManyOwnerInputEnvelope
+    set?: SocialAccountWhereUniqueInput | SocialAccountWhereUniqueInput[]
+    disconnect?: SocialAccountWhereUniqueInput | SocialAccountWhereUniqueInput[]
+    delete?: SocialAccountWhereUniqueInput | SocialAccountWhereUniqueInput[]
+    connect?: SocialAccountWhereUniqueInput | SocialAccountWhereUniqueInput[]
+    update?: SocialAccountUpdateWithWhereUniqueWithoutOwnerInput | SocialAccountUpdateWithWhereUniqueWithoutOwnerInput[]
+    updateMany?: SocialAccountUpdateManyWithWhereWithoutOwnerInput | SocialAccountUpdateManyWithWhereWithoutOwnerInput[]
+    deleteMany?: SocialAccountScalarWhereInput | SocialAccountScalarWhereInput[]
+  }
+
   export type UserCreateNestedOneWithoutUserPaymentMethodInput = {
     create?: XOR<UserCreateWithoutUserPaymentMethodInput, UserUncheckedCreateWithoutUserPaymentMethodInput>
     connectOrCreate?: UserCreateOrConnectWithoutUserPaymentMethodInput
@@ -28185,6 +29555,14 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutUserPaymentMethodInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutUserPaymentMethodInput, UserUpdateWithoutUserPaymentMethodInput>, UserUncheckedUpdateWithoutUserPaymentMethodInput>
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type MediaOnCategoryCreateNestedManyWithoutCategoryInput = {
@@ -28311,10 +29689,10 @@ export namespace Prisma {
     connect?: MediaReactionWhereUniqueInput | MediaReactionWhereUniqueInput[]
   }
 
-  export type HistoryCreateNestedManyWithoutMeidaInput = {
-    create?: XOR<HistoryCreateWithoutMeidaInput, HistoryUncheckedCreateWithoutMeidaInput> | HistoryCreateWithoutMeidaInput[] | HistoryUncheckedCreateWithoutMeidaInput[]
-    connectOrCreate?: HistoryCreateOrConnectWithoutMeidaInput | HistoryCreateOrConnectWithoutMeidaInput[]
-    createMany?: HistoryCreateManyMeidaInputEnvelope
+  export type HistoryCreateNestedManyWithoutMediaInput = {
+    create?: XOR<HistoryCreateWithoutMediaInput, HistoryUncheckedCreateWithoutMediaInput> | HistoryCreateWithoutMediaInput[] | HistoryUncheckedCreateWithoutMediaInput[]
+    connectOrCreate?: HistoryCreateOrConnectWithoutMediaInput | HistoryCreateOrConnectWithoutMediaInput[]
+    createMany?: HistoryCreateManyMediaInputEnvelope
     connect?: HistoryWhereUniqueInput | HistoryWhereUniqueInput[]
   }
 
@@ -28387,10 +29765,10 @@ export namespace Prisma {
     connect?: MediaReactionWhereUniqueInput | MediaReactionWhereUniqueInput[]
   }
 
-  export type HistoryUncheckedCreateNestedManyWithoutMeidaInput = {
-    create?: XOR<HistoryCreateWithoutMeidaInput, HistoryUncheckedCreateWithoutMeidaInput> | HistoryCreateWithoutMeidaInput[] | HistoryUncheckedCreateWithoutMeidaInput[]
-    connectOrCreate?: HistoryCreateOrConnectWithoutMeidaInput | HistoryCreateOrConnectWithoutMeidaInput[]
-    createMany?: HistoryCreateManyMeidaInputEnvelope
+  export type HistoryUncheckedCreateNestedManyWithoutMediaInput = {
+    create?: XOR<HistoryCreateWithoutMediaInput, HistoryUncheckedCreateWithoutMediaInput> | HistoryCreateWithoutMediaInput[] | HistoryUncheckedCreateWithoutMediaInput[]
+    connectOrCreate?: HistoryCreateOrConnectWithoutMediaInput | HistoryCreateOrConnectWithoutMediaInput[]
+    createMany?: HistoryCreateManyMediaInputEnvelope
     connect?: HistoryWhereUniqueInput | HistoryWhereUniqueInput[]
   }
 
@@ -28519,17 +29897,17 @@ export namespace Prisma {
     deleteMany?: MediaReactionScalarWhereInput | MediaReactionScalarWhereInput[]
   }
 
-  export type HistoryUpdateManyWithoutMeidaNestedInput = {
-    create?: XOR<HistoryCreateWithoutMeidaInput, HistoryUncheckedCreateWithoutMeidaInput> | HistoryCreateWithoutMeidaInput[] | HistoryUncheckedCreateWithoutMeidaInput[]
-    connectOrCreate?: HistoryCreateOrConnectWithoutMeidaInput | HistoryCreateOrConnectWithoutMeidaInput[]
-    upsert?: HistoryUpsertWithWhereUniqueWithoutMeidaInput | HistoryUpsertWithWhereUniqueWithoutMeidaInput[]
-    createMany?: HistoryCreateManyMeidaInputEnvelope
+  export type HistoryUpdateManyWithoutMediaNestedInput = {
+    create?: XOR<HistoryCreateWithoutMediaInput, HistoryUncheckedCreateWithoutMediaInput> | HistoryCreateWithoutMediaInput[] | HistoryUncheckedCreateWithoutMediaInput[]
+    connectOrCreate?: HistoryCreateOrConnectWithoutMediaInput | HistoryCreateOrConnectWithoutMediaInput[]
+    upsert?: HistoryUpsertWithWhereUniqueWithoutMediaInput | HistoryUpsertWithWhereUniqueWithoutMediaInput[]
+    createMany?: HistoryCreateManyMediaInputEnvelope
     set?: HistoryWhereUniqueInput | HistoryWhereUniqueInput[]
     disconnect?: HistoryWhereUniqueInput | HistoryWhereUniqueInput[]
     delete?: HistoryWhereUniqueInput | HistoryWhereUniqueInput[]
     connect?: HistoryWhereUniqueInput | HistoryWhereUniqueInput[]
-    update?: HistoryUpdateWithWhereUniqueWithoutMeidaInput | HistoryUpdateWithWhereUniqueWithoutMeidaInput[]
-    updateMany?: HistoryUpdateManyWithWhereWithoutMeidaInput | HistoryUpdateManyWithWhereWithoutMeidaInput[]
+    update?: HistoryUpdateWithWhereUniqueWithoutMediaInput | HistoryUpdateWithWhereUniqueWithoutMediaInput[]
+    updateMany?: HistoryUpdateManyWithWhereWithoutMediaInput | HistoryUpdateManyWithWhereWithoutMediaInput[]
     deleteMany?: HistoryScalarWhereInput | HistoryScalarWhereInput[]
   }
 
@@ -28669,17 +30047,17 @@ export namespace Prisma {
     deleteMany?: MediaReactionScalarWhereInput | MediaReactionScalarWhereInput[]
   }
 
-  export type HistoryUncheckedUpdateManyWithoutMeidaNestedInput = {
-    create?: XOR<HistoryCreateWithoutMeidaInput, HistoryUncheckedCreateWithoutMeidaInput> | HistoryCreateWithoutMeidaInput[] | HistoryUncheckedCreateWithoutMeidaInput[]
-    connectOrCreate?: HistoryCreateOrConnectWithoutMeidaInput | HistoryCreateOrConnectWithoutMeidaInput[]
-    upsert?: HistoryUpsertWithWhereUniqueWithoutMeidaInput | HistoryUpsertWithWhereUniqueWithoutMeidaInput[]
-    createMany?: HistoryCreateManyMeidaInputEnvelope
+  export type HistoryUncheckedUpdateManyWithoutMediaNestedInput = {
+    create?: XOR<HistoryCreateWithoutMediaInput, HistoryUncheckedCreateWithoutMediaInput> | HistoryCreateWithoutMediaInput[] | HistoryUncheckedCreateWithoutMediaInput[]
+    connectOrCreate?: HistoryCreateOrConnectWithoutMediaInput | HistoryCreateOrConnectWithoutMediaInput[]
+    upsert?: HistoryUpsertWithWhereUniqueWithoutMediaInput | HistoryUpsertWithWhereUniqueWithoutMediaInput[]
+    createMany?: HistoryCreateManyMediaInputEnvelope
     set?: HistoryWhereUniqueInput | HistoryWhereUniqueInput[]
     disconnect?: HistoryWhereUniqueInput | HistoryWhereUniqueInput[]
     delete?: HistoryWhereUniqueInput | HistoryWhereUniqueInput[]
     connect?: HistoryWhereUniqueInput | HistoryWhereUniqueInput[]
-    update?: HistoryUpdateWithWhereUniqueWithoutMeidaInput | HistoryUpdateWithWhereUniqueWithoutMeidaInput[]
-    updateMany?: HistoryUpdateManyWithWhereWithoutMeidaInput | HistoryUpdateManyWithWhereWithoutMeidaInput[]
+    update?: HistoryUpdateWithWhereUniqueWithoutMediaInput | HistoryUpdateWithWhereUniqueWithoutMediaInput[]
+    updateMany?: HistoryUpdateManyWithWhereWithoutMediaInput | HistoryUpdateManyWithWhereWithoutMediaInput[]
     deleteMany?: HistoryScalarWhereInput | HistoryScalarWhereInput[]
   }
 
@@ -29167,15 +30545,22 @@ export namespace Prisma {
     deleteMany?: MediaOnAlbumScalarWhereInput | MediaOnAlbumScalarWhereInput[]
   }
 
-  export type NestedIntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
+  export type UserCreateNestedOneWithoutSocialAccountInput = {
+    create?: XOR<UserCreateWithoutSocialAccountInput, UserUncheckedCreateWithoutSocialAccountInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSocialAccountInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type EnumAccountTypeFieldUpdateOperationsInput = {
+    set?: $Enums.AccountType
+  }
+
+  export type UserUpdateOneRequiredWithoutSocialAccountNestedInput = {
+    create?: XOR<UserCreateWithoutSocialAccountInput, UserUncheckedCreateWithoutSocialAccountInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSocialAccountInput
+    upsert?: UserUpsertWithoutSocialAccountInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSocialAccountInput, UserUpdateWithoutSocialAccountInput>, UserUncheckedUpdateWithoutSocialAccountInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -29228,33 +30613,6 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
-  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
-  }
-
-  export type NestedFloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
-  }
-
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[]
@@ -29270,6 +30628,17 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type NestedIntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -29333,6 +30702,33 @@ export namespace Prisma {
     in?: $Enums.PaymentMethod[]
     notIn?: $Enums.PaymentMethod[]
     not?: NestedEnumPaymentMethodFilter<$PrismaModel> | $Enums.PaymentMethod
+  }
+
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
   export type NestedEnumPaymentMethodWithAggregatesFilter<$PrismaModel = never> = {
@@ -29425,11 +30821,29 @@ export namespace Prisma {
     _max?: NestedEnumAudioQualityFilter<$PrismaModel>
   }
 
+  export type NestedEnumAccountTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.AccountType | EnumAccountTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.AccountType[]
+    notIn?: $Enums.AccountType[]
+    not?: NestedEnumAccountTypeFilter<$PrismaModel> | $Enums.AccountType
+  }
+
+  export type NestedEnumAccountTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AccountType | EnumAccountTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.AccountType[]
+    notIn?: $Enums.AccountType[]
+    not?: NestedEnumAccountTypeWithAggregatesFilter<$PrismaModel> | $Enums.AccountType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumAccountTypeFilter<$PrismaModel>
+    _max?: NestedEnumAccountTypeFilter<$PrismaModel>
+  }
+
   export type MediaCreateWithoutOwnerInput = {
     id?: string
     title: string
     views?: number
     duration?: number
+    plays?: number
     status?: $Enums.StatusResource
     viewMode?: $Enums.Status
     createdAt?: Date | string
@@ -29441,7 +30855,7 @@ export namespace Prisma {
     videoResources?: VideoResourceCreateNestedManyWithoutMediaInput
     audioResources?: AudioResourceCreateNestedManyWithoutMediaInput
     mediaReaction?: MediaReactionCreateNestedManyWithoutMediaInput
-    history?: HistoryCreateNestedManyWithoutMeidaInput
+    history?: HistoryCreateNestedManyWithoutMediaInput
     mediaOnCategory?: MediaOnCategoryCreateNestedManyWithoutMediaInput
     comment?: CommentCreateNestedManyWithoutMediaInput
     mediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
@@ -29454,6 +30868,7 @@ export namespace Prisma {
     title: string
     views?: number
     duration?: number
+    plays?: number
     status?: $Enums.StatusResource
     viewMode?: $Enums.Status
     createdAt?: Date | string
@@ -29465,7 +30880,7 @@ export namespace Prisma {
     videoResources?: VideoResourceUncheckedCreateNestedManyWithoutMediaInput
     audioResources?: AudioResourceUncheckedCreateNestedManyWithoutMediaInput
     mediaReaction?: MediaReactionUncheckedCreateNestedManyWithoutMediaInput
-    history?: HistoryUncheckedCreateNestedManyWithoutMeidaInput
+    history?: HistoryUncheckedCreateNestedManyWithoutMediaInput
     mediaOnCategory?: MediaOnCategoryUncheckedCreateNestedManyWithoutMediaInput
     comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
     mediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
@@ -29484,6 +30899,7 @@ export namespace Prisma {
   }
 
   export type MediaReactionCreateWithoutUserInput = {
+    id?: string
     isLike: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -29491,7 +30907,7 @@ export namespace Prisma {
   }
 
   export type MediaReactionUncheckedCreateWithoutUserInput = {
-    id?: number
+    id?: string
     mediaId: string
     isLike: boolean
     createdAt?: Date | string
@@ -29511,7 +30927,7 @@ export namespace Prisma {
   export type HistoryCreateWithoutUserInput = {
     createdAt?: Date | string
     updatedAt?: Date | string
-    meida: MediaCreateNestedOneWithoutHistoryInput
+    media: MediaCreateNestedOneWithoutHistoryInput
   }
 
   export type HistoryUncheckedCreateWithoutUserInput = {
@@ -29539,7 +30955,7 @@ export namespace Prisma {
 
   export type SubscriberUncheckedCreateWithoutUserInput = {
     id?: number
-    channelId: number
+    channelId: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -29562,7 +30978,7 @@ export namespace Prisma {
 
   export type SubscriberUncheckedCreateWithoutChannelInput = {
     id?: number
-    userId: number
+    userId: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -29601,6 +31017,7 @@ export namespace Prisma {
   }
 
   export type CommentCreateWithoutUserInput = {
+    id?: string
     comment: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -29608,7 +31025,7 @@ export namespace Prisma {
   }
 
   export type CommentUncheckedCreateWithoutUserInput = {
-    id?: number
+    id?: string
     mediaId: string
     comment: string
     createdAt?: Date | string
@@ -29702,6 +31119,43 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type SocialAccountCreateWithoutOwnerInput = {
+    type?: $Enums.AccountType
+    fullName: string
+    avatarUrl?: string | null
+    accountUrl?: string | null
+    accessToken?: string | null
+    refreshToken?: string | null
+    expiredAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    disabledAt?: Date | string | null
+  }
+
+  export type SocialAccountUncheckedCreateWithoutOwnerInput = {
+    id?: number
+    type?: $Enums.AccountType
+    fullName: string
+    avatarUrl?: string | null
+    accountUrl?: string | null
+    accessToken?: string | null
+    refreshToken?: string | null
+    expiredAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    disabledAt?: Date | string | null
+  }
+
+  export type SocialAccountCreateOrConnectWithoutOwnerInput = {
+    where: SocialAccountWhereUniqueInput
+    create: XOR<SocialAccountCreateWithoutOwnerInput, SocialAccountUncheckedCreateWithoutOwnerInput>
+  }
+
+  export type SocialAccountCreateManyOwnerInputEnvelope = {
+    data: SocialAccountCreateManyOwnerInput | SocialAccountCreateManyOwnerInput[]
+    skipDuplicates?: boolean
+  }
+
   export type MediaUpsertWithWhereUniqueWithoutOwnerInput = {
     where: MediaWhereUniqueInput
     update: XOR<MediaUpdateWithoutOwnerInput, MediaUncheckedUpdateWithoutOwnerInput>
@@ -29723,10 +31177,11 @@ export namespace Prisma {
     OR?: MediaScalarWhereInput[]
     NOT?: MediaScalarWhereInput | MediaScalarWhereInput[]
     id?: StringFilter<"Media"> | string
-    userId?: IntFilter<"Media"> | number
+    userId?: StringFilter<"Media"> | string
     title?: StringFilter<"Media"> | string
     views?: IntFilter<"Media"> | number
     duration?: FloatFilter<"Media"> | number
+    plays?: IntFilter<"Media"> | number
     status?: EnumStatusResourceFilter<"Media"> | $Enums.StatusResource
     viewMode?: EnumStatusFilter<"Media"> | $Enums.Status
     createdAt?: DateTimeFilter<"Media"> | Date | string
@@ -29755,8 +31210,8 @@ export namespace Prisma {
     AND?: MediaReactionScalarWhereInput | MediaReactionScalarWhereInput[]
     OR?: MediaReactionScalarWhereInput[]
     NOT?: MediaReactionScalarWhereInput | MediaReactionScalarWhereInput[]
-    id?: IntFilter<"MediaReaction"> | number
-    userId?: IntFilter<"MediaReaction"> | number
+    id?: StringFilter<"MediaReaction"> | string
+    userId?: StringFilter<"MediaReaction"> | string
     mediaId?: StringFilter<"MediaReaction"> | string
     isLike?: BoolFilter<"MediaReaction"> | boolean
     createdAt?: DateTimeFilter<"MediaReaction"> | Date | string
@@ -29784,7 +31239,7 @@ export namespace Prisma {
     OR?: HistoryScalarWhereInput[]
     NOT?: HistoryScalarWhereInput | HistoryScalarWhereInput[]
     id?: IntFilter<"History"> | number
-    userId?: IntFilter<"History"> | number
+    userId?: StringFilter<"History"> | string
     mediaId?: StringFilter<"History"> | string
     createdAt?: DateTimeFilter<"History"> | Date | string
     updatedAt?: DateTimeFilter<"History"> | Date | string
@@ -29811,8 +31266,8 @@ export namespace Prisma {
     OR?: SubscriberScalarWhereInput[]
     NOT?: SubscriberScalarWhereInput | SubscriberScalarWhereInput[]
     id?: IntFilter<"Subscriber"> | number
-    userId?: IntFilter<"Subscriber"> | number
-    channelId?: IntFilter<"Subscriber"> | number
+    userId?: StringFilter<"Subscriber"> | string
+    channelId?: StringFilter<"Subscriber"> | string
     createdAt?: DateTimeFilter<"Subscriber"> | Date | string
     updatedAt?: DateTimeFilter<"Subscriber"> | Date | string
   }
@@ -29854,7 +31309,7 @@ export namespace Prisma {
     OR?: NotificationSubscriptionsScalarWhereInput[]
     NOT?: NotificationSubscriptionsScalarWhereInput | NotificationSubscriptionsScalarWhereInput[]
     id?: IntFilter<"NotificationSubscriptions"> | number
-    userId?: IntFilter<"NotificationSubscriptions"> | number
+    userId?: StringFilter<"NotificationSubscriptions"> | string
     subscription?: StringFilter<"NotificationSubscriptions"> | string
     createdAt?: DateTimeFilter<"NotificationSubscriptions"> | Date | string
     updatedAt?: DateTimeFilter<"NotificationSubscriptions"> | Date | string
@@ -29880,8 +31335,8 @@ export namespace Prisma {
     AND?: CommentScalarWhereInput | CommentScalarWhereInput[]
     OR?: CommentScalarWhereInput[]
     NOT?: CommentScalarWhereInput | CommentScalarWhereInput[]
-    id?: IntFilter<"Comment"> | number
-    userId?: IntFilter<"Comment"> | number
+    id?: StringFilter<"Comment"> | string
+    userId?: StringFilter<"Comment"> | string
     mediaId?: StringFilter<"Comment"> | string
     comment?: StringFilter<"Comment"> | string
     createdAt?: DateTimeFilter<"Comment"> | Date | string
@@ -29909,7 +31364,7 @@ export namespace Prisma {
     OR?: PlaylistScalarWhereInput[]
     NOT?: PlaylistScalarWhereInput | PlaylistScalarWhereInput[]
     id?: StringFilter<"Playlist"> | string
-    userId?: IntFilter<"Playlist"> | number
+    userId?: StringFilter<"Playlist"> | string
     title?: StringFilter<"Playlist"> | string
     createdAt?: DateTimeFilter<"Playlist"> | Date | string
     updatedAt?: DateTimeFilter<"Playlist"> | Date | string
@@ -29936,7 +31391,7 @@ export namespace Prisma {
     OR?: UserPaymentMethodScalarWhereInput[]
     NOT?: UserPaymentMethodScalarWhereInput | UserPaymentMethodScalarWhereInput[]
     id?: IntFilter<"UserPaymentMethod"> | number
-    userId?: IntFilter<"UserPaymentMethod"> | number
+    userId?: StringFilter<"UserPaymentMethod"> | string
     paymentMethod?: EnumPaymentMethodFilter<"UserPaymentMethod"> | $Enums.PaymentMethod
     createdAt?: DateTimeFilter<"UserPaymentMethod"> | Date | string
     updatedAt?: DateTimeFilter<"UserPaymentMethod"> | Date | string
@@ -29965,12 +31420,47 @@ export namespace Prisma {
     id?: StringFilter<"Album"> | string
     name?: StringFilter<"Album"> | string
     description?: StringNullableFilter<"Album"> | string | null
-    userId?: IntFilter<"Album"> | number
+    userId?: StringFilter<"Album"> | string
     createdAt?: DateTimeFilter<"Album"> | Date | string
     updatedAt?: DateTimeFilter<"Album"> | Date | string
   }
 
+  export type SocialAccountUpsertWithWhereUniqueWithoutOwnerInput = {
+    where: SocialAccountWhereUniqueInput
+    update: XOR<SocialAccountUpdateWithoutOwnerInput, SocialAccountUncheckedUpdateWithoutOwnerInput>
+    create: XOR<SocialAccountCreateWithoutOwnerInput, SocialAccountUncheckedCreateWithoutOwnerInput>
+  }
+
+  export type SocialAccountUpdateWithWhereUniqueWithoutOwnerInput = {
+    where: SocialAccountWhereUniqueInput
+    data: XOR<SocialAccountUpdateWithoutOwnerInput, SocialAccountUncheckedUpdateWithoutOwnerInput>
+  }
+
+  export type SocialAccountUpdateManyWithWhereWithoutOwnerInput = {
+    where: SocialAccountScalarWhereInput
+    data: XOR<SocialAccountUpdateManyMutationInput, SocialAccountUncheckedUpdateManyWithoutOwnerInput>
+  }
+
+  export type SocialAccountScalarWhereInput = {
+    AND?: SocialAccountScalarWhereInput | SocialAccountScalarWhereInput[]
+    OR?: SocialAccountScalarWhereInput[]
+    NOT?: SocialAccountScalarWhereInput | SocialAccountScalarWhereInput[]
+    id?: IntFilter<"SocialAccount"> | number
+    userId?: StringFilter<"SocialAccount"> | string
+    type?: EnumAccountTypeFilter<"SocialAccount"> | $Enums.AccountType
+    fullName?: StringFilter<"SocialAccount"> | string
+    avatarUrl?: StringNullableFilter<"SocialAccount"> | string | null
+    accountUrl?: StringNullableFilter<"SocialAccount"> | string | null
+    accessToken?: StringNullableFilter<"SocialAccount"> | string | null
+    refreshToken?: StringNullableFilter<"SocialAccount"> | string | null
+    expiredAt?: DateTimeFilter<"SocialAccount"> | Date | string
+    createdAt?: DateTimeFilter<"SocialAccount"> | Date | string
+    updatedAt?: DateTimeFilter<"SocialAccount"> | Date | string
+    disabledAt?: DateTimeNullableFilter<"SocialAccount"> | Date | string | null
+  }
+
   export type UserCreateWithoutUserPaymentMethodInput = {
+    id?: string
     firstName: string
     lastName: string
     email: string
@@ -29989,10 +31479,11 @@ export namespace Prisma {
     Comment?: CommentCreateNestedManyWithoutUserInput
     Playlist?: PlaylistCreateNestedManyWithoutUserInput
     Album?: AlbumCreateNestedManyWithoutOwnerInput
+    SocialAccount?: SocialAccountCreateNestedManyWithoutOwnerInput
   }
 
   export type UserUncheckedCreateWithoutUserPaymentMethodInput = {
-    id?: number
+    id?: string
     firstName: string
     lastName: string
     email: string
@@ -30011,6 +31502,7 @@ export namespace Prisma {
     Comment?: CommentUncheckedCreateNestedManyWithoutUserInput
     Playlist?: PlaylistUncheckedCreateNestedManyWithoutUserInput
     Album?: AlbumUncheckedCreateNestedManyWithoutOwnerInput
+    SocialAccount?: SocialAccountUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type UserCreateOrConnectWithoutUserPaymentMethodInput = {
@@ -30030,6 +31522,7 @@ export namespace Prisma {
   }
 
   export type UserUpdateWithoutUserPaymentMethodInput = {
+    id?: StringFieldUpdateOperationsInput | string
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -30048,10 +31541,11 @@ export namespace Prisma {
     Comment?: CommentUpdateManyWithoutUserNestedInput
     Playlist?: PlaylistUpdateManyWithoutUserNestedInput
     Album?: AlbumUpdateManyWithoutOwnerNestedInput
+    SocialAccount?: SocialAccountUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutUserPaymentMethodInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -30070,15 +31564,20 @@ export namespace Prisma {
     Comment?: CommentUncheckedUpdateManyWithoutUserNestedInput
     Playlist?: PlaylistUncheckedUpdateManyWithoutUserNestedInput
     Album?: AlbumUncheckedUpdateManyWithoutOwnerNestedInput
+    SocialAccount?: SocialAccountUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type MediaOnCategoryCreateWithoutCategoryInput = {
+    createdAt?: Date | string
+    updatedAt?: Date | string
     media: MediaCreateNestedOneWithoutMediaOnCategoryInput
   }
 
   export type MediaOnCategoryUncheckedCreateWithoutCategoryInput = {
     id?: number
     mediaId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type MediaOnCategoryCreateOrConnectWithoutCategoryInput = {
@@ -30114,6 +31613,8 @@ export namespace Prisma {
     id?: IntFilter<"MediaOnCategory"> | number
     categoryId?: StringFilter<"MediaOnCategory"> | string
     mediaId?: StringFilter<"MediaOnCategory"> | string
+    createdAt?: DateTimeFilter<"MediaOnCategory"> | Date | string
+    updatedAt?: DateTimeFilter<"MediaOnCategory"> | Date | string
   }
 
   export type CategoryCreateWithoutCategoryOnMediaInput = {
@@ -30140,6 +31641,7 @@ export namespace Prisma {
     title: string
     views?: number
     duration?: number
+    plays?: number
     status?: $Enums.StatusResource
     viewMode?: $Enums.Status
     createdAt?: Date | string
@@ -30152,7 +31654,7 @@ export namespace Prisma {
     videoResources?: VideoResourceCreateNestedManyWithoutMediaInput
     audioResources?: AudioResourceCreateNestedManyWithoutMediaInput
     mediaReaction?: MediaReactionCreateNestedManyWithoutMediaInput
-    history?: HistoryCreateNestedManyWithoutMeidaInput
+    history?: HistoryCreateNestedManyWithoutMediaInput
     comment?: CommentCreateNestedManyWithoutMediaInput
     mediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
     sessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
@@ -30161,10 +31663,11 @@ export namespace Prisma {
 
   export type MediaUncheckedCreateWithoutMediaOnCategoryInput = {
     id?: string
-    userId: number
+    userId: string
     title: string
     views?: number
     duration?: number
+    plays?: number
     status?: $Enums.StatusResource
     viewMode?: $Enums.Status
     createdAt?: Date | string
@@ -30176,7 +31679,7 @@ export namespace Prisma {
     videoResources?: VideoResourceUncheckedCreateNestedManyWithoutMediaInput
     audioResources?: AudioResourceUncheckedCreateNestedManyWithoutMediaInput
     mediaReaction?: MediaReactionUncheckedCreateNestedManyWithoutMediaInput
-    history?: HistoryUncheckedCreateNestedManyWithoutMeidaInput
+    history?: HistoryUncheckedCreateNestedManyWithoutMediaInput
     comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
     mediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
     sessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
@@ -30229,6 +31732,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
+    plays?: IntFieldUpdateOperationsInput | number
     status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
     viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -30241,7 +31745,7 @@ export namespace Prisma {
     videoResources?: VideoResourceUpdateManyWithoutMediaNestedInput
     audioResources?: AudioResourceUpdateManyWithoutMediaNestedInput
     mediaReaction?: MediaReactionUpdateManyWithoutMediaNestedInput
-    history?: HistoryUpdateManyWithoutMeidaNestedInput
+    history?: HistoryUpdateManyWithoutMediaNestedInput
     comment?: CommentUpdateManyWithoutMediaNestedInput
     mediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
     sessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
@@ -30250,10 +31754,11 @@ export namespace Prisma {
 
   export type MediaUncheckedUpdateWithoutMediaOnCategoryInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
+    plays?: IntFieldUpdateOperationsInput | number
     status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
     viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -30265,7 +31770,7 @@ export namespace Prisma {
     videoResources?: VideoResourceUncheckedUpdateManyWithoutMediaNestedInput
     audioResources?: AudioResourceUncheckedUpdateManyWithoutMediaNestedInput
     mediaReaction?: MediaReactionUncheckedUpdateManyWithoutMediaNestedInput
-    history?: HistoryUncheckedUpdateManyWithoutMeidaNestedInput
+    history?: HistoryUncheckedUpdateManyWithoutMediaNestedInput
     comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
     mediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
     sessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
@@ -30277,6 +31782,7 @@ export namespace Prisma {
     title: string
     views?: number
     duration?: number
+    plays?: number
     status?: $Enums.StatusResource
     viewMode?: $Enums.Status
     createdAt?: Date | string
@@ -30289,7 +31795,7 @@ export namespace Prisma {
     videoResources?: VideoResourceCreateNestedManyWithoutMediaInput
     audioResources?: AudioResourceCreateNestedManyWithoutMediaInput
     mediaReaction?: MediaReactionCreateNestedManyWithoutMediaInput
-    history?: HistoryCreateNestedManyWithoutMeidaInput
+    history?: HistoryCreateNestedManyWithoutMediaInput
     mediaOnCategory?: MediaOnCategoryCreateNestedManyWithoutMediaInput
     comment?: CommentCreateNestedManyWithoutMediaInput
     mediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
@@ -30298,10 +31804,11 @@ export namespace Prisma {
 
   export type MediaUncheckedCreateWithoutSessionUploadInput = {
     id?: string
-    userId: number
+    userId: string
     title: string
     views?: number
     duration?: number
+    plays?: number
     status?: $Enums.StatusResource
     viewMode?: $Enums.Status
     createdAt?: Date | string
@@ -30313,7 +31820,7 @@ export namespace Prisma {
     videoResources?: VideoResourceUncheckedCreateNestedManyWithoutMediaInput
     audioResources?: AudioResourceUncheckedCreateNestedManyWithoutMediaInput
     mediaReaction?: MediaReactionUncheckedCreateNestedManyWithoutMediaInput
-    history?: HistoryUncheckedCreateNestedManyWithoutMeidaInput
+    history?: HistoryUncheckedCreateNestedManyWithoutMediaInput
     mediaOnCategory?: MediaOnCategoryUncheckedCreateNestedManyWithoutMediaInput
     comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
     mediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
@@ -30341,6 +31848,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
+    plays?: IntFieldUpdateOperationsInput | number
     status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
     viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -30353,7 +31861,7 @@ export namespace Prisma {
     videoResources?: VideoResourceUpdateManyWithoutMediaNestedInput
     audioResources?: AudioResourceUpdateManyWithoutMediaNestedInput
     mediaReaction?: MediaReactionUpdateManyWithoutMediaNestedInput
-    history?: HistoryUpdateManyWithoutMeidaNestedInput
+    history?: HistoryUpdateManyWithoutMediaNestedInput
     mediaOnCategory?: MediaOnCategoryUpdateManyWithoutMediaNestedInput
     comment?: CommentUpdateManyWithoutMediaNestedInput
     mediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
@@ -30362,10 +31870,11 @@ export namespace Prisma {
 
   export type MediaUncheckedUpdateWithoutSessionUploadInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
+    plays?: IntFieldUpdateOperationsInput | number
     status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
     viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -30377,7 +31886,7 @@ export namespace Prisma {
     videoResources?: VideoResourceUncheckedUpdateManyWithoutMediaNestedInput
     audioResources?: AudioResourceUncheckedUpdateManyWithoutMediaNestedInput
     mediaReaction?: MediaReactionUncheckedUpdateManyWithoutMediaNestedInput
-    history?: HistoryUncheckedUpdateManyWithoutMeidaNestedInput
+    history?: HistoryUncheckedUpdateManyWithoutMediaNestedInput
     mediaOnCategory?: MediaOnCategoryUncheckedUpdateManyWithoutMediaNestedInput
     comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
     mediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
@@ -30385,6 +31894,7 @@ export namespace Prisma {
   }
 
   export type UserCreateWithoutMediaInput = {
+    id?: string
     firstName: string
     lastName: string
     email: string
@@ -30403,10 +31913,11 @@ export namespace Prisma {
     Playlist?: PlaylistCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodCreateNestedManyWithoutUserInput
     Album?: AlbumCreateNestedManyWithoutOwnerInput
+    SocialAccount?: SocialAccountCreateNestedManyWithoutOwnerInput
   }
 
   export type UserUncheckedCreateWithoutMediaInput = {
-    id?: number
+    id?: string
     firstName: string
     lastName: string
     email: string
@@ -30425,6 +31936,7 @@ export namespace Prisma {
     Playlist?: PlaylistUncheckedCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodUncheckedCreateNestedManyWithoutUserInput
     Album?: AlbumUncheckedCreateNestedManyWithoutOwnerInput
+    SocialAccount?: SocialAccountUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type UserCreateOrConnectWithoutMediaInput = {
@@ -30528,6 +32040,7 @@ export namespace Prisma {
   }
 
   export type MediaReactionCreateWithoutMediaInput = {
+    id?: string
     isLike: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -30535,8 +32048,8 @@ export namespace Prisma {
   }
 
   export type MediaReactionUncheckedCreateWithoutMediaInput = {
-    id?: number
-    userId: number
+    id?: string
+    userId: string
     isLike: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -30552,36 +32065,40 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type HistoryCreateWithoutMeidaInput = {
+  export type HistoryCreateWithoutMediaInput = {
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutHistoriesInput
   }
 
-  export type HistoryUncheckedCreateWithoutMeidaInput = {
+  export type HistoryUncheckedCreateWithoutMediaInput = {
     id?: number
-    userId: number
+    userId: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
-  export type HistoryCreateOrConnectWithoutMeidaInput = {
+  export type HistoryCreateOrConnectWithoutMediaInput = {
     where: HistoryWhereUniqueInput
-    create: XOR<HistoryCreateWithoutMeidaInput, HistoryUncheckedCreateWithoutMeidaInput>
+    create: XOR<HistoryCreateWithoutMediaInput, HistoryUncheckedCreateWithoutMediaInput>
   }
 
-  export type HistoryCreateManyMeidaInputEnvelope = {
-    data: HistoryCreateManyMeidaInput | HistoryCreateManyMeidaInput[]
+  export type HistoryCreateManyMediaInputEnvelope = {
+    data: HistoryCreateManyMediaInput | HistoryCreateManyMediaInput[]
     skipDuplicates?: boolean
   }
 
   export type MediaOnCategoryCreateWithoutMediaInput = {
+    createdAt?: Date | string
+    updatedAt?: Date | string
     category: CategoryCreateNestedOneWithoutCategoryOnMediaInput
   }
 
   export type MediaOnCategoryUncheckedCreateWithoutMediaInput = {
     id?: number
     categoryId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type MediaOnCategoryCreateOrConnectWithoutMediaInput = {
@@ -30595,6 +32112,7 @@ export namespace Prisma {
   }
 
   export type CommentCreateWithoutMediaInput = {
+    id?: string
     comment: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -30602,8 +32120,8 @@ export namespace Prisma {
   }
 
   export type CommentUncheckedCreateWithoutMediaInput = {
-    id?: number
-    userId: number
+    id?: string
+    userId: string
     comment: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -30622,14 +32140,16 @@ export namespace Prisma {
   export type MediaOnPlaylistCreateWithoutMediaInput = {
     createdAt?: Date | string
     updatedAt?: Date | string
+    sortNo?: number
     playlist: PlaylistCreateNestedOneWithoutMediaOnPlaylistInput
   }
 
   export type MediaOnPlaylistUncheckedCreateWithoutMediaInput = {
     id?: number
-    playListId: string
+    playlistId: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    sortNo?: number
   }
 
   export type MediaOnPlaylistCreateOrConnectWithoutMediaInput = {
@@ -30703,6 +32223,7 @@ export namespace Prisma {
   }
 
   export type UserUpdateWithoutMediaInput = {
+    id?: StringFieldUpdateOperationsInput | string
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -30721,10 +32242,11 @@ export namespace Prisma {
     Playlist?: PlaylistUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUpdateManyWithoutUserNestedInput
     Album?: AlbumUpdateManyWithoutOwnerNestedInput
+    SocialAccount?: SocialAccountUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMediaInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -30743,6 +32265,7 @@ export namespace Prisma {
     Playlist?: PlaylistUncheckedUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUncheckedUpdateManyWithoutUserNestedInput
     Album?: AlbumUncheckedUpdateManyWithoutOwnerNestedInput
+    SocialAccount?: SocialAccountUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type ThumbnailUpsertWithWhereUniqueWithoutMediaInput = {
@@ -30868,20 +32391,20 @@ export namespace Prisma {
     data: XOR<MediaReactionUpdateManyMutationInput, MediaReactionUncheckedUpdateManyWithoutMediaInput>
   }
 
-  export type HistoryUpsertWithWhereUniqueWithoutMeidaInput = {
+  export type HistoryUpsertWithWhereUniqueWithoutMediaInput = {
     where: HistoryWhereUniqueInput
-    update: XOR<HistoryUpdateWithoutMeidaInput, HistoryUncheckedUpdateWithoutMeidaInput>
-    create: XOR<HistoryCreateWithoutMeidaInput, HistoryUncheckedCreateWithoutMeidaInput>
+    update: XOR<HistoryUpdateWithoutMediaInput, HistoryUncheckedUpdateWithoutMediaInput>
+    create: XOR<HistoryCreateWithoutMediaInput, HistoryUncheckedCreateWithoutMediaInput>
   }
 
-  export type HistoryUpdateWithWhereUniqueWithoutMeidaInput = {
+  export type HistoryUpdateWithWhereUniqueWithoutMediaInput = {
     where: HistoryWhereUniqueInput
-    data: XOR<HistoryUpdateWithoutMeidaInput, HistoryUncheckedUpdateWithoutMeidaInput>
+    data: XOR<HistoryUpdateWithoutMediaInput, HistoryUncheckedUpdateWithoutMediaInput>
   }
 
-  export type HistoryUpdateManyWithWhereWithoutMeidaInput = {
+  export type HistoryUpdateManyWithWhereWithoutMediaInput = {
     where: HistoryScalarWhereInput
-    data: XOR<HistoryUpdateManyMutationInput, HistoryUncheckedUpdateManyWithoutMeidaInput>
+    data: XOR<HistoryUpdateManyMutationInput, HistoryUncheckedUpdateManyWithoutMediaInput>
   }
 
   export type MediaOnCategoryUpsertWithWhereUniqueWithoutMediaInput = {
@@ -30937,10 +32460,11 @@ export namespace Prisma {
     OR?: MediaOnPlaylistScalarWhereInput[]
     NOT?: MediaOnPlaylistScalarWhereInput | MediaOnPlaylistScalarWhereInput[]
     id?: IntFilter<"MediaOnPlaylist"> | number
-    playListId?: StringFilter<"MediaOnPlaylist"> | string
+    playlistId?: StringFilter<"MediaOnPlaylist"> | string
     mediaId?: StringFilter<"MediaOnPlaylist"> | string
     createdAt?: DateTimeFilter<"MediaOnPlaylist"> | Date | string
     updatedAt?: DateTimeFilter<"MediaOnPlaylist"> | Date | string
+    sortNo?: IntFilter<"MediaOnPlaylist"> | number
   }
 
   export type SessionUploadUpsertWithWhereUniqueWithoutMediaInput = {
@@ -30999,6 +32523,7 @@ export namespace Prisma {
   }
 
   export type UserCreateWithoutMediaReactionsInput = {
+    id?: string
     firstName: string
     lastName: string
     email: string
@@ -31017,10 +32542,11 @@ export namespace Prisma {
     Playlist?: PlaylistCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodCreateNestedManyWithoutUserInput
     Album?: AlbumCreateNestedManyWithoutOwnerInput
+    SocialAccount?: SocialAccountCreateNestedManyWithoutOwnerInput
   }
 
   export type UserUncheckedCreateWithoutMediaReactionsInput = {
-    id?: number
+    id?: string
     firstName: string
     lastName: string
     email: string
@@ -31039,6 +32565,7 @@ export namespace Prisma {
     Playlist?: PlaylistUncheckedCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodUncheckedCreateNestedManyWithoutUserInput
     Album?: AlbumUncheckedCreateNestedManyWithoutOwnerInput
+    SocialAccount?: SocialAccountUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type UserCreateOrConnectWithoutMediaReactionsInput = {
@@ -31051,6 +32578,7 @@ export namespace Prisma {
     title: string
     views?: number
     duration?: number
+    plays?: number
     status?: $Enums.StatusResource
     viewMode?: $Enums.Status
     createdAt?: Date | string
@@ -31062,7 +32590,7 @@ export namespace Prisma {
     detail?: MediaDetailCreateNestedOneWithoutMediaInput
     videoResources?: VideoResourceCreateNestedManyWithoutMediaInput
     audioResources?: AudioResourceCreateNestedManyWithoutMediaInput
-    history?: HistoryCreateNestedManyWithoutMeidaInput
+    history?: HistoryCreateNestedManyWithoutMediaInput
     mediaOnCategory?: MediaOnCategoryCreateNestedManyWithoutMediaInput
     comment?: CommentCreateNestedManyWithoutMediaInput
     mediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
@@ -31072,10 +32600,11 @@ export namespace Prisma {
 
   export type MediaUncheckedCreateWithoutMediaReactionInput = {
     id?: string
-    userId: number
+    userId: string
     title: string
     views?: number
     duration?: number
+    plays?: number
     status?: $Enums.StatusResource
     viewMode?: $Enums.Status
     createdAt?: Date | string
@@ -31086,7 +32615,7 @@ export namespace Prisma {
     detail?: MediaDetailUncheckedCreateNestedOneWithoutMediaInput
     videoResources?: VideoResourceUncheckedCreateNestedManyWithoutMediaInput
     audioResources?: AudioResourceUncheckedCreateNestedManyWithoutMediaInput
-    history?: HistoryUncheckedCreateNestedManyWithoutMeidaInput
+    history?: HistoryUncheckedCreateNestedManyWithoutMediaInput
     mediaOnCategory?: MediaOnCategoryUncheckedCreateNestedManyWithoutMediaInput
     comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
     mediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
@@ -31111,6 +32640,7 @@ export namespace Prisma {
   }
 
   export type UserUpdateWithoutMediaReactionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -31129,10 +32659,11 @@ export namespace Prisma {
     Playlist?: PlaylistUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUpdateManyWithoutUserNestedInput
     Album?: AlbumUpdateManyWithoutOwnerNestedInput
+    SocialAccount?: SocialAccountUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMediaReactionsInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -31151,6 +32682,7 @@ export namespace Prisma {
     Playlist?: PlaylistUncheckedUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUncheckedUpdateManyWithoutUserNestedInput
     Album?: AlbumUncheckedUpdateManyWithoutOwnerNestedInput
+    SocialAccount?: SocialAccountUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type MediaUpsertWithoutMediaReactionInput = {
@@ -31169,6 +32701,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
+    plays?: IntFieldUpdateOperationsInput | number
     status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
     viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -31180,7 +32713,7 @@ export namespace Prisma {
     detail?: MediaDetailUpdateOneWithoutMediaNestedInput
     videoResources?: VideoResourceUpdateManyWithoutMediaNestedInput
     audioResources?: AudioResourceUpdateManyWithoutMediaNestedInput
-    history?: HistoryUpdateManyWithoutMeidaNestedInput
+    history?: HistoryUpdateManyWithoutMediaNestedInput
     mediaOnCategory?: MediaOnCategoryUpdateManyWithoutMediaNestedInput
     comment?: CommentUpdateManyWithoutMediaNestedInput
     mediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
@@ -31190,10 +32723,11 @@ export namespace Prisma {
 
   export type MediaUncheckedUpdateWithoutMediaReactionInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
+    plays?: IntFieldUpdateOperationsInput | number
     status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
     viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -31204,7 +32738,7 @@ export namespace Prisma {
     detail?: MediaDetailUncheckedUpdateOneWithoutMediaNestedInput
     videoResources?: VideoResourceUncheckedUpdateManyWithoutMediaNestedInput
     audioResources?: AudioResourceUncheckedUpdateManyWithoutMediaNestedInput
-    history?: HistoryUncheckedUpdateManyWithoutMeidaNestedInput
+    history?: HistoryUncheckedUpdateManyWithoutMediaNestedInput
     mediaOnCategory?: MediaOnCategoryUncheckedUpdateManyWithoutMediaNestedInput
     comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
     mediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
@@ -31213,6 +32747,7 @@ export namespace Prisma {
   }
 
   export type UserCreateWithoutCommentInput = {
+    id?: string
     firstName: string
     lastName: string
     email: string
@@ -31231,10 +32766,11 @@ export namespace Prisma {
     Playlist?: PlaylistCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodCreateNestedManyWithoutUserInput
     Album?: AlbumCreateNestedManyWithoutOwnerInput
+    SocialAccount?: SocialAccountCreateNestedManyWithoutOwnerInput
   }
 
   export type UserUncheckedCreateWithoutCommentInput = {
-    id?: number
+    id?: string
     firstName: string
     lastName: string
     email: string
@@ -31253,6 +32789,7 @@ export namespace Prisma {
     Playlist?: PlaylistUncheckedCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodUncheckedCreateNestedManyWithoutUserInput
     Album?: AlbumUncheckedCreateNestedManyWithoutOwnerInput
+    SocialAccount?: SocialAccountUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type UserCreateOrConnectWithoutCommentInput = {
@@ -31265,6 +32802,7 @@ export namespace Prisma {
     title: string
     views?: number
     duration?: number
+    plays?: number
     status?: $Enums.StatusResource
     viewMode?: $Enums.Status
     createdAt?: Date | string
@@ -31277,7 +32815,7 @@ export namespace Prisma {
     videoResources?: VideoResourceCreateNestedManyWithoutMediaInput
     audioResources?: AudioResourceCreateNestedManyWithoutMediaInput
     mediaReaction?: MediaReactionCreateNestedManyWithoutMediaInput
-    history?: HistoryCreateNestedManyWithoutMeidaInput
+    history?: HistoryCreateNestedManyWithoutMediaInput
     mediaOnCategory?: MediaOnCategoryCreateNestedManyWithoutMediaInput
     mediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
     sessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
@@ -31286,10 +32824,11 @@ export namespace Prisma {
 
   export type MediaUncheckedCreateWithoutCommentInput = {
     id?: string
-    userId: number
+    userId: string
     title: string
     views?: number
     duration?: number
+    plays?: number
     status?: $Enums.StatusResource
     viewMode?: $Enums.Status
     createdAt?: Date | string
@@ -31301,7 +32840,7 @@ export namespace Prisma {
     videoResources?: VideoResourceUncheckedCreateNestedManyWithoutMediaInput
     audioResources?: AudioResourceUncheckedCreateNestedManyWithoutMediaInput
     mediaReaction?: MediaReactionUncheckedCreateNestedManyWithoutMediaInput
-    history?: HistoryUncheckedCreateNestedManyWithoutMeidaInput
+    history?: HistoryUncheckedCreateNestedManyWithoutMediaInput
     mediaOnCategory?: MediaOnCategoryUncheckedCreateNestedManyWithoutMediaInput
     mediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
     sessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
@@ -31325,6 +32864,7 @@ export namespace Prisma {
   }
 
   export type UserUpdateWithoutCommentInput = {
+    id?: StringFieldUpdateOperationsInput | string
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -31343,10 +32883,11 @@ export namespace Prisma {
     Playlist?: PlaylistUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUpdateManyWithoutUserNestedInput
     Album?: AlbumUpdateManyWithoutOwnerNestedInput
+    SocialAccount?: SocialAccountUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCommentInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -31365,6 +32906,7 @@ export namespace Prisma {
     Playlist?: PlaylistUncheckedUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUncheckedUpdateManyWithoutUserNestedInput
     Album?: AlbumUncheckedUpdateManyWithoutOwnerNestedInput
+    SocialAccount?: SocialAccountUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type MediaUpsertWithoutCommentInput = {
@@ -31383,6 +32925,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
+    plays?: IntFieldUpdateOperationsInput | number
     status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
     viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -31395,7 +32938,7 @@ export namespace Prisma {
     videoResources?: VideoResourceUpdateManyWithoutMediaNestedInput
     audioResources?: AudioResourceUpdateManyWithoutMediaNestedInput
     mediaReaction?: MediaReactionUpdateManyWithoutMediaNestedInput
-    history?: HistoryUpdateManyWithoutMeidaNestedInput
+    history?: HistoryUpdateManyWithoutMediaNestedInput
     mediaOnCategory?: MediaOnCategoryUpdateManyWithoutMediaNestedInput
     mediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
     sessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
@@ -31404,10 +32947,11 @@ export namespace Prisma {
 
   export type MediaUncheckedUpdateWithoutCommentInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
+    plays?: IntFieldUpdateOperationsInput | number
     status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
     viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -31419,7 +32963,7 @@ export namespace Prisma {
     videoResources?: VideoResourceUncheckedUpdateManyWithoutMediaNestedInput
     audioResources?: AudioResourceUncheckedUpdateManyWithoutMediaNestedInput
     mediaReaction?: MediaReactionUncheckedUpdateManyWithoutMediaNestedInput
-    history?: HistoryUncheckedUpdateManyWithoutMeidaNestedInput
+    history?: HistoryUncheckedUpdateManyWithoutMediaNestedInput
     mediaOnCategory?: MediaOnCategoryUncheckedUpdateManyWithoutMediaNestedInput
     mediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
     sessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
@@ -31427,6 +32971,7 @@ export namespace Prisma {
   }
 
   export type UserCreateWithoutPlaylistInput = {
+    id?: string
     firstName: string
     lastName: string
     email: string
@@ -31445,10 +32990,11 @@ export namespace Prisma {
     Comment?: CommentCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodCreateNestedManyWithoutUserInput
     Album?: AlbumCreateNestedManyWithoutOwnerInput
+    SocialAccount?: SocialAccountCreateNestedManyWithoutOwnerInput
   }
 
   export type UserUncheckedCreateWithoutPlaylistInput = {
-    id?: number
+    id?: string
     firstName: string
     lastName: string
     email: string
@@ -31467,6 +33013,7 @@ export namespace Prisma {
     Comment?: CommentUncheckedCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodUncheckedCreateNestedManyWithoutUserInput
     Album?: AlbumUncheckedCreateNestedManyWithoutOwnerInput
+    SocialAccount?: SocialAccountUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type UserCreateOrConnectWithoutPlaylistInput = {
@@ -31477,6 +33024,7 @@ export namespace Prisma {
   export type MediaOnPlaylistCreateWithoutPlaylistInput = {
     createdAt?: Date | string
     updatedAt?: Date | string
+    sortNo?: number
     media: MediaCreateNestedOneWithoutMediaOnPlaylistInput
   }
 
@@ -31485,6 +33033,7 @@ export namespace Prisma {
     mediaId: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    sortNo?: number
   }
 
   export type MediaOnPlaylistCreateOrConnectWithoutPlaylistInput = {
@@ -31509,6 +33058,7 @@ export namespace Prisma {
   }
 
   export type UserUpdateWithoutPlaylistInput = {
+    id?: StringFieldUpdateOperationsInput | string
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -31527,10 +33077,11 @@ export namespace Prisma {
     Comment?: CommentUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUpdateManyWithoutUserNestedInput
     Album?: AlbumUpdateManyWithoutOwnerNestedInput
+    SocialAccount?: SocialAccountUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPlaylistInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -31549,6 +33100,7 @@ export namespace Prisma {
     Comment?: CommentUncheckedUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUncheckedUpdateManyWithoutUserNestedInput
     Album?: AlbumUncheckedUpdateManyWithoutOwnerNestedInput
+    SocialAccount?: SocialAccountUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type MediaOnPlaylistUpsertWithWhereUniqueWithoutPlaylistInput = {
@@ -31577,7 +33129,7 @@ export namespace Prisma {
 
   export type PlaylistUncheckedCreateWithoutMediaOnPlaylistInput = {
     id?: string
-    userId: number
+    userId: string
     title: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -31593,6 +33145,7 @@ export namespace Prisma {
     title: string
     views?: number
     duration?: number
+    plays?: number
     status?: $Enums.StatusResource
     viewMode?: $Enums.Status
     createdAt?: Date | string
@@ -31605,7 +33158,7 @@ export namespace Prisma {
     videoResources?: VideoResourceCreateNestedManyWithoutMediaInput
     audioResources?: AudioResourceCreateNestedManyWithoutMediaInput
     mediaReaction?: MediaReactionCreateNestedManyWithoutMediaInput
-    history?: HistoryCreateNestedManyWithoutMeidaInput
+    history?: HistoryCreateNestedManyWithoutMediaInput
     mediaOnCategory?: MediaOnCategoryCreateNestedManyWithoutMediaInput
     comment?: CommentCreateNestedManyWithoutMediaInput
     sessionUpload?: SessionUploadCreateNestedManyWithoutMediaInput
@@ -31614,10 +33167,11 @@ export namespace Prisma {
 
   export type MediaUncheckedCreateWithoutMediaOnPlaylistInput = {
     id?: string
-    userId: number
+    userId: string
     title: string
     views?: number
     duration?: number
+    plays?: number
     status?: $Enums.StatusResource
     viewMode?: $Enums.Status
     createdAt?: Date | string
@@ -31629,7 +33183,7 @@ export namespace Prisma {
     videoResources?: VideoResourceUncheckedCreateNestedManyWithoutMediaInput
     audioResources?: AudioResourceUncheckedCreateNestedManyWithoutMediaInput
     mediaReaction?: MediaReactionUncheckedCreateNestedManyWithoutMediaInput
-    history?: HistoryUncheckedCreateNestedManyWithoutMeidaInput
+    history?: HistoryUncheckedCreateNestedManyWithoutMediaInput
     mediaOnCategory?: MediaOnCategoryUncheckedCreateNestedManyWithoutMediaInput
     comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
     sessionUpload?: SessionUploadUncheckedCreateNestedManyWithoutMediaInput
@@ -31662,7 +33216,7 @@ export namespace Prisma {
 
   export type PlaylistUncheckedUpdateWithoutMediaOnPlaylistInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -31684,6 +33238,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
+    plays?: IntFieldUpdateOperationsInput | number
     status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
     viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -31696,7 +33251,7 @@ export namespace Prisma {
     videoResources?: VideoResourceUpdateManyWithoutMediaNestedInput
     audioResources?: AudioResourceUpdateManyWithoutMediaNestedInput
     mediaReaction?: MediaReactionUpdateManyWithoutMediaNestedInput
-    history?: HistoryUpdateManyWithoutMeidaNestedInput
+    history?: HistoryUpdateManyWithoutMediaNestedInput
     mediaOnCategory?: MediaOnCategoryUpdateManyWithoutMediaNestedInput
     comment?: CommentUpdateManyWithoutMediaNestedInput
     sessionUpload?: SessionUploadUpdateManyWithoutMediaNestedInput
@@ -31705,10 +33260,11 @@ export namespace Prisma {
 
   export type MediaUncheckedUpdateWithoutMediaOnPlaylistInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
+    plays?: IntFieldUpdateOperationsInput | number
     status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
     viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -31720,7 +33276,7 @@ export namespace Prisma {
     videoResources?: VideoResourceUncheckedUpdateManyWithoutMediaNestedInput
     audioResources?: AudioResourceUncheckedUpdateManyWithoutMediaNestedInput
     mediaReaction?: MediaReactionUncheckedUpdateManyWithoutMediaNestedInput
-    history?: HistoryUncheckedUpdateManyWithoutMeidaNestedInput
+    history?: HistoryUncheckedUpdateManyWithoutMediaNestedInput
     mediaOnCategory?: MediaOnCategoryUncheckedUpdateManyWithoutMediaNestedInput
     comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
     sessionUpload?: SessionUploadUncheckedUpdateManyWithoutMediaNestedInput
@@ -31728,6 +33284,7 @@ export namespace Prisma {
   }
 
   export type UserCreateWithoutHistoriesInput = {
+    id?: string
     firstName: string
     lastName: string
     email: string
@@ -31746,10 +33303,11 @@ export namespace Prisma {
     Playlist?: PlaylistCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodCreateNestedManyWithoutUserInput
     Album?: AlbumCreateNestedManyWithoutOwnerInput
+    SocialAccount?: SocialAccountCreateNestedManyWithoutOwnerInput
   }
 
   export type UserUncheckedCreateWithoutHistoriesInput = {
-    id?: number
+    id?: string
     firstName: string
     lastName: string
     email: string
@@ -31768,6 +33326,7 @@ export namespace Prisma {
     Playlist?: PlaylistUncheckedCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodUncheckedCreateNestedManyWithoutUserInput
     Album?: AlbumUncheckedCreateNestedManyWithoutOwnerInput
+    SocialAccount?: SocialAccountUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type UserCreateOrConnectWithoutHistoriesInput = {
@@ -31780,6 +33339,7 @@ export namespace Prisma {
     title: string
     views?: number
     duration?: number
+    plays?: number
     status?: $Enums.StatusResource
     viewMode?: $Enums.Status
     createdAt?: Date | string
@@ -31801,10 +33361,11 @@ export namespace Prisma {
 
   export type MediaUncheckedCreateWithoutHistoryInput = {
     id?: string
-    userId: number
+    userId: string
     title: string
     views?: number
     duration?: number
+    plays?: number
     status?: $Enums.StatusResource
     viewMode?: $Enums.Status
     createdAt?: Date | string
@@ -31840,6 +33401,7 @@ export namespace Prisma {
   }
 
   export type UserUpdateWithoutHistoriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -31858,10 +33420,11 @@ export namespace Prisma {
     Playlist?: PlaylistUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUpdateManyWithoutUserNestedInput
     Album?: AlbumUpdateManyWithoutOwnerNestedInput
+    SocialAccount?: SocialAccountUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutHistoriesInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -31880,6 +33443,7 @@ export namespace Prisma {
     Playlist?: PlaylistUncheckedUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUncheckedUpdateManyWithoutUserNestedInput
     Album?: AlbumUncheckedUpdateManyWithoutOwnerNestedInput
+    SocialAccount?: SocialAccountUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type MediaUpsertWithoutHistoryInput = {
@@ -31898,6 +33462,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
+    plays?: IntFieldUpdateOperationsInput | number
     status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
     viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -31919,10 +33484,11 @@ export namespace Prisma {
 
   export type MediaUncheckedUpdateWithoutHistoryInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
+    plays?: IntFieldUpdateOperationsInput | number
     status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
     viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -31942,6 +33508,7 @@ export namespace Prisma {
   }
 
   export type UserCreateWithoutSubscribersInput = {
+    id?: string
     firstName: string
     lastName: string
     email: string
@@ -31960,10 +33527,11 @@ export namespace Prisma {
     Playlist?: PlaylistCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodCreateNestedManyWithoutUserInput
     Album?: AlbumCreateNestedManyWithoutOwnerInput
+    SocialAccount?: SocialAccountCreateNestedManyWithoutOwnerInput
   }
 
   export type UserUncheckedCreateWithoutSubscribersInput = {
-    id?: number
+    id?: string
     firstName: string
     lastName: string
     email: string
@@ -31982,6 +33550,7 @@ export namespace Prisma {
     Playlist?: PlaylistUncheckedCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodUncheckedCreateNestedManyWithoutUserInput
     Album?: AlbumUncheckedCreateNestedManyWithoutOwnerInput
+    SocialAccount?: SocialAccountUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type UserCreateOrConnectWithoutSubscribersInput = {
@@ -31990,6 +33559,7 @@ export namespace Prisma {
   }
 
   export type UserCreateWithoutChannelInput = {
+    id?: string
     firstName: string
     lastName: string
     email: string
@@ -32008,10 +33578,11 @@ export namespace Prisma {
     Playlist?: PlaylistCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodCreateNestedManyWithoutUserInput
     Album?: AlbumCreateNestedManyWithoutOwnerInput
+    SocialAccount?: SocialAccountCreateNestedManyWithoutOwnerInput
   }
 
   export type UserUncheckedCreateWithoutChannelInput = {
-    id?: number
+    id?: string
     firstName: string
     lastName: string
     email: string
@@ -32030,6 +33601,7 @@ export namespace Prisma {
     Playlist?: PlaylistUncheckedCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodUncheckedCreateNestedManyWithoutUserInput
     Album?: AlbumUncheckedCreateNestedManyWithoutOwnerInput
+    SocialAccount?: SocialAccountUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type UserCreateOrConnectWithoutChannelInput = {
@@ -32049,6 +33621,7 @@ export namespace Prisma {
   }
 
   export type UserUpdateWithoutSubscribersInput = {
+    id?: StringFieldUpdateOperationsInput | string
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -32067,10 +33640,11 @@ export namespace Prisma {
     Playlist?: PlaylistUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUpdateManyWithoutUserNestedInput
     Album?: AlbumUpdateManyWithoutOwnerNestedInput
+    SocialAccount?: SocialAccountUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSubscribersInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -32089,6 +33663,7 @@ export namespace Prisma {
     Playlist?: PlaylistUncheckedUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUncheckedUpdateManyWithoutUserNestedInput
     Album?: AlbumUncheckedUpdateManyWithoutOwnerNestedInput
+    SocialAccount?: SocialAccountUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserUpsertWithoutChannelInput = {
@@ -32103,6 +33678,7 @@ export namespace Prisma {
   }
 
   export type UserUpdateWithoutChannelInput = {
+    id?: StringFieldUpdateOperationsInput | string
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -32121,10 +33697,11 @@ export namespace Prisma {
     Playlist?: PlaylistUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUpdateManyWithoutUserNestedInput
     Album?: AlbumUpdateManyWithoutOwnerNestedInput
+    SocialAccount?: SocialAccountUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutChannelInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -32143,9 +33720,11 @@ export namespace Prisma {
     Playlist?: PlaylistUncheckedUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUncheckedUpdateManyWithoutUserNestedInput
     Album?: AlbumUncheckedUpdateManyWithoutOwnerNestedInput
+    SocialAccount?: SocialAccountUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserCreateWithoutNotificationSubscriptionsInput = {
+    id?: string
     firstName: string
     lastName: string
     email: string
@@ -32164,10 +33743,11 @@ export namespace Prisma {
     Playlist?: PlaylistCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodCreateNestedManyWithoutUserInput
     Album?: AlbumCreateNestedManyWithoutOwnerInput
+    SocialAccount?: SocialAccountCreateNestedManyWithoutOwnerInput
   }
 
   export type UserUncheckedCreateWithoutNotificationSubscriptionsInput = {
-    id?: number
+    id?: string
     firstName: string
     lastName: string
     email: string
@@ -32186,6 +33766,7 @@ export namespace Prisma {
     Playlist?: PlaylistUncheckedCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodUncheckedCreateNestedManyWithoutUserInput
     Album?: AlbumUncheckedCreateNestedManyWithoutOwnerInput
+    SocialAccount?: SocialAccountUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type UserCreateOrConnectWithoutNotificationSubscriptionsInput = {
@@ -32205,6 +33786,7 @@ export namespace Prisma {
   }
 
   export type UserUpdateWithoutNotificationSubscriptionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -32223,10 +33805,11 @@ export namespace Prisma {
     Playlist?: PlaylistUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUpdateManyWithoutUserNestedInput
     Album?: AlbumUpdateManyWithoutOwnerNestedInput
+    SocialAccount?: SocialAccountUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutNotificationSubscriptionsInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -32245,6 +33828,7 @@ export namespace Prisma {
     Playlist?: PlaylistUncheckedUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUncheckedUpdateManyWithoutUserNestedInput
     Album?: AlbumUncheckedUpdateManyWithoutOwnerNestedInput
+    SocialAccount?: SocialAccountUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type MediaCreateWithoutVideoResourcesInput = {
@@ -32252,6 +33836,7 @@ export namespace Prisma {
     title: string
     views?: number
     duration?: number
+    plays?: number
     status?: $Enums.StatusResource
     viewMode?: $Enums.Status
     createdAt?: Date | string
@@ -32263,7 +33848,7 @@ export namespace Prisma {
     detail?: MediaDetailCreateNestedOneWithoutMediaInput
     audioResources?: AudioResourceCreateNestedManyWithoutMediaInput
     mediaReaction?: MediaReactionCreateNestedManyWithoutMediaInput
-    history?: HistoryCreateNestedManyWithoutMeidaInput
+    history?: HistoryCreateNestedManyWithoutMediaInput
     mediaOnCategory?: MediaOnCategoryCreateNestedManyWithoutMediaInput
     comment?: CommentCreateNestedManyWithoutMediaInput
     mediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
@@ -32273,10 +33858,11 @@ export namespace Prisma {
 
   export type MediaUncheckedCreateWithoutVideoResourcesInput = {
     id?: string
-    userId: number
+    userId: string
     title: string
     views?: number
     duration?: number
+    plays?: number
     status?: $Enums.StatusResource
     viewMode?: $Enums.Status
     createdAt?: Date | string
@@ -32287,7 +33873,7 @@ export namespace Prisma {
     detail?: MediaDetailUncheckedCreateNestedOneWithoutMediaInput
     audioResources?: AudioResourceUncheckedCreateNestedManyWithoutMediaInput
     mediaReaction?: MediaReactionUncheckedCreateNestedManyWithoutMediaInput
-    history?: HistoryUncheckedCreateNestedManyWithoutMeidaInput
+    history?: HistoryUncheckedCreateNestedManyWithoutMediaInput
     mediaOnCategory?: MediaOnCategoryUncheckedCreateNestedManyWithoutMediaInput
     comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
     mediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
@@ -32316,6 +33902,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
+    plays?: IntFieldUpdateOperationsInput | number
     status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
     viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32327,7 +33914,7 @@ export namespace Prisma {
     detail?: MediaDetailUpdateOneWithoutMediaNestedInput
     audioResources?: AudioResourceUpdateManyWithoutMediaNestedInput
     mediaReaction?: MediaReactionUpdateManyWithoutMediaNestedInput
-    history?: HistoryUpdateManyWithoutMeidaNestedInput
+    history?: HistoryUpdateManyWithoutMediaNestedInput
     mediaOnCategory?: MediaOnCategoryUpdateManyWithoutMediaNestedInput
     comment?: CommentUpdateManyWithoutMediaNestedInput
     mediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
@@ -32337,10 +33924,11 @@ export namespace Prisma {
 
   export type MediaUncheckedUpdateWithoutVideoResourcesInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
+    plays?: IntFieldUpdateOperationsInput | number
     status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
     viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32351,7 +33939,7 @@ export namespace Prisma {
     detail?: MediaDetailUncheckedUpdateOneWithoutMediaNestedInput
     audioResources?: AudioResourceUncheckedUpdateManyWithoutMediaNestedInput
     mediaReaction?: MediaReactionUncheckedUpdateManyWithoutMediaNestedInput
-    history?: HistoryUncheckedUpdateManyWithoutMeidaNestedInput
+    history?: HistoryUncheckedUpdateManyWithoutMediaNestedInput
     mediaOnCategory?: MediaOnCategoryUncheckedUpdateManyWithoutMediaNestedInput
     comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
     mediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
@@ -32364,6 +33952,7 @@ export namespace Prisma {
     title: string
     views?: number
     duration?: number
+    plays?: number
     status?: $Enums.StatusResource
     viewMode?: $Enums.Status
     createdAt?: Date | string
@@ -32375,7 +33964,7 @@ export namespace Prisma {
     detail?: MediaDetailCreateNestedOneWithoutMediaInput
     videoResources?: VideoResourceCreateNestedManyWithoutMediaInput
     mediaReaction?: MediaReactionCreateNestedManyWithoutMediaInput
-    history?: HistoryCreateNestedManyWithoutMeidaInput
+    history?: HistoryCreateNestedManyWithoutMediaInput
     mediaOnCategory?: MediaOnCategoryCreateNestedManyWithoutMediaInput
     comment?: CommentCreateNestedManyWithoutMediaInput
     mediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
@@ -32385,10 +33974,11 @@ export namespace Prisma {
 
   export type MediaUncheckedCreateWithoutAudioResourcesInput = {
     id?: string
-    userId: number
+    userId: string
     title: string
     views?: number
     duration?: number
+    plays?: number
     status?: $Enums.StatusResource
     viewMode?: $Enums.Status
     createdAt?: Date | string
@@ -32399,7 +33989,7 @@ export namespace Prisma {
     detail?: MediaDetailUncheckedCreateNestedOneWithoutMediaInput
     videoResources?: VideoResourceUncheckedCreateNestedManyWithoutMediaInput
     mediaReaction?: MediaReactionUncheckedCreateNestedManyWithoutMediaInput
-    history?: HistoryUncheckedCreateNestedManyWithoutMeidaInput
+    history?: HistoryUncheckedCreateNestedManyWithoutMediaInput
     mediaOnCategory?: MediaOnCategoryUncheckedCreateNestedManyWithoutMediaInput
     comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
     mediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
@@ -32428,6 +34018,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
+    plays?: IntFieldUpdateOperationsInput | number
     status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
     viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32439,7 +34030,7 @@ export namespace Prisma {
     detail?: MediaDetailUpdateOneWithoutMediaNestedInput
     videoResources?: VideoResourceUpdateManyWithoutMediaNestedInput
     mediaReaction?: MediaReactionUpdateManyWithoutMediaNestedInput
-    history?: HistoryUpdateManyWithoutMeidaNestedInput
+    history?: HistoryUpdateManyWithoutMediaNestedInput
     mediaOnCategory?: MediaOnCategoryUpdateManyWithoutMediaNestedInput
     comment?: CommentUpdateManyWithoutMediaNestedInput
     mediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
@@ -32449,10 +34040,11 @@ export namespace Prisma {
 
   export type MediaUncheckedUpdateWithoutAudioResourcesInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
+    plays?: IntFieldUpdateOperationsInput | number
     status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
     viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32463,7 +34055,7 @@ export namespace Prisma {
     detail?: MediaDetailUncheckedUpdateOneWithoutMediaNestedInput
     videoResources?: VideoResourceUncheckedUpdateManyWithoutMediaNestedInput
     mediaReaction?: MediaReactionUncheckedUpdateManyWithoutMediaNestedInput
-    history?: HistoryUncheckedUpdateManyWithoutMeidaNestedInput
+    history?: HistoryUncheckedUpdateManyWithoutMediaNestedInput
     mediaOnCategory?: MediaOnCategoryUncheckedUpdateManyWithoutMediaNestedInput
     comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
     mediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
@@ -32476,6 +34068,7 @@ export namespace Prisma {
     title: string
     views?: number
     duration?: number
+    plays?: number
     status?: $Enums.StatusResource
     viewMode?: $Enums.Status
     createdAt?: Date | string
@@ -32487,7 +34080,7 @@ export namespace Prisma {
     videoResources?: VideoResourceCreateNestedManyWithoutMediaInput
     audioResources?: AudioResourceCreateNestedManyWithoutMediaInput
     mediaReaction?: MediaReactionCreateNestedManyWithoutMediaInput
-    history?: HistoryCreateNestedManyWithoutMeidaInput
+    history?: HistoryCreateNestedManyWithoutMediaInput
     mediaOnCategory?: MediaOnCategoryCreateNestedManyWithoutMediaInput
     comment?: CommentCreateNestedManyWithoutMediaInput
     mediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
@@ -32497,10 +34090,11 @@ export namespace Prisma {
 
   export type MediaUncheckedCreateWithoutDetailInput = {
     id?: string
-    userId: number
+    userId: string
     title: string
     views?: number
     duration?: number
+    plays?: number
     status?: $Enums.StatusResource
     viewMode?: $Enums.Status
     createdAt?: Date | string
@@ -32511,7 +34105,7 @@ export namespace Prisma {
     videoResources?: VideoResourceUncheckedCreateNestedManyWithoutMediaInput
     audioResources?: AudioResourceUncheckedCreateNestedManyWithoutMediaInput
     mediaReaction?: MediaReactionUncheckedCreateNestedManyWithoutMediaInput
-    history?: HistoryUncheckedCreateNestedManyWithoutMeidaInput
+    history?: HistoryUncheckedCreateNestedManyWithoutMediaInput
     mediaOnCategory?: MediaOnCategoryUncheckedCreateNestedManyWithoutMediaInput
     comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
     mediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
@@ -32540,6 +34134,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
+    plays?: IntFieldUpdateOperationsInput | number
     status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
     viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32551,7 +34146,7 @@ export namespace Prisma {
     videoResources?: VideoResourceUpdateManyWithoutMediaNestedInput
     audioResources?: AudioResourceUpdateManyWithoutMediaNestedInput
     mediaReaction?: MediaReactionUpdateManyWithoutMediaNestedInput
-    history?: HistoryUpdateManyWithoutMeidaNestedInput
+    history?: HistoryUpdateManyWithoutMediaNestedInput
     mediaOnCategory?: MediaOnCategoryUpdateManyWithoutMediaNestedInput
     comment?: CommentUpdateManyWithoutMediaNestedInput
     mediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
@@ -32561,10 +34156,11 @@ export namespace Prisma {
 
   export type MediaUncheckedUpdateWithoutDetailInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
+    plays?: IntFieldUpdateOperationsInput | number
     status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
     viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32575,7 +34171,7 @@ export namespace Prisma {
     videoResources?: VideoResourceUncheckedUpdateManyWithoutMediaNestedInput
     audioResources?: AudioResourceUncheckedUpdateManyWithoutMediaNestedInput
     mediaReaction?: MediaReactionUncheckedUpdateManyWithoutMediaNestedInput
-    history?: HistoryUncheckedUpdateManyWithoutMeidaNestedInput
+    history?: HistoryUncheckedUpdateManyWithoutMediaNestedInput
     mediaOnCategory?: MediaOnCategoryUncheckedUpdateManyWithoutMediaNestedInput
     comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
     mediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
@@ -32588,6 +34184,7 @@ export namespace Prisma {
     title: string
     views?: number
     duration?: number
+    plays?: number
     status?: $Enums.StatusResource
     viewMode?: $Enums.Status
     createdAt?: Date | string
@@ -32599,7 +34196,7 @@ export namespace Prisma {
     videoResources?: VideoResourceCreateNestedManyWithoutMediaInput
     audioResources?: AudioResourceCreateNestedManyWithoutMediaInput
     mediaReaction?: MediaReactionCreateNestedManyWithoutMediaInput
-    history?: HistoryCreateNestedManyWithoutMeidaInput
+    history?: HistoryCreateNestedManyWithoutMediaInput
     mediaOnCategory?: MediaOnCategoryCreateNestedManyWithoutMediaInput
     comment?: CommentCreateNestedManyWithoutMediaInput
     mediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
@@ -32609,10 +34206,11 @@ export namespace Prisma {
 
   export type MediaUncheckedCreateWithoutThumbnailsInput = {
     id?: string
-    userId: number
+    userId: string
     title: string
     views?: number
     duration?: number
+    plays?: number
     status?: $Enums.StatusResource
     viewMode?: $Enums.Status
     createdAt?: Date | string
@@ -32623,7 +34221,7 @@ export namespace Prisma {
     videoResources?: VideoResourceUncheckedCreateNestedManyWithoutMediaInput
     audioResources?: AudioResourceUncheckedCreateNestedManyWithoutMediaInput
     mediaReaction?: MediaReactionUncheckedCreateNestedManyWithoutMediaInput
-    history?: HistoryUncheckedCreateNestedManyWithoutMeidaInput
+    history?: HistoryUncheckedCreateNestedManyWithoutMediaInput
     mediaOnCategory?: MediaOnCategoryUncheckedCreateNestedManyWithoutMediaInput
     comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
     mediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
@@ -32652,6 +34250,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
+    plays?: IntFieldUpdateOperationsInput | number
     status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
     viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32663,7 +34262,7 @@ export namespace Prisma {
     videoResources?: VideoResourceUpdateManyWithoutMediaNestedInput
     audioResources?: AudioResourceUpdateManyWithoutMediaNestedInput
     mediaReaction?: MediaReactionUpdateManyWithoutMediaNestedInput
-    history?: HistoryUpdateManyWithoutMeidaNestedInput
+    history?: HistoryUpdateManyWithoutMediaNestedInput
     mediaOnCategory?: MediaOnCategoryUpdateManyWithoutMediaNestedInput
     comment?: CommentUpdateManyWithoutMediaNestedInput
     mediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
@@ -32673,10 +34272,11 @@ export namespace Prisma {
 
   export type MediaUncheckedUpdateWithoutThumbnailsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
+    plays?: IntFieldUpdateOperationsInput | number
     status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
     viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32687,7 +34287,7 @@ export namespace Prisma {
     videoResources?: VideoResourceUncheckedUpdateManyWithoutMediaNestedInput
     audioResources?: AudioResourceUncheckedUpdateManyWithoutMediaNestedInput
     mediaReaction?: MediaReactionUncheckedUpdateManyWithoutMediaNestedInput
-    history?: HistoryUncheckedUpdateManyWithoutMeidaNestedInput
+    history?: HistoryUncheckedUpdateManyWithoutMediaNestedInput
     mediaOnCategory?: MediaOnCategoryUncheckedUpdateManyWithoutMediaNestedInput
     comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
     mediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
@@ -32789,6 +34389,7 @@ export namespace Prisma {
     title: string
     views?: number
     duration?: number
+    plays?: number
     status?: $Enums.StatusResource
     viewMode?: $Enums.Status
     createdAt?: Date | string
@@ -32801,7 +34402,7 @@ export namespace Prisma {
     videoResources?: VideoResourceCreateNestedManyWithoutMediaInput
     audioResources?: AudioResourceCreateNestedManyWithoutMediaInput
     mediaReaction?: MediaReactionCreateNestedManyWithoutMediaInput
-    history?: HistoryCreateNestedManyWithoutMeidaInput
+    history?: HistoryCreateNestedManyWithoutMediaInput
     mediaOnCategory?: MediaOnCategoryCreateNestedManyWithoutMediaInput
     comment?: CommentCreateNestedManyWithoutMediaInput
     mediaOnPlaylist?: MediaOnPlaylistCreateNestedManyWithoutMediaInput
@@ -32810,10 +34411,11 @@ export namespace Prisma {
 
   export type MediaUncheckedCreateWithoutMediaOnAlbumInput = {
     id?: string
-    userId: number
+    userId: string
     title: string
     views?: number
     duration?: number
+    plays?: number
     status?: $Enums.StatusResource
     viewMode?: $Enums.Status
     createdAt?: Date | string
@@ -32825,7 +34427,7 @@ export namespace Prisma {
     videoResources?: VideoResourceUncheckedCreateNestedManyWithoutMediaInput
     audioResources?: AudioResourceUncheckedCreateNestedManyWithoutMediaInput
     mediaReaction?: MediaReactionUncheckedCreateNestedManyWithoutMediaInput
-    history?: HistoryUncheckedCreateNestedManyWithoutMeidaInput
+    history?: HistoryUncheckedCreateNestedManyWithoutMediaInput
     mediaOnCategory?: MediaOnCategoryUncheckedCreateNestedManyWithoutMediaInput
     comment?: CommentUncheckedCreateNestedManyWithoutMediaInput
     mediaOnPlaylist?: MediaOnPlaylistUncheckedCreateNestedManyWithoutMediaInput
@@ -32850,7 +34452,7 @@ export namespace Prisma {
     id?: string
     name: string
     description?: string | null
-    userId: number
+    userId: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -32876,6 +34478,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
+    plays?: IntFieldUpdateOperationsInput | number
     status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
     viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32888,7 +34491,7 @@ export namespace Prisma {
     videoResources?: VideoResourceUpdateManyWithoutMediaNestedInput
     audioResources?: AudioResourceUpdateManyWithoutMediaNestedInput
     mediaReaction?: MediaReactionUpdateManyWithoutMediaNestedInput
-    history?: HistoryUpdateManyWithoutMeidaNestedInput
+    history?: HistoryUpdateManyWithoutMediaNestedInput
     mediaOnCategory?: MediaOnCategoryUpdateManyWithoutMediaNestedInput
     comment?: CommentUpdateManyWithoutMediaNestedInput
     mediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
@@ -32897,10 +34500,11 @@ export namespace Prisma {
 
   export type MediaUncheckedUpdateWithoutMediaOnAlbumInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
+    plays?: IntFieldUpdateOperationsInput | number
     status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
     viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32912,7 +34516,7 @@ export namespace Prisma {
     videoResources?: VideoResourceUncheckedUpdateManyWithoutMediaNestedInput
     audioResources?: AudioResourceUncheckedUpdateManyWithoutMediaNestedInput
     mediaReaction?: MediaReactionUncheckedUpdateManyWithoutMediaNestedInput
-    history?: HistoryUncheckedUpdateManyWithoutMeidaNestedInput
+    history?: HistoryUncheckedUpdateManyWithoutMediaNestedInput
     mediaOnCategory?: MediaOnCategoryUncheckedUpdateManyWithoutMediaNestedInput
     comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
     mediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
@@ -32943,12 +34547,13 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    userId?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserCreateWithoutAlbumInput = {
+    id?: string
     firstName: string
     lastName: string
     email: string
@@ -32967,10 +34572,11 @@ export namespace Prisma {
     Comment?: CommentCreateNestedManyWithoutUserInput
     Playlist?: PlaylistCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodCreateNestedManyWithoutUserInput
+    SocialAccount?: SocialAccountCreateNestedManyWithoutOwnerInput
   }
 
   export type UserUncheckedCreateWithoutAlbumInput = {
-    id?: number
+    id?: string
     firstName: string
     lastName: string
     email: string
@@ -32989,6 +34595,7 @@ export namespace Prisma {
     Comment?: CommentUncheckedCreateNestedManyWithoutUserInput
     Playlist?: PlaylistUncheckedCreateNestedManyWithoutUserInput
     UserPaymentMethod?: UserPaymentMethodUncheckedCreateNestedManyWithoutUserInput
+    SocialAccount?: SocialAccountUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type UserCreateOrConnectWithoutAlbumInput = {
@@ -33031,6 +34638,7 @@ export namespace Prisma {
   }
 
   export type UserUpdateWithoutAlbumInput = {
+    id?: StringFieldUpdateOperationsInput | string
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -33049,10 +34657,11 @@ export namespace Prisma {
     Comment?: CommentUpdateManyWithoutUserNestedInput
     Playlist?: PlaylistUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUpdateManyWithoutUserNestedInput
+    SocialAccount?: SocialAccountUpdateManyWithoutOwnerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAlbumInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -33071,6 +34680,7 @@ export namespace Prisma {
     Comment?: CommentUncheckedUpdateManyWithoutUserNestedInput
     Playlist?: PlaylistUncheckedUpdateManyWithoutUserNestedInput
     UserPaymentMethod?: UserPaymentMethodUncheckedUpdateManyWithoutUserNestedInput
+    SocialAccount?: SocialAccountUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type MediaOnAlbumUpsertWithWhereUniqueWithoutAlbumInput = {
@@ -33089,11 +34699,120 @@ export namespace Prisma {
     data: XOR<MediaOnAlbumUpdateManyMutationInput, MediaOnAlbumUncheckedUpdateManyWithoutAlbumInput>
   }
 
+  export type UserCreateWithoutSocialAccountInput = {
+    id?: string
+    firstName: string
+    lastName: string
+    email: string
+    username: string
+    password: string
+    avatar?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    lockedAt?: Date | string | null
+    media?: MediaCreateNestedManyWithoutOwnerInput
+    mediaReactions?: MediaReactionCreateNestedManyWithoutUserInput
+    histories?: HistoryCreateNestedManyWithoutUserInput
+    subscribers?: SubscriberCreateNestedManyWithoutUserInput
+    channel?: SubscriberCreateNestedManyWithoutChannelInput
+    NotificationSubscriptions?: NotificationSubscriptionsCreateNestedManyWithoutUserInput
+    Comment?: CommentCreateNestedManyWithoutUserInput
+    Playlist?: PlaylistCreateNestedManyWithoutUserInput
+    UserPaymentMethod?: UserPaymentMethodCreateNestedManyWithoutUserInput
+    Album?: AlbumCreateNestedManyWithoutOwnerInput
+  }
+
+  export type UserUncheckedCreateWithoutSocialAccountInput = {
+    id?: string
+    firstName: string
+    lastName: string
+    email: string
+    username: string
+    password: string
+    avatar?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    lockedAt?: Date | string | null
+    media?: MediaUncheckedCreateNestedManyWithoutOwnerInput
+    mediaReactions?: MediaReactionUncheckedCreateNestedManyWithoutUserInput
+    histories?: HistoryUncheckedCreateNestedManyWithoutUserInput
+    subscribers?: SubscriberUncheckedCreateNestedManyWithoutUserInput
+    channel?: SubscriberUncheckedCreateNestedManyWithoutChannelInput
+    NotificationSubscriptions?: NotificationSubscriptionsUncheckedCreateNestedManyWithoutUserInput
+    Comment?: CommentUncheckedCreateNestedManyWithoutUserInput
+    Playlist?: PlaylistUncheckedCreateNestedManyWithoutUserInput
+    UserPaymentMethod?: UserPaymentMethodUncheckedCreateNestedManyWithoutUserInput
+    Album?: AlbumUncheckedCreateNestedManyWithoutOwnerInput
+  }
+
+  export type UserCreateOrConnectWithoutSocialAccountInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutSocialAccountInput, UserUncheckedCreateWithoutSocialAccountInput>
+  }
+
+  export type UserUpsertWithoutSocialAccountInput = {
+    update: XOR<UserUpdateWithoutSocialAccountInput, UserUncheckedUpdateWithoutSocialAccountInput>
+    create: XOR<UserCreateWithoutSocialAccountInput, UserUncheckedCreateWithoutSocialAccountInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutSocialAccountInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutSocialAccountInput, UserUncheckedUpdateWithoutSocialAccountInput>
+  }
+
+  export type UserUpdateWithoutSocialAccountInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    media?: MediaUpdateManyWithoutOwnerNestedInput
+    mediaReactions?: MediaReactionUpdateManyWithoutUserNestedInput
+    histories?: HistoryUpdateManyWithoutUserNestedInput
+    subscribers?: SubscriberUpdateManyWithoutUserNestedInput
+    channel?: SubscriberUpdateManyWithoutChannelNestedInput
+    NotificationSubscriptions?: NotificationSubscriptionsUpdateManyWithoutUserNestedInput
+    Comment?: CommentUpdateManyWithoutUserNestedInput
+    Playlist?: PlaylistUpdateManyWithoutUserNestedInput
+    UserPaymentMethod?: UserPaymentMethodUpdateManyWithoutUserNestedInput
+    Album?: AlbumUpdateManyWithoutOwnerNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutSocialAccountInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    media?: MediaUncheckedUpdateManyWithoutOwnerNestedInput
+    mediaReactions?: MediaReactionUncheckedUpdateManyWithoutUserNestedInput
+    histories?: HistoryUncheckedUpdateManyWithoutUserNestedInput
+    subscribers?: SubscriberUncheckedUpdateManyWithoutUserNestedInput
+    channel?: SubscriberUncheckedUpdateManyWithoutChannelNestedInput
+    NotificationSubscriptions?: NotificationSubscriptionsUncheckedUpdateManyWithoutUserNestedInput
+    Comment?: CommentUncheckedUpdateManyWithoutUserNestedInput
+    Playlist?: PlaylistUncheckedUpdateManyWithoutUserNestedInput
+    UserPaymentMethod?: UserPaymentMethodUncheckedUpdateManyWithoutUserNestedInput
+    Album?: AlbumUncheckedUpdateManyWithoutOwnerNestedInput
+  }
+
   export type MediaCreateManyOwnerInput = {
     id?: string
     title: string
     views?: number
     duration?: number
+    plays?: number
     status?: $Enums.StatusResource
     viewMode?: $Enums.Status
     createdAt?: Date | string
@@ -33103,7 +34822,7 @@ export namespace Prisma {
   }
 
   export type MediaReactionCreateManyUserInput = {
-    id?: number
+    id?: string
     mediaId: string
     isLike: boolean
     createdAt?: Date | string
@@ -33119,14 +34838,14 @@ export namespace Prisma {
 
   export type SubscriberCreateManyUserInput = {
     id?: number
-    channelId: number
+    channelId: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type SubscriberCreateManyChannelInput = {
     id?: number
-    userId: number
+    userId: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -33139,7 +34858,7 @@ export namespace Prisma {
   }
 
   export type CommentCreateManyUserInput = {
-    id?: number
+    id?: string
     mediaId: string
     comment: string
     createdAt?: Date | string
@@ -33168,11 +34887,26 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
+  export type SocialAccountCreateManyOwnerInput = {
+    id?: number
+    type?: $Enums.AccountType
+    fullName: string
+    avatarUrl?: string | null
+    accountUrl?: string | null
+    accessToken?: string | null
+    refreshToken?: string | null
+    expiredAt: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    disabledAt?: Date | string | null
+  }
+
   export type MediaUpdateWithoutOwnerInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
+    plays?: IntFieldUpdateOperationsInput | number
     status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
     viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -33184,7 +34918,7 @@ export namespace Prisma {
     videoResources?: VideoResourceUpdateManyWithoutMediaNestedInput
     audioResources?: AudioResourceUpdateManyWithoutMediaNestedInput
     mediaReaction?: MediaReactionUpdateManyWithoutMediaNestedInput
-    history?: HistoryUpdateManyWithoutMeidaNestedInput
+    history?: HistoryUpdateManyWithoutMediaNestedInput
     mediaOnCategory?: MediaOnCategoryUpdateManyWithoutMediaNestedInput
     comment?: CommentUpdateManyWithoutMediaNestedInput
     mediaOnPlaylist?: MediaOnPlaylistUpdateManyWithoutMediaNestedInput
@@ -33197,6 +34931,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
+    plays?: IntFieldUpdateOperationsInput | number
     status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
     viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -33208,7 +34943,7 @@ export namespace Prisma {
     videoResources?: VideoResourceUncheckedUpdateManyWithoutMediaNestedInput
     audioResources?: AudioResourceUncheckedUpdateManyWithoutMediaNestedInput
     mediaReaction?: MediaReactionUncheckedUpdateManyWithoutMediaNestedInput
-    history?: HistoryUncheckedUpdateManyWithoutMeidaNestedInput
+    history?: HistoryUncheckedUpdateManyWithoutMediaNestedInput
     mediaOnCategory?: MediaOnCategoryUncheckedUpdateManyWithoutMediaNestedInput
     comment?: CommentUncheckedUpdateManyWithoutMediaNestedInput
     mediaOnPlaylist?: MediaOnPlaylistUncheckedUpdateManyWithoutMediaNestedInput
@@ -33221,6 +34956,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
     duration?: FloatFieldUpdateOperationsInput | number
+    plays?: IntFieldUpdateOperationsInput | number
     status?: EnumStatusResourceFieldUpdateOperationsInput | $Enums.StatusResource
     viewMode?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -33230,6 +34966,7 @@ export namespace Prisma {
   }
 
   export type MediaReactionUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
     isLike?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -33237,7 +34974,7 @@ export namespace Prisma {
   }
 
   export type MediaReactionUncheckedUpdateWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     mediaId?: StringFieldUpdateOperationsInput | string
     isLike?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -33245,7 +34982,7 @@ export namespace Prisma {
   }
 
   export type MediaReactionUncheckedUpdateManyWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     mediaId?: StringFieldUpdateOperationsInput | string
     isLike?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -33255,7 +34992,7 @@ export namespace Prisma {
   export type HistoryUpdateWithoutUserInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    meida?: MediaUpdateOneRequiredWithoutHistoryNestedInput
+    media?: MediaUpdateOneRequiredWithoutHistoryNestedInput
   }
 
   export type HistoryUncheckedUpdateWithoutUserInput = {
@@ -33280,14 +35017,14 @@ export namespace Prisma {
 
   export type SubscriberUncheckedUpdateWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
-    channelId?: IntFieldUpdateOperationsInput | number
+    channelId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SubscriberUncheckedUpdateManyWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
-    channelId?: IntFieldUpdateOperationsInput | number
+    channelId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -33300,14 +35037,14 @@ export namespace Prisma {
 
   export type SubscriberUncheckedUpdateWithoutChannelInput = {
     id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SubscriberUncheckedUpdateManyWithoutChannelInput = {
     id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -33333,6 +35070,7 @@ export namespace Prisma {
   }
 
   export type CommentUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
     comment?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -33340,7 +35078,7 @@ export namespace Prisma {
   }
 
   export type CommentUncheckedUpdateWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     mediaId?: StringFieldUpdateOperationsInput | string
     comment?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -33348,7 +35086,7 @@ export namespace Prisma {
   }
 
   export type CommentUncheckedUpdateManyWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     mediaId?: StringFieldUpdateOperationsInput | string
     comment?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -33424,23 +35162,72 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type SocialAccountUpdateWithoutOwnerInput = {
+    type?: EnumAccountTypeFieldUpdateOperationsInput | $Enums.AccountType
+    fullName?: StringFieldUpdateOperationsInput | string
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    accountUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    disabledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type SocialAccountUncheckedUpdateWithoutOwnerInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    type?: EnumAccountTypeFieldUpdateOperationsInput | $Enums.AccountType
+    fullName?: StringFieldUpdateOperationsInput | string
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    accountUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    disabledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type SocialAccountUncheckedUpdateManyWithoutOwnerInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    type?: EnumAccountTypeFieldUpdateOperationsInput | $Enums.AccountType
+    fullName?: StringFieldUpdateOperationsInput | string
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    accountUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    expiredAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    disabledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
   export type MediaOnCategoryCreateManyCategoryInput = {
     id?: number
     mediaId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type MediaOnCategoryUpdateWithoutCategoryInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     media?: MediaUpdateOneRequiredWithoutMediaOnCategoryNestedInput
   }
 
   export type MediaOnCategoryUncheckedUpdateWithoutCategoryInput = {
     id?: IntFieldUpdateOperationsInput | number
     mediaId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type MediaOnCategoryUncheckedUpdateManyWithoutCategoryInput = {
     id?: IntFieldUpdateOperationsInput | number
     mediaId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ThumbnailCreateManyMediaInput = {
@@ -33468,16 +35255,16 @@ export namespace Prisma {
   }
 
   export type MediaReactionCreateManyMediaInput = {
-    id?: number
-    userId: number
+    id?: string
+    userId: string
     isLike: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
-  export type HistoryCreateManyMeidaInput = {
+  export type HistoryCreateManyMediaInput = {
     id?: number
-    userId: number
+    userId: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -33485,11 +35272,13 @@ export namespace Prisma {
   export type MediaOnCategoryCreateManyMediaInput = {
     id?: number
     categoryId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type CommentCreateManyMediaInput = {
-    id?: number
-    userId: number
+    id?: string
+    userId: string
     comment: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -33497,9 +35286,10 @@ export namespace Prisma {
 
   export type MediaOnPlaylistCreateManyMediaInput = {
     id?: number
-    playListId: string
+    playlistId: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    sortNo?: number
   }
 
   export type SessionUploadCreateManyMediaInput = {
@@ -33590,6 +35380,7 @@ export namespace Prisma {
   }
 
   export type MediaReactionUpdateWithoutMediaInput = {
+    id?: StringFieldUpdateOperationsInput | string
     isLike?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -33597,56 +35388,63 @@ export namespace Prisma {
   }
 
   export type MediaReactionUncheckedUpdateWithoutMediaInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
     isLike?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type MediaReactionUncheckedUpdateManyWithoutMediaInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
     isLike?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type HistoryUpdateWithoutMeidaInput = {
+  export type HistoryUpdateWithoutMediaInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutHistoriesNestedInput
   }
 
-  export type HistoryUncheckedUpdateWithoutMeidaInput = {
+  export type HistoryUncheckedUpdateWithoutMediaInput = {
     id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type HistoryUncheckedUpdateManyWithoutMeidaInput = {
+  export type HistoryUncheckedUpdateManyWithoutMediaInput = {
     id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
+    userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type MediaOnCategoryUpdateWithoutMediaInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: CategoryUpdateOneRequiredWithoutCategoryOnMediaNestedInput
   }
 
   export type MediaOnCategoryUncheckedUpdateWithoutMediaInput = {
     id?: IntFieldUpdateOperationsInput | number
     categoryId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type MediaOnCategoryUncheckedUpdateManyWithoutMediaInput = {
     id?: IntFieldUpdateOperationsInput | number
     categoryId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CommentUpdateWithoutMediaInput = {
+    id?: StringFieldUpdateOperationsInput | string
     comment?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -33654,16 +35452,16 @@ export namespace Prisma {
   }
 
   export type CommentUncheckedUpdateWithoutMediaInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
     comment?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CommentUncheckedUpdateManyWithoutMediaInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
     comment?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -33672,21 +35470,24 @@ export namespace Prisma {
   export type MediaOnPlaylistUpdateWithoutMediaInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sortNo?: IntFieldUpdateOperationsInput | number
     playlist?: PlaylistUpdateOneRequiredWithoutMediaOnPlaylistNestedInput
   }
 
   export type MediaOnPlaylistUncheckedUpdateWithoutMediaInput = {
     id?: IntFieldUpdateOperationsInput | number
-    playListId?: StringFieldUpdateOperationsInput | string
+    playlistId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sortNo?: IntFieldUpdateOperationsInput | number
   }
 
   export type MediaOnPlaylistUncheckedUpdateManyWithoutMediaInput = {
     id?: IntFieldUpdateOperationsInput | number
-    playListId?: StringFieldUpdateOperationsInput | string
+    playlistId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sortNo?: IntFieldUpdateOperationsInput | number
   }
 
   export type SessionUploadUpdateWithoutMediaInput = {
@@ -33738,11 +35539,13 @@ export namespace Prisma {
     mediaId: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    sortNo?: number
   }
 
   export type MediaOnPlaylistUpdateWithoutPlaylistInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sortNo?: IntFieldUpdateOperationsInput | number
     media?: MediaUpdateOneRequiredWithoutMediaOnPlaylistNestedInput
   }
 
@@ -33751,6 +35554,7 @@ export namespace Prisma {
     mediaId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sortNo?: IntFieldUpdateOperationsInput | number
   }
 
   export type MediaOnPlaylistUncheckedUpdateManyWithoutPlaylistInput = {
@@ -33758,6 +35562,7 @@ export namespace Prisma {
     mediaId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sortNo?: IntFieldUpdateOperationsInput | number
   }
 
   export type PaymentTransactionDetailCreateManyPaymentTransactionInput = {
@@ -33928,6 +35733,10 @@ export namespace Prisma {
      * @deprecated Use AlbumDefaultArgs instead
      */
     export type AlbumArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = AlbumDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use SocialAccountDefaultArgs instead
+     */
+    export type SocialAccountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = SocialAccountDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany
