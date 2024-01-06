@@ -13,7 +13,16 @@
         </Button>
       </div>
     </div>
-    <Table :columns="columns" :data-source="dataSource" :loading="isLoading">
+    <Table :columns="columns" :data-source="dataSource" :loading="isLoading" :pagination="{
+      showSizeChanger: true,
+      pageSizeOptions: ['10', '20', '30', '40', '50'],
+      showQuickJumper: true,
+      total: meta.total,
+      current: meta.currentPage,
+      pageSize: meta.pageSize,
+      showTotal: (total, range) => `Total: ${total} items`,
+      onChange: onChangePagination,
+    }">
       <template #bodyCell="{ column, record, text }">
         <template v-if="column.dataIndex === 'title'">
           <div class="text-blue-500 cursor-pointer font-semibold" @click="openModalEdit(record)">
@@ -42,7 +51,7 @@
 <script setup lang="ts">
 import { Table, Button } from 'ant-design-vue'
 import type { ColumnType } from 'ant-design-vue/es/table'
-import { ref } from 'vue'
+import { reactive, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { CloudUploadOutlined } from '@ant-design/icons-vue'
 import ModalUploadContent from '@/components/Modal/UploadContent/ModalUploadContent.vue'
@@ -74,6 +83,12 @@ const currentMedia = ref<
   | undefined
 >()
 const isLoading = ref<boolean>(true)
+const meta = reactive({
+  total: 0,
+  currentPage: 1,
+  pageSize: 10,
+})
+
 
 const newUpload = () => {
   isOpenModalUploadContent.value = true
@@ -137,6 +152,13 @@ const dataSource = ref<
   }>[]
 >([])
 
+const onChangePagination = (page: number, pageSize: number) => {
+  meta.currentPage = page
+  meta.pageSize = pageSize
+  loadResource()
+}
+
+
 const loadResource = async () => {
   isLoading.value = true
   const res = await requestInstance
@@ -151,11 +173,23 @@ const loadResource = async () => {
           }
         }>[]
       >
-    >('/studio/media')
+    >('/studio/media', {
+      params: {
+        take: meta.pageSize,
+        page: meta.currentPage,
+      }
+    })
     .finally(() => {
       isLoading.value = false
     })
   dataSource.value = res.data.data
+
+  const { meta: metaData } = res.data
+
+  meta.currentPage = metaData.current_page
+  meta.pageSize = metaData.per_page
+  meta.total = metaData.total_object
+
 }
 
 loadResource()

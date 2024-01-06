@@ -6,6 +6,7 @@ import AlbumView from '@/views/management/AlbumView.vue'
 import ListMediaView from '@/views/management/album/ListMediaView.vue'
 import YoutubeListView from '@/views/management/youtube/YoutubeListView.vue'
 import YoutubeAuth from '@/views/management/youtube/YoutubeAuth.vue'
+import UpdateProfileView from '@/views/profile/UpdateProfileView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -62,6 +63,11 @@ const router = createRouter({
           ]
         }
       ]
+    },
+    {
+      path: '/profile',
+      name: routerNames.PROFILE_EDIT,
+      component: UpdateProfileView,
     }
   ]
 })
