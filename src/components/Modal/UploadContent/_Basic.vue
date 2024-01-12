@@ -27,7 +27,8 @@
                     <component :is="originNode" />
                     <div class="absolute right-3 top-2">
                       <Tooltip :title="$t('set_thumbnail_primary')">
-                        <Checkbox :checked="formState.thumbnailPrimaryId === file.uid"
+                        <Checkbox
+                          :checked="formState.thumbnailPrimaryId === file.uid || formState.thumbnailPrimaryId === file.response?.id"
                           @change="handleSetThumbnail(file)" />
                       </Tooltip>
                     </div>
@@ -104,7 +105,7 @@ const props = defineProps<{
 }>()
 
 const handleSetThumbnail = (e: any) => {
-  formState.value.thumbnailPrimaryId = e.uid
+  formState.value.thumbnailPrimaryId = e.response?.id ?? e.uid
 }
 
 const handleChangeFile = async (e: any) => {
@@ -176,7 +177,8 @@ watch(
     }
     else formState.value.album = ''
     formState.value.thumbnail = props.mediaInfo.thumbnails.map((th) => {
-      if (th.isPrimary) formState.value.thumbnailPrimaryId = th.id
+      //@ts-ignore
+      if (th.isPrimary) formState.value.thumbnailPrimaryId = th.response?.id ?? th.id
       return {
         uid: th.id,
         name: th.url,
