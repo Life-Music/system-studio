@@ -7,7 +7,7 @@
         <div :style="`background-image: url('${userInfo.cover}')`"
           class="bg-cover bg-center bg-no-repeat absolute inset-0 opacity-50" v-if="userInfo.cover">
         </div>
-        <div class="absolute bottom-4 right-4">
+        <div class="absolute bottom-4 right-4 flex gap-x-4">
           <Button type="primary" @click="handleClickUploadCover" :loading="uploadingCover">
             <template #icon>
               <CloudUploadOutlined />
@@ -29,7 +29,41 @@
         </div>
       </div>
       <div class="mt-8">
-        <div class="flex gap-x-8">
+        <div class="mx-auto max-w-3xl">
+          <div class=" flex gap-x-6 w-full">
+            <div class="rounded-lg p-4 bg-white flex-auto space-y-3">
+              <div class="text-xs">Gói của bạn</div>
+              <div class="text-2xl font-semibold">
+                {{ userInfo.productId ? planInfo[userInfo.productId].name : "Lifemusic free" }}
+              </div>
+            </div>
+            <div
+              class="rounded-lg p-4 bg-white h-40 w-32 gap-x-4 flex justify-center items-center flex-col cursor-pointer"
+              @click="router.push({
+                name: routerNames.PAYMENT_PLAN
+              })">
+              <CrownOutlined class="text-3xl text-blue-600 animate-bounce" />
+              <div>Dùng premium</div>
+            </div>
+          </div>
+          <div class="mt-4">
+            <Card title="Thanh toán" :bordered="false">
+              <RouterLink :to="{
+                name: item.routerName,
+              }" v-for="(item, i) in listItem" :key="i"
+                class="px-4 py-4 flex gap-x-4 items-center text-base hover:bg-slate-200 rounded-lg transition-all duration-150 text-inherit">
+                <component :is="item.icon" />
+                <div>
+                  {{ item.title }}
+                </div>
+                <div class="ml-auto">
+                  <RightOutlined />
+                </div>
+              </RouterLink>
+            </Card>
+          </div>
+        </div>
+        <div class="flex gap-x-8 mt-8">
           <div class="flex-auto p-6 bg-white rounded-lg">
             <h2 class="text-2xl mb-4">Thông tin cơ bản</h2>
             <Form layout="vertical" :model="formState" @finish="handleSubmitBasic">
@@ -80,12 +114,16 @@
 </template>
 <script setup lang="ts">
 import { useUserInfoStore } from '@/stores/user';
-import { Avatar, Button, Form, Input, message } from 'ant-design-vue';
+import { Avatar, Button, Card, Form, Input, message } from 'ant-design-vue';
 import { ref } from 'vue';
-import { CloudUploadOutlined } from '@ant-design/icons-vue';
+import { CloudUploadOutlined, CrownOutlined, TransactionOutlined, BarcodeOutlined, CreditCardOutlined, RightOutlined } from '@ant-design/icons-vue';
 import requestInstance from '@/utils/axios';
 import { reactive } from 'vue';
+import routerNames from '@/router/routerNames';
+import { planInfo } from '@/utils/plan';
+import { useRouter } from 'vue-router';
 
+const router = useRouter()
 const userInfoStore = useUserInfoStore()
 const userInfo = ref<Awaited<typeof userInfoStore['userInfo']>>()
 
@@ -175,6 +213,24 @@ const handleSubmitAdv = (data: typeof formState) => {
     confirmPassword: data.confirmPassword,
   })
 }
+
+const listItem = [
+  {
+    icon: CreditCardOutlined,
+    title: 'Phương thức thanh toán',
+    routerName: routerNames.PAYMENT_METHOD,
+  },
+  {
+    icon: BarcodeOutlined,
+    title: 'Lịch sử mua hàng',
+    routerName: routerNames.PAYMENT_INVOICE,
+  },
+  {
+    icon: TransactionOutlined,
+    title: 'Đổi gói',
+    routerName: routerNames.PAYMENT_PLAN,
+  }
+]
 
 fetchUserInfo()
 </script>

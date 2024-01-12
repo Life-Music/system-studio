@@ -73,7 +73,10 @@ import { ref } from 'vue';
 import { formatDate } from '@/utils/common'
 import type { Prisma, SocialAccount } from '~/prisma/generated/mysql';
 import type { ColumnType } from 'ant-design-vue/es/table';
+import { useRouter } from 'vue-router';
+import routerNames from '@/router/routerNames';
 
+const router = useRouter()
 const userInfo = ref<Prisma.UserGetPayload<{
   include: {
     SocialAccount: true,
@@ -119,6 +122,12 @@ const fetchInfoAccount = async () => {
 
   userInfo.value = res.data.data
   dataSource.value = res.data.data.SocialAccount
+
+  if (userInfo.value?.productId !== "prod_PMAJyqDNOQZcC5") {
+    router.push({
+      name: routerNames.PAYMENT_PLAN,
+    })
+  }
 }
 
 fetchInfoAccount()

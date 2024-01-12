@@ -7,6 +7,9 @@ import ListMediaView from '@/views/management/album/ListMediaView.vue'
 import YoutubeListView from '@/views/management/youtube/YoutubeListView.vue'
 import YoutubeAuth from '@/views/management/youtube/YoutubeAuth.vue'
 import UpdateProfileView from '@/views/profile/UpdateProfileView.vue'
+import PaymentMethodView from '@/views/profile/payment/PaymentMethodView.vue'
+import PaymentPlanView from '@/views/profile/payment/PaymentPlanView.vue'
+import PaymentInvoicesView from '@/views/profile/payment/PaymentInvoiceView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -68,6 +71,26 @@ const router = createRouter({
       path: '/profile',
       name: routerNames.PROFILE_EDIT,
       component: UpdateProfileView,
+    },
+    {
+      path: '/payment',
+      children: [
+        {
+          path: 'methods',
+          name: routerNames.PAYMENT_METHOD,
+          component: PaymentMethodView,
+        },
+        {
+          path: 'invoices',
+          name: routerNames.PAYMENT_INVOICE,
+          component: PaymentInvoicesView,
+        },
+        {
+          path: 'plans',
+          name: routerNames.PAYMENT_PLAN,
+          component: PaymentPlanView,
+        }
+      ]
     }
   ]
 })

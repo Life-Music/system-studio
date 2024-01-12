@@ -19,6 +19,11 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
 /**
+ * Model Admin
+ * 
+ */
+export type Admin = $Result.DefaultSelection<Prisma.$AdminPayload>
+/**
  * Model UserPaymentMethod
  * 
  */
@@ -328,6 +333,16 @@ export class PrismaClient<
     * ```
     */
   get user(): Prisma.UserDelegate<ExtArgs>;
+
+  /**
+   * `prisma.admin`: Exposes CRUD operations for the **Admin** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Admins
+    * const admins = await prisma.admin.findMany()
+    * ```
+    */
+  get admin(): Prisma.AdminDelegate<ExtArgs>;
 
   /**
    * `prisma.userPaymentMethod`: Exposes CRUD operations for the **UserPaymentMethod** model.
@@ -1019,6 +1034,7 @@ export namespace Prisma {
 
   export const ModelName: {
     User: 'User',
+    Admin: 'Admin',
     UserPaymentMethod: 'UserPaymentMethod',
     Category: 'Category',
     MediaOnCategory: 'MediaOnCategory',
@@ -1057,7 +1073,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'user' | 'userPaymentMethod' | 'category' | 'mediaOnCategory' | 'sessionUpload' | 'media' | 'mediaReaction' | 'comment' | 'playlist' | 'mediaOnPlaylist' | 'history' | 'subscriber' | 'notificationSubscriptions' | 'videoResource' | 'audioResource' | 'mediaDetail' | 'thumbnail' | 'paymentTransaction' | 'paymentTransactionDetail' | 'mediaOnAlbum' | 'album' | 'mediaOnSocialAccount' | 'socialAccount'
+      modelProps: 'user' | 'admin' | 'userPaymentMethod' | 'category' | 'mediaOnCategory' | 'sessionUpload' | 'media' | 'mediaReaction' | 'comment' | 'playlist' | 'mediaOnPlaylist' | 'history' | 'subscriber' | 'notificationSubscriptions' | 'videoResource' | 'audioResource' | 'mediaDetail' | 'thumbnail' | 'paymentTransaction' | 'paymentTransactionDetail' | 'mediaOnAlbum' | 'album' | 'mediaOnSocialAccount' | 'socialAccount'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
@@ -1124,6 +1140,72 @@ export namespace Prisma {
           count: {
             args: Prisma.UserCountArgs<ExtArgs>,
             result: $Utils.Optional<UserCountAggregateOutputType> | number
+          }
+        }
+      }
+      Admin: {
+        payload: Prisma.$AdminPayload<ExtArgs>
+        fields: Prisma.AdminFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AdminFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AdminPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AdminFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AdminPayload>
+          }
+          findFirst: {
+            args: Prisma.AdminFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AdminPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AdminFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AdminPayload>
+          }
+          findMany: {
+            args: Prisma.AdminFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AdminPayload>[]
+          }
+          create: {
+            args: Prisma.AdminCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AdminPayload>
+          }
+          createMany: {
+            args: Prisma.AdminCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.AdminDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AdminPayload>
+          }
+          update: {
+            args: Prisma.AdminUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AdminPayload>
+          }
+          deleteMany: {
+            args: Prisma.AdminDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AdminUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.AdminUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AdminPayload>
+          }
+          aggregate: {
+            args: Prisma.AdminAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateAdmin>
+          }
+          groupBy: {
+            args: Prisma.AdminGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<AdminGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AdminCountArgs<ExtArgs>,
+            result: $Utils.Optional<AdminCountAggregateOutputType> | number
           }
         }
       }
@@ -3184,8 +3266,12 @@ export namespace Prisma {
     password: string | null
     avatar: string | null
     cover: string | null
+    customerId: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    trialEnd: Date | null
+    productId: string | null
+    subscriptionId: string | null
     lockedAt: Date | null
   }
 
@@ -3198,8 +3284,12 @@ export namespace Prisma {
     password: string | null
     avatar: string | null
     cover: string | null
+    customerId: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    trialEnd: Date | null
+    productId: string | null
+    subscriptionId: string | null
     lockedAt: Date | null
   }
 
@@ -3212,8 +3302,12 @@ export namespace Prisma {
     password: number
     avatar: number
     cover: number
+    customerId: number
     createdAt: number
     updatedAt: number
+    trialEnd: number
+    productId: number
+    subscriptionId: number
     lockedAt: number
     _all: number
   }
@@ -3228,8 +3322,12 @@ export namespace Prisma {
     password?: true
     avatar?: true
     cover?: true
+    customerId?: true
     createdAt?: true
     updatedAt?: true
+    trialEnd?: true
+    productId?: true
+    subscriptionId?: true
     lockedAt?: true
   }
 
@@ -3242,8 +3340,12 @@ export namespace Prisma {
     password?: true
     avatar?: true
     cover?: true
+    customerId?: true
     createdAt?: true
     updatedAt?: true
+    trialEnd?: true
+    productId?: true
+    subscriptionId?: true
     lockedAt?: true
   }
 
@@ -3256,8 +3358,12 @@ export namespace Prisma {
     password?: true
     avatar?: true
     cover?: true
+    customerId?: true
     createdAt?: true
     updatedAt?: true
+    trialEnd?: true
+    productId?: true
+    subscriptionId?: true
     lockedAt?: true
     _all?: true
   }
@@ -3343,8 +3449,12 @@ export namespace Prisma {
     password: string
     avatar: string | null
     cover: string | null
+    customerId: string | null
     createdAt: Date
     updatedAt: Date
+    trialEnd: Date | null
+    productId: string | null
+    subscriptionId: string | null
     lockedAt: Date | null
     _count: UserCountAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
@@ -3374,8 +3484,12 @@ export namespace Prisma {
     password?: boolean
     avatar?: boolean
     cover?: boolean
+    customerId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    trialEnd?: boolean
+    productId?: boolean
+    subscriptionId?: boolean
     lockedAt?: boolean
     media?: boolean | User$mediaArgs<ExtArgs>
     mediaReactions?: boolean | User$mediaReactionsArgs<ExtArgs>
@@ -3400,8 +3514,12 @@ export namespace Prisma {
     password?: boolean
     avatar?: boolean
     cover?: boolean
+    customerId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    trialEnd?: boolean
+    productId?: boolean
+    subscriptionId?: boolean
     lockedAt?: boolean
   }
 
@@ -3445,8 +3563,12 @@ export namespace Prisma {
       password: string
       avatar: string | null
       cover: string | null
+      customerId: string | null
       createdAt: Date
       updatedAt: Date
+      trialEnd: Date | null
+      productId: string | null
+      subscriptionId: string | null
       lockedAt: Date | null
     }, ExtArgs["result"]["user"]>
     composites: {}
@@ -3871,8 +3993,12 @@ export namespace Prisma {
     readonly password: FieldRef<"User", 'String'>
     readonly avatar: FieldRef<"User", 'String'>
     readonly cover: FieldRef<"User", 'String'>
+    readonly customerId: FieldRef<"User", 'String'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
+    readonly trialEnd: FieldRef<"User", 'DateTime'>
+    readonly productId: FieldRef<"User", 'String'>
+    readonly subscriptionId: FieldRef<"User", 'String'>
     readonly lockedAt: FieldRef<"User", 'DateTime'>
   }
     
@@ -4428,6 +4554,876 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well.
      */
     include?: UserInclude<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model Admin
+   */
+
+  export type AggregateAdmin = {
+    _count: AdminCountAggregateOutputType | null
+    _min: AdminMinAggregateOutputType | null
+    _max: AdminMaxAggregateOutputType | null
+  }
+
+  export type AdminMinAggregateOutputType = {
+    id: string | null
+    username: string | null
+    password: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AdminMaxAggregateOutputType = {
+    id: string | null
+    username: string | null
+    password: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AdminCountAggregateOutputType = {
+    id: number
+    username: number
+    password: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type AdminMinAggregateInputType = {
+    id?: true
+    username?: true
+    password?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AdminMaxAggregateInputType = {
+    id?: true
+    username?: true
+    password?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AdminCountAggregateInputType = {
+    id?: true
+    username?: true
+    password?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type AdminAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Admin to aggregate.
+     */
+    where?: AdminWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Admins to fetch.
+     */
+    orderBy?: AdminOrderByWithRelationInput | AdminOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AdminWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Admins from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Admins.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Admins
+    **/
+    _count?: true | AdminCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AdminMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AdminMaxAggregateInputType
+  }
+
+  export type GetAdminAggregateType<T extends AdminAggregateArgs> = {
+        [P in keyof T & keyof AggregateAdmin]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAdmin[P]>
+      : GetScalarType<T[P], AggregateAdmin[P]>
+  }
+
+
+
+
+  export type AdminGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AdminWhereInput
+    orderBy?: AdminOrderByWithAggregationInput | AdminOrderByWithAggregationInput[]
+    by: AdminScalarFieldEnum[] | AdminScalarFieldEnum
+    having?: AdminScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AdminCountAggregateInputType | true
+    _min?: AdminMinAggregateInputType
+    _max?: AdminMaxAggregateInputType
+  }
+
+  export type AdminGroupByOutputType = {
+    id: string
+    username: string
+    password: string
+    createdAt: Date
+    updatedAt: Date
+    _count: AdminCountAggregateOutputType | null
+    _min: AdminMinAggregateOutputType | null
+    _max: AdminMaxAggregateOutputType | null
+  }
+
+  type GetAdminGroupByPayload<T extends AdminGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AdminGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AdminGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AdminGroupByOutputType[P]>
+            : GetScalarType<T[P], AdminGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AdminSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    username?: boolean
+    password?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["admin"]>
+
+  export type AdminSelectScalar = {
+    id?: boolean
+    username?: boolean
+    password?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+
+  export type $AdminPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Admin"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      username: string
+      password: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["admin"]>
+    composites: {}
+  }
+
+
+  type AdminGetPayload<S extends boolean | null | undefined | AdminDefaultArgs> = $Result.GetResult<Prisma.$AdminPayload, S>
+
+  type AdminCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<AdminFindManyArgs, 'select' | 'include'> & {
+      select?: AdminCountAggregateInputType | true
+    }
+
+  export interface AdminDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Admin'], meta: { name: 'Admin' } }
+    /**
+     * Find zero or one Admin that matches the filter.
+     * @param {AdminFindUniqueArgs} args - Arguments to find a Admin
+     * @example
+     * // Get one Admin
+     * const admin = await prisma.admin.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends AdminFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, AdminFindUniqueArgs<ExtArgs>>
+    ): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one Admin that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {AdminFindUniqueOrThrowArgs} args - Arguments to find a Admin
+     * @example
+     * // Get one Admin
+     * const admin = await prisma.admin.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends AdminFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, AdminFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first Admin that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminFindFirstArgs} args - Arguments to find a Admin
+     * @example
+     * // Get one Admin
+     * const admin = await prisma.admin.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends AdminFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, AdminFindFirstArgs<ExtArgs>>
+    ): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first Admin that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminFindFirstOrThrowArgs} args - Arguments to find a Admin
+     * @example
+     * // Get one Admin
+     * const admin = await prisma.admin.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends AdminFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, AdminFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more Admins that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Admins
+     * const admins = await prisma.admin.findMany()
+     * 
+     * // Get first 10 Admins
+     * const admins = await prisma.admin.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const adminWithIdOnly = await prisma.admin.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends AdminFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, AdminFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a Admin.
+     * @param {AdminCreateArgs} args - Arguments to create a Admin.
+     * @example
+     * // Create one Admin
+     * const Admin = await prisma.admin.create({
+     *   data: {
+     *     // ... data to create a Admin
+     *   }
+     * })
+     * 
+    **/
+    create<T extends AdminCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, AdminCreateArgs<ExtArgs>>
+    ): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many Admins.
+     *     @param {AdminCreateManyArgs} args - Arguments to create many Admins.
+     *     @example
+     *     // Create many Admins
+     *     const admin = await prisma.admin.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends AdminCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, AdminCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Admin.
+     * @param {AdminDeleteArgs} args - Arguments to delete one Admin.
+     * @example
+     * // Delete one Admin
+     * const Admin = await prisma.admin.delete({
+     *   where: {
+     *     // ... filter to delete one Admin
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends AdminDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, AdminDeleteArgs<ExtArgs>>
+    ): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one Admin.
+     * @param {AdminUpdateArgs} args - Arguments to update one Admin.
+     * @example
+     * // Update one Admin
+     * const admin = await prisma.admin.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends AdminUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, AdminUpdateArgs<ExtArgs>>
+    ): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more Admins.
+     * @param {AdminDeleteManyArgs} args - Arguments to filter Admins to delete.
+     * @example
+     * // Delete a few Admins
+     * const { count } = await prisma.admin.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends AdminDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, AdminDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Admins.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Admins
+     * const admin = await prisma.admin.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends AdminUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, AdminUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Admin.
+     * @param {AdminUpsertArgs} args - Arguments to update or create a Admin.
+     * @example
+     * // Update or create a Admin
+     * const admin = await prisma.admin.upsert({
+     *   create: {
+     *     // ... data to create a Admin
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Admin we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends AdminUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, AdminUpsertArgs<ExtArgs>>
+    ): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of Admins.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminCountArgs} args - Arguments to filter Admins to count.
+     * @example
+     * // Count the number of Admins
+     * const count = await prisma.admin.count({
+     *   where: {
+     *     // ... the filter for the Admins we want to count
+     *   }
+     * })
+    **/
+    count<T extends AdminCountArgs>(
+      args?: Subset<T, AdminCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AdminCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Admin.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AdminAggregateArgs>(args: Subset<T, AdminAggregateArgs>): Prisma.PrismaPromise<GetAdminAggregateType<T>>
+
+    /**
+     * Group by Admin.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AdminGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AdminGroupByArgs['orderBy'] }
+        : { orderBy?: AdminGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AdminGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAdminGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Admin model
+   */
+  readonly fields: AdminFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Admin.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AdminClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the Admin model
+   */ 
+  interface AdminFieldRefs {
+    readonly id: FieldRef<"Admin", 'String'>
+    readonly username: FieldRef<"Admin", 'String'>
+    readonly password: FieldRef<"Admin", 'String'>
+    readonly createdAt: FieldRef<"Admin", 'DateTime'>
+    readonly updatedAt: FieldRef<"Admin", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * Admin findUnique
+   */
+  export type AdminFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Admin
+     */
+    select?: AdminSelect<ExtArgs> | null
+    /**
+     * Filter, which Admin to fetch.
+     */
+    where: AdminWhereUniqueInput
+  }
+
+
+  /**
+   * Admin findUniqueOrThrow
+   */
+  export type AdminFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Admin
+     */
+    select?: AdminSelect<ExtArgs> | null
+    /**
+     * Filter, which Admin to fetch.
+     */
+    where: AdminWhereUniqueInput
+  }
+
+
+  /**
+   * Admin findFirst
+   */
+  export type AdminFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Admin
+     */
+    select?: AdminSelect<ExtArgs> | null
+    /**
+     * Filter, which Admin to fetch.
+     */
+    where?: AdminWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Admins to fetch.
+     */
+    orderBy?: AdminOrderByWithRelationInput | AdminOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Admins.
+     */
+    cursor?: AdminWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Admins from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Admins.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Admins.
+     */
+    distinct?: AdminScalarFieldEnum | AdminScalarFieldEnum[]
+  }
+
+
+  /**
+   * Admin findFirstOrThrow
+   */
+  export type AdminFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Admin
+     */
+    select?: AdminSelect<ExtArgs> | null
+    /**
+     * Filter, which Admin to fetch.
+     */
+    where?: AdminWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Admins to fetch.
+     */
+    orderBy?: AdminOrderByWithRelationInput | AdminOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Admins.
+     */
+    cursor?: AdminWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Admins from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Admins.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Admins.
+     */
+    distinct?: AdminScalarFieldEnum | AdminScalarFieldEnum[]
+  }
+
+
+  /**
+   * Admin findMany
+   */
+  export type AdminFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Admin
+     */
+    select?: AdminSelect<ExtArgs> | null
+    /**
+     * Filter, which Admins to fetch.
+     */
+    where?: AdminWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Admins to fetch.
+     */
+    orderBy?: AdminOrderByWithRelationInput | AdminOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Admins.
+     */
+    cursor?: AdminWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Admins from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Admins.
+     */
+    skip?: number
+    distinct?: AdminScalarFieldEnum | AdminScalarFieldEnum[]
+  }
+
+
+  /**
+   * Admin create
+   */
+  export type AdminCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Admin
+     */
+    select?: AdminSelect<ExtArgs> | null
+    /**
+     * The data needed to create a Admin.
+     */
+    data: XOR<AdminCreateInput, AdminUncheckedCreateInput>
+  }
+
+
+  /**
+   * Admin createMany
+   */
+  export type AdminCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Admins.
+     */
+    data: AdminCreateManyInput | AdminCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * Admin update
+   */
+  export type AdminUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Admin
+     */
+    select?: AdminSelect<ExtArgs> | null
+    /**
+     * The data needed to update a Admin.
+     */
+    data: XOR<AdminUpdateInput, AdminUncheckedUpdateInput>
+    /**
+     * Choose, which Admin to update.
+     */
+    where: AdminWhereUniqueInput
+  }
+
+
+  /**
+   * Admin updateMany
+   */
+  export type AdminUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Admins.
+     */
+    data: XOR<AdminUpdateManyMutationInput, AdminUncheckedUpdateManyInput>
+    /**
+     * Filter which Admins to update
+     */
+    where?: AdminWhereInput
+  }
+
+
+  /**
+   * Admin upsert
+   */
+  export type AdminUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Admin
+     */
+    select?: AdminSelect<ExtArgs> | null
+    /**
+     * The filter to search for the Admin to update in case it exists.
+     */
+    where: AdminWhereUniqueInput
+    /**
+     * In case the Admin found by the `where` argument doesn't exist, create a new Admin with this data.
+     */
+    create: XOR<AdminCreateInput, AdminUncheckedCreateInput>
+    /**
+     * In case the Admin was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AdminUpdateInput, AdminUncheckedUpdateInput>
+  }
+
+
+  /**
+   * Admin delete
+   */
+  export type AdminDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Admin
+     */
+    select?: AdminSelect<ExtArgs> | null
+    /**
+     * Filter which Admin to delete.
+     */
+    where: AdminWhereUniqueInput
+  }
+
+
+  /**
+   * Admin deleteMany
+   */
+  export type AdminDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Admins to delete
+     */
+    where?: AdminWhereInput
+  }
+
+
+  /**
+   * Admin without action
+   */
+  export type AdminDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Admin
+     */
+    select?: AdminSelect<ExtArgs> | null
   }
 
 
@@ -25767,12 +26763,27 @@ export namespace Prisma {
     password: 'password',
     avatar: 'avatar',
     cover: 'cover',
+    customerId: 'customerId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
+    trialEnd: 'trialEnd',
+    productId: 'productId',
+    subscriptionId: 'subscriptionId',
     lockedAt: 'lockedAt'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+  export const AdminScalarFieldEnum: {
+    id: 'id',
+    username: 'username',
+    password: 'password',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type AdminScalarFieldEnum = (typeof AdminScalarFieldEnum)[keyof typeof AdminScalarFieldEnum]
 
 
   export const UserPaymentMethodScalarFieldEnum: {
@@ -26142,8 +27153,12 @@ export namespace Prisma {
     password?: StringFilter<"User"> | string
     avatar?: StringNullableFilter<"User"> | string | null
     cover?: StringNullableFilter<"User"> | string | null
+    customerId?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
+    trialEnd?: DateTimeNullableFilter<"User"> | Date | string | null
+    productId?: StringNullableFilter<"User"> | string | null
+    subscriptionId?: StringNullableFilter<"User"> | string | null
     lockedAt?: DateTimeNullableFilter<"User"> | Date | string | null
     media?: MediaListRelationFilter
     mediaReactions?: MediaReactionListRelationFilter
@@ -26167,8 +27182,12 @@ export namespace Prisma {
     password?: SortOrder
     avatar?: SortOrderInput | SortOrder
     cover?: SortOrderInput | SortOrder
+    customerId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    trialEnd?: SortOrderInput | SortOrder
+    productId?: SortOrderInput | SortOrder
+    subscriptionId?: SortOrderInput | SortOrder
     lockedAt?: SortOrderInput | SortOrder
     media?: MediaOrderByRelationAggregateInput
     mediaReactions?: MediaReactionOrderByRelationAggregateInput
@@ -26195,8 +27214,12 @@ export namespace Prisma {
     password?: StringFilter<"User"> | string
     avatar?: StringNullableFilter<"User"> | string | null
     cover?: StringNullableFilter<"User"> | string | null
+    customerId?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
+    trialEnd?: DateTimeNullableFilter<"User"> | Date | string | null
+    productId?: StringNullableFilter<"User"> | string | null
+    subscriptionId?: StringNullableFilter<"User"> | string | null
     lockedAt?: DateTimeNullableFilter<"User"> | Date | string | null
     media?: MediaListRelationFilter
     mediaReactions?: MediaReactionListRelationFilter
@@ -26220,8 +27243,12 @@ export namespace Prisma {
     password?: SortOrder
     avatar?: SortOrderInput | SortOrder
     cover?: SortOrderInput | SortOrder
+    customerId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    trialEnd?: SortOrderInput | SortOrder
+    productId?: SortOrderInput | SortOrder
+    subscriptionId?: SortOrderInput | SortOrder
     lockedAt?: SortOrderInput | SortOrder
     _count?: UserCountOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
@@ -26240,9 +27267,65 @@ export namespace Prisma {
     password?: StringWithAggregatesFilter<"User"> | string
     avatar?: StringNullableWithAggregatesFilter<"User"> | string | null
     cover?: StringNullableWithAggregatesFilter<"User"> | string | null
+    customerId?: StringNullableWithAggregatesFilter<"User"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
+    trialEnd?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+    productId?: StringNullableWithAggregatesFilter<"User"> | string | null
+    subscriptionId?: StringNullableWithAggregatesFilter<"User"> | string | null
     lockedAt?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+  }
+
+  export type AdminWhereInput = {
+    AND?: AdminWhereInput | AdminWhereInput[]
+    OR?: AdminWhereInput[]
+    NOT?: AdminWhereInput | AdminWhereInput[]
+    id?: StringFilter<"Admin"> | string
+    username?: StringFilter<"Admin"> | string
+    password?: StringFilter<"Admin"> | string
+    createdAt?: DateTimeFilter<"Admin"> | Date | string
+    updatedAt?: DateTimeFilter<"Admin"> | Date | string
+  }
+
+  export type AdminOrderByWithRelationInput = {
+    id?: SortOrder
+    username?: SortOrder
+    password?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AdminWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    username?: string
+    AND?: AdminWhereInput | AdminWhereInput[]
+    OR?: AdminWhereInput[]
+    NOT?: AdminWhereInput | AdminWhereInput[]
+    password?: StringFilter<"Admin"> | string
+    createdAt?: DateTimeFilter<"Admin"> | Date | string
+    updatedAt?: DateTimeFilter<"Admin"> | Date | string
+  }, "id" | "username">
+
+  export type AdminOrderByWithAggregationInput = {
+    id?: SortOrder
+    username?: SortOrder
+    password?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: AdminCountOrderByAggregateInput
+    _max?: AdminMaxOrderByAggregateInput
+    _min?: AdminMinOrderByAggregateInput
+  }
+
+  export type AdminScalarWhereWithAggregatesInput = {
+    AND?: AdminScalarWhereWithAggregatesInput | AdminScalarWhereWithAggregatesInput[]
+    OR?: AdminScalarWhereWithAggregatesInput[]
+    NOT?: AdminScalarWhereWithAggregatesInput | AdminScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Admin"> | string
+    username?: StringWithAggregatesFilter<"Admin"> | string
+    password?: StringWithAggregatesFilter<"Admin"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Admin"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Admin"> | Date | string
   }
 
   export type UserPaymentMethodWhereInput = {
@@ -27661,8 +28744,12 @@ export namespace Prisma {
     password: string
     avatar?: string | null
     cover?: string | null
+    customerId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    trialEnd?: Date | string | null
+    productId?: string | null
+    subscriptionId?: string | null
     lockedAt?: Date | string | null
     media?: MediaCreateNestedManyWithoutOwnerInput
     mediaReactions?: MediaReactionCreateNestedManyWithoutUserInput
@@ -27686,8 +28773,12 @@ export namespace Prisma {
     password: string
     avatar?: string | null
     cover?: string | null
+    customerId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    trialEnd?: Date | string | null
+    productId?: string | null
+    subscriptionId?: string | null
     lockedAt?: Date | string | null
     media?: MediaUncheckedCreateNestedManyWithoutOwnerInput
     mediaReactions?: MediaReactionUncheckedCreateNestedManyWithoutUserInput
@@ -27711,8 +28802,12 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     cover?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    trialEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    productId?: NullableStringFieldUpdateOperationsInput | string | null
+    subscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     media?: MediaUpdateManyWithoutOwnerNestedInput
     mediaReactions?: MediaReactionUpdateManyWithoutUserNestedInput
@@ -27736,8 +28831,12 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     cover?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    trialEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    productId?: NullableStringFieldUpdateOperationsInput | string | null
+    subscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     media?: MediaUncheckedUpdateManyWithoutOwnerNestedInput
     mediaReactions?: MediaReactionUncheckedUpdateManyWithoutUserNestedInput
@@ -27761,8 +28860,12 @@ export namespace Prisma {
     password: string
     avatar?: string | null
     cover?: string | null
+    customerId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    trialEnd?: Date | string | null
+    productId?: string | null
+    subscriptionId?: string | null
     lockedAt?: Date | string | null
   }
 
@@ -27775,8 +28878,12 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     cover?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    trialEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    productId?: NullableStringFieldUpdateOperationsInput | string | null
+    subscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
@@ -27789,9 +28896,69 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     cover?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    trialEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    productId?: NullableStringFieldUpdateOperationsInput | string | null
+    subscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type AdminCreateInput = {
+    id?: string
+    username: string
+    password: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AdminUncheckedCreateInput = {
+    id?: string
+    username: string
+    password: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AdminUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AdminUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AdminCreateManyInput = {
+    id?: string
+    username: string
+    password: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AdminUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AdminUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserPaymentMethodCreateInput = {
@@ -29333,8 +30500,12 @@ export namespace Prisma {
     password?: SortOrder
     avatar?: SortOrder
     cover?: SortOrder
+    customerId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    trialEnd?: SortOrder
+    productId?: SortOrder
+    subscriptionId?: SortOrder
     lockedAt?: SortOrder
   }
 
@@ -29347,8 +30518,12 @@ export namespace Prisma {
     password?: SortOrder
     avatar?: SortOrder
     cover?: SortOrder
+    customerId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    trialEnd?: SortOrder
+    productId?: SortOrder
+    subscriptionId?: SortOrder
     lockedAt?: SortOrder
   }
 
@@ -29361,8 +30536,12 @@ export namespace Prisma {
     password?: SortOrder
     avatar?: SortOrder
     cover?: SortOrder
+    customerId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    trialEnd?: SortOrder
+    productId?: SortOrder
+    subscriptionId?: SortOrder
     lockedAt?: SortOrder
   }
 
@@ -29426,6 +30605,30 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedDateTimeNullableFilter<$PrismaModel>
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type AdminCountOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    password?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AdminMaxOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    password?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AdminMinOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    password?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -32971,8 +34174,12 @@ export namespace Prisma {
     password: string
     avatar?: string | null
     cover?: string | null
+    customerId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    trialEnd?: Date | string | null
+    productId?: string | null
+    subscriptionId?: string | null
     lockedAt?: Date | string | null
     media?: MediaCreateNestedManyWithoutOwnerInput
     mediaReactions?: MediaReactionCreateNestedManyWithoutUserInput
@@ -32995,8 +34202,12 @@ export namespace Prisma {
     password: string
     avatar?: string | null
     cover?: string | null
+    customerId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    trialEnd?: Date | string | null
+    productId?: string | null
+    subscriptionId?: string | null
     lockedAt?: Date | string | null
     media?: MediaUncheckedCreateNestedManyWithoutOwnerInput
     mediaReactions?: MediaReactionUncheckedCreateNestedManyWithoutUserInput
@@ -33035,8 +34246,12 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     cover?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    trialEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    productId?: NullableStringFieldUpdateOperationsInput | string | null
+    subscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     media?: MediaUpdateManyWithoutOwnerNestedInput
     mediaReactions?: MediaReactionUpdateManyWithoutUserNestedInput
@@ -33059,8 +34274,12 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     cover?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    trialEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    productId?: NullableStringFieldUpdateOperationsInput | string | null
+    subscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     media?: MediaUncheckedUpdateManyWithoutOwnerNestedInput
     mediaReactions?: MediaReactionUncheckedUpdateManyWithoutUserNestedInput
@@ -33417,8 +34636,12 @@ export namespace Prisma {
     password: string
     avatar?: string | null
     cover?: string | null
+    customerId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    trialEnd?: Date | string | null
+    productId?: string | null
+    subscriptionId?: string | null
     lockedAt?: Date | string | null
     mediaReactions?: MediaReactionCreateNestedManyWithoutUserInput
     histories?: HistoryCreateNestedManyWithoutUserInput
@@ -33441,8 +34664,12 @@ export namespace Prisma {
     password: string
     avatar?: string | null
     cover?: string | null
+    customerId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    trialEnd?: Date | string | null
+    productId?: string | null
+    subscriptionId?: string | null
     lockedAt?: Date | string | null
     mediaReactions?: MediaReactionUncheckedCreateNestedManyWithoutUserInput
     histories?: HistoryUncheckedCreateNestedManyWithoutUserInput
@@ -33773,8 +35000,12 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     cover?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    trialEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    productId?: NullableStringFieldUpdateOperationsInput | string | null
+    subscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mediaReactions?: MediaReactionUpdateManyWithoutUserNestedInput
     histories?: HistoryUpdateManyWithoutUserNestedInput
@@ -33797,8 +35028,12 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     cover?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    trialEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    productId?: NullableStringFieldUpdateOperationsInput | string | null
+    subscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mediaReactions?: MediaReactionUncheckedUpdateManyWithoutUserNestedInput
     histories?: HistoryUncheckedUpdateManyWithoutUserNestedInput
@@ -34103,8 +35338,12 @@ export namespace Prisma {
     password: string
     avatar?: string | null
     cover?: string | null
+    customerId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    trialEnd?: Date | string | null
+    productId?: string | null
+    subscriptionId?: string | null
     lockedAt?: Date | string | null
     media?: MediaCreateNestedManyWithoutOwnerInput
     histories?: HistoryCreateNestedManyWithoutUserInput
@@ -34127,8 +35366,12 @@ export namespace Prisma {
     password: string
     avatar?: string | null
     cover?: string | null
+    customerId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    trialEnd?: Date | string | null
+    productId?: string | null
+    subscriptionId?: string | null
     lockedAt?: Date | string | null
     media?: MediaUncheckedCreateNestedManyWithoutOwnerInput
     histories?: HistoryUncheckedCreateNestedManyWithoutUserInput
@@ -34224,8 +35467,12 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     cover?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    trialEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    productId?: NullableStringFieldUpdateOperationsInput | string | null
+    subscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     media?: MediaUpdateManyWithoutOwnerNestedInput
     histories?: HistoryUpdateManyWithoutUserNestedInput
@@ -34248,8 +35495,12 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     cover?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    trialEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    productId?: NullableStringFieldUpdateOperationsInput | string | null
+    subscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     media?: MediaUncheckedUpdateManyWithoutOwnerNestedInput
     histories?: HistoryUncheckedUpdateManyWithoutUserNestedInput
@@ -34335,8 +35586,12 @@ export namespace Prisma {
     password: string
     avatar?: string | null
     cover?: string | null
+    customerId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    trialEnd?: Date | string | null
+    productId?: string | null
+    subscriptionId?: string | null
     lockedAt?: Date | string | null
     media?: MediaCreateNestedManyWithoutOwnerInput
     mediaReactions?: MediaReactionCreateNestedManyWithoutUserInput
@@ -34359,8 +35614,12 @@ export namespace Prisma {
     password: string
     avatar?: string | null
     cover?: string | null
+    customerId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    trialEnd?: Date | string | null
+    productId?: string | null
+    subscriptionId?: string | null
     lockedAt?: Date | string | null
     media?: MediaUncheckedCreateNestedManyWithoutOwnerInput
     mediaReactions?: MediaReactionUncheckedCreateNestedManyWithoutUserInput
@@ -34456,8 +35715,12 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     cover?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    trialEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    productId?: NullableStringFieldUpdateOperationsInput | string | null
+    subscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     media?: MediaUpdateManyWithoutOwnerNestedInput
     mediaReactions?: MediaReactionUpdateManyWithoutUserNestedInput
@@ -34480,8 +35743,12 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     cover?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    trialEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    productId?: NullableStringFieldUpdateOperationsInput | string | null
+    subscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     media?: MediaUncheckedUpdateManyWithoutOwnerNestedInput
     mediaReactions?: MediaReactionUncheckedUpdateManyWithoutUserNestedInput
@@ -34567,8 +35834,12 @@ export namespace Prisma {
     password: string
     avatar?: string | null
     cover?: string | null
+    customerId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    trialEnd?: Date | string | null
+    productId?: string | null
+    subscriptionId?: string | null
     lockedAt?: Date | string | null
     media?: MediaCreateNestedManyWithoutOwnerInput
     mediaReactions?: MediaReactionCreateNestedManyWithoutUserInput
@@ -34591,8 +35862,12 @@ export namespace Prisma {
     password: string
     avatar?: string | null
     cover?: string | null
+    customerId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    trialEnd?: Date | string | null
+    productId?: string | null
+    subscriptionId?: string | null
     lockedAt?: Date | string | null
     media?: MediaUncheckedCreateNestedManyWithoutOwnerInput
     mediaReactions?: MediaReactionUncheckedCreateNestedManyWithoutUserInput
@@ -34656,8 +35931,12 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     cover?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    trialEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    productId?: NullableStringFieldUpdateOperationsInput | string | null
+    subscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     media?: MediaUpdateManyWithoutOwnerNestedInput
     mediaReactions?: MediaReactionUpdateManyWithoutUserNestedInput
@@ -34680,8 +35959,12 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     cover?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    trialEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    productId?: NullableStringFieldUpdateOperationsInput | string | null
+    subscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     media?: MediaUncheckedUpdateManyWithoutOwnerNestedInput
     mediaReactions?: MediaReactionUncheckedUpdateManyWithoutUserNestedInput
@@ -34888,8 +36171,12 @@ export namespace Prisma {
     password: string
     avatar?: string | null
     cover?: string | null
+    customerId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    trialEnd?: Date | string | null
+    productId?: string | null
+    subscriptionId?: string | null
     lockedAt?: Date | string | null
     media?: MediaCreateNestedManyWithoutOwnerInput
     mediaReactions?: MediaReactionCreateNestedManyWithoutUserInput
@@ -34912,8 +36199,12 @@ export namespace Prisma {
     password: string
     avatar?: string | null
     cover?: string | null
+    customerId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    trialEnd?: Date | string | null
+    productId?: string | null
+    subscriptionId?: string | null
     lockedAt?: Date | string | null
     media?: MediaUncheckedCreateNestedManyWithoutOwnerInput
     mediaReactions?: MediaReactionUncheckedCreateNestedManyWithoutUserInput
@@ -35009,8 +36300,12 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     cover?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    trialEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    productId?: NullableStringFieldUpdateOperationsInput | string | null
+    subscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     media?: MediaUpdateManyWithoutOwnerNestedInput
     mediaReactions?: MediaReactionUpdateManyWithoutUserNestedInput
@@ -35033,8 +36328,12 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     cover?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    trialEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    productId?: NullableStringFieldUpdateOperationsInput | string | null
+    subscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     media?: MediaUncheckedUpdateManyWithoutOwnerNestedInput
     mediaReactions?: MediaReactionUncheckedUpdateManyWithoutUserNestedInput
@@ -35120,8 +36419,12 @@ export namespace Prisma {
     password: string
     avatar?: string | null
     cover?: string | null
+    customerId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    trialEnd?: Date | string | null
+    productId?: string | null
+    subscriptionId?: string | null
     lockedAt?: Date | string | null
     media?: MediaCreateNestedManyWithoutOwnerInput
     mediaReactions?: MediaReactionCreateNestedManyWithoutUserInput
@@ -35144,8 +36447,12 @@ export namespace Prisma {
     password: string
     avatar?: string | null
     cover?: string | null
+    customerId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    trialEnd?: Date | string | null
+    productId?: string | null
+    subscriptionId?: string | null
     lockedAt?: Date | string | null
     media?: MediaUncheckedCreateNestedManyWithoutOwnerInput
     mediaReactions?: MediaReactionUncheckedCreateNestedManyWithoutUserInput
@@ -35173,8 +36480,12 @@ export namespace Prisma {
     password: string
     avatar?: string | null
     cover?: string | null
+    customerId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    trialEnd?: Date | string | null
+    productId?: string | null
+    subscriptionId?: string | null
     lockedAt?: Date | string | null
     media?: MediaCreateNestedManyWithoutOwnerInput
     mediaReactions?: MediaReactionCreateNestedManyWithoutUserInput
@@ -35197,8 +36508,12 @@ export namespace Prisma {
     password: string
     avatar?: string | null
     cover?: string | null
+    customerId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    trialEnd?: Date | string | null
+    productId?: string | null
+    subscriptionId?: string | null
     lockedAt?: Date | string | null
     media?: MediaUncheckedCreateNestedManyWithoutOwnerInput
     mediaReactions?: MediaReactionUncheckedCreateNestedManyWithoutUserInput
@@ -35237,8 +36552,12 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     cover?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    trialEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    productId?: NullableStringFieldUpdateOperationsInput | string | null
+    subscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     media?: MediaUpdateManyWithoutOwnerNestedInput
     mediaReactions?: MediaReactionUpdateManyWithoutUserNestedInput
@@ -35261,8 +36580,12 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     cover?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    trialEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    productId?: NullableStringFieldUpdateOperationsInput | string | null
+    subscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     media?: MediaUncheckedUpdateManyWithoutOwnerNestedInput
     mediaReactions?: MediaReactionUncheckedUpdateManyWithoutUserNestedInput
@@ -35296,8 +36619,12 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     cover?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    trialEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    productId?: NullableStringFieldUpdateOperationsInput | string | null
+    subscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     media?: MediaUpdateManyWithoutOwnerNestedInput
     mediaReactions?: MediaReactionUpdateManyWithoutUserNestedInput
@@ -35320,8 +36647,12 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     cover?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    trialEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    productId?: NullableStringFieldUpdateOperationsInput | string | null
+    subscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     media?: MediaUncheckedUpdateManyWithoutOwnerNestedInput
     mediaReactions?: MediaReactionUncheckedUpdateManyWithoutUserNestedInput
@@ -35344,8 +36675,12 @@ export namespace Prisma {
     password: string
     avatar?: string | null
     cover?: string | null
+    customerId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    trialEnd?: Date | string | null
+    productId?: string | null
+    subscriptionId?: string | null
     lockedAt?: Date | string | null
     media?: MediaCreateNestedManyWithoutOwnerInput
     mediaReactions?: MediaReactionCreateNestedManyWithoutUserInput
@@ -35368,8 +36703,12 @@ export namespace Prisma {
     password: string
     avatar?: string | null
     cover?: string | null
+    customerId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    trialEnd?: Date | string | null
+    productId?: string | null
+    subscriptionId?: string | null
     lockedAt?: Date | string | null
     media?: MediaUncheckedCreateNestedManyWithoutOwnerInput
     mediaReactions?: MediaReactionUncheckedCreateNestedManyWithoutUserInput
@@ -35408,8 +36747,12 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     cover?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    trialEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    productId?: NullableStringFieldUpdateOperationsInput | string | null
+    subscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     media?: MediaUpdateManyWithoutOwnerNestedInput
     mediaReactions?: MediaReactionUpdateManyWithoutUserNestedInput
@@ -35432,8 +36775,12 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     cover?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    trialEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    productId?: NullableStringFieldUpdateOperationsInput | string | null
+    subscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     media?: MediaUncheckedUpdateManyWithoutOwnerNestedInput
     mediaReactions?: MediaReactionUncheckedUpdateManyWithoutUserNestedInput
@@ -36197,8 +37544,12 @@ export namespace Prisma {
     password: string
     avatar?: string | null
     cover?: string | null
+    customerId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    trialEnd?: Date | string | null
+    productId?: string | null
+    subscriptionId?: string | null
     lockedAt?: Date | string | null
     media?: MediaCreateNestedManyWithoutOwnerInput
     mediaReactions?: MediaReactionCreateNestedManyWithoutUserInput
@@ -36221,8 +37572,12 @@ export namespace Prisma {
     password: string
     avatar?: string | null
     cover?: string | null
+    customerId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    trialEnd?: Date | string | null
+    productId?: string | null
+    subscriptionId?: string | null
     lockedAt?: Date | string | null
     media?: MediaUncheckedCreateNestedManyWithoutOwnerInput
     mediaReactions?: MediaReactionUncheckedCreateNestedManyWithoutUserInput
@@ -36284,8 +37639,12 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     cover?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    trialEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    productId?: NullableStringFieldUpdateOperationsInput | string | null
+    subscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     media?: MediaUpdateManyWithoutOwnerNestedInput
     mediaReactions?: MediaReactionUpdateManyWithoutUserNestedInput
@@ -36308,8 +37667,12 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     cover?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    trialEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    productId?: NullableStringFieldUpdateOperationsInput | string | null
+    subscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     media?: MediaUncheckedUpdateManyWithoutOwnerNestedInput
     mediaReactions?: MediaReactionUncheckedUpdateManyWithoutUserNestedInput
@@ -36542,8 +37905,12 @@ export namespace Prisma {
     password: string
     avatar?: string | null
     cover?: string | null
+    customerId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    trialEnd?: Date | string | null
+    productId?: string | null
+    subscriptionId?: string | null
     lockedAt?: Date | string | null
     media?: MediaCreateNestedManyWithoutOwnerInput
     mediaReactions?: MediaReactionCreateNestedManyWithoutUserInput
@@ -36566,8 +37933,12 @@ export namespace Prisma {
     password: string
     avatar?: string | null
     cover?: string | null
+    customerId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    trialEnd?: Date | string | null
+    productId?: string | null
+    subscriptionId?: string | null
     lockedAt?: Date | string | null
     media?: MediaUncheckedCreateNestedManyWithoutOwnerInput
     mediaReactions?: MediaReactionUncheckedCreateNestedManyWithoutUserInput
@@ -36631,8 +38002,12 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     cover?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    trialEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    productId?: NullableStringFieldUpdateOperationsInput | string | null
+    subscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     media?: MediaUpdateManyWithoutOwnerNestedInput
     mediaReactions?: MediaReactionUpdateManyWithoutUserNestedInput
@@ -36655,8 +38030,12 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     cover?: NullableStringFieldUpdateOperationsInput | string | null
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    trialEnd?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    productId?: NullableStringFieldUpdateOperationsInput | string | null
+    subscriptionId?: NullableStringFieldUpdateOperationsInput | string | null
     lockedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     media?: MediaUncheckedUpdateManyWithoutOwnerNestedInput
     mediaReactions?: MediaReactionUncheckedUpdateManyWithoutUserNestedInput
@@ -37602,6 +38981,10 @@ export namespace Prisma {
      * @deprecated Use UserDefaultArgs instead
      */
     export type UserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UserDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use AdminDefaultArgs instead
+     */
+    export type AdminArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = AdminDefaultArgs<ExtArgs>
     /**
      * @deprecated Use UserPaymentMethodDefaultArgs instead
      */
